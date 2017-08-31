@@ -60,7 +60,7 @@
         //Users menu
        ->item([
             'title' => icon('user', trans('navbar.users')),
-            'url' => route('dashboard.editor.users.index'),
+            'url' => route('dashboard.user.users.index'),
             'active' => true,
             'role' => 'editor',
         ])->separator()
