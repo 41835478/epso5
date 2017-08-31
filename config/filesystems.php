@@ -53,6 +53,11 @@ return [
             'root' => storage_path('app/public'),
         ],
 
+        'clients' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/clients'),
+        ],
+
         'profile' => [
             'driver' => 'local',
             'root' => storage_path('app/public/profile'),
