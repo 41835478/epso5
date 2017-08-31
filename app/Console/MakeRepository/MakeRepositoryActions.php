@@ -75,6 +75,16 @@ trait MakeRepositoryActions
     }
 
     /**
+     * Create the language files
+     *
+     * @return mixed
+     */
+    public function createLocalization()
+    {
+        $this->create('localization')->stub('localization')->generate();
+    }
+
+    /**
      * Create the view breadcrumb
      *
      * @return mixed

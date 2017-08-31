@@ -25,6 +25,10 @@ trait MakeRepositoryConstructorFiles
                     $file = 'app/DataTables/DummyClass/DataTable' . $appendix;
                     break;
 
+                case 'localization':
+                    $file = 'resources/lang/es/sections/DummyTable';
+                    break;
+
                 case 'model':
                     $file = 'app/Repositories/DummyClass/DummyModel';
                     break;

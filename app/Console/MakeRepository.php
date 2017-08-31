@@ -77,6 +77,8 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createDataTable();
         //Next, create the datatable traits
         $this->createDataTableTraits();
+        //Next, create the localization file
+        $this->createLocalization();
 
         //Table header 
         $this->line(' ') . $this->table($this->tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');
