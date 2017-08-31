@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables\Users;
+namespace App\Services\DataTables;
 
 trait DataTableHelpers
 {

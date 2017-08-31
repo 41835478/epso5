@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\MakeRepository;
+namespace App\Console\MakeRepository;
 
 trait MakeRepositoryActions
 {
@@ -22,6 +22,16 @@ trait MakeRepositoryActions
     public function createDataTable()
     {
         $this->create('datatable')->stub('repository_datatable')->generate();
+    }
+
+    /**
+     * Create the datatable traits
+     *
+     * @return mixed
+     */
+    public function createDataTableTraits()
+    {
+        $this->create('dataTablesTraits')->stub('repository_datatables_trait')->dataTablesTraits()->generate();
     }
 
     /**
@@ -51,7 +61,7 @@ trait MakeRepositoryActions
      */
     public function createModelTraits()
     {
-        $this->create('trait')->stub('repository_trait')->traits()->generate();
+        $this->create('modelTraits')->stub('repository_model_trait')->modelTraits()->generate();
     }
 
     /**

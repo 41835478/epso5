@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\DataTables\DummyClassDataTable\DataTable;
+use App\DataTables\ClientsDataTable\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\DummyClass\Contracts\DummyClassInterface;
+use App\Repositories\Clients\ClientsRespository;
 use App\Services\Redirection\Redirection;
-//use App\Http\Requests\DummyClassRequest;
+//use App\Http\Requests\ClientsRequest;
 //use Credentials;
 use Illuminate\Http\Request;
 
-class DummyClassController extends DashboardController
+class ClientsController extends DashboardController
 {
     /**
      * @var string
@@ -19,7 +19,7 @@ class DummyClassController extends DashboardController
     protected $role;
     protected $table;
 
-    public function __construct(DummyClassRespository $controller, DataTable $table)
+    public function __construct(ClientsRespository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
@@ -27,7 +27,7 @@ class DummyClassController extends DashboardController
         
         //Sharing in the view
         view()->share([
-            'section'   => 'DummyTable',
+            'section'   => 'clients',
             'role'      => 'admin'
         ]);
 
@@ -44,9 +44,9 @@ class DummyClassController extends DashboardController
     {
         return $this->table
             // ->setValue([
-            //     'action' => 'DummyTable.actions'
+            //     'action' => 'clients.actions'
             // ])
-            ->render(dashboard_path('DummyTable.index'));
+            ->render(dashboard_path('clients.index'));
     }
 
     /**
@@ -56,7 +56,7 @@ class DummyClassController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('DummyTable.create'));
+        return view(dashboard_path('clients.create'));
     }
 
     /**
@@ -65,14 +65,14 @@ class DummyClassController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DummyClassRequest $request)
+    public function store(ClientsRequest $request)
     {
         $create = $this->controller
             ->store($request);
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.DummyTable.index')
+                    ->route('dashboard.' . $this->role . '.clients.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -91,7 +91,7 @@ class DummyClassController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('DummyTable.edit'))
+        return view(dashboard_path('clients.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -102,14 +102,14 @@ class DummyClassController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DummyClassRequest $request, $id)
+    public function update(ClientsRequest $request, $id)
     {
         $update = $this->controller
             ->store($id);
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.DummyTable.index')
+                    ->route('dashboard.' . $this->role . '.clients.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

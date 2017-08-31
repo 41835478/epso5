@@ -2,16 +2,13 @@
 
 namespace App\Repositories\Clients\Traits;
 
-trait ClientsScopes {
+trait ClientsHelpers {
 
     /*
     |--------------------------------------------------------------------------
-    | Scopes
+    | Helpers
     |--------------------------------------------------------------------------
     */
-   
-    // public function scopePopular($query)
-    // {
-    //     return $query->role()->all();
-    // }
+
+    // helpers functions to remove from the repository
 }

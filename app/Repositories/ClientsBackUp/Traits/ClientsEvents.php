@@ -1,25 +1,19 @@
 <?php
 
-namespace App\Repositories\Repos\DummyClass\Traits;
+namespace App\Repositories\Clients\Traits;
 
-trait DummyClassEvents {
+trait ClientsEvents {
 
     /*
     |--------------------------------------------------------------------------
     | Events
     |--------------------------------------------------------------------------
+    | Eloquent events: create, created, update, updated, save, saved, delete, deleted
     */
-
     // protected static function boot()
     // {
     //     parent::boot();
-
     //     static::saved(function ($model) {
-    //         SELF::CacheManagement($model);
-    //     });
-        
-    //     static::deleted(function ($model) {
-    //         SELF::CacheManagement($model);
     //     });
     // }
 }

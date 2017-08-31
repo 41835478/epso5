@@ -1,11 +1,11 @@
 <?php
 
-namespace App\DataTables\DummyClass;
+namespace App\DataTables\Clients;
 
-use App\DataTables\DummyClass\DataTableColumns;
-use App\DataTables\DummyClass\DataTableJavascript;
-use App\DataTables\DummyClass\DataTableSearch;
-use App\Repositories\DummyClass\UsersRepository;
+use App\DataTables\Clients\DataTableColumns;
+use App\DataTables\Clients\DataTableJavascript;
+use App\DataTables\Clients\DataTableSearch;
+use App\Repositories\Clients\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 
 class DataTable extends Repository
@@ -15,7 +15,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $section = 'DummyTable';
+    protected $section = 'clients';
 
     /**
      * Get the query object to be processed by datatables.
@@ -24,7 +24,7 @@ class DataTable extends Repository
      */
     public function query()
     {
-        $query = app(DummyClassRepository::class)
+        $query = app(ClientsRepository::class)
             ->dataTable()
             ->select($this->section . '.*');
 

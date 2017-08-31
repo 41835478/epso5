@@ -18,7 +18,7 @@
             Menu::new()
             ->subMenuItem([
                 'title' => icon('users', trans('navbar.admin:clients')),
-                'url' => 'http://',
+                'url' => route('dashboard.admin.clients.index'),
             ])->subMenuItem([
                 'title' => icon('crops', trans('navbar.admin:crops')),
                 'url' => 'http://',

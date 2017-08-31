@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Console\Commands\MakeRepository;
+namespace App\Console\MakeRepository;
+
+use Storage;
 
 trait MakeRepositoryConstructorStub
 {
@@ -21,8 +23,7 @@ trait MakeRepositoryConstructorStub
      */
     public function getStub()
     {
-        $stub = 'app/Console/Commands/' . $this->commandPath. '/stubs/' . $this->stub . '.stub';
-
+        $stub = 'app/Console/' . $this->commandPath. '/stubs/' . $this->stub . '.stub';
         return (Storage::disk($this->disk)->get($stub)) ?? $this->error("No file found in: " . $file);
     }
 
@@ -34,7 +35,6 @@ trait MakeRepositoryConstructorStub
     public function stub($stub)
     {
         $this->stub = $stub;
-
         return $this;
     }
 }

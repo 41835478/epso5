@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\MakeRepository;
+namespace App\Console\MakeRepository;
 
 trait MakeRepositoryConstructorFiles
 {
@@ -18,17 +18,21 @@ trait MakeRepositoryConstructorFiles
                     break;
 
                 case 'datatable':
-                    $file = 'app/DataTables/DummyClassDataTable';
+                    $file = 'app/DataTables/DummyClass/DataTable';
                     break;
 
-                case 'interface':
-                    $file = 'app/Repositories/Repos/DummyClass/Contracts/DummyClassInterface';
+                case 'dataTablesTraits':
+                    $file = 'app/DataTables/DummyClass/DataTable' . $appendix;
                     break;
 
                 case 'model':
-                    $file = 'app/Repositories/Repos/DummyClass/DummyModel';
+                    $file = 'app/Repositories/DummyClass/DummyModel';
                     break;
-                
+
+                case 'modelTraits':
+                    $file = 'app/Repositories/DummyClass/Traits/DummyClass' . $appendix;
+                    break;
+
                 case 'migration':
                     $migration_name = date('Y_m_d_His') . '_create_DummyTable_table';
                     $this->migration = $this->filter($migration_name);
@@ -36,11 +40,7 @@ trait MakeRepositoryConstructorFiles
                     break;
             
                 case 'repository':
-                    $file = 'app/Repositories/Repos/DummyClass/DummyClassRepository';
-                    break;
-
-                case 'trait':
-                    $file = 'app/Repositories/Repos/DummyClass/Traits/DummyClass' . $appendix;
+                    $file = 'app/Repositories/DummyClass/DummyClassRepository';
                     break;
 
                 case 'view:breadcrumb':

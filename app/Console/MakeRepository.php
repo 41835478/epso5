@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console;
 
-use App\Console\Commands\MakeRepository\MakeRepositoryActions;
-use App\Console\Commands\MakeRepository\MakeRepositoryConstructor;
+use App\Console\MakeRepository\MakeRepositoryActions;
+use App\Console\MakeRepository\MakeRepositoryConstructor;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -40,7 +40,8 @@ class MakeRepository extends MakeRepositoryConstructor
      */
     protected $action;
     protected $disk;
-    protected $traits;
+    protected $modelTraits;
+    protected $dataTablesTraits;
     protected $stub;
     
     /**
@@ -74,7 +75,9 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createRepository();
         //Next, create the datatable
         $this->createDataTable();
-        
+        //Next, create the datatable traits
+        $this->createDataTableTraits();
+
         //Table header 
         $this->line(' ') . $this->table($this->tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');
         $this->line('Dont forget to create the new <options=bold>ROUTE</> for this repository'); 

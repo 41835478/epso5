@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\MakeRepository;
+namespace App\Console\MakeRepository;
 
 trait MakeRepositoryConstructorFilters
 {
@@ -12,16 +12,6 @@ trait MakeRepositoryConstructorFilters
     public function filter($file)
     {
         return str_replace(['DummyClass', 'DummyModel', 'DummyTable'], [$this->getClassName(), $this->getModelName(), $this->getTableName()], $file);
-    }
-
-    /**
-     * Filter the content from the stub file.
-     *
-     * @return string
-     */
-    public function filterStub($file)
-    {
-        return $this->filter($this->getStub($file));
     }
     
     /**

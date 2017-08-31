@@ -3,7 +3,6 @@
 namespace App\DataTables\Users;
 
 use App\DataTables\Users\DataTableColumns;
-use App\DataTables\Users\DataTableHelpers;
 use App\DataTables\Users\DataTableJavascript;
 use App\DataTables\Users\DataTableSearch;
 use App\Repositories\Users\UsersRepository;
@@ -12,7 +11,7 @@ use Credentials;
 
 class DataTable extends Repository
 {
-    use DataTableColumns, DataTableHelpers, DataTableJavascript, DataTableSearch;
+    use DataTableColumns, DataTableJavascript, DataTableSearch;
 
     /**
      * @var string

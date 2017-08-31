@@ -3,21 +3,19 @@
 namespace App\Repositories\Clients\Traits;
 
 trait ClientsPresenters {
-
+    
     /*
     |--------------------------------------------------------------------------
     | Accessors & Mutators
     |--------------------------------------------------------------------------
     */
-
-    // public function setNameAttribute($value)
+    // public function setProfileBirthdateAttribute($value)
     // {
-    //     $this->attributes['name'] = $value;
+    //     $this->attributes["profile_birthdate"] = $this->setDate($value);
     // }
 
-    // public function getNameAttribute($value)
+    // public function getProfileBirthdateAttribute($value)
     // {
-    //     return ucfirst($value);
+    //     return $this->getDate($value);
     // }
-    // 
 }

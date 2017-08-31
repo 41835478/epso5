@@ -56,7 +56,7 @@ trait Filters {
     }
 
     /**
-     * Column search by select
+     * Column search by select: same as change, but with escapeRegex for the value
      * @param   string   $containerID   [The container ID] 
      * @param   int      $columnNumber  [The column number to search]  
      * @return \Illuminate\Http\JsonResponse

@@ -9,8 +9,7 @@ trait ClientsScopes {
     | Scopes
     |--------------------------------------------------------------------------
     */
-   
-    // public function scopePopular($query)
+    // public function rolesScope($query)
     // {
     //     return $query->role()->all();
     // }

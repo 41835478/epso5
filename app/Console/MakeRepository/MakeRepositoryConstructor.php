@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Console\Commands\MakeRepository;
+namespace App\Console\MakeRepository;
 
-use App\Console\Commands\MakeRepository\MakeRepositoryConstructorFiles;
-use App\Console\Commands\MakeRepository\MakeRepositoryConstructorFilters;
-use App\Console\Commands\MakeRepository\MakeRepositoryConstructorStub;
-use App\Console\Commands\MakeRepository\MakeRepositoryConstructorTraits;
+use App\Console\MakeRepository\MakeRepositoryConstructorDataTablesTraits;
+use App\Console\MakeRepository\MakeRepositoryConstructorFiles;
+use App\Console\MakeRepository\MakeRepositoryConstructorFilters;
+use App\Console\MakeRepository\MakeRepositoryConstructorModelTraits;
+use App\Console\MakeRepository\MakeRepositoryConstructorStub;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
 abstract class MakeRepositoryConstructor extends Command
 {
-    use MakeRepositoryConstructorFiles, MakeRepositoryConstructorFilters, MakeRepositoryConstructorStub, MakeRepositoryConstructorTraits;
+    use MakeRepositoryConstructorFiles, MakeRepositoryConstructorFilters, MakeRepositoryConstructorStub, MakeRepositoryConstructorModelTraits, MakeRepositoryConstructorDataTablesTraits;
 
     protected $migration;
     protected $tableData = [];
@@ -23,19 +24,13 @@ abstract class MakeRepositoryConstructor extends Command
      */
     public function generate()
     {
-        if(!$this->traits) {
-            $this->upload();
+        if($this->modelTraits) {
+            $this->createTrait('modelTraits');
+        } elseif($this->dataTablesTraits) {
+            $this->createTrait('dataTablesTraits');
         } else {
-            //Define the trait base path
-            $path = $this->stub;
-            //Create the traits
-            foreach($this->traits as $trait) {
-                $this->stub($path . '_' . $trait);
-                $this->upload(studly_case($trait));
-            }
-            // Reset the traits
-            $this->traits = [];
-        }
+            $this->upload();
+        } 
     }
 
     /**
@@ -60,7 +55,34 @@ abstract class MakeRepositoryConstructor extends Command
     public function create($create)
     {
         $this->create = $create;
-
         return $this;
+    }
+
+    /**
+     * Get the trait path.
+     *
+     * @return string
+     */
+    public function getTrait($fileName)
+    {
+        return str_contains($file, '.php') ? $file : $file . '.php';
+    }
+
+    /**
+     * Renerate a Trait.
+     *
+     * @return string
+     */
+    public function createTrait($trait)
+    {
+        //Path to the traits
+        $path = $this->stub;
+        //Create the traits
+        foreach($this->{$trait} as $item) {
+            $this->stub($path . '_' . $item);
+            $this->upload(studly_case($item));
+        }
+        // Reset the traits
+        $this->{$trait} = [];
     }
 }

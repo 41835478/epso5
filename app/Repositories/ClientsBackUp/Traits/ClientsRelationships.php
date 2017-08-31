@@ -2,16 +2,16 @@
 
 namespace App\Repositories\Clients\Traits;
 
-trait ClientsScopes {
+use App\Repositories\Users\User;
 
+trait ClientsRelationships {
     /*
     |--------------------------------------------------------------------------
-    | Scopes
+    | Relationships
     |--------------------------------------------------------------------------
     */
-   
-    // public function scopePopular($query)
-    // {
-    //     return $query->role()->all();
-    // }
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }
