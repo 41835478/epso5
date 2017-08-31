@@ -8,7 +8,7 @@ use App\Repositories\Clients\Traits\ClientsHelpers;
 use App\Repositories\Clients\Client;
 use DB;
 
-class ClientsRepository extends Repository implements ClientsInterface
+class ClientsRepository extends Repository
 {
     use ClientsHelpers;
 

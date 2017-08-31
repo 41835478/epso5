@@ -8,7 +8,7 @@ use App\Repositories\DummyClass\Traits\DummyClassHelpers;
 use App\Repositories\DummyClass\DummyModel;
 use DB;
 
-class DummyClassRepository extends Repository implements DummyClassInterface
+class DummyClassRepository extends Repository
 {
     use DummyClassHelpers;
 

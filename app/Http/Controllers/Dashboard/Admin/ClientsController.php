@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\DataTables\ClientsDataTable\DataTable;
+use App\DataTables\Clients\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Clients\ClientsRespository;
+use App\Repositories\Clients\ClientsRepository;
 use App\Services\Redirection\Redirection;
 //use App\Http\Requests\ClientsRequest;
 //use Credentials;
@@ -19,7 +19,7 @@ class ClientsController extends DashboardController
     protected $role;
     protected $table;
 
-    public function __construct(ClientsRespository $controller, DataTable $table)
+    public function __construct(ClientsRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;

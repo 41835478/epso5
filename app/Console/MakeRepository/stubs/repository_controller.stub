@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\DataTables\DummyClassDataTable\DataTable;
+use App\DataTables\DummyClass\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\DummyClass\Contracts\DummyClassInterface;
-use App\Services\Redirection\Redirection;
+use App\Repositories\DummyClass\DummyClassRepository;
 //use App\Http\Requests\DummyClassRequest;
 //use Credentials;
 use Illuminate\Http\Request;
@@ -19,7 +18,7 @@ class DummyClassController extends DashboardController
     protected $role;
     protected $table;
 
-    public function __construct(DummyClassRespository $controller, DataTable $table)
+    public function __construct(DummyClassRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
