@@ -5,6 +5,7 @@ namespace App\DataTables\DummyClass;
 use App\DataTables\DummyClass\DataTableColumns;
 use App\DataTables\DummyClass\DataTableJavascript;
 use App\DataTables\DummyClass\DataTableSearch;
+use App\Repositories\DummyClass\DummyClassRepository;
 use App\Repositories\DummyClass\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 
