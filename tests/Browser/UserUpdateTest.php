@@ -9,12 +9,11 @@ class UserUpdateTest extends DuskTestCase
 {
     protected $editRoute    = 'dashboard.user.users.edit';
     protected $locale       = 'en';
-    protected $usersURL     = '/dashboard/users';
     protected $twitter      = '@exampleTwitter.com';
 
     /*
     |--------------------------------------------------------------------------
-    | Add users
+    | Update users
     |--------------------------------------------------------------------------
     */
     public function test_user_can_update_his_profile()

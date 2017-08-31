@@ -9,6 +9,7 @@
         "adamwathan/bootforms": "^0.8.4",
         "barryvdh/laravel-debugbar": "^2.3",
         "barryvdh/laravel-dompdf": "^0.8.0",
+        "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.3",
         "laravel/dusk": "^1.0",
         "laravel/framework": "5.4.*",

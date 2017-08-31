@@ -27,7 +27,9 @@ Route::group([
         //Route::resource('profiles', 'Dashboard\ProfilesController', ['only' => ['edit', 'update']]);  
         //
         //If running tests... fixing the route problem...
-        if(App::runningUnitTests()) {
+        // App::environment('local') for DUSK
+        // App::runningUnitTests() for phpUnit
+        if(App::environment('local') || App::runningUnitTests()) {
             //Load all the files
             foreach (glob(base_path().'/routes/modules/*.php') as $file){
                 require($file);

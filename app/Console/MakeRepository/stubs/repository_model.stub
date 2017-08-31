@@ -1,0 +1,40 @@
+<?php 
+
+namespace App\Repositories\Repos\DummyClass;
+
+//use App\Repositories\Traits\Date;
+//use App\Repositories\Repos\DummyClass\Traits\DummyClassEvents;
+//use App\Repositories\Repos\DummyClass\Traits\DummyClassPresenters;
+//use App\Repositories\Repos\DummyClass\Traits\DummyClassRelationships;
+//use App\Repositories\Repos\DummyClass\Traits\DummyClassScopes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class DummyModel extends Model  {
+
+    use Notifiable;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'DummyTable';
+    //protected $dates = ['deleted_at'];
+
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    // protected $hidden = ['id'];
+}

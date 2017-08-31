@@ -9,6 +9,7 @@
     * name()
     * url()
     * client()
+    * tools()
  */
 
 namespace App\Services\Credentials\Traits;

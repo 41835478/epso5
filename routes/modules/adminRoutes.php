@@ -6,5 +6,5 @@ Route::group([
         'prefix'        => 'admin',
         'middleware'    => 'role:admin'
     ], function () {
-        //
+        Route::resource('cities', 'CitiesController', ['except' => 'show']);
 });

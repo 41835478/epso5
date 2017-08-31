@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers\Dashboard;
+
+use App\DataTables\DummyClassDataTable;
+use App\Http\Controllers\DashboardController;
+use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
+use App\Services\Redirection\Redirection;
+use App\Http\Requests\DummyClassRequest;
+//use App\Services\Credentials\CredentialsFacade as Credentials;
+//use Illuminate\Http\Request
+
+class DummyClassController extends DashboardController
+{
+    /**
+     * @var string
+     */
+    protected $controller;
+    protected $table;
+    protected $redirection;
+
+    public function __construct(DummyClassInterface $controller, DummyClassDataTable $table, Redirection $redirection)
+    {
+        $this->controller   = $controller;
+        $this->table        = $table;
+        $this->redirection  = $redirection;
+        
+        //Sharing is the view
+        view()->share('setup', $this->setup());
+
+        //Middleware
+        //$this->middleware('role:admin');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return $this->table
+            ->render(dashboard_path('index'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view(dashboard_path('create'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\UsersRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(DummyClassRequest $request)
+    {
+        $create = $this->controller
+            ->save($request);
+
+        return $this->redirection
+            ->message('create', $create)
+            ->variables($this->setup())
+            ->redirection();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view(dashboard_path('edit'))
+            ->withData($this->controller->find($id));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UsersRequest  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(DummyClassRequest $request, $id)
+    {
+        $update = $this->controller
+            ->save($request, $id);
+
+        return $this->redirection
+            ->message('update', $update)
+            ->variables($this->setup())
+            ->redirection();
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers && Configuration
+    |--------------------------------------------------------------------------
+    */
+   
+    /**
+     * The controller configuration method
+     * @return array
+     */
+    public function configurable($section = 'DummyTable')
+    {
+        return [
+            'action'        => true,
+            'breadcrumb'    => true,
+            'form'          => form_path($section),
+            'search'        => true,
+            'section'       => $section,
+        ];
+    }
+}

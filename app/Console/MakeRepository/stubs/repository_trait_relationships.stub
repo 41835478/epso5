@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Repositories\Repos\DummyClass\Traits;
+
+trait DummyClassRelationships {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
+    // public function profile()
+    // {
+    //     return $this->hasOne(Profile::class);
+    // }
+}

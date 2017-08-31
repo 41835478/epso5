@@ -1,0 +1,7 @@
+<?php
+
+namespace App\Repositories\Repos\DummyClass\Contracts;
+
+interface DummyClassInterface {
+
+}

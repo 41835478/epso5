@@ -1,0 +1,5 @@
+<legend>{{ trans_legend($setup['section']) }}</legend>
+@include(dashboard_path($setup['section'] .'.forms.mandatories'))
+
+{{-- Add the form buttons --}}
+{!! Form::buttons($setup, $button) !!}

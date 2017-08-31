@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Repositories\Repos\DummyClass;
+
+use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
+use App\Repositories\Repository;
+use App\Repositories\Repos\DummyClass\DummyModel;
+
+class DummyClassRepository extends Repository implements DummyClassInterface
+{
+    protected $model;
+
+    public function __construct(DummyModel $model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * Prepare the database query for the yajra dataTable service.
+     * The filterByRole() is a helper from App\Repositories\RepositoryHelpers
+     *
+     * @param   string   $columns
+     * @return  object
+     */
+    // public function dataTable($columns = ['*'])
+    // {
+    //     //Gods cant see other goods
+    //     return $this
+    //         ->filterByRole()
+    //         ->newQuery()
+    //         ->select($columns);
+    // }
+}

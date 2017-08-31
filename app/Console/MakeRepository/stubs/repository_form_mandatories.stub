@@ -1,0 +1,45 @@
+<div class="row">
+    {{-- Field: Credentials. Add the hashed user ID --}}
+    {!! BootForm::hidden('form-credentials')->value(isset($data) ? Hashids::encode($data->id) : null) !!}
+    
+    {{-- Field: Name --}}
+    {{--{!! BootForm::text(trans('base.personal.name'), 'name')
+        ->addGroupClass('col-md-4')
+        ->required();
+    !!}--}}
+
+    {{-- Field: Invoice number --}}
+    {{--{!! BootForm::inputGroup(trans('sections.invoices.next'), 'company_invoice_number')
+        ->addGroupClass('col-md-4')
+        ->addClass('date')
+        ->afterAddon(icon('date'))
+        ->addAddonClass('input-addon-required')
+        ->required() 
+    !!}--}}
+
+    {{-- Field: Company Address --}}
+    {{--{!! BootForm::textarea(trans('base.personal.address'), 'company_address')
+        ->addGroupClass('col-md-4')
+        ->rows(4)
+        ->required();
+    !!}--}}
+
+    {{-- Search by: Role --}}
+    {{--{!! BootForm::select(trans('auth.role.title'), 'search_role')
+        ->options($roles)
+        ->defaultValue(1)
+        ->addGroupClass('col-md-4')
+        ->required();
+    !!}--}}
+
+    {{-- Field: Expired --}}
+    {{--<div class="form-group col-md-2">
+        <label class="control-label" for="service_expired">{{ trans('sections.expired') }}</label>
+        <div class="input-group">
+            <input type="text" name="service_expired" id="service_expired" class="form-control date" readonly="readonly" placeholder="__/__/____">
+            <span class="input-group-addon input-addon-required input-addon-modal open-modal-expired">
+                <span class="icon-item">{!! icon('date') !!}</span>
+            </span>
+        </div>
+    </div>--}}
+</div>

@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Repositories\Repos\DummyClass\Traits;
+
+trait DummyClassScopes {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Scopes
+    |--------------------------------------------------------------------------
+    */
+   
+    // public function scopePopular($query)
+    // {
+    //     return $query->role()->all();
+    // }
+}

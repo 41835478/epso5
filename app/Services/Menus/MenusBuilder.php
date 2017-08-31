@@ -93,7 +93,7 @@ class MenusBuilder
                     return compact($this->allowedAttributes);
                 }
                 //If has not authorization to see the tools attribute
-                if($key === 'tools' && Credentials::tools() === false) {
+                if($key === 'tools' && Credentials::tools() == false) {
                     //Reset all the variables by default
                     foreach($this->allowedAttributes as $variable) {
                         ${$variable} = null;

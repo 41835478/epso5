@@ -1,0 +1,99 @@
+<?php
+
+namespace App\DataTables;
+
+use App\DataTables\Repository\Constructor as DataTables;
+use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
+
+class DummyClassDataTable extends DataTables
+{
+    protected $section = 'DummyTable';
+
+    /**
+     * Get the query object to be processed by datatables.
+     *
+     * @return \Illuminate\Database\Query\Builder|\Illuminate\Database\Eloquent\Builder
+     */
+    public function query()
+    {
+        //If you need relationships add the ->with('relationship')
+        $query = app(DummyClassInterface::class)
+            ->dataTable()
+            ->select('DummyTable.*');
+        
+        return $this->applyScopes($query);
+    }
+
+    /**
+     * Display ajax response.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajax()
+    {
+        $data       = $this->query();
+        $setup      = $this->configuration;
+
+        return $this->datatables
+            ->eloquent($data)
+            ->addColumn('action', function ($data) use ($setup) {
+                return view(action_path(), compact('data', 'setup'))
+                    ->withDelete(delete_title($data->id, $setup))
+                    ->render();
+            })
+            ->editColumn('checkmark', function($data) {
+                return '<input name="items[]" id="checkmark" type="checkbox" value='. $data->id .'>';
+            })
+            // ->editColumn('name', function($data) {
+            //     return $data->name;
+            // })
+            // ->editColumn('relationship.field', function($data) {
+            //     return str_reduce($data->relationship->field);
+            // })
+            ->make(true);
+    }
+
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    public function getColumns()
+    {
+        return [
+            $this->checkmark(),
+            [
+                'title' => trans('sections.id'), 
+                'name' => $this->section . '.id', 
+                'data' => 'id', 
+                'width' => 20
+            ],
+            // [
+            //     'title' => trans_title('section'), 
+            //     'name' => 'relationship.relationship_name', 
+            //     'data' => 'relationship.relationship_name'
+            // ],
+        ];
+    }
+
+    public function searchAttributes()
+    {
+        return [
+            // [
+            //     'type'      => 'input',
+            //     'container' => 'name',
+            //     'column'    => 2
+            // ],
+            // [
+            //     'type'      => 'select',
+            //     'container' => 'role',
+            //     'column'    => 3
+            // ],
+            // [
+            //     'type'      => 'input',
+            //     'container' => 'twitter',
+            //     'column'    => 4
+            // ],
+        ];
+    }
+}

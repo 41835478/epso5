@@ -1,0 +1,15 @@
+{{-- Search by: Name --}}
+{{--{!! BootForm::text(trans('base.personal.name'), 'search_name')
+    ->addGroupClass('col-md-4')
+!!}--}}
+
+{{-- Search by: Role --}}
+{{--{!! BootForm::select(trans('auth.role.title'), 'search_role')
+    ->options(Credentials::addEmptyField()->role('lists', -1))
+    ->addGroupClass('col-md-4')
+!!}--}}
+
+{{-- Search by: Twitter --}}
+{{--{!! BootForm::text(trans('base.social.twitter'), 'search_twitter')
+    ->addGroupClass('col-md-4')
+!!}--}}
