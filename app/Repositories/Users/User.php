@@ -14,6 +14,13 @@ class User extends Authenticatable
     use Notifiable, SoftDeletes, UsersPresenters, UsersRelationships, UsersScopes;
 
     /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
      * The attributes that should be casted to native types.
      *
      * @var array

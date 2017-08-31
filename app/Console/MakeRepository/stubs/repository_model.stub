@@ -1,12 +1,12 @@
 <?php 
 
-namespace App\Repositories\Repos\DummyClass;
+namespace App\Repositories\DummyClass;
 
 //use App\Repositories\Traits\Date;
-//use App\Repositories\Repos\DummyClass\Traits\DummyClassEvents;
-//use App\Repositories\Repos\DummyClass\Traits\DummyClassPresenters;
-//use App\Repositories\Repos\DummyClass\Traits\DummyClassRelationships;
-//use App\Repositories\Repos\DummyClass\Traits\DummyClassScopes;
+//use App\Repositories\DummyClass\Traits\DummyClassEvents;
+//use App\Repositories\DummyClass\Traits\DummyClassPresenters;
+//use App\Repositories\DummyClass\Traits\DummyClassRelationships;
+//use App\Repositories\DummyClass\Traits\DummyClassScopes;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -37,4 +37,13 @@ class DummyModel extends Model  {
      * @var array
      */
     // protected $hidden = ['id'];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    // protected $casts = [
+    //     'is_god'    => 'boolean',
+    // ];
 }

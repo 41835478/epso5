@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Repositories\Repos\DummyClass\Traits;
+
+trait DummyClassHelpers {
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
+
+    // helpers functions to remove from the repository
+}

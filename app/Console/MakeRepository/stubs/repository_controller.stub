@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\DataTables\DummyClassDataTable;
+use App\DataTables\DummyClassDataTable\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
 use App\Services\Redirection\Redirection;
-use App\Http\Requests\DummyClassRequest;
-//use App\Services\Credentials\CredentialsFacade as Credentials;
-//use Illuminate\Http\Request
+//use App\Http\Requests\DummyClassRequest;
+//use Credentials;
+use Illuminate\Http\Request;
 
 class DummyClassController extends DashboardController
 {
@@ -16,17 +16,20 @@ class DummyClassController extends DashboardController
      * @var string
      */
     protected $controller;
+    protected $role;
     protected $table;
-    protected $redirection;
 
-    public function __construct(DummyClassInterface $controller, DummyClassDataTable $table, Redirection $redirection)
+    public function __construct(DummyRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->redirection  = $redirection;
+        $this->role         = 'admin';
         
-        //Sharing is the view
-        view()->share('setup', $this->setup());
+        //Sharing in the view
+        view()->share([
+            'section'   => 'DummyTable',
+            'role'      => 'admin'
+        ]);
 
         //Middleware
         //$this->middleware('role:admin');
@@ -40,7 +43,10 @@ class DummyClassController extends DashboardController
     public function index()
     {
         return $this->table
-            ->render(dashboard_path('index'));
+            // ->setValue([
+            //     'action' => 'DummyTable.actions'
+            // ])
+            ->render(dashboard_path('DummyTable.index'));
     }
 
     /**
@@ -50,7 +56,7 @@ class DummyClassController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('create'));
+        return view(dashboard_path('DummyTable.create'));
     }
 
     /**
@@ -62,12 +68,19 @@ class DummyClassController extends DashboardController
     public function store(DummyClassRequest $request)
     {
         $create = $this->controller
-            ->save($request);
+            ->store($request);
 
-        return $this->redirection
-            ->message('create', $create)
-            ->variables($this->setup())
-            ->redirection();
+            return $create 
+                ? redirect()
+                    ->route('dashboard.' . $this->role . '.DummyTable.index')
+                    ->withStatus(__('The item has been create successfuly'))
+                : redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors([
+                    __('An error occurred during the creating process'), 
+                    __('If the error persist, please contact with the system administrator')
+                ]);
     }
 
     /**
@@ -78,7 +91,7 @@ class DummyClassController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('edit'))
+        return view(dashboard_path('DummyTable.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -92,32 +105,18 @@ class DummyClassController extends DashboardController
     public function update(DummyClassRequest $request, $id)
     {
         $update = $this->controller
-            ->save($request, $id);
+            ->store($id);
 
-        return $this->redirection
-            ->message('update', $update)
-            ->variables($this->setup())
-            ->redirection();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers && Configuration
-    |--------------------------------------------------------------------------
-    */
-   
-    /**
-     * The controller configuration method
-     * @return array
-     */
-    public function configurable($section = 'DummyTable')
-    {
-        return [
-            'action'        => true,
-            'breadcrumb'    => true,
-            'form'          => form_path($section),
-            'search'        => true,
-            'section'       => $section,
-        ];
+            return $update 
+                ? redirect()
+                    ->route('dashboard.' . $this->role . '.DummyTable.index')
+                    ->withStatus(__('The items has been updated successfuly'))
+                : redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors([
+                    __('An error occurred during the updating process'), 
+                    __('If the error persist, please contact with the system administrator')
+                ]);
     }
 }

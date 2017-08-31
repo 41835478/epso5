@@ -31,6 +31,7 @@ class MakeRepository extends MakeRepositoryConstructor
      * @var string
      */
     protected $commandPath = 'MakeRepository';
+    protected $tableHeaders = ['Action', 'Path/File', 'Status'];
 
     /**
      * System vars
@@ -63,6 +64,8 @@ class MakeRepository extends MakeRepositoryConstructor
     {
         //First create a model
         $this->createModel();
+        //Next, create model traits
+        $this->createModelTraits();
         //Next, create a migration
         $this->createMigration();
         //Next, create a controller
@@ -71,13 +74,9 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createRepository();
         //Next, create the datatable
         $this->createDataTable();
-        //Next, create the datatable
-        $this->createModelTraits();
         
         //Table header 
-        $tableHeaders = ['Action', 'Path/File', 'Status'];
-        $this->line(' ') . $this->table($tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');
-        $this->line('Go to <fg=green>App\Providers\RepositoryServiceProvider.php</> and add this to register the <options=bold>INTERFACE</>');
+        $this->line(' ') . $this->table($this->tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');
         $this->line('Dont forget to create the new <options=bold>ROUTE</> for this repository'); 
         $this->line('Go to <fg=green>Database\Migrations</> and search for: <fg=green>' . $this->migration . '</> and add the needed values'); 
         $this->line('Go to <fg=green>Database\Migrations\DatabaseSeeder</> and add the new <options=bold>SEEDER</> for this <options=bold>MIGRATION</>'); 

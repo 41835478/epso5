@@ -11,7 +11,7 @@ trait MakeRepositoryConstructorTraits
     */
    public function traits()
    {
-       $this->traits = ['events', 'presenters', 'relationships', 'scopes'];
+       $this->traits = ['events', 'helpers', 'presenters', 'relationships', 'scopes'];
 
        return $this;
    }

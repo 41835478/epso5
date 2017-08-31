@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Repositories\Repos\DummyClass;
+namespace App\Repositories\DummyClass;
 
-use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
+use App\Repositories\DummyClass\DummyClassRepository;
 use App\Repositories\Repository;
-use App\Repositories\Repos\DummyClass\DummyModel;
+use App\Repositories\DummyClass\Traits\DummyClassHelpers;
+use App\Repositories\DummyClass\DummyModel;
+use DB;
 
 class DummyClassRepository extends Repository implements DummyClassInterface
 {
+    use DummyClassHelpers;
+
     protected $model;
 
     public function __construct(DummyModel $model)
@@ -16,18 +20,17 @@ class DummyClassRepository extends Repository implements DummyClassInterface
     }
 
     /**
-     * Prepare the database query for the yajra dataTable service.
-     * The filterByRole() is a helper from App\Repositories\RepositoryHelpers
-     *
-     * @param   string   $columns
-     * @return  object
+     * Create or update a record in storage
+     * @param   int     $id
+     * @return  boolean
      */
-    // public function dataTable($columns = ['*'])
+    // public function store($id = null)
     // {
-    //     //Gods cant see other goods
-    //     return $this
-    //         ->filterByRole()
-    //         ->newQuery()
-    //         ->select($columns);
+    //     return DB::transaction(function () use ($id) {
+    //         return true;
+    //     });
+    //     //Create an error
+    //     return false;
     // }
+
 }

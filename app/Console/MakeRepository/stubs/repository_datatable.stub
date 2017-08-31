@@ -1,12 +1,21 @@
 <?php
 
-namespace App\DataTables;
+namespace App\DataTables\DummyClass;
 
-use App\DataTables\Repository\Constructor as DataTables;
-use App\Repositories\Repos\DummyClass\Contracts\DummyClassInterface;
+use App\DataTables\DummyClass\DataTableColumns;
+use App\DataTables\DummyClass\DataTableHelpers;
+use App\DataTables\DummyClass\DataTableJavascript;
+use App\DataTables\DummyClass\DataTableSearch;
+use App\Repositories\DummyClass\UsersRepository;
+use App\Services\DataTables\DataTablesRepository as Repository;
 
-class DummyClassDataTable extends DataTables
+class DataTable extends Repository
 {
+    use DataTableColumns, DataTableHelpers, DataTableJavascript, DataTableSearch;
+
+    /**
+     * @var string
+     */
     protected $section = 'DummyTable';
 
     /**
@@ -16,84 +25,28 @@ class DummyClassDataTable extends DataTables
      */
     public function query()
     {
-        //If you need relationships add the ->with('relationship')
-        $query = app(DummyClassInterface::class)
+        $query = app(DummyClassRepository::class)
             ->dataTable()
-            ->select('DummyTable.*');
-        
+            ->select($this->section . '.*');
+
         return $this->applyScopes($query);
     }
 
     /**
-     * Display ajax response.
-     *
-     * @return \Illuminate\Http\JsonResponse
+     * Build DataTable class.
+     * @return \Yajra\Datatables\Engines\BaseEngine
      */
-    public function ajax()
+    public function dataTable()
     {
-        $data       = $this->query();
-        $setup      = $this->configuration;
-
         return $this->datatables
-            ->eloquent($data)
-            ->addColumn('action', function ($data) use ($setup) {
-                return view(action_path(), compact('data', 'setup'))
-                    ->withDelete(delete_title($data->id, $setup))
+            ->eloquent($this->query())
+            ->rawColumns(['action', 'checkbox'])
+            ->addColumn('action', function ($data) {
+                return view($this->getAction(), compact('data'))
                     ->render();
             })
-            ->editColumn('checkmark', function($data) {
-                return '<input name="items[]" id="checkmark" type="checkbox" value='. $data->id .'>';
-            })
-            // ->editColumn('name', function($data) {
-            //     return $data->name;
-            // })
-            // ->editColumn('relationship.field', function($data) {
-            //     return str_reduce($data->relationship->field);
-            // })
-            ->make(true);
-    }
-
-    /**
-     * Get columns.
-     *
-     * @return array
-     */
-    public function getColumns()
-    {
-        return [
-            $this->checkmark(),
-            [
-                'title' => trans('sections.id'), 
-                'name' => $this->section . '.id', 
-                'data' => 'id', 
-                'width' => 20
-            ],
-            // [
-            //     'title' => trans_title('section'), 
-            //     'name' => 'relationship.relationship_name', 
-            //     'data' => 'relationship.relationship_name'
-            // ],
-        ];
-    }
-
-    public function searchAttributes()
-    {
-        return [
-            // [
-            //     'type'      => 'input',
-            //     'container' => 'name',
-            //     'column'    => 2
-            // ],
-            // [
-            //     'type'      => 'select',
-            //     'container' => 'role',
-            //     'column'    => 3
-            // ],
-            // [
-            //     'type'      => 'input',
-            //     'container' => 'twitter',
-            //     'column'    => 4
-            // ],
-        ];
+            ->editColumn('checkbox', function($data) {
+                return $this->setCheckbox($data->id);
+            });
     }
 }
