@@ -10584,7 +10584,7 @@ form .expand-height:focus {
 .loading,
 .loading-right {
   background-color: #ffffff;
-  background-image: url("/img/loading.gif");
+  background-image: url("/images/loading.gif");
   background-size: 25px 25px;
   background-repeat: no-repeat;
   background-position: center center;
@@ -10937,7 +10937,7 @@ table .th {
   text-align: center;
   color: #444;
   font-size: 14px;
-  background: url("/img/loading.gif") no-repeat center 38px #fff;
+  background: url("/images/loading.gif") no-repeat center 38px #fff;
   box-shadow: 2px 2px 5px #444;
   -moz-box-shadow: 2px 2px 5px #444;
   -webkit-box-shadow: 2px 2px 5px #444;
