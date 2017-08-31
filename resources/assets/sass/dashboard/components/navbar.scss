@@ -1,0 +1,136 @@
+/** 
+ * Default variables
+ */
+    @mixin backgroundSelected() {
+        background: -webkit-linear-gradient($brand-danger-dark, $color-black); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient($brand-danger-dark, $color-black); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient($brand-danger-dark, $color-black); /* For Firefox 3.6 to 15 */
+        background: linear-gradient($brand-danger-dark, $color-black); /* Standard syntax */
+    }
+    //Brands background color
+    $navbar-brand-background:          $brand-success;
+    $navbar-brand-background-hover:    $brand-success-dark;
+    //Items background color
+    $nav-item-background:               $color-gray;
+    $nav-item-background-hover:         $brand-danger-dark;
+    $nav-dropdown-background:           $brand-danger;
+    //Profile background color
+    $profile-background:                $brand-primary;
+    $profile-background-hover:          $brand-primary-dark;
+/** 
+ * Default Navbar
+ */
+    .navbar {
+        border-radius: 0;
+        height: 50px;
+
+        /** 
+         * Brand
+         */
+        .navbar-brand {
+            color: $color-white;
+            font-weight: 900;
+            background-color: $navbar-brand-background;
+            padding: 5px 15px;
+            margin-left: -7px;
+            @extend .rounded;
+        }
+
+        .navbar-brand:hover {
+            background-color: $navbar-brand-background-hover;
+        }
+
+        /** 
+         * Items
+         */
+        .nav-item {
+            border-right: 1px solid darken($nav-item-background, 10%);
+            background: -webkit-linear-gradient($nav-item-background, $color-black); /* For Safari 5.1 to 6.0 */
+            background: -o-linear-gradient($nav-item-background, $color-black); /* For Opera 11.1 to 12.0 */
+            background: -moz-linear-gradient($nav-item-background, $color-black); /* For Firefox 3.6 to 15 */
+            background: linear-gradient($nav-item-background, $color-black); /* Standard syntax */
+            margin-right: 2px;
+        }
+
+        .nav-item:hover, .nav-item:active {
+            background: $nav-item-background-hover;
+        }
+
+        a.nav-link {
+            color: $color-gray-lighter !important;
+        }
+
+        li.active > a {
+            color: $color-white !important;
+        }
+
+        .nav-item:first-child {
+            border-left: 1px solid darken($color-gray, 10%);
+        }
+
+        .icon-item {
+            i, 
+            span {
+                margin-right: 5px;
+                color: darken($color-white, 30%);
+            }
+        }
+
+        /** 
+         * Drop Menu
+         */
+        .dropdown-menu {
+            margin-top: 2px;
+            border-radius: 0 0 5px 5px;
+            background: $nav-dropdown-background !important;
+            @extend .nav-item;
+
+            a {
+                color: $color-white;
+            }
+            
+            a:hover,
+            a:hover i {
+                color: $color-black !important;
+            }
+
+            i {
+                color: $brand-yellow;
+                margin-right: 7px;
+            }
+
+            span {
+                margin-left: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $color-white;
+            }
+        }
+    }
+
+/** 
+ * Profile Navbar
+ */
+    .navbar-profile {
+
+        .nav-item {
+            border-right: 1px solid darken($profile-background, 10%);
+            background: $profile-background;
+            margin-right: 2px;
+        }
+
+        .nav-item:hover, .nav-item:active {
+            background: $profile-background-hover;
+        }
+
+        .btn-logout {
+            margin: 0 -5px 0 10px;
+            font-size: 1.7rem;
+
+            i,
+            span {
+                color: $color-white !important;
+                margin-right: -1px;
+            }
+        }
+    }

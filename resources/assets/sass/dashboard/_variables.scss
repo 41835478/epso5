@@ -1,0 +1,39 @@
+// Body
+$body-bg: #f5f8fa;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: "Raleway", sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+$text-color: #636b6f;
+
+// Brands
+$brand-primary: #0275D8;
+$brand-primary-dark: #0d47a1;
+$brand-info: #5BC0DE;
+$brand-info-dark: #0099CC;
+$brand-success: #449D44;
+$brand-success-dark: #007E33;
+$brand-warning: #EC971F;
+$brand-warning-dark: #ffbb33;
+$brand-danger: #D9534F;
+$brand-danger-dark: #CC0000;
+$brand-yellow: #fcf8e3;
+
+//Colors 
+$color-white: #fff;
+$color-black: #2E2E2E;
+$color-gray: lighten($color-black, 33.5%);
+$color-gray-light: lighten($color-black, 50%);
+$color-gray-lighter: lighten($color-black, 65%);
+
+//Margin
+$y-margin: 25px;
+$x-margin: 25px; 
+
+//Box shador 
+$box-shadow: 2px 2px 2px $color-gray-light;
+
+//Separator 
+$border-separator: 1px solid;

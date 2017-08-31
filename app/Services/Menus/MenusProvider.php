@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Services\Menus;
+
+use Illuminate\Support\ServiceProvider;
+
+class MenusProvider extends ServiceProvider
+{
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->app->bind('MenusProvider', function()
+        {
+            return new \App\Services\Menus\MenusClass;
+        });
+    }
+}

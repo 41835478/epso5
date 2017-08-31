@@ -1,0 +1,21 @@
+/** 
+ * Background
+ */
+
+    .bg-white {
+        background-color: $color-white;
+        color: $color-black;
+    }
+
+    .bg-gray {
+        background-color: $color-gray;
+        color: $color-white;
+    }
+
+    .bg-danger,
+    .bg-info,
+    .bg-primary,
+    .bg-success,
+    .bg-warning, {
+        color: $color-white;
+    }

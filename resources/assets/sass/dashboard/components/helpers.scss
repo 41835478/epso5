@@ -1,0 +1,44 @@
+/** 
+ * Helpers
+ */
+
+    .break-line {
+        width: 100%;
+        clear: both;
+        padding: 10px 15px; 
+    }
+
+    .hidden {
+        display: none !important;
+        visibility: hidden !important;
+    } 
+
+    .hide {
+        display: none !important;
+    }
+
+    .highlight {
+        color: $brand-danger;
+        font-weight: 900;
+    }
+
+    .float-right {
+        float: right !important;
+    }
+
+    .float-left {
+        float: left !important;
+    }
+
+    .loading {    
+        background-color: #ffffff;
+        background-image: url("~/img/loading.gif");
+        background-size: 25px 25px;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .loading-right {    
+        @extend .loading;
+        background-position: right center !important;
+    }

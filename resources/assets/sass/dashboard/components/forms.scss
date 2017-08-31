@@ -1,0 +1,114 @@
+/** 
+ * Forms
+ */
+
+    form {
+        /** 
+         * Default values
+         */
+        legend {
+            font-size: 1.4rem;  
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 25px 0;
+            padding: 5px;
+            color: $brand-primary;
+            border-bottom: $border-separator $brand-info;
+        }
+
+        legend.title:before {
+            content: "\f045";
+            font-family: FontAwesome;
+            margin-right: 5px;
+            color: $brand-info;
+         }
+
+        label {
+            color: $color-gray;
+            font-weight: 600;
+        }
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: $border-separator lighten($color-gray-lighter, 10%);
+            margin: 1.5em 0;
+            padding: 0; 
+        }
+
+        /** 
+         * Place holder
+         */
+        input,
+        select {
+            @include placeholder {
+               color: $color-gray-lighter !important;
+               font-weight: 400; 
+            }
+        }
+
+        /** 
+         * Addons: Input groups
+         */
+        
+        .input-group-addon {
+            background-color: $color-gray-light;
+            color: $color-white;
+            min-width: 45px;
+        }
+
+        /** 
+         * Required fields
+         */
+        input:required,
+        textarea:required,
+        select:required {
+            box-shadow: $box-shadow;
+            border-color: $brand-danger;
+            background-color: $brand-yellow;
+        }
+
+        label.label-required {
+            color: $brand-danger-dark;
+        }
+        .label-required:after { 
+            content: "*";
+            margin-left: 5px;
+            top: 5px;
+        }
+
+        legend.legend-required {
+            color: $brand-danger;
+            font-size: 1rem;
+            border-bottom: 0;
+            background-color: transparent !important;
+        }
+
+        /** 
+         * Custom fields
+         */
+
+        .help-block {
+            padding: 3px 5px;
+            margin: 3px 0;
+            background-color: $brand-danger;
+            color: $color-white;
+            @include rounded(5px);
+        }
+
+        .date, 
+        .year,
+        .time,
+        .number {
+            text-align: right;
+        }
+
+        .expand:focus,
+        .expand-height:focus {
+            z-index: 9999 !important;
+            position: absolute;
+            box-shadow: 0 0 40px $brand-primary !important;
+            border: 1px solid $brand-primary !important;
+        }
+    }

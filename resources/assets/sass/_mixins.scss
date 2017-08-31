@@ -1,0 +1,177 @@
+// placeholder
+// font-size($size) px to rem
+// transition($properties...)
+// opacity($opacity)
+// background-opacity($color, $opacity: 0.3) 
+// rounded($radius)
+// box-shadow($top, $left, $blur, $color, $inset: false)
+// background-gradient-vertical($startColor: #3C3C3C, $endColor: #999999)
+// background-gradient-horizontal($startColor: #3C3C3C, $endColor: #999999)
+//text-shadow(1px, 1px, 1px, #CCC);
+
+/// Adds a browser prefix to the property
+/// @param {*} $property Property
+/// @param {*} $value Value
+
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+   -khtml-#{$property}: #{$value};
+     -moz-#{$property}: #{$value};
+      -ms-#{$property}: #{$value};
+       -o-#{$property}: #{$value};
+          #{$property}: #{$value};
+}
+
+//Example of use
+// input {  
+//     @include placeholder {
+//         color: $grey;
+//         font-size: 1rem;
+//     }
+// }
+//input-placeholder color
+
+@mixin optional-at-root($sel) {
+    @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+        @content;
+    }
+}
+
+@mixin placeholder {
+    @include optional-at-root('::-webkit-input-placeholder') {
+        @content;
+    }
+    @include optional-at-root(':-moz-placeholder') {
+        @content;
+    }
+    @include optional-at-root('::-moz-placeholder') {
+        @content;
+    }
+    @include optional-at-root(':-ms-input-placeholder') {
+        @content;
+    }
+}
+
+///////////////////////////////////
+
+//Example of use
+// p {
+//   @include font-size(14px)
+// }
+@function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+    font-size: calculateRem($size);
+}
+
+///////////////////////////////////
+
+//Example of use
+// a {
+//   color: gray;
+//   @include transition(color .3s ease);
+//   &:hover {
+//     color: black;
+//   }
+// }
+
+@mixin transition($properties...) {
+
+    @if length($properties) >= 1 {
+        @include css3-prefix('transition', $properties);
+    }
+
+    @else {
+        @include css3-prefix('transition',  "all 0.2s ease-in-out 0s");
+    }
+}
+
+///////////////////////////////////
+
+//Example of use
+// .faded-text {
+//   @include opacity(0.8);
+// }
+
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+
+///////////////////////////////////
+
+//Example of use
+// @include border-radius(6px);
+
+@mixin rounded($radius) {
+    @include css3-prefix('border-radius', $radius);
+}
+
+///////////////////////////////////
+
+//Example of use
+// @include background-opacity(#333, 0.5);
+
+@mixin background-opacity($color, $opacity: 0.3) {
+    background: $color; /* The Fallback */
+    background: rgba($color, $opacity);
+}
+
+///////////////////////////////////
+
+//Example of use
+// @include box-shadow(1px, 1px, 5px, #000);
+
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+    @if ($inset != "") {
+        @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+    } @else {
+        @include css3-prefix('box-shadow', $x $y $blur $color);
+    }
+}
+
+///////////////////////////////////
+
+//Example of use
+// @include background-gradient-vertical(#3C3C3C, #999999);
+
+@mixin background-gradient-vertical($startColor: #3C3C3C, $endColor: #999999) {
+    background-color: $startColor;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor));
+    background-image: -webkit-linear-gradient(top, $startColor, $endColor);
+    background-image: -moz-linear-gradient(top, $startColor, $endColor);
+    background-image: -ms-linear-gradient(top, $startColor, $endColor);
+    background-image: -o-linear-gradient(top, $startColor, $endColor);
+    background-image: linear-gradient(top, $startColor, $endColor);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}');
+}
+
+///////////////////////////////////
+
+//Example of use
+// @include background-gradient-horizontal(#3C3C3C, #999999);
+
+@mixin background-gradient-horizontal($startColor: #3C3C3C, $endColor: #999999) {
+    background-color: $startColor;
+    background-image: -webkit-gradient(linear, left top, right top, from($startColor), to($endColor));
+    background-image: -webkit-linear-gradient(left, $startColor, $endColor);
+    background-image: -moz-linear-gradient(left, $startColor, $endColor);
+    background-image: -ms-linear-gradient(left, $startColor, $endColor);
+    background-image: -o-linear-gradient(left, $startColor, $endColor);
+    background-image: linear-gradient(left, $startColor, $endColor);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$startColor}', endColorStr='#{$endColor}', gradientType='1');
+}
+
+///////////////////////////////////
+
+//Example of use
+// @include text-shadow(1px, 1px, 1px, #CCC);
+
+@mixin text-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4)) {
+    text-shadow: $x $y $blur $color;
+}

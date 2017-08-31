@@ -1,0 +1,101 @@
+/** 
+ * Tables
+ */
+
+    table {
+        font-size: .8rem;
+        @extend .w-100;
+        border: 1px solid $color-gray-lighter;
+
+        thead {
+            background-color: $brand-primary;
+            color: $color-white;
+        }
+
+        tfoot {
+            background-color: $color-gray-light;
+            color: $color-white;
+        }
+
+        th {
+            text-align: center;
+        }
+     
+        td {
+            text-align: center;
+            color: $color-black;
+            padding: 10px 3px !important;
+            @extend .align-middle;
+        }
+
+        th, 
+        td {
+            border-right: 1px solid $color-gray-lighter;
+        }
+
+        td:nth-last-child(2),
+        th:nth-last-child(2) {
+            border-right: 0;
+        }
+
+        td:last-child {
+            border: 0;
+        }
+
+        tr.selected {
+            background-color: $brand-success !important;
+            cursor: pointer;
+            td {
+                color: $color-white !important;
+            }
+        }
+        
+        .table-danger,
+        .table-success,
+        .table-warning,
+        .table-primary,
+        .table-info {
+            display: block;
+            height: 15px;
+            margin: 0;
+            padding: 0;
+            color: $color-white;
+            font-weight: 900;
+            padding: 2px !important;
+        }
+
+        .table-danger {
+            background-color: $brand-danger;
+        }
+
+        .table-success {
+            background-color: $brand-success;
+        }
+
+        .table-warning {
+            background-color: $brand-warning;
+        }
+
+        .table-primary {
+            background-color: $brand-primary;
+        }
+
+        .table-info {
+            background-color: $brand-info;
+        }
+
+        .table-separator > td {
+            border-bottom: 1px solid $color-gray-light;
+        }
+
+    /** 
+     * Table shadow
+     */
+        .td {
+            border-right: 1px solid $color-white !important;
+        }
+
+        .th {
+            border-right: 1px solid $body-bg !important;
+        }
+    }

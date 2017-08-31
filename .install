@@ -1,0 +1,24 @@
+# Artisan alias
+
+nano ~/.bash_profile
+
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+alias art="php artisan"
+alias phpunit='vendor/bin/phpunit'
+alias test="clear && phpunit"
+alias dusk="clear && art dusk"
+alias asset="npm run dev"
+alias production="npm run production"
+alias watch="npm run watch"
+#For project without ssh
+alias gftp="git init && git add . && git commit -m 'My Commit' && git ftp push"
+
+# Install npm packages: datatables, jquery, etc...
+
+npm install
+
+# Testing migration
+art migrate --database=mysql_testing
+art migrate:refresh --database=mysql_testing
+art db:seed --database=mysql_testing --class=DatabaseSeederTesting

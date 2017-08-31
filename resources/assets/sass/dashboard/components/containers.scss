@@ -1,0 +1,15 @@
+/** 
+ * Application Container
+ */
+
+    #app {
+        margin: 0 0 100px 0;
+        padding: 0;
+
+        /** 
+         * Max witdh when available
+         */
+        .max-width-container {
+            max-width: 1480px !important;
+        }
+    }

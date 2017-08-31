@@ -1,0 +1,97 @@
+//Pagination
+#dataTableBuilder_wrapper,
+.dataTables_paginate {
+    margin-bottom: 5px !important;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.dataTables_info {
+    float: left;
+}
+
+//Buttons
+
+//Selector: select all and remove all
+.app-button-group {
+    float: left;
+    margin-right: 20px;
+}
+
+.dt-buttons .btn,
+.dataTables_length select,
+.pagination,
+.app-button-group {
+    box-shadow: $box-shadow;
+}
+
+// .dt-buttons > .buttons-colvisGroup:first-child {
+//     margin-left: 25px !important;
+// }
+
+.dataTables_length,
+.dt-buttons {
+    margin-bottom: 10px;
+}
+
+.datatables_button_container {
+    float: left;
+}
+
+.dataTables_length {
+    float: right;
+    margin-right: 10px;
+    select {
+        margin-left: 10px !important;
+        display:inline !important;
+    }
+}
+
+//Processing
+.dataTables_processing  {
+    position:                   absolute;
+    top:                        50%;
+    left:                       50%;
+    width:                      250px;
+    height:                     80px;
+    margin-left:                -125px;
+    margin-top:                 -15px;
+    padding:                    15px 0 30px 0;
+    border:                     1px solid #ddd;
+    text-align:                 center;
+    color:                      #444;
+    font-size:                  14px;
+    background:                 url("~/img/loading.gif") no-repeat center 38px #fff;
+    box-shadow:                 2px 2px 5px #444;
+    -moz-box-shadow:            2px 2px 5px #444;
+    -webkit-box-shadow:         2px 2px 5px #444;
+    z-index:                    9999;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+  font-family: 'FontAwesome';
+  font-size: 1rem;
+  margin-left: 10px !important;
+}
+ 
+table.dataTable thead .sorting:after {
+  content: "\f0dc";
+}
+table.dataTable thead .sorting_asc:after {
+  content: "\f0aa";
+}
+table.dataTable thead .sorting_desc:after {
+  content: "\f0ab";
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    cursor: pointer;
+}
