@@ -13,7 +13,7 @@ class ClientsTableSeeder extends Seeder
     {
         DB::table('clients')->insert([  
             'id'                        => 1, 
-            'client_name'               => 'EPSO', 
+            'client_name'               => 'E.P.S.O.', 
             'client_contact'            => 'David B. López Lluch', 
             'client_address'            => 'Carretera de Beniel, Km. 3,2', 
             'client_nif'                => 'Q5350015C', 
