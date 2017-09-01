@@ -1,5 +1,4 @@
 /node_modules
-/database/seeds/ClientsTableSeeder.php
 /public/storage
 /public/hot
 /storage/*.key
