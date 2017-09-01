@@ -14,7 +14,7 @@ class DashboardController extends Controller
     public function eliminate()
     {
         $delete = $this->controller->eliminate();
-
+        //
         return $delete 
             ? redirect()->back()->withStatus(__('The items has been deleted successfuly'))
             : redirect()->back()->withErrors([

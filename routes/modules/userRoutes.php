@@ -10,5 +10,5 @@ Route::group([
 
         //Users routes, the destroy, create or list options are in the editorRoutes.php
         Route::resource('users', 'Dashboard\UsersController', ['except' => ['destroy', 'show']]); 
-        Route::name('users.eliminate')->post('users/eliminate', 'Dashboard\UsersController@eliminate'); 
+        Route::post('users/eliminate', 'Dashboard\UsersController@eliminate')->name('users.eliminate');
 });
