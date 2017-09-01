@@ -97,6 +97,7 @@ class UsersController extends DashboardController
         //and if the role is authorizate in: App\Repositories\Repository
         $update = $this->controller
             ->store($id);
+        //
         return $update 
             ? redirect()
                 ->route(Credentials::isEditor() 
@@ -129,6 +130,7 @@ class UsersController extends DashboardController
         //
         $create = $this->controller
             ->store();
+        //
         return $create 
             ? redirect()
                 ->route('dashboard.user.users.index')
