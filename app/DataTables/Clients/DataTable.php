@@ -18,7 +18,7 @@ class DataTable extends Repository
      * @var string
      */
     protected $section = 'clients';
-    protected $storage = 'app/public/clients/';
+    protected $storage = 'clients';
 
     /**
      * Get the query object to be processed by datatables.
@@ -42,7 +42,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'client_image'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
@@ -51,12 +51,7 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             })
             ->editColumn('client_image', function($data) {
-                return $this->setImagen($data->client_image);
+                return sprintf('<img src="%s" class="thumbnail">', route('dashboard.image', [$this->storage, $data->client_image]));
             });
-    }
-
-    public function setImagen($image)
-    {
-        return '<img src="' . Storage::url($this->storage . $image) . '">';
     }
 }
