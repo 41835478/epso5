@@ -26,7 +26,7 @@
 
                     <div class="form-group text-center">
                         <a href="{{ url()->previous() }}" class="btn btn-danger btn-lg" id="button-edit-cancel">{!! icon('cancel', trans('buttons.cancel')) !!}</a>
-                        {!! BootForm::button(icon('edit', 'Editar Form'))->name('button-edit-submit')->id('button-edit-submit')->addClass('btn-success btn-lg')->type('submit') !!}
+                        {!! BootForm::button(icon('edit', 'Editar'))->name('button-edit-submit')->id('button-edit-submit')->addClass('btn-success btn-lg')->type('submit') !!}
                     </div>
 
                 {!! BootForm::close() !!}

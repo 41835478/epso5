@@ -25,7 +25,7 @@ trait DataTableColumns
             $this->setColumn(trans('persona.city'), 'client_city'),
             $this->setColumn(trans('persona.zip'), 'client_zip'),
             $this->setColumn(trans('persona.telephone'), 'client_telephone'),
-            $this->setColumn(trans('persona.contac'), 'client_contact'),
+            $this->setColumn(trans('persona.contact'), 'client_contact'),
             $this->setColumn(trans('persona.email'), 'client_email'),
             $this->setColumn(trans('persona.website'), 'client_web'),
             $this->setColumn(trans('persona.image'), 'client_image'),
@@ -39,7 +39,7 @@ trait DataTableColumns
     protected function setColumnsGroups() : array
     {
         return [
-            $this->createColumnsGroupsAll(),
+            //$this->createColumnsGroupsAll(),
             // $this->createColumnsGroups(icon('user', trans('tables.button:personal')), [
             //     'show' => [0, 2, 3, 4, 5, 6],
             //     'hide' => [1, 7, 8, 9],

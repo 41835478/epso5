@@ -2,7 +2,7 @@
 
 //Images
 Route::name('image')
-    ->get('images/{folder}/{filename}', function ($folder, $filename) {
+    ->get('images/{folder}/{filename}/{size}', function ($folder, $filename, $size) {
         //Allowed folders 
         $allowedFolders = [
             'clients', 
@@ -14,7 +14,7 @@ Route::name('image')
             : storage_path('app/public/' . $folder . '/' . no_image());
         //
         return Image::make($file)
-            ->resize(100, null, function ($constraint) {
+            ->resize($size, null, function ($constraint) {
                 $constraint->aspectRatio();
             })->response();
     });

@@ -9,8 +9,6 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.create')], 
         ])
-        {{-- Add the clients --}}
-        @slot('clients', $clients)
     @endcomponent
 
 @endsection

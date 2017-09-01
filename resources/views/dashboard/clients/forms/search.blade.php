@@ -1,16 +1,16 @@
-{{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{{-- Search by: client --}}
+{!! BootForm::text(trans('financials.client'), 'search_client')
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
+{{-- Search by: Contact --}}
+{!! BootForm::text(trans('persona.contact'), 'search_contact')
     ->addGroupClass('col-md-3')
 !!}
 
-{{-- Search by: client --}}
-{!! BootForm::text(trans('financials.client'), 'search_client')
+{{-- Search by: Email --}}
+{!! BootForm::text(trans('persona.email'), 'search_email')
     ->addGroupClass('col-md-3')
 !!}
 

@@ -17,8 +17,9 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $section = 'clients';
-    protected $storage = 'clients';
+    protected $section      = 'clients';
+    protected $imageFolder  = 'clients';
+    protected $imageWidth   = 100;
 
     /**
      * Get the query object to be processed by datatables.
@@ -51,7 +52,11 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             })
             ->editColumn('client_image', function($data) {
-                return sprintf('<img src="%s" class="thumbnail">', route('dashboard.image', [$this->storage, $data->client_image]));
+                return sprintf('<img src="%s" class="thumbnail">', route('dashboard.image', [
+                    $folder = $this->imageFolder, 
+                    $image = $data->client_image, 
+                    $width = $this->imageWidth, 
+                ]));
             });
     }
 }
