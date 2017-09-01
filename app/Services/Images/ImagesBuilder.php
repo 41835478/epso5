@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Storage;
 
 abstract class ImagesBuilder {
 
-    protected $disk;
+    /**
+     * @var protected
+     */
+    protected $disk     = "profile";
+    protected $setName  = null;
 
     /**
      * Generate a file name
@@ -14,7 +18,7 @@ abstract class ImagesBuilder {
      */
     protected function fileName() : string
     {
-        return generate_key_md5($length = 10);
+        return $this->setName ?? generate_key_md5($length = 10);
     }
 
     /**

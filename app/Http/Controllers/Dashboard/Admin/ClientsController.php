@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\Clients\DataTable;
 use App\Http\Controllers\DashboardController;
+use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
 use App\Services\Redirection\Redirection;
-//use App\Http\Requests\ClientsRequest;
 //use Credentials;
-use Illuminate\Http\Request;
 
 class ClientsController extends DashboardController
 {
@@ -68,8 +67,8 @@ class ClientsController extends DashboardController
     public function store(ClientsRequest $request)
     {
         $create = $this->controller
-            ->store($request);
-
+            ->store();
+            //
             return $create 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.clients.index')
@@ -106,7 +105,7 @@ class ClientsController extends DashboardController
     {
         $update = $this->controller
             ->store($id);
-
+            //
             return $update 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.clients.index')

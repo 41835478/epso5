@@ -11,7 +11,7 @@ Route::name('image')
         //Get the file name
         $file = (in_array($folder, $allowedFolders) && is_string($filename)) 
             ? storage_path('app/public/' . $folder . '/' . $filename) 
-            : storage_path('app/public/' . $folder . '/' . no_image());
+            : storage_path('app/public/' . no_image());
         //
         return Image::make($file)
             ->resize($size, null, function ($constraint) {

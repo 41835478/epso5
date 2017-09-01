@@ -180,13 +180,13 @@ return [
         /*
          * Custom Service Providers...
          */
-        //App\Services\Application\ApplicationProvider::class,
         App\Providers\BladeServiceProvider::class,
-        App\Providers\HelperServiceProvider::class,
-        App\Providers\RepositoryServiceProvider::class,
         App\Services\Credentials\CredentialsProvider::class,
+        App\Providers\HelperServiceProvider::class,
         App\Services\Html\HtmlProvider::class,
+        App\Providers\MacroServiceProvider::class,
         App\Services\Menus\MenusProvider::class,
+        App\Providers\RepositoryServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -255,7 +255,6 @@ return [
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
         'Credentials' => App\Services\Credentials\CredentialsFacade::class,
         'Html' => App\Services\Html\HtmlFacade::class,
-        'Html5' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Menu' => App\Services\Menus\MenusFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,

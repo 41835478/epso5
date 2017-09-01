@@ -10,5 +10,14 @@ trait ClientsHelpers {
     |--------------------------------------------------------------------------
     */
 
-    // helpers functions to remove from the repository
+    /**
+     * Filter and modify the request input
+     * @return  array
+     */
+    private function requestOperations($request)
+    {
+        $request['client_image'] = $this->images->disk('clients')->setName($request['row_id'])->handler();
+        //
+        return $request;
+    }
 }

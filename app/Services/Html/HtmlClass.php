@@ -2,11 +2,13 @@
 
 namespace App\Services\Html;
 
+use App\Services\Html\Traits\Images;
 use App\Services\Html\Traits\Links;
+use App\Services\Html\Traits\Pipeline;
 
 class HtmlClass {
     
-    use Links;
+    use Images, Links;
 
     /**
      * @var Allowed methods for the Facade
@@ -14,12 +16,15 @@ class HtmlClass {
     private $allowed = [
         'link',
         'form',
+        'thumbnail',
     ];
 
     /**
      * @var private
      */
     private $class = [];
+    private $folder;
+    private $width;
 
     /**
      * Generate the methods

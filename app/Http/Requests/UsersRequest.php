@@ -78,4 +78,17 @@ class UsersRequest extends FormRequest
             'stored_file'               => trans('persona.image'),
         ];
     }
+
+    /**
+     * Customize response
+     *
+     * @return array
+     */
+    // public function response(array $errors)
+    // {
+    //     // If you want to customize what happens on a failed validation,
+    //     // override this method.
+    //     $errors[] = "Se ha producido un error al añadir su parcela. Los campos anteriormente nombrados, se encontraban vacios.";
+    //     return redirect()->route("dashboard.users.plots.geolocate")->withErrors($errors);
+    // }
 }

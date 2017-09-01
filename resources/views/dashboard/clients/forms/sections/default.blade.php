@@ -1,4 +1,8 @@
 <div class="row">
+
+    {{-- Row id --}}
+    {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
+
     {{-- Client name --}}
     {!! BootForm::text(trans('sections/clients.title'), 'client_name')
         ->addGroupClass('col-md-4')
@@ -61,5 +65,4 @@
         ->defaultValue(null) 
         ->required()
     !!}
-
 </div>

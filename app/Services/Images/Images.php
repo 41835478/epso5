@@ -7,17 +7,23 @@ use App\Services\Images\ImagesBuilder;
 class Images extends ImagesBuilder {
 
     /**
-     * @var protected
-     */
-    protected $disk = "profile";
-
-    /**
      * Set the storage disk
      * @return string
      */
     public function disk($storageDisk)
     {
         $this->disk = $storageDisk;
+
+        return $this;
+    }
+
+    /**
+     * Set the storage disk
+     * @return string
+     */
+    public function setName($setName)
+    {
+        $this->setName = $setName;
 
         return $this;
     }

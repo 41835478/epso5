@@ -67,7 +67,7 @@ class DummyClassController extends DashboardController
     public function store(DummyClassRequest $request)
     {
         $create = $this->controller
-            ->store($request);
+            ->store();
 
             return $create 
                 ? redirect()

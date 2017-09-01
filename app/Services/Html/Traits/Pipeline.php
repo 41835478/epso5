@@ -51,4 +51,26 @@ trait Pipeline
 
         return $this; 
     }
+
+    /**
+     * Set the width value
+     * @return this
+     */
+    private function width($width)
+    {
+        $this->width = $width;
+
+        return $this; 
+    }
+
+    /**
+     * Set the folder value
+     * @return this
+     */
+    private function folder($folder)
+    {
+        $this->folder = $folder;
+
+        return $this; 
+    }
 }
