@@ -1,0 +1,3 @@
+{{-- All the personal information --}}
+<legend class="title">@lang('sections/DummyTable/..')</legend>
+@include(dashboard_path('DummyTable.forms.sections.default'))
