@@ -17,6 +17,7 @@ class CreateCropsTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('crop_name');
             $table->string('crop_description')->nullable();
+            $table->string('crop_slug', 20);
             $table->timestamps();
             $table->softDeletes();
         });

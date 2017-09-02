@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         // Countries 
         $this->call(CountryTableSeeder::class);
+        $this->call(CropTableSeeder::class);
         $this->call(RegionTableSeeder::class);
         $this->call(StateTableSeeder::class);
             $this->call(Cities_From_La_Mancha::class);
