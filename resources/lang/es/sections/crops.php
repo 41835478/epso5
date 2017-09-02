@@ -8,8 +8,6 @@ return [
     |--------------------------------------------------------------------------
     */
    
-    // 'create'    => 'Crear',
-    // 'edit'      => 'Editar',
-    // 'form'      => 'Formulario',
-    // 'list'      => 'Listado',
+    'title'             => 'Cultivo',
+    'title:plural'      => 'Cultivos',
 ];
