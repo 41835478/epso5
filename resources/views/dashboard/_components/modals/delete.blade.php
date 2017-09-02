@@ -1,4 +1,4 @@
-{!! BootForm::open('form-delete')->action(route('dashboard.' . $role . '.' . $section . '.eliminate')) !!}
+{!! BootForm::open('form-delete')->action(route($setCustomRoute ?? 'dashboard.' . $role . '.' . $section . '.eliminate')) !!}
     @component(component_path('modal'))
         @slot('bgColor', 'bg-danger')
         @slot('modalID', 'modal-delete')
