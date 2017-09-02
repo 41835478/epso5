@@ -31,6 +31,6 @@
 
     {{-- Modals --}}
     @section('modals')
-        @include(modal_path('delete'))
+        @include(modal_path('delete'), ['setCustomRoute' => 'dashboard.editor.users.eliminate'])
     @endsection
 @endsection
