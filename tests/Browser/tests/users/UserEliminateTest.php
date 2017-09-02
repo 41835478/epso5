@@ -12,16 +12,7 @@ class UserEliminateTest extends DuskTestCase
 {
     use DatabaseTransactions;
     
-    private $god;
-    private $usersRoute;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->god          = User::find(1);
-        $this->usersRoute   = '/dashboard/users';
-     }
+    protected $usersRoute = '/dashboard/users';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +23,7 @@ class UserEliminateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             //Not selected items
-            $browser->loginAs($this->god)
+            $browser->loginAs($this->createGod())
                 ->visit($this->usersRoute)
                 ->pause(500)
                 ->click('#button-config')
@@ -48,7 +39,7 @@ class UserEliminateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             //Not selected items
-            $browser->loginAs($this->god)
+            $browser->loginAs($this->createGod())
                 ->visit($this->usersRoute)
                 ->pause(500)
                 //with selected items
