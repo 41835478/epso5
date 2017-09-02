@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\Crops\DataTable;
 use App\Http\Controllers\DashboardController;

@@ -21,7 +21,7 @@
                 'url' => route('dashboard.admin.clients.index'),
             ])->subMenuItem([
                 'title' => icon('crops', trans('navbar.admin:crops')),
-                'url' => 'http://',
+                'url' => route('dashboard.admin.crops.index'),
             ])->subMenuItem([
                 'title' => icon('biocides', trans('navbar.admin:biocides')),
                 'url' => 'http://',

@@ -31,7 +31,7 @@ abstract class MakeRepositoryConstructor extends Command
         } elseif($this->dataTablesTraits) {
             $this->createTrait('dataTablesTraits');
         } elseif($this->html5Traits) {
-            $this->createTrait('html5Traits', $minimize = true);
+            $this->createTrait('html5Traits', $minimize = true, $bladeFile = true);
         } else {
             $this->upload();
         } 
@@ -77,16 +77,34 @@ abstract class MakeRepositoryConstructor extends Command
      *
      * @return string
      */
-    public function createTrait($trait, $minimize = false)
+    public function createTrait($trait, $minimize = false, $bladeFile = false)
     {
         //Path to the traits
         $path = $this->stub;
         //Create the traits
         foreach($this->{$trait} as $item) {
             $this->stub($path . '_' . $item);
-            $this->upload($minimize ? $item : studly_case($item));
+            $this->upload($this->formatFileForTrait($item, $minimize, $bladeFile));
         }
         // Reset the traits
         $this->{$trait} = [];
+    }
+
+    /**
+     * Format the file for the trait
+     *
+     * @return string
+     */
+    public function formatFileForTrait($file, $minimize = false, $bladeFile = false)
+    {
+        //No minimize the file
+        if(!$minimize) {
+            $file = studly_case($file);
+        }
+        //Convert to blade format
+        if($bladeFile) {
+            $file = $file . '.blade';
+        }
+        return $file;
     }
 }
