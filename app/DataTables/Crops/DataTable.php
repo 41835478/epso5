@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataTables\Clients;
+namespace App\DataTables\Crops;
 
-use App\DataTables\Clients\DataTableColumns;
-use App\DataTables\Clients\DataTableJavascript;
-use App\DataTables\Clients\DataTableSearch;
-use App\Repositories\Clients\ClientsRepository;
-use App\Repositories\Clients\UsersRepository;
+use App\DataTables\Crops\DataTableColumns;
+use App\DataTables\Crops\DataTableJavascript;
+use App\DataTables\Crops\DataTableSearch;
+use App\Repositories\Crops\CropsRepository;
+use App\Repositories\Crops\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 
 class DataTable extends Repository
@@ -16,9 +16,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $section      = 'clients';
-    protected $imageFolder  = 'clients';
-    protected $imageWidth   = 100;
+    protected $section = 'crops';
 
     /**
      * Get the query object to be processed by datatables.
@@ -27,7 +25,7 @@ class DataTable extends Repository
      */
     public function query()
     {
-        $query = app(ClientsRepository::class)
+        $query = app(CropsRepository::class)
             ->dataTable()
             ->select($this->section . '.*');
 
@@ -42,20 +40,13 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox', 'client_image'])
+            ->rawColumns(['action', 'checkbox'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
-            })
-            ->editColumn('client_image', function($data) {
-                return sprintf('<img src="%s" class="thumbnail">', route('dashboard.image', [
-                    $folder = $this->imageFolder, 
-                    $image = $data->client_image, 
-                    $width = $this->imageWidth, 
-                ]));
             });
     }
 }

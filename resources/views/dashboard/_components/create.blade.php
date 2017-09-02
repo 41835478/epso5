@@ -17,7 +17,7 @@
                 {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.store'))->post()->enctype('multipart/form-data') !!}
 
                     {{-- Include the custom blade form --}}
-                    @include('dashboard.' . $section . '.forms.form')
+                    @include('dashboard.' . $section . '.forms.builder')
                     
                     {{-- The required legend --}}
                     <legend class="legend-required">{{ __('* Mandatory fields') }}</legend>

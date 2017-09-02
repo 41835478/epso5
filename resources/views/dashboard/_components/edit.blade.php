@@ -19,7 +19,7 @@
                     {!! BootForm::bind($data) !!}
 
                     {{-- Include the custom blade form --}}
-                    @include('dashboard.' . $section . '.forms.form')
+                    @include('dashboard.' . $section . '.forms.builder')
                     
                     {{-- The required legend --}}
                     <legend class="legend-required">{{ __('* Mandatory fields') }}</legend>
