@@ -31,7 +31,7 @@ trait MakeRepositoryActions
      */
     public function createDataTableTraits()
     {
-        $this->create('dataTablesTraits')->stub('no_need')->dataTablesTraits()->generate();
+        $this->create('dataTablesTraits')->stub('repository_datatables_trait')->dataTablesTraits()->generate();
     }
 
     /**
@@ -61,7 +61,7 @@ trait MakeRepositoryActions
      */
     public function createModelTraits()
     {
-        $this->create('modelTraits')->stub('no_need')->modelTraits()->generate();
+        $this->create('modelTraits')->stub('repository_model_trait')->modelTraits()->generate();
     }
 
     /**
@@ -81,7 +81,7 @@ trait MakeRepositoryActions
      */
     public function createLocalization()
     {
-        $this->create('localization')->stub('localization')->generate();
+        $this->create('localization')->stub('repository_localization')->generate();
     }
 
     /**
@@ -91,6 +91,18 @@ trait MakeRepositoryActions
      */
     public function createHtml5Traits()
     {
-        $this->create('html5Traits')->stub('no_need')->html5Traits()->generate();
+        $this->create('html5Traits')->stub('repository_html5')->html5Traits()->generate();
+    }
+
+    /**
+     * Create the view breadcrumb
+     *
+     * @return mixed
+     */
+    public function createForms()
+    {
+        $this->create('forms:builder')->stub('repository_forms_builder')->generate();
+        $this->create('forms:default')->stub('repository_forms_default')->generate();
+        $this->create('forms:search')->stub('repository_forms_search')->generate();
     }
 }

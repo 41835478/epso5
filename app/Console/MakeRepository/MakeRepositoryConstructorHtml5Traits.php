@@ -11,7 +11,7 @@ trait MakeRepositoryConstructorHtml5Traits
     */
    public function html5Traits()
    {
-       $this->html5 = ['actions', 'create', 'edit', 'form', 'form_default', 'index', 'search'];
+       $this->html5Traits = ['actions', 'create', 'edit', 'index'];
 
        return $this;
    }

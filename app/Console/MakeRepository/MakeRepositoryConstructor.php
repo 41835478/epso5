@@ -5,6 +5,7 @@ namespace App\Console\MakeRepository;
 use App\Console\MakeRepository\MakeRepositoryConstructorDataTablesTraits;
 use App\Console\MakeRepository\MakeRepositoryConstructorFiles;
 use App\Console\MakeRepository\MakeRepositoryConstructorFilters;
+use App\Console\MakeRepository\MakeRepositoryConstructorHtml5Traits;
 use App\Console\MakeRepository\MakeRepositoryConstructorModelTraits;
 use App\Console\MakeRepository\MakeRepositoryConstructorStub;
 use Illuminate\Console\Command;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 abstract class MakeRepositoryConstructor extends Command
 {
-    use MakeRepositoryConstructorFiles, MakeRepositoryConstructorFilters, MakeRepositoryConstructorStub, MakeRepositoryConstructorModelTraits, MakeRepositoryConstructorDataTablesTraits;
+    use MakeRepositoryConstructorFiles, MakeRepositoryConstructorFilters, MakeRepositoryConstructorStub, MakeRepositoryConstructorModelTraits, 
+    MakeRepositoryConstructorDataTablesTraits, MakeRepositoryConstructorHtml5Traits;
 
     protected $migration;
     protected $tableData = [];
@@ -29,7 +31,7 @@ abstract class MakeRepositoryConstructor extends Command
         } elseif($this->dataTablesTraits) {
             $this->createTrait('dataTablesTraits');
         } elseif($this->html5Traits) {
-            $this->createTrait('html5Traits');
+            $this->createTrait('html5Traits', $minimize = true);
         } else {
             $this->upload();
         } 
@@ -75,14 +77,14 @@ abstract class MakeRepositoryConstructor extends Command
      *
      * @return string
      */
-    public function createTrait($trait)
+    public function createTrait($trait, $minimize = false)
     {
         //Path to the traits
         $path = $this->stub;
         //Create the traits
         foreach($this->{$trait} as $item) {
             $this->stub($path . '_' . $item);
-            $this->upload(studly_case($item));
+            $this->upload($minimize ? $item : studly_case($item));
         }
         // Reset the traits
         $this->{$trait} = [];

@@ -82,6 +82,8 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createLocalization();
         //Next, html5 files 
         $this->createHtml5Traits();
+        //Finally create the forms 
+        $this->createForms();
 
         //Table header 
         $this->line(' ') . $this->table($this->tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');

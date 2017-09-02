@@ -46,21 +46,21 @@ trait MakeRepositoryConstructorFiles
                 case 'repository':
                     $file = 'app/Repositories/DummyClass/DummyClassRepository';
                     break;
-
-                case 'view:breadcrumb':
-                    $file = 'resources/views/app/dashboard/DummyTable/breadcrumbs.blade';
+            
+                case 'html5Traits':
+                    $file = 'resources/views/dashboard/DummyTable/' . $appendix;
+                    break;
+            
+                case 'forms:builder':
+                    $file = 'resources/views/dashboard/DummyTable/forms/builder.blade';
                     break;
 
-                case 'view:form':
-                    $file = 'resources/views/app/dashboard/DummyTable/forms/default.blade';
+                case 'forms:default':
+                    $file = 'resources/views/dashboard/DummyTable/forms/sections/default.blade';
                     break;
-
-                case 'view:form:mandatories':
-                    $file = 'resources/views/app/dashboard/DummyTable/forms/mandatories.blade';
-                    break;
-                    
-                case 'view:search':
-                    $file = 'resources/views/app/dashboard/DummyTable/forms/search.blade';
+            
+                case 'forms:search':
+                    $file = 'resources/views/dashboard/DummyTable/forms/search.blade';
                     break;
             }
 
