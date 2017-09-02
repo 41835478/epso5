@@ -13,8 +13,6 @@ class RegionTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('regions')->delete();
-
         DB::table('regions')->insert([
             ['id' => '1', 'country_id' => 1,'state_id' => 8, 'region_name' => 'Albacete', 'region_lat' => null, 'region_lng' => null, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => '2', 'country_id' => 1,'state_id' => 8, 'region_name' => 'Ciudad Real', 'region_lat' => null, 'region_lng' => null, 'created_at' => new DateTime, 'updated_at' => new DateTime],

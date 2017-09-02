@@ -1,4 +1,7 @@
 <div class="row">
+    {{-- Row id --}}
+    {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
+
     {{-- Field: Name --}}
     {!! BootForm::text(trans('persona.name'), 'name')
         ->addGroupClass('col-md-4')
@@ -31,11 +34,6 @@
         !!}
     @else 
         {{-- You can't edit the client --}}
-        {!! BootForm::text(trans('persona.role'), 'role_name')
-            ->addGroupClass('col-md-2')
-            ->value(Credentials::userRole($data ?? null))
-            ->disabled()
-        !!}
         {!! BootForm::hidden('role')->id('role')->value(Credentials::userRole($data ?? null)) !!}
     @endRoles
 </div>
@@ -53,11 +51,7 @@
         !!}
     @else 
         {{-- You can't edit the client --}}
-        {!! BootForm::text(trans('financials.client'), 'client.client_name')
-            ->addGroupClass('col-md-3')
-            ->disabled()
-        !!}
-        {!! BootForm::hidden('client_id')->id('client_id') !!}
+        {!! BootForm::hidden('client_id')->id('client_id')->value(Credentials::client()) !!}
     @endRoles
 
     {{-- Field: Password --}}

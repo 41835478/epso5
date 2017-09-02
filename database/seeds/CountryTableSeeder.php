@@ -13,8 +13,6 @@ class CountryTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->delete();
-
         DB::table('countries')->insert([
             ['id'            => 1, 
             'country_name'  => 'España', 

@@ -42,6 +42,7 @@ class MakeRepository extends MakeRepositoryConstructor
     protected $disk;
     protected $modelTraits;
     protected $dataTablesTraits;
+    protected $html5Traits;
     protected $stub;
     
     /**
@@ -79,6 +80,8 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createDataTableTraits();
         //Next, create the localization file
         $this->createLocalization();
+        //Next, html5 files 
+        $this->createHtml5Traits();
 
         //Table header 
         $this->line(' ') . $this->table($this->tableHeaders, $this->tableData) . $this->line(' ') . $this->line(' ');

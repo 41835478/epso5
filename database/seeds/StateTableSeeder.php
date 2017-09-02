@@ -13,8 +13,6 @@ class StateTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('states')->delete();
-
         DB::table('states')->insert([
             ['id' => '1', 'country_id' => 1, 'state_name' => 'Andalucía', 'state_lat' => 37.5442706, 'state_lng' => -4.7277528, 'created_at' => new DateTime, 'updated_at' => new DateTime],
             ['id' => '2', 'country_id' => 1, 'state_name' => 'Aragón', 'state_lat' => 41.5976275, 'state_lng' => -0.9056623, 'created_at' => new DateTime, 'updated_at' => new DateTime],

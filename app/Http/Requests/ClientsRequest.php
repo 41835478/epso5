@@ -28,15 +28,8 @@ class ClientsRequest extends FormRequest
     {
         return [
             'client_name'           => 'required',
-            'client_address'        => 'required',
-            'client_nif'            => 'required',
-            'client_zip'            => 'required',
-            'client_contact'        => 'required',
             'client_email'          => 'required|email',
-            'client_city'           => 'required',
-            'client_region'         => 'required',
-            'client_state'          => 'required',
-            'client_country'        => 'required',
+            'client_contact'        => 'required',
         ];
     }
 

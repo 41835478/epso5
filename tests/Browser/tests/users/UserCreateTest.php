@@ -1,16 +1,18 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\Tests\Users;
 
 use App\Repositories\Users\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class UserNewTest extends DuskTestCase
+class UserCreateTest extends DuskTestCase
 {
     protected $dashboard    = '/dashboard';
-    protected $usersCreate  = '/dashboard/users/create';
-    protected $usersURL     = '/dashboard/users';
+    protected $pathToCreate = '/dashboard/users/create';
+    protected $pathToList   = '/dashboard/users';
 
     /*
     |--------------------------------------------------------------------------
@@ -22,10 +24,10 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit($this->usersURL)
+                ->visit($this->pathToList)
                 ->click('#button-config')
                 ->click('#button-create-link')
-                ->assertPathIs($this->usersCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->type('name', $this->makeUser()->name)
                 ->type('email', $this->makeUser()->email)
                 ->select('locale', 'es')
@@ -42,7 +44,7 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
-                ->visit($this->usersCreate)
+                ->visit($this->pathToCreate)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));
         });
@@ -52,8 +54,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->select('role', 'god')
                 ->assertSelected('role', 'god');
         });
@@ -63,8 +65,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->assertMissing('role_name')
                 ->assertMissing('role');
         });
@@ -74,8 +76,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->assertMissing('role_name')
                 ->assertMissing('role');
         });
@@ -85,8 +87,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->select('client_id', 2)
                 ->assertSelected('client_id', 2);
         });
@@ -96,8 +98,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->select('client_id', 2)
                 ->assertSelected('client_id', 2);
         });
@@ -107,8 +109,8 @@ class UserNewTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
-                ->visit($this->usersCreate)
-                ->assertPathIs($this->usersCreate)
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate)
                 ->assertMissing('client')
                 ->assertMissing('client_id');
         });

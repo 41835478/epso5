@@ -16,7 +16,7 @@ trait UsersHelpers {
      * Filter and modify the request input
      * @return  array
      */
-    private function operations()
+    private function requestOperations()
     {
         $request = request()->all();
         //$request['stored_file'] = $this->image->handler();
@@ -47,7 +47,7 @@ trait UsersHelpers {
                 $request['is_god'] = $request['is_admin'] = $request['is_editor'] = false;
                 $request['is_user'] = true;
         };
-
+        //
         return $request;
     }
 

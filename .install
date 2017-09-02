@@ -11,14 +11,17 @@ alias dusk="clear && art dusk"
 alias asset="npm run dev"
 alias production="npm run production"
 alias watch="npm run watch"
+alias dracarys="php artisan make:dracarys"
 #For project without ssh
 alias gftp="git init && git add . && git commit -m 'My Commit' && git ftp push"
 
 # Install npm packages: datatables, jquery, etc...
-
 npm install
 
+#Creating test db with sqlite
+touch testing.sqlite
+
 # Testing migration
-art migrate --database=mysql_testing
-art migrate:refresh --database=mysql_testing
-art db:seed --database=mysql_testing --class=DatabaseSeederTesting
+art migrate --database=testing
+art migrate:refresh --database=testing
+art db:seed --database=testing

@@ -24,8 +24,6 @@ class ProfileTest extends BrowserKitTestCase
         ->seeInField('name', $this->createUser()->name)
         ->seeInField('email', $this->createUser()->email)
         ->seeIsSelected('locale', $this->createUser()->locale)
-        ->see('<input type="text" name="role_name" id="role_name" class="form-control" value="user" disabled="disabled">')
-        ->see('<input type="text" name="client.client_name" value="EPSO" id="client.client_name" class="form-control" disabled="disabled">')
         ->see('<input type="hidden" name="client_id" value="1" id="client_id">')
         ->assertResponseStatus(200);
     }

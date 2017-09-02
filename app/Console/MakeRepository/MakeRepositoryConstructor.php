@@ -28,6 +28,8 @@ abstract class MakeRepositoryConstructor extends Command
             $this->createTrait('modelTraits');
         } elseif($this->dataTablesTraits) {
             $this->createTrait('dataTablesTraits');
+        } elseif($this->html5Traits) {
+            $this->createTrait('html5Traits');
         } else {
             $this->upload();
         } 

@@ -31,7 +31,7 @@ trait MakeRepositoryActions
      */
     public function createDataTableTraits()
     {
-        $this->create('dataTablesTraits')->stub('repository_datatables_trait')->dataTablesTraits()->generate();
+        $this->create('dataTablesTraits')->stub('no_need')->dataTablesTraits()->generate();
     }
 
     /**
@@ -61,7 +61,7 @@ trait MakeRepositoryActions
      */
     public function createModelTraits()
     {
-        $this->create('modelTraits')->stub('repository_model_trait')->modelTraits()->generate();
+        $this->create('modelTraits')->stub('no_need')->modelTraits()->generate();
     }
 
     /**
@@ -89,29 +89,8 @@ trait MakeRepositoryActions
      *
      * @return mixed
      */
-    public function createViewBreadcrumb()
+    public function createHtml5Traits()
     {
-        $this->create('view:breadcrumb')->stub('repository_breadcrumb')->generate();
-    }
-
-    /**
-     * Create the view forms
-     *
-     * @return mixed
-     */
-    public function createViewForms()
-    {
-        $this->create('view:form')->stub('repository_form')->generate();
-        $this->create('view:form:mandatories')->stub('repository_form_mandatories')->generate();
-    }
-
-    /**
-     * Create the view search
-     *
-     * @return mixed
-     */
-    public function createViewSearch()
-    {
-        $this->create('view:search')->stub('repository_search')->generate();
+        $this->create('html5Traits')->stub('no_need')->html5Traits()->generate();
     }
 }

@@ -4,9 +4,11 @@ namespace Tests;
 
 use App\Repositories\Users\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Tests\TestHelpers;
+use Tests\Helpers\BaseHelpers;
+use Tests\Helpers\UsersHelpers;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, TestHelpers;
+    use CreatesApplication;
+    use BaseHelpers,UsersHelpers;
 }

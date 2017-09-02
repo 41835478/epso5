@@ -37,7 +37,7 @@ class UsersRepository extends Repository {
     {
         return DB::transaction(function () use ($id) {
             //Operations: App\Repositories\Users\Traits\UsersHelpers;
-            $request = $this->operations();
+            $request = $this->requestOperations();
             //
             //Create an User
             if (is_null($id)) {
