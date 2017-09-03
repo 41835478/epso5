@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\DataTables\Crops\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Crops\CropsRepository;
-//use App\Http\Requests\CropsRequest;
+use App\Http\Requests\CropsRequest;
 //use Credentials;
 use Illuminate\Http\Request;
 
