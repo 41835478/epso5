@@ -14,22 +14,22 @@ trait Authorize
     /**
      * Verify is the user has the role: User
      * @param int $model [The field database model]
-     * @param boolean $status]
      * @return boolean
      */
-    private function authorize($model, $status = true)
+    private function authorize($model)
     {        
+        //Check for god or admin
+        if($this->hasAnyRoles(['god', 'admin'])) {
+            return true;
+        }
         //Check if the user has the same client_id as the database record
         if($this->role('editor')) {
-            $status = ($model->client_id === $this->client()) ? true : false;
+            return ($model->client_id === $this->client()) ? true : false;
         }
-
         //Check if the user has the same user_id as the database record
         if($this->role('user')) {
-            $status = ($model->id === $this->id()) ? true : false;
+            return ($model->id === $this->id()) ? true : false;
         }
-
-        return $status;
     } 
 
     /**
