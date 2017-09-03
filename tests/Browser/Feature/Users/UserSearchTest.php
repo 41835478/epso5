@@ -44,7 +44,7 @@ class UserSearchTest extends DuskTestCase
                 ->with('.table', function ($table) {
                     $table
                         ->assertSee($this->createClientEpso()->client_name)
-                        ->assertDontSee($this->createClientValencia(1)->client_name);
+                        ->assertDontSee($this->createClientValencia()->client_name);
                 });
 
             $browser->click('.buttons-reset')

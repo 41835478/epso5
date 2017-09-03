@@ -17,11 +17,11 @@ class ClientUpdateTest extends DuskTestCase
     | Update clients
     |--------------------------------------------------------------------------
     */
-    public function test_editor_can_update_a_client()
+    public function test_admin_can_update_a_client()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.clients.edit', $this->createClient()->id)
+                ->visitRoute('dashboard.admin.clients.edit', $this->lastClient()->id)
                 ->type('client_name', $this->makeClient()->client_name)
                 ->type('client_email', $this->makeClient()->client_email)
                 ->type('client_address', $this->makeClient()->client_address)
