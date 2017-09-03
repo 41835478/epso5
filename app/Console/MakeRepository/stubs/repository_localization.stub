@@ -7,7 +7,7 @@ return [
     | Sections: DummyTable
     |--------------------------------------------------------------------------
     */
-   
+    'info'              => 'Información del DummySingular',
     'title'             => 'DummyModel',
     'title:plural'      => 'DummyClass',
 ];
