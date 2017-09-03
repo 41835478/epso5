@@ -18,17 +18,9 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans('base.module'), 'crop_module'),
+            $this->setColumn(trans_title('crops'), 'crop_name'),
+            $this->setColumn(trans('base.description'), 'crop_description'),
         ];
     }
 
@@ -39,7 +31,7 @@ trait DataTableColumns
     protected function setColumnsGroups() : array
     {
         return [
-            $this->createColumnsGroupsAll(),
+            //$this->createColumnsGroupsAll(),
             // $this->createColumnsGroups(icon('user', trans('tables.button:personal')), [
             //     'show' => [0, 2, 3, 4, 5, 6],
             //     'hide' => [1, 7, 8, 9],
