@@ -7,14 +7,14 @@ namespace App\Repositories\Clients;
 //use App\Repositories\Clients\Traits\ClientsPresenters;
 use App\Repositories\Clients\Traits\ClientsRelationships;
 //use App\Repositories\Clients\Traits\ClientsScopes;
-//use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Client extends Model  {
 
-    use ClientsRelationships, Notifiable;
+    use ClientsRelationships, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -22,7 +22,7 @@ class Client extends Model  {
      * @var string
      */
     protected $table = 'clients';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.

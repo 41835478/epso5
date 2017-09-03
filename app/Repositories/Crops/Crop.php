@@ -7,14 +7,14 @@ namespace App\Repositories\Crops;
 //use App\Repositories\Crops\Traits\CropsPresenters;
 //use App\Repositories\Crops\Traits\CropsRelationships;
 //use App\Repositories\Crops\Traits\CropsScopes;
-//use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Crop extends Model  {
 
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -22,7 +22,7 @@ class Crop extends Model  {
      * @var string
      */
     protected $table = 'crops';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.
