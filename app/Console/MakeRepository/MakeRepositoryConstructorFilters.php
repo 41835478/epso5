@@ -11,7 +11,7 @@ trait MakeRepositoryConstructorFilters
      */
     public function filter($file)
     {
-        return str_replace(['DummyClass', 'DummyModel', 'DummyTable'], [$this->getClassName(), $this->getModelName(), $this->getTableName()], $file);
+        return str_replace(['DummyClass', 'DummyModel', 'DummyTable', 'DummySingular'], [$this->getClassName(), $this->getModelName(), $this->getTableName()], $file, $this->getSingular());
     }
     
     /**
@@ -31,7 +31,7 @@ trait MakeRepositoryConstructorFilters
      */
     public function getModelName()
     {
-        return studly_case(str_singular($this->argument('repoName')));
+        return studly_case($this->getSingular());
     }
 
     /**
@@ -42,5 +42,15 @@ trait MakeRepositoryConstructorFilters
     public function getTableName()
     {
         return snake_case($this->argument('repoName'));
+    }
+
+    /**
+     * Generate the singular repoName
+     *
+     * @return string
+     */
+    public function getSingular()
+    {
+        return str_singular($this->argument('repoName'));
     }
 }
