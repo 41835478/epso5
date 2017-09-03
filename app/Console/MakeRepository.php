@@ -72,6 +72,8 @@ class MakeRepository extends MakeRepositoryConstructor
         $this->createMigration();
         //Next, create a controller
         $this->createController();
+        //Next, create the request
+        $this->createRequest();
         //Next, create a repository
         $this->createRepository();
         //Next, create the datatable

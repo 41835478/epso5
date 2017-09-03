@@ -17,6 +17,10 @@ trait MakeRepositoryConstructorFiles
                     $file = 'app/Http/Controllers/Dashboard/DummyClassController';
                     break;
 
+                case 'request':
+                    $file = 'app/Http/Requests/DummyClassRequest';
+                    break;
+
                 case 'datatable':
                     $file = 'app/DataTables/DummyClass/DataTable';
                     break;

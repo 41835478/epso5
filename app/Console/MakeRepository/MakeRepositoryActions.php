@@ -15,6 +15,16 @@ trait MakeRepositoryActions
     }
 
     /**
+     * Create the controller request
+     *
+     * @return mixed
+     */
+    public function createRequest()
+    {
+        $this->create('request')->stub('repository_request')->generate();
+    }
+    
+    /**
      * Create the datatable
      *
      * @return mixed
