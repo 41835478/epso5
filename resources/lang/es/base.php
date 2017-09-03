@@ -13,5 +13,5 @@ return [
     'edit'          => 'Editar',
     'form'          => 'Formulario',
     'list'          => 'Listado',
-    'slug'          => 'Clave',
+    'module'        => 'Módulo',
 ];
