@@ -27,9 +27,4 @@
 
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
-
-    {{-- Modals --}}
-    @section('modals')
-        @include(modal_path('delete'))
-    @endsection
 @endsection
