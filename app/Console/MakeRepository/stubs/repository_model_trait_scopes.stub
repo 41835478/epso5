@@ -10,8 +10,8 @@ trait DummyClassScopes {
     |--------------------------------------------------------------------------
     */
    
-    // public function scopePopular($query)
+    // public function scopeLast($query)
     // {
-    //     return $query->role()->all();
+    //     return $query->latest()->first();
     // }
 }
