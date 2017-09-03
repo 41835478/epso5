@@ -10,7 +10,7 @@
         ->required()
     !!}
 
-    {{-- Crop name --}}
+    {{-- Crop description --}}
     {!! BootForm::text(trans('base.description'), 'crop_description')
         ->addGroupClass('col-md-8')
         ->required()
@@ -19,6 +19,7 @@
     {{-- Crop module --}}
     {!! BootForm::text(trans('base.module'), 'crop_module')
         ->addGroupClass('col-md-4')
+        ->maxlength(20)
         ->required()
     !!}
 </div>
