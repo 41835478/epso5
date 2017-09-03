@@ -8,8 +8,10 @@ return [
     |--------------------------------------------------------------------------
     */
    
-    'create'    => 'Crear',
-    'edit'      => 'Editar',
-    'form'      => 'Formulario',
-    'list'      => 'Listado',
+    'create'        => 'Crear',
+    'description'   => 'Descripción',
+    'edit'          => 'Editar',
+    'form'          => 'Formulario',
+    'list'          => 'Listado',
+    'slug'          => 'Clave',
 ];
