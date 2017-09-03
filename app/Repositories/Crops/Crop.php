@@ -29,7 +29,12 @@ class Crop extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'id', 
+        'crop_name', 
+        'crop_module', 
+        'crop_description'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

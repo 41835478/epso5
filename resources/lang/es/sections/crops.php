@@ -7,7 +7,7 @@ return [
     | Sections: crops
     |--------------------------------------------------------------------------
     */
-   
+    'info'              => 'Información del cultivo',
     'title'             => 'Cultivo',
     'title:plural'      => 'Cultivos',
 ];
