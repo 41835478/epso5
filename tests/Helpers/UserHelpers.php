@@ -4,7 +4,7 @@ namespace Tests\Helpers;
 
 use App\Repositories\Users\User;
 
-trait UsersHelpers
+trait UserHelpers
 {    
     /**
      * @var protected
@@ -25,7 +25,7 @@ trait UsersHelpers
         if($this->createUser) {
             return $this->createUser;
         }
-        return $this->createUser = User::find(4);
+        return $this->createUser = User::last();
     }
 
     /**

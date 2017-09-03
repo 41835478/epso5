@@ -6,9 +6,9 @@ use App\Repositories\Clients\Client;
 
 trait ClientHelpers
 {    
-    protected $createClient;
     protected $createClientEpso;
     protected $createClientValencia;
+    protected $lastClient;
     protected $makeClient;
 
     /**
@@ -18,12 +18,12 @@ trait ClientHelpers
      *
      * @return Object
      */
-    public function createClient() : Client
+    public function lastClient() : Client
     {
-        if($this->createClient) {
-            return $this->createClient;
+        if($this->lastClient) {
+            return $this->lastClient;
         }
-        return $this->createClient = Client::latest()->first();
+        return $this->lastClient = Client::latest()->first();
     }
 
     /**
