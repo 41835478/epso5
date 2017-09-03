@@ -8,6 +8,11 @@
         padding: 10px 15px; 
     }
 
+    .break-line-max {
+        @extend .break-line;
+        padding: 30px 15px; 
+    }
+
     .hidden {
         display: none !important;
         visibility: hidden !important;

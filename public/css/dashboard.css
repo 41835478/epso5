@@ -10553,10 +10553,15 @@ form .expand-height:focus {
  * Helpers
  */
 
-.break-line {
+.break-line,
+.break-line-max {
   width: 100%;
   clear: both;
   padding: 10px 15px;
+}
+
+.break-line-max {
+  padding: 30px 15px;
 }
 
 .hidden {
@@ -10877,6 +10882,14 @@ table .th {
   background-color: #D9534F !important;
   border-color: #b52b27 !important;
   color: #fff !important;
+}
+
+#tools {
+  font-size: 1.6rem;
+}
+
+#tools li {
+  margin: 30px 0;
 }
 
 #dataTableBuilder_wrapper,

@@ -50,6 +50,7 @@ return [
     'telephone'         => 'phone-square',
     'print'             => 'print',
     'pointer'           => 'hand-pointer-o',
+    'upload'            => 'upload',
     'user'              => 'user-circle',
     'users'             => 'users',
     'world'             => 'globe',

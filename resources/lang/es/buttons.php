@@ -31,6 +31,7 @@ return [
     'select'        => 'Seleccionar',
     'send'          => 'Enviar',
     'show'          => 'Mostrar',
+    'tools'         => trans('base.tools'),
     'ok'            => 'Entendido',
     'operations'    => 'Operaciones',
     'update'        => 'Actualizar',

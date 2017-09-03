@@ -14,4 +14,5 @@ return [
     'form'          => 'Formulario',
     'list'          => 'Listado',
     'module'        => 'Módulo',
+    'tools'         => 'Herramientas',
 ];

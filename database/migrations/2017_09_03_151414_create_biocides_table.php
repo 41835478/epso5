@@ -15,10 +15,10 @@ class CreateBiocidesTable extends Migration
     {
         Schema::create('biocides', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('biocide_num')->nullable()->comment("Nº from the national registration database (MAGRAMA)");
+            $table->string('biocide_num')->nullable()->comment("Nº from the national registration database (MAGRAMA)");
             $table->string('biocide_name')->nullable();
             $table->string('biocide_company')->nullable();
-            $table->string('biocide_formula')->nullable();
+            $table->text('biocide_formula')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

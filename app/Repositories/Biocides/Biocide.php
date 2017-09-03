@@ -29,7 +29,12 @@ class Biocide extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'biocide_num',
+        'biocide_name',
+        'biocide_company',
+        'biocide_formula',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
