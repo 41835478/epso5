@@ -11,7 +11,11 @@ trait MakeRepositoryConstructorFilters
      */
     public function filter($file)
     {
-        return str_replace(['DummyClass', 'DummyModel', 'DummyTable', 'DummySingular'], [$this->getClassName(), $this->getModelName(), $this->getTableName()], $file, $this->getSingular());
+        return str_replace(
+            ['DummyClass', 'DummyModel', 'DummyTable', 'DummySingular'], 
+            [$this->getClassName(), $this->getModelName(), $this->getTableName(), $this->getSingular()], 
+            $file
+        );
     }
     
     /**
