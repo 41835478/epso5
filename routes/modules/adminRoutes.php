@@ -5,6 +5,8 @@ Route::group([
         'as'            => 'admin.', 
         'middleware'    => 'role:admin'
     ], function () {
+        //Biocides
+        Route::resource('biocides', 'Dashboard\Admin\BiocidesController', ['except' => 'destroy', 'show']);
         //Cities
         Route::resource('cities', 'Dashboard\Admin\CitiesController', ['except' => 'destroy', 'show']);
         //Clients
