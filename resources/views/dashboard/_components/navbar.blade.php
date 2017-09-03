@@ -24,7 +24,7 @@
                 'url' => route('dashboard.admin.crops.index'),
             ])->subMenuItem([
                 'title' => icon('biocides', trans('navbar.admin:biocides')),
-                'url' => 'http://',
+                'url' => route('dashboard.admin.biocides.index'),
             ])->subMenuItem([
                 'title' => icon('world', trans('navbar.admin:countries')),
                 'url' => 'http://',
