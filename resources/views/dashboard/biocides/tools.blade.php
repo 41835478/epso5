@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card card-form">
-                <div class="card-header bg-warning">{!! icon('form', trans('base.tools')) !!}: {!! trans('buttons.download') !!}</div>
+                <div class="card-header bg-warning">{!! icon('form', trans('base.tools')) !!}</div>
                 <div class="card-block">
 
                     <ol id="tools">
@@ -42,7 +42,7 @@
                             {{-- Update form --}}
                             {!! BootForm::open()->action(route('dashboard.admin.biocides.tools.store'))->post()->enctype('multipart/form-data') !!}
                                 <div class="break-line col-md-12"></div>
-                                {!! BootForm::button(icon('upload', trans('buttons.update')))->name('button-edit-submit')->id('button-edit-submit')->addClass('btn-success btn-lg')->type('submit') !!}
+                                {!! BootForm::button(icon('reset', trans('buttons.update')))->name('button-edit-submit')->id('button-edit-submit')->addClass('btn-success btn-lg')->type('submit') !!}
 
                             {!! BootForm::close() !!}
                             {{-- Update form --}}
