@@ -27,7 +27,7 @@
                 'url' => route('dashboard.admin.biocides.index'),
             ])->subMenuItem([
                 'title' => icon('world', trans('navbar.admin:countries')),
-                'url' => 'http://',
+                'url' => route('dashboard.admin.cities.index'),
             ])->output()
         )
 
