@@ -21,27 +21,35 @@ class CitySearchTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit('/dashboard/biocides')
-                ->type('search_register', $this->lastBiocide()->biocide_num)
-                ->waitForText($this->lastBiocide()->biocide_num)
+                ->visit('/dashboard/cities')
+                ->type('search_country', $this->setLocalizationByName('country'))
+                ->waitForText($this->setLocalizationByName('country'))
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastBiocide()->biocide_num);
+                    $table->assertSee($this->setLocalizationByName('country'));
                 });
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_biocide', $this->lastBiocide()->biocide_name)
-                ->waitForText($this->lastBiocide()->biocide_name)
+                ->type('search_state', $this->setLocalizationByName('state'))
+                ->waitForText($this->setLocalizationByName('state'))
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastBiocide()->biocide_num);
+                    $table->assertSee($this->setLocalizationByName('state'));
                 });
-
+        
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_company', $this->lastBiocide()->biocide_company)
-                ->waitForText($this->lastBiocide()->biocide_company)
+                ->type('search_city', $this->setLocalizationByName('city'))
+                ->waitForText($this->setLocalizationByName('city'))
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastBiocide()->biocide_num);
+                    $table->assertSee($this->setLocalizationByName('city'));
+                });
+        
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_region', $this->setLocalizationByName('region'))
+                ->waitForText($this->setLocalizationByName('region'))
+                ->with('.table', function ($table) {
+                    $table->assertSee($this->setLocalizationByName('region'));
                 });
         });
     }

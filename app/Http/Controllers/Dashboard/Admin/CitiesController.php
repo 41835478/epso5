@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\Cities\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Cities\CitiesRepository;
 use App\Http\Requests\CitiesRequest;
+use App\Repositories\Cities\CitiesRepository;
+use App\Repositories\Countries\CountriesRepository;
+use App\Repositories\States\StatesRepository;
 
 class CitiesController extends DashboardController
 {
@@ -40,9 +42,6 @@ class CitiesController extends DashboardController
     public function index()
     {
         return $this->table
-            // ->setValue([
-            //     'action' => 'cities.actions'
-            // ])
             ->render(dashboard_path('cities.index'));
     }
 
@@ -51,9 +50,12 @@ class CitiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CountriesRepository $country, StatesRepository $state)
     {
-        return view(dashboard_path('cities.create'));
+        $countries  = $country->lists(['id', 'country_name']);
+        $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
+        //
+        return view(dashboard_path('cities.create'), compact('countries', 'states'));
     }
 
     /**
@@ -86,10 +88,11 @@ class CitiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, CountriesRepository $country)
     {
         return view(dashboard_path('cities.edit'))
-            ->withData($this->controller->find($id));
+            ->withData($this->controller->find($id))
+            ->withCountries($countries);
     }
 
     /**

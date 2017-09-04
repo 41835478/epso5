@@ -34,6 +34,10 @@ class CityCreateTest extends DuskTestCase
                 ->type('city_name', $this->makeCity()->city_name)
                 ->type('city_lat', $this->makeCity()->city_lat)
                 ->type('city_lng', $this->makeCity()->city_lng)
+                ->select('country_id', $this->makeCity()->country_id)
+                ->select('state_id', $this->makeCity()->state_id)
+                ->pause('500')
+                ->select('region_id', $this->makeCity()->region_id)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });

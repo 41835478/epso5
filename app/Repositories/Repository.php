@@ -45,8 +45,13 @@ abstract class Repository
      * @param array     $columns    [DB columns to be returned]
      * @return array
      */
-    public function ajax(string $term, $row = null, array $columns = [])
+    public function ajax($term = null, $row = null, array $columns = [])
     {
+        //Null response
+        if(!$term) {
+            return response()->json(null);
+        }
+
         $columns = !empty($columns) 
             ? $columns 
             : ['id', $row . ' AS name'];

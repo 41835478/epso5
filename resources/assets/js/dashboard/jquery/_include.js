@@ -20,4 +20,5 @@
             require('./bootstrap.js');
             require('./forms.js');
             require('./tables.js');
+            require('./sections.js');
         });

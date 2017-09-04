@@ -16,17 +16,29 @@ class RegionsRepository extends Repository
     }
 
     /**
-     * Create or update a record in storage
-     * @param   int     $id
-     * @return  boolean
+     * Get all the results from a model and return in json format.
+     * Use for autocomplete...
+     * @param string    $id       [The search id]
+     * @param string    $row        [DB row to be searched]
+     * @param array     $columns    [DB columns to be returned]
+     * @return array
      */
-    // public function store($id = null)
-    // {
-    //     return DB::transaction(function () use ($id) {
-    //         return true;
-    //     });
-    //     //Create an error
-    //     return false;
-    // }
+    public function ajax($id = null, $row = null, array $columns = [])
+    {
+        //Null response
+        if(!$id) {
+            return response()->json(null);
+        }
+
+        $columns = !empty($columns) 
+            ? $columns 
+            : ['id', $row . ' AS name'];
+
+        $query = $this->model
+            ->where($row, $id)
+            ->select($columns[0], $columns[1]);
+
+        return response()->json($query->get());
+    }
 
 }

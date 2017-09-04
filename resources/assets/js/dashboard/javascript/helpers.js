@@ -7,7 +7,7 @@
  */
 
      export default {
-         regex_escape: regex_escape,
+        regex_escape: regex_escape,
      };
      
     function regex_escape( text ) {

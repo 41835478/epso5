@@ -8,6 +8,12 @@ trait CityHelpers
 {    
     protected $lastCity;
     protected $makeCity;
+    protected $setLocalization;
+    protected $setLocalizationByName;
+    protected $_Places_ID = [1, 10, 53];
+    protected $_Places_Name = ['España', 'Comunidad Valenciana', 'Murcia', 'Almàssera'];
+
+
 
     /**
      * Create a client but not storing it!!!
@@ -21,7 +27,11 @@ trait CityHelpers
         if($this->makeCity) {
             return $this->makeCity;
         }
-        return $this->makeCity = factory(City::class)->make();
+        return $this->makeCity = factory(City::class)->make([
+            'country_id'    => $this->_countryID,
+            'state_id'      => $this->_stateID,
+            'region_id'     => $this->_regionID,
+        ]);
     }
 
     /**
@@ -37,5 +47,34 @@ trait CityHelpers
             return $this->lastCity;
         }
         return $this->lastCity = City::latest()->first();
+    }
+
+    public function setLocalization(string $type)
+    {
+        if($type === 'country') {
+            return $this->_Places_ID[0];
+        }
+        if($type === 'state') {
+            return $this->_Places_ID[1];
+        }
+        if($type === 'region') {
+            return $this->_Places_ID[2];
+        }
+    }
+
+    public function setLocalizationByName(string $type)
+    {
+        if($type === 'country') {
+            return $this->_Places_Name[0];
+        }
+        if($type === 'state') {
+            return $this->_Places_Name[1];
+        }
+        if($type === 'region') {
+            return $this->_Places_Name[2];
+        }
+        if($type === 'city') {
+            return $this->_Places_Name[3];
+        }
     }
 }

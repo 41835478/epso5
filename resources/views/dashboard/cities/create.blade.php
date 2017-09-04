@@ -10,7 +10,8 @@
             [trans('base.create')], 
         ])
         {{-- Add other slot --}}
-        @slot('slotName', $slotValue ?? null)
+        @slot('countries', $countries ?? null)
+        @slot('states', $states ?? null)
     @endcomponent
 
 @endsection
