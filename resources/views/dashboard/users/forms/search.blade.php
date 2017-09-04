@@ -10,7 +10,7 @@
 !!}
 
 {{-- Search by: client --}}
-{!! BootForm::text(trans('financials.client'), 'search_client')
+{!! BootForm::text(trans_title('clients', 'singular'), 'search_client')
     ->addGroupClass('col-md-3')
 !!}
 
