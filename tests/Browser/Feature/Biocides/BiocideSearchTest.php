@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Tests\Clients;
+namespace Tests\Browser\Tests\Biocides;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
