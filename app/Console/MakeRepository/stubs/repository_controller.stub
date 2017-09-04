@@ -42,8 +42,9 @@ class DummyClassController extends DashboardController
     public function index()
     {
         return $this->table
+            //Customize the action for datatables [dashboard/_components/actions]
             // ->setValue([
-            //     'action' => 'DummyTable.actions'
+            //     'action' => 'DummyTable:action'
             // ])
             ->render(dashboard_path('DummyTable.index'));
     }
