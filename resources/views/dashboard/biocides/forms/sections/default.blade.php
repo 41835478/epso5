@@ -1,38 +1,33 @@
 <div class="row">
-
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
-    {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'name')
-        ->addGroupClass('col-md-4')
+    {{-- Biocides: Register number --}}
+    {!! BootForm::text(sections('biocides.register'), 'biocide_num')
+        ->addGroupClass('col-md-2')
         ->autofocus()
         ->required()
     !!}
 
-    {{-- Select --}}
-    {!! BootForm::select(trans('persona.locale'), 'locale')
-        ->addGroupClass('col-md-2')
-        ->options(select('locale') ?? [])
-        ->defaultValue('es')
+    {{-- Biocides: Name --}}
+    {!! BootForm::text(trans_title('biocides', 'singular'), 'biocide_name')
+        ->addGroupClass('col-md-5')
+        ->autofocus()
         ->required()
     !!}
 
-    {{-- Addon --}}
-    {!! Form::InputGroup(trans('base.date'), 'agronomic_date')
-        ->addGroupClass('col-lg-2 col-md-6')
-        ->addClass('date')
-        ->afterAddon(icon('calendar'))
-        ->required() 
+    {{-- Biocides: Company --}}
+    {!! BootForm::text(trans('financials.company'), 'biocide_company')
+        ->addGroupClass('col-md-5')
+        ->autofocus()
+        ->required()
     !!}
-
-    {{-- Hidden --}}
-    {!! BootForm::hidden('myField')->id('myID')->value('myValue') !!}
-
-    {{-- Field: Conditional role --}}
-    @Role('admin')
-        //
-    @else 
-        //
-    @endRoles
+</div>
+<div class="row">
+    {{-- Biocides: Formula --}}
+    {!! BootForm::text(sections('biocides.formula'), 'biocide_formula')
+        ->addGroupClass('col-md-12')
+        ->autofocus()
+        ->required()
+    !!}
 </div>

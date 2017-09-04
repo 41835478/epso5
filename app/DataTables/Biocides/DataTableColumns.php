@@ -18,18 +18,10 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans_title('biocides'), 'Biocide_name'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(sections('biocides.register'), 'biocide_num'),
+            $this->setColumn(trans_title('biocides', 'singular'), 'biocide_name'),
+            $this->setColumn(trans('financials.company'), 'biocide_company'),
+            $this->setColumn(sections('biocides.formula'), 'biocide_formula'),
         ];
     }
 

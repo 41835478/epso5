@@ -7,17 +7,23 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
-            [trans('base.tools')], 
+            [trans('base.list')], 
         ])
 
-    {{-- Separator--}}
-    <div class="break-line-max col-md-12"></div>
+        @slot('dropdownItems', [
+            [Html::class('dropdown-item')->linkCreate($role, $section)], 
+            [
+                'title' => icon('form', trans('buttons.tools')),
+                'route' => route('dashboard.admin.biocides.tools'),
+            ],
+        ])
+    @endcomponent
 
     {{-- Download --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card card-form">
-                <div class="card-header bg-warning">{!! icon('form', trans('base.tools')) !!}</div>
+                <div class="card-header bg-warning">{!! icon('form', trans('base.tools')) !!}: {!! trans_title($section) !!}</div>
                 <div class="card-block">
 
                     <ol id="tools">

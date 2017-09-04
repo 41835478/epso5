@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 use App\DataTables\Biocides\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Biocides\BiocidesRepository;
-//use App\Http\Requests\BiocidesRequest;
-//use Credentials;
-use Illuminate\Http\Request;
+use App\Http\Requests\BiocidesRequest;
 
 class BiocidesController extends DashboardController
 {

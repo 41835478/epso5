@@ -16,11 +16,9 @@ trait DataTableSearch
          * @param  array $column        [Column number to search]
          */
         return [
-            // $this->setColumnSearch('number', 'search_id', 1),
-            // $this->setColumnSearch('change', 'search_role', 2),
-            // $this->setColumnSearch('input', 'search_client', 3),
-            // $this->setColumnSearch('input', 'search_name', 4),
-            // $this->setColumnSearch('input', 'search_email', 5),
+            $this->setColumnSearch('input', 'search_register', 2),
+            $this->setColumnSearch('input', 'search_biocide', 3),
+            $this->setColumnSearch('input', 'search_company', 4),
         ];
     }
 }

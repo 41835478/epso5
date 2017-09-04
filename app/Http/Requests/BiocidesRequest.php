@@ -27,8 +27,10 @@ class BiocidesRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'biocide_num'       => 'required',
+            'biocide_name'      => 'required',
+            'biocide_company'   => 'required',
+            'biocide_formula'   => 'required',
         ];
     }
 
@@ -40,8 +42,10 @@ class BiocidesRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'biocide_num'       => sections('biocides.register'),
+            'biocide_name'      => trans_title('biocides', 'singular'),
+            'biocide_company'   => trans('financials.company'),
+            'biocide_formula'   => sections('biocides.formula'),
         ];
     }
 
