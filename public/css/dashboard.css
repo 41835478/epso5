@@ -10637,6 +10637,29 @@ form .expand-height:focus {
  */
 
 /** 
+ * Legends
+ */
+
+#legend .card-header {
+  font-size: 1.1rem;
+}
+
+#legend ul {
+  margin: 0;
+  padding: 0;
+}
+
+#legend ul li {
+  list-style: none;
+  padding: 10px;
+  color: #838383;
+}
+
+#legend ul li span {
+  margin-right: 10px;
+}
+
+/** 
  * Modals
  */
 

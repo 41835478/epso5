@@ -1,2 +1,3 @@
-<button class="btn btn-success-alt">Button</button>
-<button class="btn btn-terciary">Button</button>
+<ul>
+    <li><span class="btn btn-warning">{!! icon('edit') !!}</span> {!! trans('legends.edit') !!}</li>
+</ul>
