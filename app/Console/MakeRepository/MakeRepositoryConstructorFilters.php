@@ -13,7 +13,7 @@ trait MakeRepositoryConstructorFilters
     {
         return str_replace(
             ['DummyClass', 'DummyModel', 'DummyTable', 'DummySingular'], 
-            [$this->getClassName(), $this->getModelName(), $this->getTableName(), $this->getSingular()], 
+            [$this->getClassName(), $this->getModelName(), $this->getTableName(), $this->getSingularLowerCase()], 
             $file
         );
     }
@@ -56,5 +56,15 @@ trait MakeRepositoryConstructorFilters
     public function getSingular()
     {
         return str_singular($this->argument('repoName'));
+    }
+
+    /**
+     * Generate the singular repoName
+     *
+     * @return string
+     */
+    public function getSingularLowerCase()
+    {
+        return strtolower(str_singular($this->argument('repoName')));
     }
 }
