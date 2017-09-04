@@ -19,4 +19,9 @@
 
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
+
+    {{-- Legends --}}
+    @component(component_path('legend'))
+        @slot('legendContent', legend_path())
+    @endcomponent
 @endsection

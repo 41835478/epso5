@@ -33,4 +33,9 @@
     @section('modals')
         @include(modal_path('delete'))
     @endsection
+
+    {{-- Legends --}}
+    @component(component_path('legend'))
+        @slot('legendContent', legend_path())
+    @endcomponent
 @endsection

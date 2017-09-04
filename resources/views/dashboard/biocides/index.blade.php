@@ -26,6 +26,8 @@
     @include(component_path('dataTables'), ['tableFooter' => false])
 
     {{-- Legends --}}
-    @include(legend_path())
+    @component(component_path('legend'))
+        @slot('legendContent', legend_path())
+    @endcomponent
 
 @endsection
