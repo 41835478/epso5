@@ -23,7 +23,7 @@ class CropsSearchTest extends DuskTestCase
             $browser->loginAs($god = $this->createGod())
                 ->visit('/dashboard/crops')
                 ->type('search_name', $this->lastCrop()->crop_name)
-                ->pause(500)
+                ->waitForText($this->lastCrop()->crop_name)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastCrop()->crop_name);
                 });

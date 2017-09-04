@@ -23,7 +23,7 @@ class ClientSearchTest extends DuskTestCase
             $browser->loginAs($god = $this->createGod())
                 ->visit('/dashboard/clients')
                 ->type('search_client', $this->createClientEpso()->client_name)
-                ->pause(500)
+                ->waitForText($this->createClientEpso()->client_name)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->createClientEpso()->client_name);
                 });
@@ -31,15 +31,15 @@ class ClientSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_email', $this->createClientEpso()->client_email)
-                ->pause(500)
+                ->waitForText($this->createClientEpso()->client_email)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->createClientEpso()->client_name);
+                    $table->assertSee($this->createClientEpso()->client_email);
                 });
 
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_contact', $this->createClientEpso()->client_contact)
-                ->pause(500)
+                ->waitForText($this->createClientEpso()->client_contact)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->createClientEpso()->client_contact);
                 });
@@ -47,9 +47,9 @@ class ClientSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_id', $this->createClientEpso()->id)
-                ->pause(500)
+                ->waitForText($this->createClientEpso()->id)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->createClientEpso()->client_name);
+                    $table->assertSee($this->createClientEpso()->id);
                 });
         });
     }
