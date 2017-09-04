@@ -2,8 +2,11 @@
 
 namespace App\Repositories\Regions;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Repositories\Cities\City;
+use App\Repositories\Countries\Country;
+use App\Repositories\States\State;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,21 +27,25 @@ class Region extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = ['country_id', 'state_id', 'region_name', 'region_lat', 'region_lng'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    // protected $hidden = ['id'];
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    // protected $casts = [
-    //     'is_god'    => 'boolean',
-    // ];
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function city()
+    {
+        return $this->hasMany(City::class);
+    }
 }

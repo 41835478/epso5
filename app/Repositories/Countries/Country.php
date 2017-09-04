@@ -1,8 +1,8 @@
 <?php 
 
-namespace App\Repositories\Cities;
+namespace App\Repositories\Countries;
 
-use App\Repositories\Countries\Country;
+use App\Repositories\Cities\City;
 use App\Repositories\Regions\Region;
 use App\Repositories\States\State;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class City extends Model  {
+class Country extends Model  {
 
     use Notifiable, SoftDeletes;
 
@@ -19,7 +19,7 @@ class City extends Model  {
      *
      * @var string
      */
-    protected $table = 'cities';
+    protected $table = 'countries';
     protected $dates = ['deleted_at'];
 
     /**
@@ -27,26 +27,25 @@ class City extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['country_id', 'state_id', 'region_id', 'city_name', 'city_lat', 'city_lng'];
+    protected $fillable = ['country_name', 'country_lat', 'country_lng'];
 
     /*
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
     */
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class);
-    }
-
     public function state()
     {
-        return $this->belongsTo(State::class);
+        return $this->hasMany(State::class);
     }
 
     public function region()
     {
-        return $this->belongsTo(Region::class);
+        return $this->hasMany(Region::class);
+    }
+
+    public function city()
+    {
+        return $this->hasMany(City::class);
     }
 }
