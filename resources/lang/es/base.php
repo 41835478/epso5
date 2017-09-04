@@ -14,6 +14,7 @@ return [
     'form'          => 'Formulario',
     'GPS'           => 'GPS',
     'latitude'      => 'Latitud',
+    'legend'        => 'Información y/o leyenda',
     'list'          => 'Listado',
     'longitude'     => 'Longitud',
     'module'        => 'Módulo',
