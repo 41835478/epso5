@@ -27,7 +27,12 @@ class DataTable extends Repository
     {
         $query = app(CitiesRepository::class)
             ->dataTable()
-            ->select($this->section . '.*');
+            ->select($this->section . '.*')
+            ->with([
+                'country',
+                'state',
+                'region'
+            ]);
 
         return $this->applyScopes($query);
     }

@@ -2,16 +2,11 @@
 
 namespace App\Repositories\Cities;
 
-use App\Repositories\Cities\CitiesRepository;
 use App\Repositories\Repository;
-use App\Repositories\Cities\Traits\CitiesHelpers;
 use App\Repositories\Cities\City;
-use DB;
 
 class CitiesRepository extends Repository
 {
-    use CitiesHelpers;
-
     protected $model;
 
     public function __construct(City $model)

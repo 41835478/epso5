@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Repositories\DummyClass;
+namespace App\Repositories\Regions;
 
 use App\Repositories\Repository;
-use App\Repositories\DummyClass\Traits\DummyClassHelpers;
-use App\Repositories\DummyClass\DummyModel;
-//use DB;
+use App\Repositories\Regions\City;
+use DB;
 
-class DummyClassRepository extends Repository
+class RegionsRepository extends Repository
 {
-    use DummyClassHelpers;
-
     protected $model;
 
-    public function __construct(DummyModel $model)
+    public function __construct(Region $model)
     {
         $this->model = $model;
     }

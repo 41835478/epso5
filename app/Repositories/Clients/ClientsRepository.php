@@ -3,7 +3,6 @@
 namespace App\Repositories\Clients;
 
 use App\Repositories\Clients\Client;
-use App\Repositories\Clients\ClientsRepository;
 use App\Repositories\Clients\Traits\ClientsHelpers;
 use App\Repositories\Repository;
 use App\Services\Images\Images;

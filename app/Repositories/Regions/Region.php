@@ -1,28 +1,23 @@
 <?php 
 
-namespace App\Repositories\Cities;
+namespace App\Repositories\Regions;
 
-//use App\Repositories\Traits\Date;
-//use App\Repositories\Cities\Traits\CitiesEvents;
-//use App\Repositories\Cities\Traits\CitiesPresenters;
-use App\Repositories\Cities\Traits\CitiesRelationships;
-//use App\Repositories\Cities\Traits\CitiesScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class City extends Model  {
+class Region extends Model  {
 
-    use CitiesRelationships, Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'cities';
-    //protected $dates = ['deleted_at'];
+    protected $table = 'regions';
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.

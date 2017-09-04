@@ -7,7 +7,7 @@ return [
     | Sections: cities
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del City',
-    'title'             => 'City',
-    'title:plural'      => 'Cities',
+    'info'              => 'Información de la ciudad',
+    'title'             => trans('persona.city'),
+    'title:plural'      => 'Ciudades',
 ];
