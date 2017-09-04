@@ -8,7 +8,6 @@ return [
     |--------------------------------------------------------------------------
     */
    
-    'client'            => 'Cliente',
     'company'           => 'Empresa',
     'commission'        => 'Comisión',
     'corrency'          => 'Moneda',
