@@ -9,3 +9,21 @@
     .btn-circle {
       border-radius: 100%;
     }
+
+    .btn-success-alt {
+        background-color: $brand-success-alt;
+        color: $color-white;
+    }
+
+    .btn-success-alt:hover {
+        background-color: $brand-success-alt-dark;
+    }
+
+    .btn-terciary {
+        background-color: $brand-terciary;
+        color: $color-white;
+    }
+
+    .btn-terciary:hover {
+        background-color: $brand-terciary-dark;
+    }

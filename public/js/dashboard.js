@@ -54434,6 +54434,10 @@ $('form').not('#login').find('input, select, textarea').each(function () {
  * ////////////////////////////
  *
  */
+
+/** 
+* Select: State
+*/
 if ($('#state_id')) {
     $('#state_id').on('change', function () {
         //Define the variable 

@@ -9,13 +9,29 @@
 
     .bg-gray {
         background-color: $color-gray;
-        color: $color-white;
+    }
+
+    .bg-yellow {
+        background-color: $brand-yellow;
+    }
+
+    .bg-success-alt {
+        background-color: $brand-success-alt;
+    }
+
+    .bg-terciary {
+        background-color: $brand-terciary;
     }
 
     .bg-danger,
     .bg-info,
     .bg-primary,
     .bg-success,
-    .bg-warning, {
+    .bg-warning,
+    .bg-success-alt,
+    .bg-terciary, 
+    .bg-gray,
+    .bg-yellow
+     {
         color: $color-white;
     }

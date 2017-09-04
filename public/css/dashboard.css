@@ -10365,14 +10365,29 @@ a:visited {
 
 .bg-gray {
   background-color: #838383;
-  color: #fff;
+}
+
+.bg-yellow {
+  background-color: #fcf8e3;
+}
+
+.bg-success-alt {
+  background-color: #2BBBAD;
+}
+
+.bg-terciary {
+  background-color: #aa66cc;
 }
 
 .bg-danger,
 .bg-info,
 .bg-primary,
 .bg-success,
-.bg-warning {
+.bg-warning,
+.bg-success-alt,
+.bg-terciary,
+.bg-gray,
+.bg-yellow {
   color: #fff;
 }
 
@@ -10394,6 +10409,24 @@ a:visited {
 
 .btn-circle {
   border-radius: 100%;
+}
+
+.btn-success-alt {
+  background-color: #2BBBAD;
+  color: #fff;
+}
+
+.btn-success-alt:hover {
+  background-color: #00695c;
+}
+
+.btn-terciary {
+  background-color: #aa66cc;
+  color: #fff;
+}
+
+.btn-terciary:hover {
+  background-color: #9933CC;
 }
 
 /** 
