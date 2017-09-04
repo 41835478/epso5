@@ -10,7 +10,7 @@ trait CityHelpers
     protected $makeCity;
     protected $setLocalization;
     protected $setLocalizationByName;
-    protected $_Places_ID = [1, 10, 53];
+    protected $_Places_ID = [1, 10, 52];
     protected $_Places_Name = ['España', 'Comunidad Valenciana', 'Murcia', 'Almàssera'];
 
 
@@ -28,9 +28,9 @@ trait CityHelpers
             return $this->makeCity;
         }
         return $this->makeCity = factory(City::class)->make([
-            'country_id'    => $this->_countryID,
-            'state_id'      => $this->_stateID,
-            'region_id'     => $this->_regionID,
+            'country_id'    => $this->_Places_ID[0],
+            'state_id'      => $this->_Places_ID[1],
+            'region_id'     => $this->_Places_ID[2],
         ]);
     }
 

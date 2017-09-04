@@ -9,13 +9,17 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.list')], 
         ])
-    
+        
+        {{-- Breadcrumb Dropdow Items --}}
+{{--         [
+            'title' => icon('form', 'TitleExample'),
+            'route' => 'http://www.example1.com',
+            'type' => 'delete',
+            'class' => 'classExample',
+        ], --}}
         @slot('dropdownItems', [
             [Html::class('dropdown-item')->linkCreate($role, $section)], 
-            [
-                'title' => icon('form', trans('buttons.tools')),
-                'route' => route('dashboard.admin.biocides.tools'),
-            ],
+            [Html::class('dropdown-item')->linkEliminate($role, $section)], 
         ])
     @endcomponent
 
@@ -25,7 +29,8 @@
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
 
-    {{-- Legends --}}
-    @include(legend_path())
-
+    {{-- Modals --}}
+    @section('modals')
+        @include(modal_path('delete'))
+    @endsection
 @endsection

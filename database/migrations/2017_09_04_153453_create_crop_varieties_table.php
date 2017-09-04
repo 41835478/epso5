@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBiocidesTable extends Migration
+class CreateCropVarietiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBiocidesTable extends Migration
      */
     public function up()
     {
-        Schema::create('biocides', function (Blueprint $table) {
+        Schema::create('crop_varieties', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('biocide_num')->nullable()->comment("Nº from the national registration database (MAGRAMA)");
-            $table->string('biocide_name')->nullable();
-            $table->string('biocide_company')->nullable();
-            $table->text('biocide_formula')->nullable();
+            $table->integer('crop_id')->unsigned()->index();
+            $table->string('crop_variety_name');
+            $table->integer('crop_variety_type')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ class CreateBiocidesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biocides');
+        Schema::dropIfExists('crop_varieties');
     }
 }

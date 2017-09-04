@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\DataTables\Cities\DataTable;
+use App\DataTables\CropVarieties\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Http\Requests\CitiesRequest;
-use App\Repositories\Cities\CitiesRepository;
-use App\Repositories\Countries\CountriesRepository;
-use App\Repositories\Regions\RegionsRepository;
-use App\Repositories\States\StatesRepository;
+use App\Repositories\CropVarieties\CropVarietiesRepository;
+use App\Http\Requests\CropVarietiesRequest;
+//use Credentials;
+//use Illuminate\Http\Request;
 
-class CitiesController extends DashboardController
+class CropVarietiesController extends DashboardController
 {
     /**
      * @var string
@@ -19,7 +18,7 @@ class CitiesController extends DashboardController
     protected $role;
     protected $table;
 
-    public function __construct(CitiesRepository $controller, DataTable $table)
+    public function __construct(CropVarietiesRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
@@ -27,7 +26,7 @@ class CitiesController extends DashboardController
         
         //Sharing in the view
         view()->share([
-            'section'   => 'cities',
+            'section'   => 'crop_varieties',
             'role'      => 'admin'
         ]);
 
@@ -43,7 +42,10 @@ class CitiesController extends DashboardController
     public function index()
     {
         return $this->table
-            ->render(dashboard_path('cities.index'));
+            // ->setValue([
+            //     'action' => 'crop_varieties.actions'
+            // ])
+            ->render(dashboard_path('crop_varieties.index'));
     }
 
     /**
@@ -51,12 +53,9 @@ class CitiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CountriesRepository $country, StatesRepository $state)
+    public function create()
     {
-        $countries  = $country->lists(['id', 'country_name']);
-        $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
-        //
-        return view(dashboard_path('cities.create'), compact('countries', 'states'));
+        return view(dashboard_path('crop_varieties.create'));
     }
 
     /**
@@ -65,14 +64,14 @@ class CitiesController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CitiesRequest $request)
+    public function store(CropVarietiesRequest $request)
     {
         $create = $this->controller
             ->store();
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.cities.index')
+                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -89,15 +88,10 @@ class CitiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CountriesRepository $country, RegionsRepository $region, StatesRepository $state)
+    public function edit($id)
     {
-        $data       = $this->controller->find($id);
-        $countries  = $country->lists(['id', 'country_name']);
-        $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
-        $regions    = $region->listsWithState($data->state_id);
-        //
-        return view(dashboard_path('cities.edit'), compact('countries', 'regions', 'states'))
-            ->withData($data);
+        return view(dashboard_path('crop_varieties.edit'))
+            ->withData($this->controller->find($id));
     }
 
     /**
@@ -107,14 +101,14 @@ class CitiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CitiesRequest $request, $id)
+    public function update(CropVarietiesRequest $request, $id)
     {
         $update = $this->controller
             ->store($id);
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.cities.index')
+                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

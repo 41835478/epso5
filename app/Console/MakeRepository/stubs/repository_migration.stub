@@ -15,8 +15,8 @@ class CreateDummyClassTable extends Migration
     {
         Schema::create('DummyTable', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->timestamps();
             //$table->softDeletes();
+            $table->timestamps();
         });
     }
 

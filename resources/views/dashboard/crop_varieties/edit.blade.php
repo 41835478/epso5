@@ -12,9 +12,7 @@
         {{-- Add the data --}}
         @slot('data', $data)
         {{-- Add other slot --}}
-        @slot('countries', $countries ?? null)
-        @slot('states', $states ?? null)
-        @slot('regions', $regions ?? null)
+        @slot('slotName', $slotValue ?? null)
     @endcomponent
 
 @endsection

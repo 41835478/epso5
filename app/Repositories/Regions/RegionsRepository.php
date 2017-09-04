@@ -41,4 +41,17 @@ class RegionsRepository extends Repository
         return response()->json($query->get());
     }
 
+    /**
+     * Get all the results for the Region in a State
+     * @param   string      $state
+     * @return  collection
+     */
+    public function listsWithState($state, $columns = ['id', 'region_name'], $firstFieldEmpty = true)
+    {
+        $query = $this->model
+            ->where('state_id', $state)
+            ->pluck($columns[1], $columns[0])
+            ->toArray();
+        return $firstFieldEmpty ? ['' => ''] + $query : $query;
+    }
 }

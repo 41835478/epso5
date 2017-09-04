@@ -3,18 +3,14 @@
 @section('content')
 
     {{-- Breadcrumb --}}
-    @component(component_path('edit'))
+    @component(component_path('create'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
-            [trans('base.edit')], 
+            [trans('base.create')], 
         ])
-        {{-- Add the data --}}
-        @slot('data', $data)
         {{-- Add other slot --}}
-        @slot('countries', $countries ?? null)
-        @slot('states', $states ?? null)
-        @slot('regions', $regions ?? null)
+        @slot('slotName', $slotValue ?? null)
     @endcomponent
 
 @endsection

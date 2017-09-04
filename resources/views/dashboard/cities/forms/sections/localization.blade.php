@@ -11,8 +11,16 @@
         ->required()
     !!}
 
-    {!! BootForm::select(trans('persona.region'), 'region_id')
-        ->addGroupClass('col-md-3')
-        ->disabled()
-    !!}
+    @if(isset($data))
+        {!! BootForm::select(trans('persona.region'), 'region_id')
+            ->addGroupClass('col-md-3')
+            ->options($regions)
+            ->required()
+        !!}
+    @else 
+        {!! BootForm::select(trans('persona.region'), 'region_id')
+            ->addGroupClass('col-md-3')
+            ->disabled()
+        !!}
+    @endif
 </div>

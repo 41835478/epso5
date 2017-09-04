@@ -15,4 +15,5 @@ Route::group([
         Route::resource('clients', 'Dashboard\Admin\ClientsController', ['except' => ['destroy', 'show']]);
         //Crops
         Route::resource('crops', 'Dashboard\Admin\CropsController', ['except' => ['destroy', 'show']]);
+        Route::resource('crops-varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['destroy', 'show']]);
 });

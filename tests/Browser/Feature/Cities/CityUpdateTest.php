@@ -21,20 +21,26 @@ class CityUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.biocides.edit', $this->lastBiocide()->id)
-                ->type('biocide_name', $this->makeBiocide()->biocide_name)
-                ->type('biocide_num', $this->makeBiocide()->biocide_num)
-                ->type('biocide_formula', $this->makeBiocide()->biocide_formula)
-                ->type('biocide_company', $this->makeBiocide()->biocide_company)
+                ->visitRoute('dashboard.admin.cities.edit', $this->lastCity()->id)
+                ->type('city_name', $this->makeCity()->city_name)
+                ->type('city_lat', $this->makeCity()->city_lat)
+                ->type('city_lng', $this->makeCity()->city_lng)
+                ->select('country_id', $this->makeCity()->country_id)
+                ->select('state_id', null)
+                ->select('state_id', $this->makeCity()->state_id)
+                ->pause('1000')
+                ->select('region_id', $this->makeCity()->region_id)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
-        $this->assertDatabaseHas('biocides', [
-            'biocide_name'      => $this->makeBiocide()->biocide_name,
-            'biocide_num'       => $this->makeBiocide()->biocide_num,
-            'biocide_formula'   => $this->makeBiocide()->biocide_formula,
-            'biocide_company'   => $this->makeBiocide()->biocide_company,
+        $this->assertDatabaseHas('cities', [
+            'city_name'     => $this->makeCity()->city_name,
+            'city_lat'      => $this->makeCity()->city_lat,
+            'city_lng'      => $this->makeCity()->city_lng,
+            'country_id'    => $this->makeCity()->country_id,
+            'state_id'      => $this->makeCity()->state_id,
+            'region_id'     => $this->makeCity()->region_id,
         ]);
     }
 }
