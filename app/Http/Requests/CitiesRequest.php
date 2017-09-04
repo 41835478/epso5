@@ -30,6 +30,9 @@ class CitiesRequest extends FormRequest
             'city_name'     => 'required',
             'city_lat'      => 'required',
             'city_lng'      => 'required',
+            'country_id'    => 'required',
+            'state_id'      => 'required',
+            'region_id'     => 'required',
         ];
     }
 
@@ -44,6 +47,9 @@ class CitiesRequest extends FormRequest
             'city_name'     => trans('persona.city'),
             'city_lat'      => trans('base.latitude'),
             'city_lng'      => trans('base.longitude'),
+            'country_id'    => trans('persona.country'),
+            'state_id'      => trans('persona.state'),
+            'region_id'     => trans('persona.region'),
         ];
     }
 
