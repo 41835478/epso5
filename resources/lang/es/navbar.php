@@ -10,7 +10,7 @@ return [
         'admin:clients'    => 'Clientes',
         'admin:crops'      => 'Cultivos',
         'admin:biocides'   => 'Fitosanitarios',
-        'admin:countries'  => 'Paises/Provincias/Ciudades',
+        'admin:countries'  => 'Ciudades',
     /*
     |--------------------------------------------------------------------------
     | Navbar Menus: Users
