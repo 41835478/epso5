@@ -30,6 +30,7 @@ return [
     'graph'             => 'line-chart',
     'hashtag'           => 'hashtag',
     'id'                => 'id-card',
+    'info'              => 'info-circle',
     'invoice'           => 'file-text',
     'map'               => 'map-marker',
     'new'               => 'plus-circle',
