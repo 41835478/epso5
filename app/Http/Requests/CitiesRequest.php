@@ -27,8 +27,9 @@ class CitiesRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'city_name'     => 'required',
+            'city_lat'      => 'required',
+            'city_lng'      => 'required',
         ];
     }
 
@@ -40,8 +41,9 @@ class CitiesRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'city_name'     => trans('persona.city'),
+            'city_lat'      => trans('base.latitude'),
+            'city_lng'      => trans('base.longitude'),
         ];
     }
 

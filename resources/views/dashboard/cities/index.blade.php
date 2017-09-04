@@ -9,17 +9,8 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.list')], 
         ])
-        
-        {{-- Breadcrumb Dropdow Items --}}
-{{--         [
-            'title' => icon('form', 'TitleExample'),
-            'route' => 'http://www.example1.com',
-            'type' => 'delete',
-            'class' => 'classExample',
-        ], --}}
         @slot('dropdownItems', [
             [Html::class('dropdown-item')->linkCreate($role, $section)], 
-            [Html::class('dropdown-item')->linkEliminate($role, $section)], 
         ])
     @endcomponent
 

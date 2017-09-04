@@ -18,18 +18,12 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans_title('cities'), 'City_name'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans_title('cities', 'singular'), 'city_name'),
+            $this->setColumn(trans('base.latitude'), 'city_lat'),
+            $this->setColumn(trans('base.longitude'), 'city_lng'),
+            $this->setColumnWithRelationship(trans('persona.country'), 'country.country_name'),
+            $this->setColumnWithRelationship(trans('persona.state'), 'state.state_name'),
+            $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
         ];
     }
 

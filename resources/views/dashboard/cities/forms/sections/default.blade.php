@@ -3,36 +3,38 @@
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
-    {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'name')
+    {{-- City: name --}}
+    {!! BootForm::text(trans('persona.city'), 'city_name')
         ->addGroupClass('col-md-4')
         ->autofocus()
         ->required()
     !!}
 
-    {{-- Select --}}
-    {!! BootForm::select(trans('persona.locale'), 'locale')
+    {{-- City: Latitude --}}
+    {!! BootForm::text(trans('base.latitude'), 'city_lat')
         ->addGroupClass('col-md-2')
-        ->options(select('locale') ?? [])
-        ->defaultValue('es')
         ->required()
     !!}
 
-    {{-- Addon --}}
-    {!! BootForm::InputGroup(trans('base.date'), 'agronomic_date')
-        ->addGroupClass('col-lg-2 col-md-6')
-        ->addClass('date')
-        ->afterAddon(icon('calendar'))
-        ->required() 
+    {{-- City: Longitude --}}
+    {!! BootForm::text(trans('base.longitude'), 'city_lng')
+        ->addGroupClass('col-md-2')
+        ->required()
+    !!}
+</div>
+
+<hr> 
+
+<div class="row">
+    {{-- City: State name --}}
+    {!! BootForm::text(trans('persona.state'), 'state.state_name')
+        ->addGroupClass('col-md-4')
+        ->disabled()
     !!}
 
-    {{-- Hidden --}}
-    {!! BootForm::hidden('myField')->id('myID')->value('myValue') !!}
-
-    {{-- Field: Conditional role --}}
-    {{-- @Role('admin')
-        //
-    @else 
-        //
-    @endRoles --}}
+    {{-- City: Regions name --}}
+    {!! BootForm::text(trans('persona.region'), 'region.region_name')
+        ->addGroupClass('col-md-4')
+        ->disabled()
+    !!}
 </div>
