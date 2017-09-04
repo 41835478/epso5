@@ -6,8 +6,6 @@ use App\DataTables\Crops\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Crops\CropsRepository;
 use App\Http\Requests\CropsRequest;
-//use Credentials;
-use Illuminate\Http\Request;
 
 class CropsController extends DashboardController
 {
@@ -29,9 +27,6 @@ class CropsController extends DashboardController
             'section'   => 'crops',
             'role'      => 'admin'
         ]);
-
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**

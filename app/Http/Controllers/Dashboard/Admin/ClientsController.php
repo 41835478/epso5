@@ -7,7 +7,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
 use App\Services\Redirection\Redirection;
-//use Credentials;
 
 class ClientsController extends DashboardController
 {
