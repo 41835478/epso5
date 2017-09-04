@@ -3,7 +3,7 @@
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
     {{-- Client name --}}
-    {!! BootForm::text(trans('sections/clients.title'), 'client_name')
+    {!! BootForm::text(trans_title('clients', 'singular'), 'client_name')
         ->addGroupClass('col-md-4')
         ->required() 
     !!}
