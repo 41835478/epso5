@@ -22,7 +22,7 @@ trait DataTableColumns
                  'orderable' => false,
                  'searchable' => false,
             ]),
-            $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
+            $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
             $this->setColumn(trans('persona.name'), 'name'),
             $this->setColumn(trans('persona.email'), 'email'),
             $this->setColumn(trans('persona.locale'), 'locale'),

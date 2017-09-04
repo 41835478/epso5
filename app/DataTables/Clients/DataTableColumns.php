@@ -18,7 +18,7 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans('financials.client'), 'client_name'),
+            $this->setColumn(trans_title('clients', 'singular'), 'client_name'),
             $this->setColumn(trans('persona.address'), 'client_address'),
             $this->setColumn(trans('persona.id.nif'), 'client_nif'),
             $this->setColumn(trans('persona.state'), 'client_state'),
