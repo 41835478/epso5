@@ -6,7 +6,7 @@
  * @return string
  */
 if (!function_exists('action_path')) {
-    function action_path($file = 'default:action')
+    function action_path($file = 'default-action')
     {
         return component_path('actions.') . $file;
     }
@@ -69,7 +69,7 @@ if (!function_exists('form_path')) {
  * @return string
  */
 if (!function_exists('legend_path')) {
-    function legend_path($file = 'default:legend')
+    function legend_path($file = 'default-legend')
     {
         return dashboard_path('_components.legends.') . $file;
     }

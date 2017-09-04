@@ -16,6 +16,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
+    protected $action;
     protected $section = 'cities';
 
     /**

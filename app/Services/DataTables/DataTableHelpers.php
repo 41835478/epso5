@@ -22,8 +22,8 @@ trait DataTableHelpers
      * @return object
      */
     public function getAction() {
-        return $this->getValue['action'] 
-            ? action_path($this->getValue['action']) 
+        return $this->action 
+            ? action_path($this->action) 
             : action_path();
     }
 }

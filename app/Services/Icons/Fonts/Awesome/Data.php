@@ -79,4 +79,5 @@ return [
 
     //Legends 
     'weather'           => 'snowflake-o',
+    'tree'              => 'tree',
 ];

@@ -16,7 +16,8 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $section = 'crops';
+    protected $action   = 'crops-action';
+    protected $section  = 'crops';
 
     /**
      * Get the query object to be processed by datatables.
