@@ -46,9 +46,6 @@ class UsersController extends DashboardController
         }
         //
         return $this->table
-            ->setValue([
-                'action' => 'users.actions'
-            ])
             ->render(dashboard_path('users.index'));
     }
 
