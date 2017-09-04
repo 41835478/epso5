@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\DataTables\DummyClass\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\DummyClass\DummyClassRepository;
-//use App\Http\Requests\DummyClassRequest;
+use App\Http\Requests\DummyClassRequest;
 //use Credentials;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 class DummyClassController extends DashboardController
 {
