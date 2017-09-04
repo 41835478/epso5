@@ -44,7 +44,7 @@
 {{-- Field: Clients --}}
     @Role('admin')
         {{-- Admin can edit the client --}}
-        {!! BootForm::select(trans('financials.client'), 'client_id')
+        {!! BootForm::select(trans_title('clients', 'singular'), 'client_id')
             ->addGroupClass('col-md-3')
             ->options($clients)
             ->required()
