@@ -23,7 +23,7 @@ trait DataTableHelpers
      */
     public function getAction() {
         return $this->getValue['action'] 
-            ? dashboard_path($this->getValue['action']) 
+            ? action_path($this->getValue['action']) 
             : action_path();
     }
 }
