@@ -6,7 +6,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\BrowserKitTestCase;
-use DB;
 
 class ClientTest extends BrowserKitTestCase
 {
