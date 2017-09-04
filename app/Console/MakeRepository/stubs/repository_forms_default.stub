@@ -19,7 +19,7 @@
     !!}
 
     {{-- Addon --}}
-    {!! Form::InputGroup(trans('base.date'), 'agronomic_date')
+    {!! BootForm::InputGroup(trans('base.date'), 'agronomic_date')
         ->addGroupClass('col-lg-2 col-md-6')
         ->addClass('date')
         ->afterAddon(icon('calendar'))
@@ -30,9 +30,9 @@
     {!! BootForm::hidden('myField')->id('myID')->value('myValue') !!}
 
     {{-- Field: Conditional role --}}
-    @Role('admin')
+    {{-- @Role('admin')
         //
     @else 
         //
-    @endRoles
+    @endRoles --}}
 </div>
