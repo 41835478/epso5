@@ -26,9 +26,6 @@
         ->required() 
     !!}
 
-    {{-- Hidden --}}
-    {!! BootForm::hidden('myField')->id('myID')->value('myValue') !!}
-
     {{-- Field: Conditional role --}}
     {{-- @Role('admin')
         //
