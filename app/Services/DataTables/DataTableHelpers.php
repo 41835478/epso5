@@ -23,7 +23,7 @@ trait DataTableHelpers
      */
     public function getAction() {
         return $this->action 
-            ? action_path($this->action) 
+            ? action_path($this->section) 
             : action_path();
     }
 }
