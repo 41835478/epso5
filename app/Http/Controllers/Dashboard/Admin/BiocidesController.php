@@ -10,26 +10,28 @@ use App\Http\Requests\BiocidesRequest;
 class BiocidesController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
     protected $controller;
-    protected $role;
     protected $table;
+
+    /**
+     * @var private
+     */
+    private $parent;
+    private $role       = 'admin';
+    private $section    = 'biocides';
 
     public function __construct(BiocidesRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->role         = 'admin';
         
         //Sharing in the view
         view()->share([
-            'section'   => 'biocides',
-            'role'      => 'admin'
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
-
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -40,10 +42,7 @@ class BiocidesController extends DashboardController
     public function index()
     {
         return $this->table
-            // ->setValue([
-            //     'action' => 'biocides.actions'
-            // ])
-            ->render(dashboard_path('biocides.index'));
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -53,7 +52,7 @@ class BiocidesController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('biocides.create'));
+        return view(dashboard_path($this->section . '.create'));
     }
 
     /**
@@ -69,7 +68,7 @@ class BiocidesController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.biocides.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -88,7 +87,7 @@ class BiocidesController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('biocides.edit'))
+        return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -106,7 +105,7 @@ class BiocidesController extends DashboardController
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.biocides.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

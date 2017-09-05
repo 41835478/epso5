@@ -5,7 +5,7 @@ namespace App\Repositories\Crops;
 //use App\Repositories\Traits\Date;
 //use App\Repositories\Crops\Traits\CropsEvents;
 //use App\Repositories\Crops\Traits\CropsPresenters;
-//use App\Repositories\Crops\Traits\CropsRelationships;
+use App\Repositories\Crops\Traits\CropsRelationships;
 //use App\Repositories\Crops\Traits\CropsScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Crop extends Model  {
 
-    use Notifiable, SoftDeletes;
+    use CropsRelationships, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.

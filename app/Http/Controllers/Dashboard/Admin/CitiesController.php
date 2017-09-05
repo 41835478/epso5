@@ -13,26 +13,28 @@ use App\Repositories\States\StatesRepository;
 class CitiesController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
     protected $controller;
-    protected $role;
     protected $table;
+
+    /**
+     * @var private
+     */
+    private $parent;
+    private $role       = 'admin';
+    private $section    = 'cities';
 
     public function __construct(CitiesRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->role         = 'admin';
         
         //Sharing in the view
         view()->share([
-            'section'   => 'cities',
-            'role'      => 'admin'
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
-
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -43,7 +45,7 @@ class CitiesController extends DashboardController
     public function index()
     {
         return $this->table
-            ->render(dashboard_path('cities.index'));
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -56,7 +58,7 @@ class CitiesController extends DashboardController
         $countries  = $country->lists(['id', 'country_name']);
         $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
         //
-        return view(dashboard_path('cities.create'), compact('countries', 'states'));
+        return view(dashboard_path($this->section . '.create'), compact('countries', 'states'));
     }
 
     /**
@@ -72,7 +74,7 @@ class CitiesController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.cities.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -96,7 +98,7 @@ class CitiesController extends DashboardController
         $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
         $regions    = $region->listsWithState($data->state_id);
         //
-        return view(dashboard_path('cities.edit'), compact('countries', 'regions', 'states'))
+        return view(dashboard_path($this->section . '.edit'), compact('countries', 'regions', 'states'))
             ->withData($data);
     }
 
@@ -114,7 +116,7 @@ class CitiesController extends DashboardController
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.cities.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

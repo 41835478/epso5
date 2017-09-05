@@ -10,20 +10,23 @@ use Maatwebsite\Excel\Facades\Excel;
 class BiocidesToolsController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
-    protected $file = 'biocides.csv';
-    protected $role;
-    protected $server = 'http://www.mapama.gob.es/es/agricultura/temas/sanidad-vegetal/productos-fitosanitarios/registro/productos/ListadoProductos.asp';
+    protected $file     = 'biocides.csv';
+    protected $server   = 'http://www.mapama.gob.es/es/agricultura/temas/sanidad-vegetal/productos-fitosanitarios/registro/productos/ListadoProductos.asp';
+
+    /**
+     * @var private
+     */
+    private $role     = 'admin';
+    private $section  = 'biocides';
 
     public function __construct()
     {
-        $this->role = 'admin';
-        
         //Sharing in the view
         view()->share([
-            'section'   => 'biocides',
-            'role'      => 'admin'
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
     }
 
@@ -34,7 +37,7 @@ class BiocidesToolsController extends DashboardController
      */
     public function index()
     {
-        return view('dashboard.biocides.tools')->withServer($this->server);
+        return view('dashboard.' . $this->section . '.tools')->withServer($this->server);
     }
 
     /**
@@ -58,7 +61,7 @@ class BiocidesToolsController extends DashboardController
             });
             //
             return redirect()
-                ->route('dashboard.' . $this->role . '.biocides.tools')
+                ->route('dashboard.' . $this->role . '.' . $this->section . '.tools')
                 ->withStatus(__('The item has been create successfuly'));
         } catch (\Exception $e) {
             redirect()

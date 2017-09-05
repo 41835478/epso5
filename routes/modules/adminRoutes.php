@@ -15,7 +15,8 @@ Route::group([
         Route::resource('clients', 'Dashboard\Admin\ClientsController', ['except' => ['destroy', 'show']]);
         //Crops
         Route::resource('crops', 'Dashboard\Admin\CropsController', ['except' => ['destroy', 'show']]);
-        Route::resource('crop_varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['index', 'destroy']]);
+        Route::resource('crop_varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['index', 'destroy', 'edit']]);
+        Route::get('crop_varieties/edit/{crop_variety}/{crop}', 'Dashboard\Admin\CropVarietiesController@edit')->name('crop_varieties.edit');
         //Patterns
         Route::resource('patterns', 'Dashboard\Admin\PatternsController', ['except' => ['destroy', 'index']]);
         //Pests

@@ -11,26 +11,28 @@ use App\Services\Redirection\Redirection;
 class ClientsController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
     protected $controller;
-    protected $role;
     protected $table;
+
+    /**
+     * @var private
+     */
+    private $parent;
+    private $role       = 'admin';
+    private $section    = 'clients';
 
     public function __construct(ClientsRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->role         = 'admin';
         
         //Sharing in the view
         view()->share([
-            'section'   => 'clients',
-            'role'      => 'admin'
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
-
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -41,10 +43,7 @@ class ClientsController extends DashboardController
     public function index()
     {
         return $this->table
-            // ->setValue([
-            //     'action' => 'clients.actions'
-            // ])
-            ->render(dashboard_path('clients.index'));
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -54,7 +53,7 @@ class ClientsController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('clients.create'));
+        return view(dashboard_path($this->section . '.create'));
     }
 
     /**
@@ -70,7 +69,7 @@ class ClientsController extends DashboardController
             //
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.clients.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -89,7 +88,7 @@ class ClientsController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('clients.edit'))
+        return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -107,7 +106,7 @@ class ClientsController extends DashboardController
             //
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.clients.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

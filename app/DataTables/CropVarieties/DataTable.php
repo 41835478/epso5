@@ -8,6 +8,7 @@ use App\DataTables\CropVarieties\DataTableSearch;
 use App\Repositories\CropVarieties\CropVarietiesRepository;
 use App\Repositories\CropVarieties\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Route;
 
 class DataTable extends Repository
 {
@@ -16,8 +17,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $action;
-    protected $crop_id;
+    protected $action  = 'crop_children';
     protected $section = 'crop_varieties';
 
     /**
@@ -29,8 +29,9 @@ class DataTable extends Repository
     {
         $query = app(CropVarietiesRepository::class)
             ->dataTable()
-            ->where('crop_id', $this->getValue('crop_id'))
-            ->select($this->section . '.*');
+            ->where('crop_id', Route::input('crop_variety'))
+            ->select($this->section . '.*')
+            ->with('crop');
 
         return $this->applyScopes($query);
     }
@@ -45,7 +46,7 @@ class DataTable extends Repository
             ->eloquent($this->query())
             ->rawColumns(['action', 'checkbox'])
             ->addColumn('action', function ($data) {
-                return view($this->getAction(), compact('data'))
+                return view($this->getAction($this->action), compact('data'))
                     ->render();
             })
             ->editColumn('checkbox', function($data) {

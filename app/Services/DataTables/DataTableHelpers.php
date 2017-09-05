@@ -27,10 +27,13 @@ trait DataTableHelpers
 
     /**
      * Set value from the controller to the Datatable constructor
-     * @param string $value
+     * @param string $file
      * @return object
      */
-    public function getAction() {
+    public function getAction($file = null) {
+        if($file) {
+            return action_path($file);
+        }
         return $this->action 
             ? action_path($this->section) 
             : action_path();

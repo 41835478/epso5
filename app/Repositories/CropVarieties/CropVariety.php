@@ -5,7 +5,7 @@ namespace App\Repositories\CropVarieties;
 //use App\Repositories\Traits\Date;
 //use App\Repositories\CropVarieties\Traits\CropVarietiesEvents;
 //use App\Repositories\CropVarieties\Traits\CropVarietiesPresenters;
-//use App\Repositories\CropVarieties\Traits\CropVarietiesRelationships;
+use App\Repositories\CropVarieties\Traits\CropVarietiesRelationships;
 //use App\Repositories\CropVarieties\Traits\CropVarietiesScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class CropVariety extends Model  {
 
-    use Notifiable, SoftDeletes;
+    use CropVarietiesRelationships, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.

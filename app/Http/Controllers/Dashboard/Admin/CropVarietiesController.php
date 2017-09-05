@@ -6,28 +6,32 @@ use App\DataTables\CropVarieties\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\CropVarieties\CropVarietiesRepository;
 use App\Http\Requests\CropVarietiesRequest;
-//use Credentials;
-//use Illuminate\Http\Request;
 
 class CropVarietiesController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
     protected $controller;
-    protected $role;
     protected $table;
+
+    /**
+     * @var private
+     */
+    private $parent     = 'crops';
+    private $role       = 'admin';
+    private $section    = 'crop_varieties';
 
     public function __construct(CropVarietiesRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->role         = 'admin';
         
         //Sharing in the view
         view()->share([
-            'section'   => 'crop_varieties',
-            'role'      => 'admin',
+            'parent'    => $this->parent,
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
     }
 
@@ -39,10 +43,7 @@ class CropVarietiesController extends DashboardController
     public function show($id)
     {
         return $this->table
-            ->setValue([
-                'crop_id' => $id
-            ])
-            ->render(dashboard_path('crop_varieties.index'));
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -52,7 +53,7 @@ class CropVarietiesController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('crop_varieties.create'));
+        return view(dashboard_path($this->section . '.create'));
     }
 
     /**
@@ -68,7 +69,7 @@ class CropVarietiesController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -87,7 +88,7 @@ class CropVarietiesController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('crop_varieties.edit'))
+        return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -105,7 +106,7 @@ class CropVarietiesController extends DashboardController
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

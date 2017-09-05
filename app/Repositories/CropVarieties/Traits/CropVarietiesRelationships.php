@@ -2,20 +2,18 @@
 
 namespace App\Repositories\CropVarieties\Traits;
 
+use App\Repositories\Crops\Crop;
+
 trait CropVarietiesRelationships {
 
-    /*
-    |--------------------------------------------------------------------------
-    | Relationships
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Relationships
+        |--------------------------------------------------------------------------
+        */
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
+        public function crop()
+        {
+            return $this->belongsTo(Crop::class);
+        }
 }

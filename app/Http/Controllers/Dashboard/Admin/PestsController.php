@@ -12,26 +12,28 @@ use App\Http\Requests\PestsRequest;
 class PestsController extends DashboardController
 {
     /**
-     * @var string
+     * @var protected
      */
     protected $controller;
-    protected $role;
     protected $table;
+
+    /**
+     * @var private
+     */
+    private $parent;
+    private $role       = 'admin';
+    private $section    = 'pests';
 
     public function __construct(PestsRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->role         = 'admin';
         
         //Sharing in the view
         view()->share([
-            'section'   => 'pests',
-            'role'      => 'admin'
+            'section'   => $this->section,
+            'role'      => $this->role
         ]);
-
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -42,11 +44,7 @@ class PestsController extends DashboardController
     public function index()
     {
         return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'pests:action'
-            // ])
-            ->render(dashboard_path('pests.index'));
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -56,7 +54,7 @@ class PestsController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('pests.create'));
+        return view(dashboard_path($this->section . '.create'));
     }
 
     /**
@@ -72,7 +70,7 @@ class PestsController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.pests.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -91,7 +89,7 @@ class PestsController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('pests.edit'))
+        return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -109,7 +107,7 @@ class PestsController extends DashboardController
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.pests.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()
