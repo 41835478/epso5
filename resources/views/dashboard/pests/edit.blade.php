@@ -11,8 +11,6 @@
         ])
         {{-- Add the data --}}
         @slot('data', $data)
-        {{-- Add other slot --}}
-        @slot('slotName', $slotValue ?? null)
     @endcomponent
 
 @endsection

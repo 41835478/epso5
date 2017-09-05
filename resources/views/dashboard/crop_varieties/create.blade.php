@@ -11,7 +11,7 @@
             [trans('base.create')], 
         ])
         {{-- Add other slot --}}
-        @slot('slotName', $slotValue ?? null)
+        @slot('crops', $crops ?? null)
     @endcomponent
 
 @endsection
