@@ -9,14 +9,6 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.list')], 
         ])
-        
-        {{-- Breadcrumb Dropdow Items --}}
-{{--         [
-            'title' => icon('form', 'TitleExample'),
-            'route' => 'http://www.example1.com',
-            'type' => 'delete',
-            'class' => 'classExample',
-        ], --}}
         @slot('dropdownItems', [
             [Html::class('dropdown-item')->linkCreate($role, $section)], 
         ])
@@ -28,8 +20,12 @@
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
 
-    {{-- Legends --}}
+    {{-- 
+        Legends: For a customized legend, 
+        pass the $section variable to the legend_path() function, 
+        or keep it empty for default 
+    --}}
     @component(component_path('legend'))
-        @slot('legendContent', legend_path('crops-legend'))
+        @slot('legendContent', legend_path($section))
     @endcomponent
 @endsection
