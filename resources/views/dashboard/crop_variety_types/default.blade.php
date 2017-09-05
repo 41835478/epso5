@@ -1,11 +1,12 @@
 <div class="row">
-    {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.store'))->post()->enctype('multipart/form-data') !!}
+    {!! BootForm::open()->action('')->post() !!}
         {{-- Crop: id --}}
-        {!! BootForm::hidden('crop_id')->value($data->id ?? null) !!}
+        {!! BootForm::hidden('crop_id')->value($cropId ?? null) !!}
 
         {{-- Crop: name --}}
         {!! BootForm::text(trans_title('crops', 'singular'), 'crop_name')
             ->addGroupClass('col-md-4')
+            ->value($cropName ?? null)
             ->disabled()
         !!}
 

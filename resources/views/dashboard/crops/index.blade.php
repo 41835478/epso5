@@ -34,22 +34,3 @@
         @include(modal_path('crop_variety_types'), ['setCustomRoute' => null])
     @endsection
 @endsection
-
-@section('javascript')
-    <script>
-    $( document ).ready( function() {
-        if($('#modal-crop-variety-types')) {
-            $('#modal-crop-variety-types').on('shown.bs.modal', function(event) {
-                //Set variables
-                var $modal      = $(this);
-                var $button     = $(event.relatedTarget);
-                var $cropName   = $button.attr('data-cropName');
-                //Add crop name to the title
-                $('#title-crop-variety-types').html($cropName);
-                //Load the form
-                
-            });
-        }
-    });
-    </script>
-@endsection

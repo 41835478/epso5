@@ -19,17 +19,15 @@ class CropVarietyTypesRepository extends Repository
     }
 
     /**
-     * Create or update a record in storage
-     * @param   int     $id
+     * Return all the records by crop
+     * @param   int     $crop
      * @return  boolean
      */
-    // public function store($id = null)
-    // {
-    //     return DB::transaction(function () use ($id) {
-    //         return true;
-    //     });
-    //     //Create an error
-    //     return false;
-    // }
+    public function allByCrop(int $crop)
+    {
+        return $this->model
+            ->where('crop_id', $crop)
+            ->get();
+    }
 
 }

@@ -7,7 +7,7 @@
     </a>
     {{-- Crops types --}}
     @if($data->crop_type)
-        <a href="{{ route('dashboard.' . $role . '.crop_variety_types.show', $data->id) }}" class="btn btn-icon btn-terciary" 
+        <a href="#" class="btn btn-icon btn-terciary" 
             data-toggle="modal" 
             data-target="#modal-crop-variety-types" 
             data-cropId="{{ $data->id }}" 
