@@ -4,16 +4,16 @@
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
     {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'name')
+    {!! BootForm::text(trans('persona.name'), 'crop_variety_name')
         ->addGroupClass('col-md-4')
         ->autofocus()
         ->required()
     !!}
 
     {{-- Select --}}
-    {!! BootForm::select(trans('persona.locale'), 'locale')
+    {!! BootForm::select(trans_title('crops', 'singular'), 'crop_id')
         ->addGroupClass('col-md-2')
-        ->options(select('locale') ?? [])
+        ->options($crops ?? [])
         ->defaultValue('es')
         ->required()
     !!}

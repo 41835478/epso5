@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\CropVarieties\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\CropVarieties\CropVarietiesRepository;
 use App\Http\Requests\CropVarietiesRequest;
+use App\Repositories\CropVarieties\CropVarietiesRepository;
+use App\Repositories\Crops\CropsRepository;
 
 class CropVarietiesController extends DashboardController
 {
@@ -86,9 +87,11 @@ class CropVarietiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, CropsRepository $crop)
     {
-        return view(dashboard_path($this->section . '.edit'))
+        $crops = $crop->lists(['id', 'crop_name']);
+        //
+        return view(dashboard_path($this->section . '.edit'), compact('crops'))
             ->withData($this->controller->find($id));
     }
 
