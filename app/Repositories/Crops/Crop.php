@@ -33,6 +33,7 @@ class Crop extends Model  {
         'id', 
         'crop_name', 
         'crop_module', 
+        'crop_type', 
         'crop_description'
     ];
 

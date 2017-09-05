@@ -1,5 +1,6 @@
 {!! BootForm::open()->action('http://action.com') !!}
     @component(component_path('modal'))
+        {{-- @slot('modalSize', 'modal-lg or modal-sm or not send this variable to default value') --}}
         @slot('bgColor', 'bg-success')
         @slot('modalID', 'modal-example')
         @slot('modalTitle', icon('alert', __('Example modal')))

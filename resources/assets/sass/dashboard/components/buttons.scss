@@ -15,7 +15,9 @@
         color: $color-white;
     }
 
-    .btn-success-alt:hover {
+    .btn-success-alt:hover,
+    .btn-success-alt:active
+     {
         background-color: $brand-success-alt-dark;
         color: $color-white;
     }
@@ -25,7 +27,9 @@
         color: $color-white;
     }
 
-    .btn-terciary:hover {
+    .btn-terciary:hover,
+    .btn-terciary:active
+     {
         background-color: $brand-terciary-dark;
         color: $color-white;
     }

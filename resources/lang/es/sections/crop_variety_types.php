@@ -7,7 +7,7 @@ return [
     | Sections: crop_variety_types
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del cropvarietytype',
-    'title'             => 'CropVarietyType',
-    'title:plural'      => 'CropVarietyTypes',
+    'activate'          => 'Activar los tipos de cultivo. Por ejemplo: uvas rojas o blancas.',
+    'title'             => 'Tipo de cultivo',
+    'title:plural'      => 'Tipos de cultivo',
 ];

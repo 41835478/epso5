@@ -16,7 +16,6 @@ class CreateCropVarietyTypesTable extends Migration
         Schema::create('crop_variety_types', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->integer('crop_id')->unsigned()->index();
-            $table->integer('crop_variety_id')->unsigned()->index();
             $table->string('crop_variety_type_name');
             $table->string('crop_variety_type_code', 3);
             $table->softDeletes();

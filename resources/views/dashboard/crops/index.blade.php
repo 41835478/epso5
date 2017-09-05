@@ -28,4 +28,22 @@
     @component(component_path('legend'))
         @slot('legendContent', legend_path($section))
     @endcomponent
+
+    {{-- Modals --}}
+    @section('modals')
+        @include(modal_path('crop_variety_types'), ['setCustomRoute' => null])
+    @endsection
+@endsection
+
+@section('javascript')
+    <script>
+    $( document ).ready( function() {
+        $('#modal-crop-variety-types').on('shown.bs.modal', function(event) {
+            var $modal      = $(this);
+            var $button     = $(event.relatedTarget);
+            var $cropName   = $button.attr('data-cropName');
+            $('#title-crop-variety-types').html($cropName);
+        });
+    });
+    </script>
 @endsection

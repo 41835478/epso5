@@ -22,4 +22,12 @@
         ->maxlength(20)
         ->required()
     !!}
+
+    {{-- Crop types: For example -> red or white --}}
+    {!! BootForm::select(trans_title('crop_variety_types'), 'crop_type')
+        ->addGroupClass('col-md-3')
+        ->options(select('boolean', $firstFieldEmpty = false))
+        ->helpBlock(sections('crop_variety_types.activate'))
+        ->required()
+    !!}
 </div>

@@ -18,6 +18,7 @@ class CreateCropsTable extends Migration
             $table->string('crop_name');
             $table->string('crop_description')->nullable();
             $table->string('crop_module', 20);
+            $table->string('crop_type', 1)->default(0)->comment('This is for grape and vineyard: red or white, but can use in other crop if like... Disabled by default');
             $table->softDeletes();
             $table->timestamps();
         });

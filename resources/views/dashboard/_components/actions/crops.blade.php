@@ -5,9 +5,17 @@
     <a href="{{ route('dashboard.' . $role . '.crop_varieties.show', $data->id) }}" class="btn btn-icon btn-success">
         {!! icon('crops') !!}
     </a>
-    <a href="{{ route('dashboard.' . $role . '.crop_variety_types.show', $data->id) }}" class="btn btn-icon btn-terciary">
-        {!! icon('crop-alt') !!}
-    </a>
+    {{-- Crops types --}}
+    @if($data->crop_type)
+        <a href="{{ route('dashboard.' . $role . '.crop_variety_types.show', $data->id) }}" class="btn btn-icon btn-terciary" 
+            data-toggle="modal" 
+            data-target="#modal-crop-variety-types" 
+            data-cropId="{{ $data->id }}" 
+            data-cropName="{{ $data->crop_name }}">
+                {!! icon('crop-alt') !!}
+        </a>
+    @endif
+    {{-- Crops types --}}
     <a href="{{ route('dashboard.' . $role . '.' . $section . '.edit', $data->id) }}" class="btn btn-icon btn-danger">
         {!! icon('pests') !!}
     </a>

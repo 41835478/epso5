@@ -1,5 +1,5 @@
 <div id="{{ $modalID ?? null }}" class="modal fade">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog {{ $modalSize ?? null }}" role="document">
         <div class="modal-content">
             <div class="modal-header {{ $bgColor ?? null }}">
                 <h4 class="modal-title">{!! $modalTitle ?? null !!}</h4>
@@ -16,6 +16,8 @@
                     <div class="row">
                         {!! $modalForm ?? null !!}
                     </div>
+                @else
+                    <div class="row" id="{!! $modalAjaxId ?? null !!}"></div>
                 @endif
             </div>
             <div class="modal-footer">

@@ -10416,7 +10416,8 @@ a:visited {
   color: #fff;
 }
 
-.btn-success-alt:hover {
+.btn-success-alt:hover,
+.btn-success-alt:active {
   background-color: #00695c;
   color: #fff;
 }
@@ -10426,7 +10427,8 @@ a:visited {
   color: #fff;
 }
 
-.btn-terciary:hover {
+.btn-terciary:hover,
+.btn-terciary:active {
   background-color: #9933CC;
   color: #fff;
 }

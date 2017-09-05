@@ -7,7 +7,12 @@ return [
     | Form selects
     |--------------------------------------------------------------------------
     */
-   
+
+    'boolean' => [
+        '1' => 'Activado',
+        '0' => 'Descativado',
+    ],
+
     'locale' => [
         'es' => 'Castellano',
         'en' => 'Inglés',
