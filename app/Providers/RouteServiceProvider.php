@@ -26,7 +26,12 @@ class RouteServiceProvider extends ServiceProvider
         // Route::pattern('bank', '[0-9]+');
         parent::boot();
 
+        Route::pattern('biocide', '[0-9]+');
+        Route::pattern('city', '[0-9]+');
         Route::pattern('client', '[0-9]+');
+        Route::pattern('crops', '[0-9]+');
+        Route::pattern('crops_variety', '[0-9]+');
+        Route::pattern('id', '[0-9]+');
         Route::pattern('size', '[0-9]+');
         Route::pattern('user', '[0-9]+');
     }
