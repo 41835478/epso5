@@ -22,7 +22,7 @@ abstract class Repository
      * @param   string   $columns
      * @return  ajax
      */
-    public function dataTable(array $columns = ['*'])
+    public function dataTable(array $columns = ['*'], $id = null)
     {
         return $this->model
             ->select($columns)

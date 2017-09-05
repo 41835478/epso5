@@ -40,7 +40,7 @@ class CropVarietiesController extends DashboardController
     {
         return $this->table
             ->setValue([
-                'crop' => $id
+                'crop_id' => $id
             ])
             ->render(dashboard_path('crop_varieties.index'));
     }

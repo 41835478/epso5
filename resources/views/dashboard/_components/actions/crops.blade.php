@@ -2,7 +2,7 @@
     <a href="{{ route('dashboard.' . $role . '.' . $section . '.edit', $data->id) }}" class="btn btn-icon btn-warning">
         {!! icon('edit') !!}
     </a>
-    <a href="{{ route('dashboard.' . $role . '.crop-varieties.show', $data->id) }}" class="btn btn-icon btn-success">
+    <a href="{{ route('dashboard.' . $role . '.crop_varieties.show', $data->id) }}" class="btn btn-icon btn-success">
         {!! icon('crops') !!}
     </a>
     <a href="{{ route('dashboard.' . $role . '.' . $section . '.edit', $data->id) }}" class="btn btn-icon btn-danger">

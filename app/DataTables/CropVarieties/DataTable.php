@@ -17,6 +17,7 @@ class DataTable extends Repository
      * @var string
      */
     protected $action;
+    protected $crop_id;
     protected $section = 'crop_varieties';
 
     /**
@@ -28,6 +29,7 @@ class DataTable extends Repository
     {
         $query = app(CropVarietiesRepository::class)
             ->dataTable()
+            ->where('crop_id', $this->getValue('crop_id'))
             ->select($this->section . '.*');
 
         return $this->applyScopes($query);
