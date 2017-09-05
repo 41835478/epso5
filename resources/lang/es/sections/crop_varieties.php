@@ -11,4 +11,6 @@ return [
     'type'              => 'Tipo de cultivo',
     'title'             => 'Variedad de cultivo',
     'title:plural'      => 'Variedades de cultivos',
+    'variety'           => 'Variedad',
+    'variety:plural'    => 'Variedades',
 ];

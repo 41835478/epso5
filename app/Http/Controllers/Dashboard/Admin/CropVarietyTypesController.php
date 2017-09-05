@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\DataTables\CropVarieties\DataTable;
+use App\DataTables\CropVarietyTypes\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Http\Requests\CropVarietiesRequest;
-use App\Repositories\CropVarieties\CropVarietiesRepository;
-use App\Repositories\Crops\CropsRepository;
+use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
+use App\Http\Requests\CropVarietyTypesRequest;
+//use Credentials;
+//use Illuminate\Http\Request;
 
-class CropVarietiesController extends DashboardController
+class CropVarietyTypesController extends DashboardController
 {
     /**
      * @var protected
@@ -21,19 +22,22 @@ class CropVarietiesController extends DashboardController
      */
     private $parent     = 'crops';
     private $role       = 'admin';
-    private $section    = 'crop_varieties';
+    private $section    = 'crop_variety_types';
 
-    public function __construct(CropVarietiesRepository $controller, DataTable $table)
+    public function __construct(CropVarietyTypesRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
         
         //Sharing in the view
         view()->share([
-            'parent'    => $this->parent,
+            //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
+
+        //Middleware
+        //$this->middleware('role:admin');
     }
 
     /**
@@ -41,13 +45,14 @@ class CropVarietiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id, CropsRepository $crop)
+    public function index()
     {
-        //Crop ID
-        $cropName = $crop->find($id)->crop_name ?? null;
-
         return $this->table
-            ->render(dashboard_path($this->section . '.index'), compact('cropName'));
+            //Customize the action for datatables [dashboard/_components/actions]
+            // ->setValue([
+            //     'action' => 'crop_variety_types:action'
+            // ])
+            ->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -66,7 +71,7 @@ class CropVarietiesController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CropVarietiesRequest $request)
+    public function store(CropVarietyTypesRequest $request)
     {
         $create = $this->controller
             ->store();
@@ -90,11 +95,9 @@ class CropVarietiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CropsRepository $crop)
+    public function edit($id)
     {
-        $crops = $crop->lists(['id', 'crop_name']);
-        //
-        return view(dashboard_path($this->section . '.edit'), compact('crops'))
+        return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -105,7 +108,7 @@ class CropVarietiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CropVarietiesRequest $request, $id)
+    public function update(CropVarietyTypesRequest $request, $id)
     {
         $update = $this->controller
             ->store($id);

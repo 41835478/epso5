@@ -80,4 +80,5 @@ return [
     //Legends 
     'weather'           => 'snowflake-o',
     'tree'              => 'tree',
+    'crop-alt'          => 'pagelines',
 ];

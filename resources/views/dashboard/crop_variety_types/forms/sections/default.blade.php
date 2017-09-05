@@ -4,16 +4,16 @@
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
     {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'crop_variety_name')
+    {!! BootForm::text(trans('persona.name'), 'name')
         ->addGroupClass('col-md-4')
         ->autofocus()
         ->required()
     !!}
 
     {{-- Select --}}
-    {!! BootForm::select(trans_title('crops', 'singular'), 'crop_id')
+    {!! BootForm::select(trans('persona.locale'), 'locale')
         ->addGroupClass('col-md-2')
-        ->options($crops ?? [])
+        ->options(select('locale') ?? [])
         ->defaultValue('es')
         ->required()
     !!}
@@ -25,9 +25,6 @@
         ->afterAddon(icon('calendar'))
         ->required() 
     !!}
-
-    {{-- Hidden --}}
-    {!! BootForm::hidden('myField')->id('myID')->value('myValue') !!}
 
     {{-- Field: Conditional role --}}
     {{-- @Role('admin')
