@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\DataTables\CropVarieties\DataTable;
+use App\DataTables\Patterns\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\CropVarieties\CropVarietiesRepository;
-use App\Http\Requests\CropVarietiesRequest;
+use App\Repositories\Patterns\PatternsRepository;
+use App\Http\Requests\PatternsRequest;
 //use Credentials;
 //use Illuminate\Http\Request;
 
-class CropVarietiesController extends DashboardController
+class PatternsController extends DashboardController
 {
     /**
      * @var string
@@ -18,7 +18,7 @@ class CropVarietiesController extends DashboardController
     protected $role;
     protected $table;
 
-    public function __construct(CropVarietiesRepository $controller, DataTable $table)
+    public function __construct(PatternsRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
@@ -26,9 +26,12 @@ class CropVarietiesController extends DashboardController
         
         //Sharing in the view
         view()->share([
-            'section'   => 'crop_varieties',
-            'role'      => 'admin',
+            'section'   => 'patterns',
+            'role'      => 'admin'
         ]);
+
+        //Middleware
+        //$this->middleware('role:admin');
     }
 
     /**
@@ -36,13 +39,14 @@ class CropVarietiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function index()
     {
         return $this->table
-            ->setValue([
-                'crop' => $id
-            ])
-            ->render(dashboard_path('crop_varieties.index'));
+            //Customize the action for datatables [dashboard/_components/actions]
+            // ->setValue([
+            //     'action' => 'patterns:action'
+            // ])
+            ->render(dashboard_path('patterns.index'));
     }
 
     /**
@@ -52,7 +56,7 @@ class CropVarietiesController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path('crop_varieties.create'));
+        return view(dashboard_path('patterns.create'));
     }
 
     /**
@@ -61,14 +65,14 @@ class CropVarietiesController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CropVarietiesRequest $request)
+    public function store(PatternsRequest $request)
     {
         $create = $this->controller
             ->store();
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
+                    ->route('dashboard.' . $this->role . '.patterns.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -87,7 +91,7 @@ class CropVarietiesController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path('crop_varieties.edit'))
+        return view(dashboard_path('patterns.edit'))
             ->withData($this->controller->find($id));
     }
 
@@ -98,14 +102,14 @@ class CropVarietiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CropVarietiesRequest $request, $id)
+    public function update(PatternsRequest $request, $id)
     {
         $update = $this->controller
             ->store($id);
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.crop_varieties.index')
+                    ->route('dashboard.' . $this->role . '.patterns.index')
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

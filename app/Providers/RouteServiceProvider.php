@@ -30,8 +30,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::pattern('city', '[0-9]+');
         Route::pattern('client', '[0-9]+');
         Route::pattern('crops', '[0-9]+');
-        Route::pattern('crops_variety', '[0-9]+');
+        Route::pattern('crop_varieties', '[0-9]+');
         Route::pattern('id', '[0-9]+');
+        Route::pattern('pattern', '[0-9]+');
+        Route::pattern('pest', '[0-9]+');
         Route::pattern('size', '[0-9]+');
         Route::pattern('user', '[0-9]+');
     }
