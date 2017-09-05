@@ -13,7 +13,7 @@
             <div class="card-header bg-primary">{!! icon('form', trans('base.form')) !!}</div>
             <div class="card-block">
 
-                {{-- Edit form --}}
+                {{-- Create form --}}
                 {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.store'))->post()->enctype('multipart/form-data') !!}
 
                     {{-- Include the custom blade form --}}
@@ -28,7 +28,7 @@
                     </div>
 
                 {!! BootForm::close() !!}
-                {{-- Edit form --}}
+                {{-- Create form --}}
             </div>
         </div>
     </div>

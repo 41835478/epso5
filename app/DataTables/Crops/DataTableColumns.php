@@ -16,7 +16,7 @@ trait DataTableColumns
          * @param  array $attributes [Add extra attributes]
          */
         return [
-            $this->createCheckbox(),
+            //$this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans('base.module'), 'crop_module'),
             $this->setColumn(trans_title('crops'), 'crop_name'),

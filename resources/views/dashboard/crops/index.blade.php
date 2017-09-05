@@ -38,12 +38,18 @@
 @section('javascript')
     <script>
     $( document ).ready( function() {
-        $('#modal-crop-variety-types').on('shown.bs.modal', function(event) {
-            var $modal      = $(this);
-            var $button     = $(event.relatedTarget);
-            var $cropName   = $button.attr('data-cropName');
-            $('#title-crop-variety-types').html($cropName);
-        });
+        if($('#modal-crop-variety-types')) {
+            $('#modal-crop-variety-types').on('shown.bs.modal', function(event) {
+                //Set variables
+                var $modal      = $(this);
+                var $button     = $(event.relatedTarget);
+                var $cropName   = $button.attr('data-cropName');
+                //Add crop name to the title
+                $('#title-crop-variety-types').html($cropName);
+                //Load the form
+                
+            });
+        }
     });
     </script>
 @endsection
