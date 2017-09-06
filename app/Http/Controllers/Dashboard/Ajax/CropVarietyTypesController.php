@@ -17,10 +17,10 @@ class CropVarietyTypesController extends Controller
      */
     public function __invoke(CropsRepository $crops, CropVarietyTypesRepository $cropsVarietyTypes)
     {
-        $cropID     = request('crop');
-        $cropName   = $crops->find($cropID)->crop_name;
-        $data       = $cropsVarietyTypes->allByCrop($cropID);
+        $cropId     = request('crop');
+        $cropName   = $crops->find($cropId)->crop_name;
+        $cropData   = $cropsVarietyTypes->allByCrop($cropId);
 
-        return view('dashboard.crop_variety_types.default', compact('cropID', 'cropName', 'data'));
+        return view('dashboard.crop_variety_types.default', compact('cropId', 'cropName', 'cropData'));
     }
 }

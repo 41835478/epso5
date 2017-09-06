@@ -10419,7 +10419,7 @@ a:visited {
 .btn-success-alt:hover,
 .btn-success-alt:active {
   background-color: #00695c;
-  color: #fff;
+  color: #fff !important;
 }
 
 .btn-terciary {
@@ -10430,7 +10430,7 @@ a:visited {
 .btn-terciary:hover,
 .btn-terciary:active {
   background-color: #9933CC;
-  color: #fff;
+  color: #fff !important;
 }
 
 /** 

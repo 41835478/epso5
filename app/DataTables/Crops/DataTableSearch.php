@@ -16,7 +16,7 @@ trait DataTableSearch
          * @param  array $column        [Column number to search]
          */
         return [
-            $this->setColumnSearch('input', 'search_name', 3),
+            $this->setColumnSearch('input', 'search_name', 2),
         ];
     }
 }

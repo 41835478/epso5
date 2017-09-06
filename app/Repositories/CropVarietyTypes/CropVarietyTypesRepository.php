@@ -30,4 +30,28 @@ class CropVarietyTypesRepository extends Repository
             ->get();
     }
 
+    /**
+     * Return all the records by crop
+     * @param   int     $crop
+     * @return  boolean
+     */
+    public function store($id = null)
+    {
+        //First delete all the crop types 
+        $delete = $this->model
+            ->where('crop_id', request('crop_id'))
+            ->delete();
+
+        foreach(request('crop_variety_type_name') as $code => $name) {
+            if(!is_null($code) && !is_null($name)) {
+                $create = $this->model
+                    ->create([
+                        'crop_id'                   => request('crop_id'),
+                        'crop_variety_type_name'    => $name,
+                        'crop_variety_type_code'    => $code,
+                    ]);
+            }
+        }
+        return true;
+    }
 }

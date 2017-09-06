@@ -19,9 +19,8 @@ class CropVarietyTypesController extends DashboardController
     /**
      * @var private
      */
-    private $parent     = 'crops';
     private $role       = 'admin';
-    private $section    = 'crop_variety_types';
+    private $section    = 'crops';
 
     public function __construct(CropVarietyTypesRepository $controller)
     {

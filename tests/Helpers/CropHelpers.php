@@ -6,6 +6,7 @@ use App\Repositories\Crops\Crop;
 
 trait CropHelpers
 {    
+    protected $firstCrop;
     protected $lastCrop;
     protected $makeCrop;
 
@@ -22,6 +23,21 @@ trait CropHelpers
             return $this->makeCrop;
         }
         return $this->makeCrop = factory(Crop::class)->make();
+    }
+
+    /**
+     * Create a client but not storing it!!!
+     *
+     * @param  string $id
+     *
+     * @return Object
+     */
+    public function firstCrop() : Crop
+    {
+        if($this->firstCrop) {
+            return $this->firstCrop;
+        }
+        return $this->firstCrop = Crop::oldest()->first();
     }
 
     /**

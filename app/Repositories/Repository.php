@@ -130,17 +130,6 @@ abstract class Repository
     }
 
     /**
-     * Delete a record in storage
-     * @param   int     $id
-     * @return  boolean
-     */
-    public function delete(int $id)
-    {
-        return $this->model
-            ->destroy($id);
-    }
-
-    /**
      * Eliminate a list of items from the DB
      * @return  boolean
      */

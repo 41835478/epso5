@@ -17,7 +17,7 @@
                         {!! $modalForm ?? null !!}
                     </div>
                 @else
-                    <div class="row" id="{!! $modalAjaxId ?? null !!}"></div>
+                    <div id="{!! $modalAjaxId ?? null !!}"></div>
                 @endif
             </div>
             <div class="modal-footer">

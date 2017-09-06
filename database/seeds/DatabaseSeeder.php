@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         // Crops Varieties 
         $this->call(Vineyard_Varieties_TableSeeder::class);
+        $this->call(Vineyard_CVT_TableSeeder::class);
 
         // Crops Patterns
         $this->call(Vineyard_Patterns_TableSeeder::class);
