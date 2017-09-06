@@ -12,6 +12,7 @@ class CropsModalTest extends DuskTestCase
 {
     use CropHelpers;
 
+
     /*
     |--------------------------------------------------------------------------
     | Search Crops
