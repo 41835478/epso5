@@ -31,7 +31,7 @@ class DataTable extends Repository
             ->dataTable()
             ->where('crop_id', Route::input('crop_variety'))
             ->select($this->section . '.*')
-            ->with('crop');
+            ->with(['crop', 'crop_variety_type']);
 
         return $this->applyScopes($query);
     }

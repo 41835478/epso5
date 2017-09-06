@@ -2,6 +2,9 @@
 
 namespace App\Repositories\CropVarietyTypes\Traits;
 
+use App\Repositories\CropVarieties\CropVariety;
+
+
 trait CropVarietyTypesRelationships {
 
     /*
@@ -10,12 +13,8 @@ trait CropVarietyTypesRelationships {
     |--------------------------------------------------------------------------
     */
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
+    public function crop_variety()
+    {
+        return $this->hasMany(CropVariety::class, 'crop_variety_type', 'crop_variety_type_code');
+    }
 }

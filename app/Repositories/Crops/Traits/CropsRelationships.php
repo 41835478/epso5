@@ -12,7 +12,7 @@ trait CropsRelationships {
     |--------------------------------------------------------------------------
     */
 
-    public function cropVariety()
+    public function crop_variety()
     {
         return $this->hasMany(CropVariety::class);
     }
