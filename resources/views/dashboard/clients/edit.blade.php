@@ -11,6 +11,7 @@
         ])
         {{-- Add the data --}}
         @slot('data', $data)
+        @slot('regions', $regions ?? null)
     @endcomponent
 
 @endsection

@@ -10586,6 +10586,10 @@ form .expand-height:focus {
   border: 1px solid #0275D8 !important;
 }
 
+form .checkBoxCustom {
+  margin-right: 8px;
+}
+
 /** 
  * Helpers
  */

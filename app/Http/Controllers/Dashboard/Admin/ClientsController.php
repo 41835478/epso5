@@ -6,6 +6,7 @@ use App\DataTables\Clients\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Regions\RegionsRepository;
 use App\Services\Redirection\Redirection;
 
 class ClientsController extends DashboardController
@@ -86,9 +87,11 @@ class ClientsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, RegionsRepository $region)
     {
-        return view(dashboard_path($this->section . '.edit'))
+        $regions = $region->all();
+
+        return view(dashboard_path($this->section . '.edit'), compact('regions'))
             ->withData($this->controller->find($id));
     }
 
@@ -101,6 +104,7 @@ class ClientsController extends DashboardController
      */
     public function update(ClientsRequest $request, $id)
     {
+        dd($request);
         $update = $this->controller
             ->store($id);
             //

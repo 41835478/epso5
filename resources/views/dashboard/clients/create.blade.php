@@ -9,6 +9,7 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.create')], 
         ])
+        @slot('regions', $regions ?? null)
     @endcomponent
 
 @endsection

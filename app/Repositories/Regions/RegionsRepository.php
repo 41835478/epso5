@@ -16,6 +16,18 @@ class RegionsRepository extends Repository
     }
 
     /**
+     * Get all the fields from storage
+     * @param   string   $columns
+     * @return  collection
+     */
+    public function all(array $columns = ['*'])
+    {
+        return $this->model
+            ->orderBy('region_name', 'asc')
+            ->get($columns);
+    }
+
+    /**
      * Get all the results from a model and return in json format.
      * Use for autocomplete...
      * @param string    $id       [The search id]
