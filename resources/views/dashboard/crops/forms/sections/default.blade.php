@@ -27,6 +27,7 @@
     {!! BootForm::select(trans_title('crop_variety_types'), 'crop_type')
         ->addGroupClass('col-md-3')
         ->options(select('boolean', $firstFieldEmpty = false))
+        ->defaultValue(0)
         ->helpBlock(sections('crop_variety_types.activate'))
         ->required()
     !!}
