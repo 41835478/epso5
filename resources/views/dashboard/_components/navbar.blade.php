@@ -17,6 +17,9 @@
         ], 
             Menu::new()
             ->subMenuItem([
+                'title' => icon('world', trans('navbar.admin:countries')),
+                'url' => route('dashboard.admin.cities.index'),
+            ])->subMenuItem([
                 'title' => icon('users', trans('navbar.admin:clients')),
                 'url' => route('dashboard.admin.clients.index'),
             ])->subMenuItem([
@@ -26,9 +29,13 @@
                 'title' => icon('biocides', trans('navbar.admin:biocides')),
                 'url' => route('dashboard.admin.biocides.index'),
             ])->subMenuItem([
-                'title' => icon('world', trans('navbar.admin:countries')),
+                'title' => icon('irrigations', trans('navbar.admin:irrigation')),
                 'url' => route('dashboard.admin.cities.index'),
-            ])->output()
+            ])->subMenuItem([
+                'title' => icon('tree', trans('navbar.admin:training')),
+                'url' => route('dashboard.admin.cities.index'),
+            ])
+            ->output()
         )
 
         //Tools submenu
@@ -111,7 +118,8 @@
            ])->subMenuItem([
                'title' => icon('add', trans('navbar.plots:new')),
                'url' => route('dashboard.user.plots.create'),
-           ])->divider()
+           ])
+           ->divider()
            ->subMenuItem([
                'title' => icon('assign', trans('navbar.plots:assign')),
                'url' => 'http://',

@@ -7,10 +7,12 @@ return [
     |--------------------------------------------------------------------------
     */
     'admin' => 'Administración',
-        'admin:clients'    => 'Clientes',
-        'admin:crops'      => 'Cultivos',
-        'admin:biocides'   => 'Fitosanitarios',
-        'admin:countries'  => 'Ciudades',
+        'admin:clients'     => 'Clientes',
+        'admin:countries'   => 'Ciudades',
+        'admin:crops'       => 'Cultivos',
+        'admin:biocides'    => 'Fitosanitarios',
+        'admin:irrigation'  => 'Riegos',
+        'admin:training'    => 'Conducciones',
     /*
     |--------------------------------------------------------------------------
     | Navbar Menus: Users
