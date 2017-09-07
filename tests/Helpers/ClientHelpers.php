@@ -10,6 +10,7 @@ trait ClientHelpers
     protected $createClientValencia;
     protected $lastClient;
     protected $makeClient;
+    protected $makeRegion;
 
     /**
      * Create a client for EPSO
@@ -69,5 +70,20 @@ trait ClientHelpers
             return $this->makeClient;
         }
         return $this->makeClient = factory(Client::class)->make();
+    }
+
+    /**
+     * Create a client but not storing it!!!
+     *
+     * @param  string $id
+     *
+     * @return Object
+     */
+    public function makeRegion()
+    {
+        if($this->makeRegion) {
+            return $this->makeRegion;
+        }
+        return $this->makeRegion = rand(1, 40);
     }
 }

@@ -25,7 +25,7 @@ trait Form
         $checked = (isset($this->model) && in_array($this->item['id'], $this->model->{$this->relationship}->pluck('id')->all())) 
             ? $checked = ' checked="checked"' 
             : $checked = '';
-        $input = '<input type="checkbox" id="checkbox-' . $this->relationship . '-' . $this->item['id'] . '" name="region_id[]" value="%s" class="checkBoxCustom"%s>%s';
+        $input = '<input type="checkbox" id="checkbox-' . $this->relationship . '-' . $this->item['id'] . '" name="' . $this->relationship . '_id[]" value="%s" class="checkBoxCustom"%s>%s';
         $constructor = '<div class="col-lg-2"><div class="checkbox"><label class="control-label">%s</label></div></div>';
         return sprintf($constructor, sprintf($input, $this->item['id'], $checked, $this->item['name']));
     }

@@ -34,7 +34,10 @@ class ClientUpdateTest extends DuskTestCase
                 ->type('client_country', $this->makeClient()->client_country)
                 ->driver->executeScript('window.scrollTo(0, 500);');
                 
-            $browser->press(trans('buttons.edit'))
+            $browser
+                ->check('#checkbox-region-' . $this->makeRegion())
+                ->check('#checkbox-crop-1')
+                ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
@@ -48,6 +51,30 @@ class ClientUpdateTest extends DuskTestCase
             'client_region'     => $this->makeClient()->client_region,
             'client_state'      => $this->makeClient()->client_state,
             'client_country'    => $this->makeClient()->client_country,
+        ]);
+    
+        $this->assertDatabaseHas('client_region', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'region_id'     => $this->makeRegion(),
+        ]);
+    
+        $this->assertDatabaseMissing('client_region', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'region_id'     => 50,
+        ]);
+    
+        $this->assertDatabaseHas('client_crop', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'crop_id'       => 1,
+        ]);
+        
+        $this->assertDatabaseMissing('client_crop', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'crop_id'       => 2,
         ]);
     }
 }
