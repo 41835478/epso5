@@ -3,7 +3,7 @@
 namespace App\Repositories\Clients;
 
 //use App\Repositories\Traits\Date;
-//use App\Repositories\Clients\Traits\ClientsEvents;
+use App\Repositories\Clients\Traits\ClientsEvents;
 //use App\Repositories\Clients\Traits\ClientsPresenters;
 use App\Repositories\Clients\Traits\ClientsRelationships;
 //use App\Repositories\Clients\Traits\ClientsScopes;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Client extends Model  {
 
-    use ClientsRelationships, Notifiable, SoftDeletes;
+    use ClientsEvents, ClientsRelationships, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -44,23 +44,4 @@ class Client extends Model  {
         'client_web',
         'client_zip', 
     ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    // protected $hidden = ['id'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    // protected $casts = [
-    //     'client_json_configuration'     => 'json',
-    //     'client_json_crops'             => 'json',
-    //     'client_json_permission'        => 'json',
-    //     'client_json_regions'           => 'json',
-    // ]; 
 }
