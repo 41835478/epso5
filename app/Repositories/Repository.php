@@ -8,7 +8,7 @@ abstract class Repository
 {
     /**
      * Get all the fields from storage
-     * @param   string   $columns
+     * @param   array   $columns
      * @return  collection
      */
     public function all(array $columns = ['*'])
