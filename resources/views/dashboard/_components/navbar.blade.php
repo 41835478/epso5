@@ -107,10 +107,10 @@
            Menu::new()
            ->subMenuItem([
                'title' => icon('list', trans('navbar.plots:list')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.plots.index'),
            ])->subMenuItem([
                'title' => icon('add', trans('navbar.plots:new')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.plots.create'),
            ])->divider()
            ->subMenuItem([
                'title' => icon('assign', trans('navbar.plots:assign')),
