@@ -13,12 +13,9 @@ class CreateClientRegionTable extends Migration
      */
     public function up()
     {
-        Schema::table('client_region', function (Blueprint $table) {
+        Schema::create('client_region', function (Blueprint $table) {
             $table->integer('client_id')->unsigned();
             $table->integer('region_id')->unsigned();
-            $table->primary('client_id', 'region_id');
-            $table->softDeletes();
-            $table->timestamps();
         });
     }
 
