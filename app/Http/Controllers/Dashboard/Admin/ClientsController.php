@@ -104,7 +104,6 @@ class ClientsController extends DashboardController
      */
     public function update(ClientsRequest $request, $id)
     {
-        dd($request);
         $update = $this->controller
             ->store($id);
             //
