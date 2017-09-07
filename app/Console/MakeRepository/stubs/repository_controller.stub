@@ -16,7 +16,6 @@ class DummyClassController extends DashboardController
      */
     protected $controller;
     protected $table;
-
     /**
      * @var private
      */
@@ -28,14 +27,12 @@ class DummyClassController extends DashboardController
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        
         //Sharing in the view
         view()->share([
             //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-
         //Middleware
         //$this->middleware('role:admin');
     }
@@ -73,9 +70,7 @@ class DummyClassController extends DashboardController
      */
     public function store(DummyClassRequest $request)
     {
-        $create = $this->controller
-            ->store();
-
+        $create = $this->controller->store();
             return $create 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
@@ -110,9 +105,7 @@ class DummyClassController extends DashboardController
      */
     public function update(DummyClassRequest $request, $id)
     {
-        $update = $this->controller
-            ->store($id);
-
+        $update = $this->controller->store($id);
             return $update 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.' . $this->section . '.index')

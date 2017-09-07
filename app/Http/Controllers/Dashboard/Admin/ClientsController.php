@@ -6,6 +6,7 @@ use App\DataTables\Clients\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Crops\CropsRepository;
 use App\Repositories\Regions\RegionsRepository;
 use App\Services\Redirection\Redirection;
 
@@ -28,7 +29,6 @@ class ClientsController extends DashboardController
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        
         //Sharing in the view
         view()->share([
             'section'   => $this->section,
@@ -43,8 +43,7 @@ class ClientsController extends DashboardController
      */
     public function index()
     {
-        return $this->table
-            ->render(dashboard_path($this->section . '.index'));
+        return $this->table->render(dashboard_path($this->section . '.index'));
     }
 
     /**
@@ -52,9 +51,11 @@ class ClientsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CropsRepository $crop, RegionsRepository $region)
     {
-        return view(dashboard_path($this->section . '.create'));
+        return view(dashboard_path($this->section . '.create'))            
+            ->withRegions($region->all())
+            ->withCrops($crop->all());;
     }
 
     /**
@@ -65,9 +66,7 @@ class ClientsController extends DashboardController
      */
     public function store(ClientsRequest $request)
     {
-        $create = $this->controller
-            ->store();
-            //
+        $create = $this->controller->store();
             return $create 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
@@ -87,12 +86,12 @@ class ClientsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, RegionsRepository $region)
+    public function edit($id, CropsRepository $crop, RegionsRepository $region)
     {
-        $regions = $region->all();
-
-        return view(dashboard_path($this->section . '.edit'), compact('regions'))
-            ->withData($this->controller->find($id));
+        return view(dashboard_path($this->section . '.edit'))
+            ->withData($this->controller->find($id))
+            ->withRegions($region->all())
+            ->withCrops($crop->all());
     }
 
     /**
@@ -104,9 +103,7 @@ class ClientsController extends DashboardController
      */
     public function update(ClientsRequest $request, $id)
     {
-        $update = $this->controller
-            ->store($id);
-            //
+        $update = $this->controller->store($id);
             return $update 
                 ? redirect()
                     ->route('dashboard.' . $this->role . '.' . $this->section . '.index')

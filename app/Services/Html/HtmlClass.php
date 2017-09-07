@@ -2,26 +2,29 @@
 
 namespace App\Services\Html;
 
+use App\Services\Html\Traits\Form;
 use App\Services\Html\Traits\Images;
 use App\Services\Html\Traits\Links;
 use App\Services\Html\Traits\Pipeline;
 
 class HtmlClass {
     
-    use Images, Links;
+    use Form, Images, Links;
 
     /**
      * @var Allowed methods for the Facade
      */
     private $allowed = [
         'link',
-        'form',
+        'checkbox',
         'thumbnail',
     ];
 
     /**
      * @var private
      */
+    private $form;
+
     private $class = [];
     private $folder;
     private $width;

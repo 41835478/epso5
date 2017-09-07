@@ -10,6 +10,7 @@
             [trans('base.create')], 
         ])
         @slot('regions', $regions ?? null)
+        @slot('crops', $crops ?? null)
     @endcomponent
 
 @endsection

@@ -184,7 +184,6 @@ return [
         App\Services\Credentials\CredentialsProvider::class,
         App\Providers\HelperServiceProvider::class,
         App\Services\Html\HtmlProvider::class,
-        App\Providers\MacroServiceProvider::class,
         App\Services\Menus\MenusProvider::class,
         App\Providers\RepositoryServiceProvider::class,
 
@@ -194,7 +193,6 @@ return [
         AdamWathan\BootForms\BootFormsServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,

@@ -41,7 +41,9 @@ class ClientCreateTest extends DuskTestCase
                 ->type('client_region', $this->makeClient()->client_region)
                 ->type('client_state', $this->makeClient()->client_state)
                 ->type('client_country', $this->makeClient()->client_country)
-                ->press(trans('buttons.new'))
+                ->driver->executeScript('window.scrollTo(0, 500);');
+
+            $browser->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
     }

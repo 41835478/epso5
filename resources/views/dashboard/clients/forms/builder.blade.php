@@ -6,3 +6,7 @@
 {{-- Regions alloweds --}}
 <legend class="title">@lang('sections/clients.form:regions')</legend>
 @include(dashboard_path('clients.forms.sections.regions'))
+
+{{-- Crops alloweds --}}
+<legend class="title">@lang('sections/clients.form:crops')</legend>
+@include(dashboard_path('clients.forms.sections.crops'))
