@@ -32,18 +32,25 @@ class ClientsRepository extends Repository
             $request = $this->requestOperations(request()->all());
             //Create an Item
             if (is_null($id)) {
-                return $this->model
+                //Create item
+                $item = $this->model
                     ->create($request);
+                //Create regions 
+                $regions = $item->region()->sync(request('region_id'));
+                // 
+                return (count(request('region_id')) > 0) ? $regions : $item;
             }
             //Update an Item
             if(is_numeric($id)) {
                 //Get the item
                 $item = $this->model->find($id);
+                //Update regions 
+                $regions = $item->region()->sync(request('region_id'));
                 //
                 return $item->update($request);
             }
             //
-            return true;
+            return false;
         });
         //Create an error
         return false;
