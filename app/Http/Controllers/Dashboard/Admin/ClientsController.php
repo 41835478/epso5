@@ -55,7 +55,7 @@ class ClientsController extends DashboardController
     {
         return view(dashboard_path($this->section . '.create'))            
             ->withRegions($region->all())
-            ->withCrops($crop->all());;
+            ->withCrops($crop->all());
     }
 
     /**
