@@ -2,14 +2,16 @@
 
 namespace App\Services\Credentials;
 
+use App\Repositories\Clients\ClientsRepository;
 use App\Services\Credentials\Traits\Authorize;
+use App\Services\Credentials\Traits\Config;
 use App\Services\Credentials\Traits\Helpers;
 use App\Services\Credentials\Traits\Roles;
 use App\Services\Credentials\Traits\Users;
 
 class CredentialsClass {
 
-    use Authorize, Helpers, Roles, Users;
+    use Authorize, Config, Helpers, Roles, Users;
 
     /**
      * @var user
@@ -58,6 +60,9 @@ class CredentialsClass {
         //Authorize 
         'authorize',
         'accessError',
+
+        //Config 
+        'config'
     ];
 
     /**
