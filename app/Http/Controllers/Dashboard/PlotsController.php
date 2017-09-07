@@ -20,7 +20,7 @@ class PlotsController extends DashboardController
      * @var private
      */
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
-    private $role       = 'admin';
+    private $role       = 'user';
     private $section    = 'plots';
 
     public function __construct(PlotsRepository $controller, DataTable $table)
