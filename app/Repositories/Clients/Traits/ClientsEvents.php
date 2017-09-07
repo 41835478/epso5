@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Clients\Traits;
 
+use Cache;
+
 trait ClientsEvents {
 
     /*
@@ -9,17 +11,12 @@ trait ClientsEvents {
     | Events
     |--------------------------------------------------------------------------
     */
+    protected static function boot()
+    {
+        parent::boot();
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
-
-    //     static::saved(function ($model) {
-    //         SELF::CacheManagement($model);
-    //     });
-        
-    //     static::deleted(function ($model) {
-    //         SELF::CacheManagement($model);
-    //     });
-    // }
+        static::saved(function ($model) {
+            Cache::forget('cache-client-' . $model->id);
+        });
+    }
 }
