@@ -12,7 +12,7 @@ trait Pipeline
      * Set the route value
      * @return this
      */
-    private function route($route)
+    public function route($route)
     {
         $this->route = $route;
 
@@ -23,7 +23,7 @@ trait Pipeline
      * Set the class values
      * @return this
      */
-    private function class($class)
+    public function class($class)
     {
         $this->class = $class;
 
@@ -34,7 +34,7 @@ trait Pipeline
      * Set the target value
      * @return this
      */
-    private function target($target)
+    public function target($target)
     {
         $this->target = $target;
 
@@ -45,7 +45,7 @@ trait Pipeline
      * Set the type value
      * @return this
      */
-    private function type($type)
+    public function type($type)
     {
         $this->type = $type;
 
@@ -56,7 +56,7 @@ trait Pipeline
      * Set the width value
      * @return this
      */
-    private function width($width)
+    public function width($width)
     {
         $this->width = $width;
 
@@ -67,7 +67,7 @@ trait Pipeline
      * Set the folder value
      * @return this
      */
-    private function folder($folder)
+    public function folder($folder)
     {
         $this->folder = $folder;
 

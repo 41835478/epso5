@@ -9,9 +9,15 @@ Route::name('image')
             'profile',
         ];
         //Get the file name
-        $file = (in_array($folder, $allowedFolders) && is_string($filename)) 
-            ? storage_path('app/public/' . $folder . '/' . $filename) 
-            : storage_path('app/public/' . no_image());
+        if($filename == no_image()) {
+            $file = storage_path('app/public/' . no_image());
+        } else {
+            //Get the file
+            $file = (in_array($folder, $allowedFolders)) 
+                ? storage_path('app/public/' . $folder . '/' . $filename) 
+                : storage_path('app/public/' . no_image());
+        }
+
         //
         return Image::make($file)
             ->resize($size, null, function ($constraint) {

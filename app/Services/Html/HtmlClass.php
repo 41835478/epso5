@@ -23,11 +23,9 @@ class HtmlClass {
     /**
      * @var private
      */
-    private $form;
-
-    private $class = [];
-    private $folder;
-    private $width;
+    protected $class = [];
+    protected $folder;
+    protected $width;
 
     /**
      * Generate the methods

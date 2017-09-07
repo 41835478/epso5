@@ -8,6 +8,7 @@ use App\DataTables\Clients\DataTableSearch;
 use App\Repositories\Clients\ClientsRepository;
 use App\Repositories\Clients\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Html;
 
 class DataTable extends Repository
 {
@@ -52,11 +53,7 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             })
             ->editColumn('client_image', function($data) {
-                return sprintf('<img src="%s" class="thumbnail">', route('dashboard.image', [
-                    $folder = $this->imageFolder, 
-                    $image = $data->client_image, 
-                    $width = $this->imageWidth, 
-                ]));
+                return Html::thumbnail($data->client_image);
             });
     }
 }
