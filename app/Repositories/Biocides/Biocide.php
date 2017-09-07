@@ -35,20 +35,4 @@ class Biocide extends Model  {
         'biocide_company',
         'biocide_formula',
     ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    // protected $hidden = ['id'];
-
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    // protected $casts = [
-    //     'is_god'    => 'boolean',
-    // ];
 }
