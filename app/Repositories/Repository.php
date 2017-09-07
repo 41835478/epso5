@@ -115,7 +115,6 @@ abstract class Repository
             return $this->model
                 ->create(request()->all());
         }
-        
         //Update an Item
         if(is_numeric($id)) {
             //Get the item
@@ -127,6 +126,7 @@ abstract class Repository
             }
             return $item->update(request()->all());
         }
+        return false;
     }
 
     /**
