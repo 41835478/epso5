@@ -39,6 +39,7 @@
         or keep it empty for default 
     --}}
     @component(component_path('legend'))
-        @slot('legendContent', legend_path($section))
+        {{-- @slot('legendContent', legend_path($section)) --}}
+        @slot('legendContent', legend_path())
     @endcomponent
 @endsection
