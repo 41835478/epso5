@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Repositories\Plots\Traits;
+namespace App\Repositories\Geolocations\Traits;
 
-use App\Repositories\Geolocations\Geolocation;
+use App\Repositories\Plots\Plot;
 
-trait PlotsRelationships {
+trait GeolocationsRelationships {
 
     /*
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
     */
-    public function geolocation()
+    public function plot()
     {
-        return $this->hasOne(Geolocation::class);
+        return $this->belongsTo(Plot::class);
     }
 }
