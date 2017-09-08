@@ -3,7 +3,7 @@
     @foreach($irrigations as $value)
         {!! Html::model($data ?? null)
             ->item($value->id, $value->irrigation_name)
-            ->relationship('region')
+            ->relationship('irrigation')
             ->checkbox() 
         !!}
     @endforeach  

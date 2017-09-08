@@ -29,24 +29,24 @@ class ClientsRepository extends Repository
     public function store($id = null)
     {
         return DB::transaction(function () use ($id) {
-            $request = $this->requestOperations(request()->all());
+            $request = $this->requestOperations(request()->all());//ClientsHelpers
             //Create an Item
             if (is_null($id)) {
                 //Create item
                 $item = $this->model->create($request);
                 //Sync with relationships
-                if($item->region()->sync(request('region_id')) && $item->crop()->sync(request('crop_id'))) {
-                    return $item;
-                }
+                $this->syncRelationships($item);//ClientsHelpers
+                //Return item
+                return $item;
             }
             //Update an Item
             if(is_numeric($id)) {
                 //Get the item
                 $item = $this->model->find($id);
                 //Sync with relationships
-                if($item->region()->sync(request('region_id')) && $item->crop()->sync(request('crop_id'))) {
-                    return $item->update($request);
-                }
+                $this->syncRelationships($item);//ClientsHelpers
+                //Return item
+                return $item->update($request);
             }
             //Create an error
             return false;

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        {!! Html::thumbnail($data->client_image) !!}
+        {!! Html::thumbnail($data->client_image ?? null) !!}
     </div>
     <div class="break-line"></div>
     {{-- Field: Image --}}

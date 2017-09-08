@@ -3,7 +3,9 @@
 namespace App\Repositories\Clients\Traits;
 
 use App\Repositories\Crops\Crop;
+use App\Repositories\Irrigations\Irrigation;
 use App\Repositories\Regions\Region;
+use App\Repositories\Trainings\Training;
 use App\Repositories\Users\User;
 
 trait ClientsRelationships {
@@ -13,9 +15,19 @@ trait ClientsRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
-    public function user()
+    public function crop()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(Crop::class);
+    }
+
+    public function irrigation()
+    {
+        return $this->belongsToMany(Irrigation::class);
+    }
+
+    public function training()
+    {
+        return $this->belongsToMany(Training::class);
     }
 
     public function region()
@@ -23,8 +35,8 @@ trait ClientsRelationships {
         return $this->belongsToMany(Region::class);
     }
 
-    public function crop()
+    public function user()
     {
-        return $this->belongsToMany(Crop::class);
+        return $this->hasMany(User::class);
     }
 }

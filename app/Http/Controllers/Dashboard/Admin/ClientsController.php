@@ -55,10 +55,12 @@ class ClientsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CropsRepository $crop, RegionsRepository $region)
+    public function create(CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
     {
         return view(dashboard_path($this->section . '.create'))            
+            ->withIrrigations($irrigation->all())
             ->withRegions($region->all())
+            ->withTrainings($training->all())
             ->withCrops($crop->all());
     }
 

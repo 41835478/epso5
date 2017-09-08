@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Trainings\Traits;
 
+use App\Repositories\Clients\Client;
+
 trait TrainingsRelationships {
 
     /*
@@ -9,13 +11,8 @@ trait TrainingsRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
+    public function client()
+    {
+        return $this->belongsToMany(Client::class);
+    }
 }
