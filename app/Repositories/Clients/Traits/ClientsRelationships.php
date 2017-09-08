@@ -4,6 +4,7 @@ namespace App\Repositories\Clients\Traits;
 
 use App\Repositories\Crops\Crop;
 use App\Repositories\Irrigations\Irrigation;
+use App\Repositories\Plots\Plot;
 use App\Repositories\Regions\Region;
 use App\Repositories\Trainings\Training;
 use App\Repositories\Users\User;
@@ -23,6 +24,11 @@ trait ClientsRelationships {
     public function irrigation()
     {
         return $this->belongsToMany(Irrigation::class);
+    }
+
+    public function plot()
+    {
+        return $this->hasOne(Plot::class);
     }
 
     public function training()

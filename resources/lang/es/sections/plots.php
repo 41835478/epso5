@@ -7,7 +7,7 @@ return [
     | Sections: plots
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del plot',
-    'title'             => 'Plot',
-    'title:plural'      => 'Plots',
+    'info'              => 'Información de la parcela',
+    'title'             => 'Parcela',
+    'title:plural'      => 'Parcelas',
 ];

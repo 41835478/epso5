@@ -5,16 +5,16 @@ namespace App\Repositories\Plots;
 //use App\Repositories\Traits\Date;
 //use App\Repositories\Plots\Traits\PlotsEvents;
 //use App\Repositories\Plots\Traits\PlotsPresenters;
-//use App\Repositories\Plots\Traits\PlotsRelationships;
+use App\Repositories\Plots\Traits\PlotsRelationships;
 //use App\Repositories\Plots\Traits\PlotsScopes;
-//use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Plot extends Model  {
 
-    use Notifiable;
+    use Notifiable, PlotsRelationships, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -22,7 +22,7 @@ class Plot extends Model  {
      * @var string
      */
     protected $table = 'plots';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.

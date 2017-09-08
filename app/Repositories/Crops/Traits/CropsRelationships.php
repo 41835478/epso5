@@ -5,6 +5,7 @@ namespace App\Repositories\Crops\Traits;
 use App\Repositories\Clients\Client;
 use App\Repositories\CropVarieties\CropVariety;
 use App\Repositories\Pests\Pest;
+use App\Repositories\Plots\Plot;
 
 trait CropsRelationships {
 
@@ -24,13 +25,18 @@ trait CropsRelationships {
         return $this->hasMany(CropVariety::class);
     }
 
+    public function pattern()
+    {
+        return $this->hasMany(Pattern::class);
+    }
+    
     public function pest()
     {
         return $this->hasMany(Pest::class);
     }
 
-    public function pattern()
+    public function plot()
     {
-        return $this->hasMany(Pattern::class);
+        return $this->hasOne(Plot::class);
     }
 }
