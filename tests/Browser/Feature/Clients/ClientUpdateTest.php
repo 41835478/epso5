@@ -32,11 +32,21 @@ class ClientUpdateTest extends DuskTestCase
                 ->type('client_region', $this->makeClient()->client_region)
                 ->type('client_state', $this->makeClient()->client_state)
                 ->type('client_country', $this->makeClient()->client_country)
-                ->driver->executeScript('window.scrollTo(0, 500);');
-                
+                ->driver->executeScript('window.scrollTo(0, 800);');
+            
+            $browser->driver->executeScript("$('input[id^=checkbox-region-]').attr('checked',false);");
+            $browser->driver->executeScript("$('input[id^=checkbox-crop-]').attr('checked',false);");
+            $browser->driver->executeScript("$('input[id^=checkbox-training-]').attr('checked',false);");
+            $browser->driver->executeScript("$('input[id^=checkbox-irrigation-]').attr('checked',false);");
+
             $browser
                 ->check('#checkbox-region-' . $this->makeRegion())
                 ->check('#checkbox-crop-1')
+                ->check('#checkbox-training-1')
+                ->check('#checkbox-irrigation-1')
+                ->check('#checkbox-irrigation-3');
+
+            $browser
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
@@ -75,6 +85,30 @@ class ClientUpdateTest extends DuskTestCase
         [
             'client_id'     => $this->lastClient()->id,
             'crop_id'       => 2,
+        ]);
+
+        $this->assertDatabaseHas('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 1,
+        ]);
+
+        $this->assertDatabaseMissing('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 2,
+        ]);
+    
+        $this->assertDatabaseHas('client_training', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'training_id'   => 1,
+        ]);
+
+        $this->assertDatabaseMissing('client_training', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'training_id'   => 2,
         ]);
     }
 }

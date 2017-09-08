@@ -41,11 +41,16 @@ class ClientCreateTest extends DuskTestCase
                 ->type('client_region', $this->makeClient()->client_region)
                 ->type('client_state', $this->makeClient()->client_state)
                 ->type('client_country', $this->makeClient()->client_country)
-                ->driver->executeScript('window.scrollTo(0, 500);');
+                ->driver->executeScript('window.scrollTo(0, 800);');
 
             $browser
                 ->check('#checkbox-region-' . $this->makeRegion())
                 ->check('#checkbox-crop-1')
+                ->check('#checkbox-training-1')
+                ->check('#checkbox-irrigation-1')
+                ->check('#checkbox-irrigation-3');
+
+            $browser
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
@@ -84,6 +89,30 @@ class ClientCreateTest extends DuskTestCase
         [
             'client_id'     => $this->lastClient()->id,
             'crop_id'       => 2,
+        ]);
+
+        $this->assertDatabaseHas('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 1,
+        ]);
+
+        $this->assertDatabaseMissing('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 2,
+        ]);
+        
+        $this->assertDatabaseHas('client_training', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'training_id'   => 1,
+        ]);
+
+        $this->assertDatabaseMissing('client_training', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'training_id'   => 2,
         ]);
     }
 
