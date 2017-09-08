@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         // General seeders 
         $this->call(ClientsListTableSeeder::class);
         $this->call(CropTableSeeder::class);
+        $this->call(IrrigationTableSeeder::class);
+        $this->call(TrainingTableSeeder::class);
         $this->call(UsersTableSeeder::class);
 
         // Crops Varieties 

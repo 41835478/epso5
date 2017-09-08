@@ -22,11 +22,14 @@ trait Links
      * Create a resource
      * @return string
      */
-    public function linkCreate($route, $section)
+    public function linkCreate($route, $section, $value = null)
     {
+        $route = $value 
+            ? route('dashboard.' . $route . '.' . $section . '.create', $value)
+            : route('dashboard.' . $route . '.' . $section . '.create'); 
         return $this->linkBuilder([
             'title' => icon('new', trans('buttons.new')),
-            'route' => route('dashboard.' . $route . '.' . $section . '.create'),
+            'route' => $route,
             'id' => 'button-create-link',
         ]);
     }

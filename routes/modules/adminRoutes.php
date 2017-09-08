@@ -18,8 +18,14 @@ Route::group([
         Route::resource('crop_varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['index', 'destroy', 'edit']]);
         Route::get('crop_varieties/edit/{crop_variety}/{crop}', 'Dashboard\Admin\CropVarietiesController@edit')->name('crop_varieties.edit');
         Route::post('crop_variety_types', 'Dashboard\Admin\CropVarietyTypesController@store')->name('crop_variety_types.store');
+        //Irrigations
+        Route::resource('irrigations', 'Dashboard\Admin\IrrigationsController', ['except' => ['destroy', 'show']]);
         //Patterns
         Route::resource('patterns', 'Dashboard\Admin\PatternsController', ['except' => ['destroy', 'index']]);
+        Route::post('patterns/eliminate', 'Dashboard\Admin\PatternsController@eliminate')->name('patterns.eliminate');
         //Pests
         Route::resource('pests', 'Dashboard\Admin\PestsController', ['except' => ['destroy', 'index']]);
+        Route::post('pests/eliminate', 'Dashboard\Admin\PestsController@eliminate')->name('pests.eliminate');
+        //Trainings
+        Route::resource('trainings', 'Dashboard\Admin\TrainingsController', ['except' => ['destroy', 'show']]);
 });

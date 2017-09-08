@@ -16,10 +16,10 @@
         </a>
     @endif
     {{-- Crops types --}}
-    <a href="{{ route('dashboard.' . $role . '.' . $section . '.edit', $data->id) }}" class="btn btn-icon btn-danger button-pests-click">
+    <a href="{{ route('dashboard.' . $role . '.pests.show', $data->id) }}" class="btn btn-icon btn-danger button-pests-click">
         {!! icon('pests') !!}
     </a>
-    <a href="{{ route('dashboard.' . $role . '.' . $section . '.edit', $data->id) }}" class="btn btn-icon btn-info button-pattern-click">
+    <a href="{{ route('dashboard.' . $role . '.patterns.show', $data->id) }}" class="btn btn-icon btn-info button-pattern-click">
         {!! icon('tree') !!}
     </a>
 </div>

@@ -1,12 +1,13 @@
-{{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{{-- Search by: crop --}}
+{!! BootForm::text(sections('crops.title'), 'search_crop')
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
+{{-- Search by: Name --}}
+{!! BootForm::text(sections('pests.title'), 'search_name')
     ->addGroupClass('col-md-3')
+    ->autofocus()
 !!}
 
 {{-- Search by: ID --}}

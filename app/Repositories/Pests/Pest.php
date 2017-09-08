@@ -5,7 +5,7 @@ namespace App\Repositories\Pests;
 //use App\Repositories\Traits\Date;
 //use App\Repositories\Pests\Traits\PestsEvents;
 //use App\Repositories\Pests\Traits\PestsPresenters;
-//use App\Repositories\Pests\Traits\PestsRelationships;
+use App\Repositories\Pests\Traits\PestsRelationships;
 //use App\Repositories\Pests\Traits\PestsScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Pest extends Model  {
 
-    use Notifiable, SoftDeletes;
+    use Notifiable, PestsRelationships, SoftDeletes;
 
     /**
      * The database table used by the model.

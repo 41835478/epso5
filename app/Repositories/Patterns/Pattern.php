@@ -5,7 +5,7 @@ namespace App\Repositories\Patterns;
 //use App\Repositories\Traits\Date;
 //use App\Repositories\Patterns\Traits\PatternsEvents;
 //use App\Repositories\Patterns\Traits\PatternsPresenters;
-//use App\Repositories\Patterns\Traits\PatternsRelationships;
+use App\Repositories\Patterns\Traits\PatternsRelationships;
 //use App\Repositories\Patterns\Traits\PatternsScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Pattern extends Model  {
 
-    use Notifiable, SoftDeletes;
+    use Notifiable, PatternsRelationships, SoftDeletes;
 
     /**
      * The database table used by the model.

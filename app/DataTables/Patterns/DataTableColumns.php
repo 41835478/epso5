@@ -18,18 +18,11 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
+            $this->setColumnWithRelationship(sections('crops.title'), 'crop.crop_name'),
             $this->setColumn(trans_title('patterns'), 'pattern_name'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans('base.description'), 'pattern_description', [
+                 'defaultContent' => no_result(),
+            ]),
         ];
     }
 

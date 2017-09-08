@@ -8,6 +8,7 @@ use App\DataTables\Patterns\DataTableSearch;
 use App\Repositories\Patterns\PatternsRepository;
 use App\Repositories\Patterns\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Route;
 
 class DataTable extends Repository
 {
@@ -28,7 +29,9 @@ class DataTable extends Repository
     {
         $query = app(PatternsRepository::class)
             ->dataTable()
-            ->select($this->section . '.*');
+            ->where('crop_id', Route::input('pattern'))
+            ->select($this->section . '.*')
+            ->with('crop');
 
         return $this->applyScopes($query);
     }

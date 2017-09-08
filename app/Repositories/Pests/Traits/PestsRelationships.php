@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Pests\Traits;
 
+use App\Repositories\Crops\Crop;
+
 trait PestsRelationships {
 
     /*
@@ -10,12 +12,8 @@ trait PestsRelationships {
     |--------------------------------------------------------------------------
     */
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
+    public function crop()
+    {
+        return $this->belongsTo(Crop::class);
+    }
 }

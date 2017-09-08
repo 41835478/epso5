@@ -30,10 +30,10 @@
                 'url' => route('dashboard.admin.biocides.index'),
             ])->subMenuItem([
                 'title' => icon('irrigations', trans('navbar.admin:irrigation')),
-                'url' => route('dashboard.admin.cities.index'),
+                'url' => route('dashboard.admin.irrigations.index'),
             ])->subMenuItem([
                 'title' => icon('tree', trans('navbar.admin:training')),
-                'url' => route('dashboard.admin.cities.index'),
+                'url' => route('dashboard.admin.trainings.index'),
             ])
             ->output()
         )

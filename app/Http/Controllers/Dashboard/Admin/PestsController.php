@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\Pests\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Pests\PestsRepository;
 use App\Http\Requests\PestsRequest;
+use App\Repositories\Crops\CropsRepository;
+use App\Repositories\Pests\PestsRepository;
 //use Credentials;
 //use Illuminate\Http\Request;
 
@@ -15,24 +16,26 @@ class PestsController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $crop;
     protected $table;
 
     /**
      * @var private
      */
-    private $parent;
+    private $parent     = 'crops';
     private $role       = 'admin';
     private $section    = 'pests';
 
-    public function __construct(PestsRepository $controller, DataTable $table)
+    public function __construct(PestsRepository $controller, CropsRepository $crop, DataTable $table)
     {
         $this->controller   = $controller;
+        $this->crop         = $crop;
         $this->table        = $table;
-        
         //Sharing in the view
         view()->share([
             'section'   => $this->section,
-            'role'      => $this->role
+            'role'      => $this->role,
+            'parent'    => $this->parent,
         ]);
     }
 
@@ -41,10 +44,11 @@ class PestsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($id)
     {
-        return $this->table
-            ->render(dashboard_path($this->section . '.index'));
+        $crops = $this->crop->find($id);
+            return $this->table
+                ->render(dashboard_path($this->section . '.index'), compact('crops'));
     }
 
     /**
@@ -65,12 +69,10 @@ class PestsController extends DashboardController
      */
     public function store(PestsRequest $request)
     {
-        $create = $this->controller
-            ->store();
-
+        $create = $this->controller->store();
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.show', request('crop_id'))
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -102,12 +104,10 @@ class PestsController extends DashboardController
      */
     public function update(PestsRequest $request, $id)
     {
-        $update = $this->controller
-            ->store($id);
-
+        $update = $this->controller->store($id);
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.show', request('crop_id'))
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

@@ -7,7 +7,7 @@ return [
     | Sections: pests
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del pest',
-    'title'             => 'Pest',
-    'title:plural'      => 'Pests',
+    'info'              => 'Información de plagas',
+    'title'             => 'Plaga',
+    'title:plural'      => 'Plagas',
 ];

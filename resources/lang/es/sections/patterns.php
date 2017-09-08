@@ -7,7 +7,7 @@ return [
     | Sections: patterns
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del pattern',
-    'title'             => 'Pattern',
-    'title:plural'      => 'Patterns',
+    'info'              => 'Información del patrones/pies',
+    'title'             => 'Patrón',
+    'title:plural'      => 'Patrones',
 ];

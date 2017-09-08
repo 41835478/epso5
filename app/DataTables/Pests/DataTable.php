@@ -8,6 +8,7 @@ use App\DataTables\Pests\DataTableSearch;
 use App\Repositories\Pests\PestsRepository;
 use App\Repositories\Pests\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Route;
 
 class DataTable extends Repository
 {
@@ -28,7 +29,9 @@ class DataTable extends Repository
     {
         $query = app(PestsRepository::class)
             ->dataTable()
-            ->select($this->section . '.*');
+            ->where('crop_id', Route::input('pest'))
+            ->select($this->section . '.*')
+            ->with('crop');
 
         return $this->applyScopes($query);
     }

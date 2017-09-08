@@ -4,6 +4,7 @@ namespace App\Repositories\Crops\Traits;
 
 use App\Repositories\Clients\Client;
 use App\Repositories\CropVarieties\CropVariety;
+use App\Repositories\Pests\Pest;
 
 trait CropsRelationships {
 
@@ -13,7 +14,7 @@ trait CropsRelationships {
     |--------------------------------------------------------------------------
     */
 
-    public function crop()
+    public function client()
     {
         return $this->belongsToMany(Client::class);
     }
@@ -21,5 +22,15 @@ trait CropsRelationships {
     public function crop_variety()
     {
         return $this->hasMany(CropVariety::class);
+    }
+
+    public function pest()
+    {
+        return $this->hasMany(Pest::class);
+    }
+
+    public function pattern()
+    {
+        return $this->hasMany(Pattern::class);
     }
 }
