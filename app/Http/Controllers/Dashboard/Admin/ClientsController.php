@@ -7,7 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
 use App\Repositories\Crops\CropsRepository;
+use App\Repositories\Irrigations\IrrigationsRepository;
 use App\Repositories\Regions\RegionsRepository;
+use App\Repositories\Trainings\TrainingsRepository;
 use App\Services\Redirection\Redirection;
 
 class ClientsController extends DashboardController
@@ -16,7 +18,9 @@ class ClientsController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $irrigation;
     protected $table;
+    protected $training;
 
     /**
      * @var private
@@ -86,11 +90,13 @@ class ClientsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CropsRepository $crop, RegionsRepository $region)
+    public function edit($id, CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
     {
         return view(dashboard_path($this->section . '.edit'))
             ->withData($this->controller->find($id))
+            ->withIrrigations($irrigation->all())
             ->withRegions($region->all())
+            ->withTrainings($training->all())
             ->withCrops($crop->all());
     }
 

@@ -10,9 +10,11 @@
             [trans('base.edit')], 
         ])
         {{-- Add the data --}}
-        @slot('data', $data)
-        @slot('regions', $regions ?? null)
         @slot('crops', $crops ?? null)
+        @slot('data', $data)
+        @slot('irrigations', $irrigations ?? null)
+        @slot('regions', $regions ?? null)
+        @slot('trainings', $trainings ?? null)
     @endcomponent
 
 @endsection

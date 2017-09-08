@@ -10,3 +10,11 @@
 {{-- Crops alloweds --}}
 <legend class="title">@lang('sections/clients.form:crops')</legend>
 @include(dashboard_path('clients.forms.sections.crops'))
+
+{{-- Trainings alloweds --}}
+<legend class="title">@lang('sections/clients.form:trainings')</legend>
+@include(dashboard_path('clients.forms.sections.trainings'))
+
+{{-- Irrigations alloweds --}}
+<legend class="title">@lang('sections/clients.form:irrigations')</legend>
+@include(dashboard_path('clients.forms.sections.irrigations'))
