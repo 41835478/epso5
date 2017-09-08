@@ -29,14 +29,28 @@ class Plot extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    // protected $hidden = ['id'];
+    protected $fillable = [
+        'client_id',
+        'crop_id',
+        'crop_variety_id',
+        'pattern_id',
+        'user_id',
+        'city_id',
+        'region_id',
+        'state_id',
+        'country_id',
+        'climatic_station_id',
+        'climatic_station_distance',
+        'plot_name',
+        'plot_quantity',
+        'plot_crop_type',
+        'plot_reference',
+        'plot_framework_x',
+        'plot_framework_y',
+        'plot_area',
+        'plot_green_cover',
+        'plot_start_date',
+    ];
 
     /**
      * The attributes that should be casted to native types.
@@ -44,6 +58,6 @@ class Plot extends Model  {
      * @var array
      */
     // protected $casts = [
-    //     'is_god'    => 'boolean',
+    //     'plot_green_cover' => 'string',
     // ];
 }
