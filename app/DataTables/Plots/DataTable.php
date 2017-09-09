@@ -29,7 +29,15 @@ class DataTable extends Repository
         $query = app(PlotsRepository::class)
             ->dataTable()
             ->select($this->section . '.*')
-            ->with('city', 'client', 'crop', 'crop_variety', 'geolocation', 'region');
+            ->with([
+                'city', 
+                'client', 
+                'crop', 
+                'crop_variety', 
+                'geolocation', 
+                'region', 
+                'user'
+            ]);
 
         return $this->applyScopes($query);
     }
@@ -42,10 +50,18 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'plot_name', 'user.name'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
+            })
+            ->editColumn('user.name', function($data) {
+                return $this
+                    ->formatString($data->user->name ?? null, $data->user ?? null);
+            })
+            ->editColumn('plot_name', function($data) {
+                return $this
+                    ->formatString($data->plot_name ?? null);
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);

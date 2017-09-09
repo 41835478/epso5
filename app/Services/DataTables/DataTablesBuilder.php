@@ -2,6 +2,7 @@
 
 namespace App\Services\DataTables;
 
+use App\Services\DataTables\DataTableFormat;
 use App\Services\DataTables\DataTableHelpers;
 use App\Services\DataTables\Javascript\InitComplete;
 use App\Services\DataTables\Javascript\JqueryCallback;
@@ -12,7 +13,7 @@ use Yajra\Datatables\Services\DataTable;
 
 abstract class DataTablesBuilder extends DataTable {
     
-    use InitComplete, Filters, JqueryCallback, SearchEngine, StateLoadParams, DataTableHelpers;
+    use InitComplete, Filters, JqueryCallback, SearchEngine, StateLoadParams, DataTableHelpers, DataTableFormat;
 
     /*
     |--------------------------------------------------------------------------

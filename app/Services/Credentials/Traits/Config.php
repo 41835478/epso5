@@ -22,6 +22,7 @@ trait Config
             $client = app(ClientsRepository::class)->find($this->client());
             return [
                 'client_id'             => $client->id,
+                'client_config'         => (count($client->config->pluck('config_key')->all()) > 0) ? $client->config->pluck('config_key')->all() : null,
                 'client_crops'          => (count($client->crop->pluck('id')->all()) > 0) ? $client->crop->pluck('id')->all() : null,
                 'client_irrigations'    => (count($client->irrigation->pluck('id')->all()) > 0) ? $client->irrigation->pluck('id')->all() : null,
                 'client_regions'        => (count($client->region->pluck('id')->all()) > 0) ? $client->region->pluck('id')->all() : null,

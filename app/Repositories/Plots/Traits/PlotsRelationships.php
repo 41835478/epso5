@@ -8,6 +8,7 @@ use App\Repositories\CropVarieties\CropVariety;
 use App\Repositories\Crops\Crop;
 use App\Repositories\Geolocations\Geolocation;
 use App\Repositories\Regions\Region;
+use App\Repositories\Users\User;
 
 trait PlotsRelationships {
 
@@ -18,31 +19,36 @@ trait PlotsRelationships {
     */
    public function city()
    {
-       return $this->belongsTo(City::class);
+       return $this->belongsTo(City::class)->withTrashed();
    }
 
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class)->withTrashed();
     }
 
     public function crop()
     {
-        return $this->belongsTo(Crop::class);
+        return $this->belongsTo(Crop::class)->withTrashed();
     }
 
     public function crop_variety()
     {
-        return $this->belongsTo(CropVariety::class);
+        return $this->belongsTo(CropVariety::class)->withTrashed();
     }
 
     public function geolocation()
     {
-        return $this->hasOne(Geolocation::class);
+        return $this->hasOne(Geolocation::class)->withTrashed();
     }
 
     public function region()
     {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(Region::class)->withTrashed();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withTrashed();
     }
 }

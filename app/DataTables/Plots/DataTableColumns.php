@@ -18,6 +18,7 @@ trait DataTableColumns
          * @param  array $attributes [Add extra attributes]
          */
         $client = [$this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name')];
+        $user   = [$this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name')];
 
         $columns = [
             $this->setColumnWithRelationship(trans_title('crops', 'singular'), 'crop.crop_name'),
@@ -27,8 +28,11 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
             $this->setColumn(trans('units.area'), 'plot_area'),
         ];
-        if(!Credentials::isAdmin()) {
-            return array_merge([$this->createCheckbox()], $client, $columns);
+        if(Credentials::isAdmin()) {
+            return array_merge([$this->createCheckbox()], $client, $user, $columns);
+        }
+        if(Credentials::isEditor()) {
+            return array_merge([$this->createCheckbox()], $user, $columns);
         }
         return array_merge([$this->createCheckbox()], $columns);
     }
