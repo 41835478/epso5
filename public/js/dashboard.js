@@ -54326,6 +54326,10 @@ $('.trigger-modal').on('click', function () {
     }
 });
 
+$('#modal-delete').on('hide.bs.modal', function () {
+    $('#item-list').val('');
+});
+
 /***/ }),
 
 /***/ "./resources/assets/js/dashboard/jquery/forms.js":

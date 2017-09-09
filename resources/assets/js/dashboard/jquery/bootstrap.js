@@ -38,3 +38,7 @@
             modal.modal();
         }
     })
+
+    $('#modal-delete').on('hide.bs.modal', function() {
+        $( '#item-list' ).val( '' );
+    });
