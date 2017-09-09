@@ -25,3 +25,6 @@ touch testing.sqlite
 art migrate --database=testing
 art migrate:refresh --database=testing
 art db:seed --database=testing
+
+# Generate a seed from a table
+art iseed my_table
