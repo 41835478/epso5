@@ -13,10 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         // General seeders 
         $this->call(ClientsListTableSeeder::class);
+        $this->call(ConfigsTableSeeder::class);
         $this->call(CropTableSeeder::class);
-        $this->call(IrrigationTableSeeder::class);
-        $this->call(PlotTableSeeder::class);
-        $this->call(TrainingTableSeeder::class);
+        $this->call(IrrigationsTableSeeder::class);
+        $this->call(PlotsTableSeeder::class);
+        $this->call(TrainingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
 
         // Crops Varieties 
@@ -30,9 +31,9 @@ class DatabaseSeeder extends Seeder
         $this->call(Vineyard_Pests_TableSeeder::class);
 
         // Countries 
-        $this->call(CountryTableSeeder::class);
-        $this->call(RegionTableSeeder::class);
-        $this->call(StateTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(RegionsTableSeeder::class);
+        $this->call(StatesTableSeeder::class);
             $this->call(Cities_From_La_Mancha::class);
             $this->call(Cities_From_Comunidad_Valenciana::class);
             $this->call(Cities_From_Comunidad_Murcia::class);
