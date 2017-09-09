@@ -10852,6 +10852,11 @@ table td {
   border-right: 1px solid #d4d4d4;
 }
 
+table th:first-child,
+table td:first-child {
+  display: none;
+}
+
 table td:nth-last-child(2),
 table th:nth-last-child(2) {
   border-right: 0;

@@ -33,6 +33,11 @@
             border-right: 1px solid $color-gray-lighter;
         }
 
+        th:first-child,  //Hide first column with checkboxes
+        td:first-child {
+            display: none; 
+        }
+
         td:nth-last-child(2),
         th:nth-last-child(2) {
             border-right: 0;
