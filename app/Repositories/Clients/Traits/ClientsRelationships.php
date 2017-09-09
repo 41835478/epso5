@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Clients\Traits;
 
+use App\Repositories\Configs\Config;
 use App\Repositories\Crops\Crop;
 use App\Repositories\Irrigations\Irrigation;
 use App\Repositories\Plots\Plot;
@@ -16,6 +17,11 @@ trait ClientsRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
+    public function config()
+    {
+        return $this->belongsToMany(Config::class);
+    }
+
     public function crop()
     {
         return $this->belongsToMany(Crop::class);

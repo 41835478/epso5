@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Configs\Traits;
 
+use App\Repositories\Clients\Client;
+
 trait ConfigsRelationships {
 
     /*
@@ -9,13 +11,8 @@ trait ConfigsRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
-
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
+    public function client()
+    {
+        return $this->belongsToMany(Client::class);
+    }
 }

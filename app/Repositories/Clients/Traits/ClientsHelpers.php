@@ -31,9 +31,10 @@ trait ClientsHelpers {
     private function syncRelationships($item)
     {
         if($item) {
-            $item->region()->sync(request('region_id'));
+            $item->config()->sync(request('config_id'));
             $item->crop()->sync(request('crop_id'));
             $item->irrigation()->sync(request('irrigation_id'));
+            $item->region()->sync(request('region_id'));
             $item->training()->sync(request('training_id'));
         }
     }
