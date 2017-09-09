@@ -8,6 +8,7 @@ return [
     */
     'admin' => 'Administración',
         'admin:clients'     => 'Clientes',
+        'admin:config'      => 'Configuración',
         'admin:countries'   => 'Ciudades',
         'admin:crops'       => 'Cultivos',
         'admin:biocides'    => 'Fitosanitarios',

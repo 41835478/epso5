@@ -13,6 +13,8 @@ Route::group([
         Route::resource('cities', 'Dashboard\Admin\CitiesController', ['except' => ['destroy', 'show']]);
         //Clients
         Route::resource('clients', 'Dashboard\Admin\ClientsController', ['except' => ['destroy', 'show']]);
+        //Configs
+        Route::resource('configs', 'Dashboard\Admin\ConfigsController', ['except' => ['destroy', 'show']]);
         //Crops
         Route::resource('crops', 'Dashboard\Admin\CropsController', ['except' => ['destroy', 'show']]);
         Route::resource('crop_varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['index', 'destroy', 'edit']]);
