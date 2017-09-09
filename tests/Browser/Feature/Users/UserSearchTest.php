@@ -24,7 +24,7 @@ class UserSearchTest extends DuskTestCase
             $browser->loginAs($god = $this->createGod())
                 ->visit('/dashboard/users')
                 ->type('search_name', $this->createGod()->name)
-                ->waitForText($this->createGod()->name)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->createGod()->name);
                 });
@@ -32,7 +32,7 @@ class UserSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_email', $this->createGod()->email)
-                ->waitForText($this->createGod()->email)
+                ->pause(1000)
                 ->with('.table', function ($table){
                     $table->assertSee($this->createGod()->email);
                 });
@@ -40,7 +40,7 @@ class UserSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_client', $this->createClientEpso()->client_name)
-                ->waitForText($this->createClientEpso()->client_name)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table
                         ->assertSee($this->createClientEpso()->client_name)
@@ -50,7 +50,7 @@ class UserSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)   
                 ->type('search_id', $this->createGod()->id)
-                ->waitForText($this->createGod()->id)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->createGod()->id);
                 });           

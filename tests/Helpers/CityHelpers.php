@@ -46,7 +46,7 @@ trait CityHelpers
         if($this->lastCity) {
             return $this->lastCity;
         }
-        return $this->lastCity = City::latest()->first();
+        return $this->lastCity = City::orderBy('id', 'desc')->first();
     }
 
     public function setLocalization(string $type)

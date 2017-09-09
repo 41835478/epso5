@@ -37,7 +37,7 @@ trait IrrigationHelpers
         if($this->lastIrrigation) {
             return $this->lastIrrigation;
         }
-        return $this->lastIrrigation = Irrigation::latest()->first();
+        return $this->lastIrrigation = Irrigation::orderBy('id', 'desc')->first();
     }
 
     /**
@@ -52,6 +52,6 @@ trait IrrigationHelpers
         if($this->firstIrrigation) {
             return $this->firstIrrigation;
         }
-        return $this->firstIrrigation = Irrigation::oldest()->first();
+        return $this->firstIrrigation = Irrigation::orderBy('id', 'asc')->first();
     }
 }

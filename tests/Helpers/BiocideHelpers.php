@@ -36,6 +36,6 @@ trait BiocideHelpers
         if($this->lastBiocide) {
             return $this->lastBiocide;
         }
-        return $this->lastBiocide = Biocide::latest()->first();
+        return $this->lastBiocide = Biocide::orderBy('id', 'desc')->first();
     }
 }

@@ -24,7 +24,7 @@ trait ClientHelpers
         if($this->lastClient) {
             return $this->lastClient;
         }
-        return $this->lastClient = Client::latest()->first();
+        return $this->lastClient = Client::orderBy('id', 'desc')->first();
     }
 
     /**

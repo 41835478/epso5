@@ -37,7 +37,7 @@ trait TrainingHelpers
         if($this->lastTraining) {
             return $this->lastTraining;
         }
-        return $this->lastTraining = Training::latest()->first();
+        return $this->lastTraining = Training::orderBy('id', 'desc')->first();
     }
 
     /**
@@ -52,6 +52,6 @@ trait TrainingHelpers
         if($this->firstTraining) {
             return $this->firstTraining;
         }
-        return $this->firstTraining = Training::oldest()->first();
+        return $this->firstTraining = Training::orderBy('id', 'asc')->first();
     }
 }

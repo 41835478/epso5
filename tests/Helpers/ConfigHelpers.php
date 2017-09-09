@@ -37,7 +37,7 @@ trait ConfigHelpers
         if($this->lastConfig) {
             return $this->lastConfig;
         }
-        return $this->lastConfig = Config::latest()->first();
+        return $this->lastConfig = Config::orderBy('id', 'desc')->first();
     }
 
     /**
@@ -52,6 +52,6 @@ trait ConfigHelpers
         if($this->firstConfig) {
             return $this->firstConfig;
         }
-        return $this->firstConfig = Config::oldest()->first();
+        return $this->firstConfig = Config::orderBy('id', 'asc')->first();
     }
 }

@@ -23,19 +23,19 @@ class IrrigationSearchTest extends DuskTestCase
             $browser->loginAs($god = $this->createGod())
                 ->visit('/dashboard/irrigations')
                 ->type('search_name', $this->lastIrrigation()->irrigation_name)
-                ->waitForText($this->lastIrrigation()->irrigation_description)
+                ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastIrrigation()->irrigation_description);
-                    $table->assertDontSee($this->firstIrrigation()->irrigation_description);
+                    $table->assertSee($this->lastIrrigation()->irrigation_name);
+                    $table->assertDontSee($this->firstIrrigation()->irrigation_name);
                 });
 
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_id', $this->lastIrrigation()->id)
-                ->waitForText($this->lastIrrigation()->irrigation_name)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastIrrigation()->irrigation_name);
-                    $table->assertDontSee($this->firstIrrigation()->irrigation_description);
+                    $table->assertDontSee($this->firstIrrigation()->irrigation_name);
                 });
         });
     }
