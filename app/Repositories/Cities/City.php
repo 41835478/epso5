@@ -3,6 +3,7 @@
 namespace App\Repositories\Cities;
 
 use App\Repositories\Countries\Country;
+use App\Repositories\Plots\Plot;
 use App\Repositories\Regions\Region;
 use App\Repositories\States\State;
 use Illuminate\Database\Eloquent\Model;

@@ -12,7 +12,7 @@ class PlotUpdateTest extends DuskTestCase
 {
     use PlotHelpers;
     
-    protected $route = 'dashboard.admin.plots.edit';
+    protected $route = 'dashboard.user.plots.edit';
 
     /*
     |--------------------------------------------------------------------------

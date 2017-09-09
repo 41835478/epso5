@@ -29,7 +29,7 @@ class DataTable extends Repository
         $query = app(PlotsRepository::class)
             ->dataTable()
             ->select($this->section . '.*')
-            ->with('client', 'crop', 'crop_variety', 'geolocation');
+            ->with('city', 'client', 'crop', 'crop_variety', 'geolocation', 'region');
 
         return $this->applyScopes($query);
     }

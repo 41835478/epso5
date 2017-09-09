@@ -2,6 +2,8 @@
 
 namespace App\DataTables\Plots;
 
+use Credentials;
+
 trait DataTableColumns
 {
     /**
@@ -15,13 +17,15 @@ trait DataTableColumns
          * @param  string $name
          * @param  array $attributes [Add extra attributes]
          */
-        return [
-            $this->createCheckbox(),
-            //$this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
+        $client = [$this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name')];
+
+        $columns = [
             $this->setColumnWithRelationship(trans_title('crops', 'singular'), 'crop.crop_name'),
             $this->setColumnWithRelationship(trans_title('crop_varieties', 'singular'), 'crop_variety.crop_variety_name'),
             $this->setColumn(trans_title('plots'), 'plot_name'),
+            $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
+            $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
+            $this->setColumn(trans('units.area'), 'plot_area'),
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,
             //      'searchable' => false,
@@ -34,6 +38,10 @@ trait DataTableColumns
             //     'data' => 'profile.profile_social_facebook',
             // ],
         ];
+        if(!Credentials::isAdmin()) {
+            return array_merge([$this->createCheckbox()], $client, $columns);
+        }
+        return array_merge([$this->createCheckbox()], $columns);
     }
 
     /**

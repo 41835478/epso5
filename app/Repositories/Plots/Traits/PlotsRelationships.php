@@ -2,10 +2,12 @@
 
 namespace App\Repositories\Plots\Traits;
 
+use App\Repositories\Cities\City;
 use App\Repositories\Clients\Client;
 use App\Repositories\CropVarieties\CropVariety;
 use App\Repositories\Crops\Crop;
 use App\Repositories\Geolocations\Geolocation;
+use App\Repositories\Regions\Region;
 
 trait PlotsRelationships {
 
@@ -14,6 +16,11 @@ trait PlotsRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
+   public function city()
+   {
+       return $this->belongsTo(City::class);
+   }
+
     public function client()
     {
         return $this->belongsTo(Client::class);
@@ -32,5 +39,10 @@ trait PlotsRelationships {
     public function geolocation()
     {
         return $this->hasOne(Geolocation::class);
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
     }
 }
