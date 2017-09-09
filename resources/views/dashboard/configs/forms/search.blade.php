@@ -1,12 +1,7 @@
 {{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{!! BootForm::text(trans_title('configs', 'singular'), 'search_config')
     ->addGroupClass('col-md-3')
     ->autofocus()
-!!}
-
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
-    ->addGroupClass('col-md-3')
 !!}
 
 {{-- Search by: ID --}}
