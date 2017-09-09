@@ -19,6 +19,7 @@ trait DataTableColumns
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans_title('configs'), 'config_name'),
+            $this->setColumn(trans('base.key'), 'config_key'),
             $this->setColumn(trans('base.description'), 'config_description', [
                  'defaultContent' => no_result(),
             ]),

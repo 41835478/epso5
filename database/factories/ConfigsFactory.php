@@ -12,6 +12,7 @@ use App\Repositories\Configs\Config;
 $factory->define(Config::class, function (Faker\Generator $faker) {
     return [
         'config_name'           => $faker->company,
+        'config_key'            => $faker->word,
         'config_description'    => $faker->sentence($nbWords = 10, $variableNbWords = true),
     ];
 });

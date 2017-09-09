@@ -14,6 +14,7 @@ return [
     'edit'          => 'Editar',
     'form'          => 'Formulario',
     'GPS'           => 'GPS',
+    'key'           => 'Clave',
     'latitude'      => 'Latitud',
     'legend'        => 'Información y/o leyenda',
     'list'          => 'Listado',

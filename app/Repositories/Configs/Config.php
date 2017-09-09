@@ -31,6 +31,7 @@ class Config extends Model  {
      */
     protected $fillable = [
         'config_name',
+        'config_key',
         'config_description'
     ];
 }

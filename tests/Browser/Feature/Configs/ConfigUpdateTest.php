@@ -25,6 +25,7 @@ class ConfigUpdateTest extends DuskTestCase
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastConfig()->id)
                 ->type('config_name', $this->makeConfig()->config_name)
+                ->type('config_key', $this->makeConfig()->config_key)
                 ->type('config_description', $this->makeConfig()->config_description)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
@@ -32,6 +33,7 @@ class ConfigUpdateTest extends DuskTestCase
 
         $this->assertDatabaseHas('configs', [
             'config_name'           => $this->makeConfig()->config_name,
+            'config_key'            => $this->makeConfig()->config_key,
             'config_description'    => $this->makeConfig()->config_description,
         ]);
     }

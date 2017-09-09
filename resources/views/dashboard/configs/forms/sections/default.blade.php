@@ -10,6 +10,12 @@
         ->required()
     !!}
 
+    {{-- Configuration: name --}}
+    {!! BootForm::text(trans('base.key'), 'config_key')
+        ->addGroupClass('col-md-4')
+        ->required()
+    !!}
+
     {{-- Configuration: description --}}
     {!! BootForm::text(trans('base.description'), 'config_description')
         ->addGroupClass('col-md-8')

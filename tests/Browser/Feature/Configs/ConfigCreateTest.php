@@ -32,6 +32,7 @@ class ConfigCreateTest extends DuskTestCase
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
                 ->type('config_name', $this->makeConfig()->config_name)
+                ->type('config_key', $this->makeConfig()->config_key)
                 ->type('config_description', $this->makeConfig()->config_description)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
