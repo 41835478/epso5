@@ -34,6 +34,7 @@ class CreatePlotsTable extends Migration
             $table->decimal('plot_framework_y', 6, 2)->comment("Framework planting: distance between strains in meters.");
             $table->decimal('plot_area', 12, 2);
             $table->enum('plot_green_cover', [0, 1]);
+            $table->string('percent_cultivated_land', 3)->default(100)->comment("Percentage of cultivated land without deciamals");
             $table->date('plot_start_date')->nullable()->comment("Crops planting date");
             $table->softDeletes();
             $table->timestamps();
