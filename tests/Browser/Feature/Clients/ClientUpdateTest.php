@@ -38,13 +38,17 @@ class ClientUpdateTest extends DuskTestCase
             $browser->driver->executeScript("$('input[id^=checkbox-crop-]').attr('checked',false);");
             $browser->driver->executeScript("$('input[id^=checkbox-training-]').attr('checked',false);");
             $browser->driver->executeScript("$('input[id^=checkbox-irrigation-]').attr('checked',false);");
+            $browser->driver->executeScript("$('input[id^=checkbox-config-]').attr('checked',false);");
 
             $browser
                 ->check('#checkbox-region-' . $this->makeRegion())
                 ->check('#checkbox-crop-1')
                 ->check('#checkbox-training-1')
                 ->check('#checkbox-irrigation-1')
-                ->check('#checkbox-irrigation-3');
+                ->check('#checkbox-irrigation-3')
+                ->check('#checkbox-config-1')
+                ->check('#checkbox-config-3')
+                ->check('#checkbox-config-5');
 
             $browser
                 ->press(trans('buttons.edit'))
@@ -109,6 +113,30 @@ class ClientUpdateTest extends DuskTestCase
         [
             'client_id'     => $this->lastClient()->id,
             'training_id'   => 2,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 1,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 3,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 5,
+        ]);
+
+        $this->assertDatabaseMissing('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 2,
         ]);
     }
 }

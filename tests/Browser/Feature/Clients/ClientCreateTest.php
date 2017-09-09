@@ -48,7 +48,10 @@ class ClientCreateTest extends DuskTestCase
                 ->check('#checkbox-crop-1')
                 ->check('#checkbox-training-1')
                 ->check('#checkbox-irrigation-1')
-                ->check('#checkbox-irrigation-3');
+                ->check('#checkbox-irrigation-3')
+                ->check('#checkbox-config-1')
+                ->check('#checkbox-config-3')
+                ->check('#checkbox-config-5');
 
             $browser
                 ->press(trans('buttons.new'))
@@ -97,6 +100,12 @@ class ClientCreateTest extends DuskTestCase
             'irrigation_id'     => 1,
         ]);
 
+        $this->assertDatabaseHas('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 3,
+        ]);
+
         $this->assertDatabaseMissing('client_irrigation', 
         [
             'client_id'         => $this->lastClient()->id,
@@ -113,6 +122,30 @@ class ClientCreateTest extends DuskTestCase
         [
             'client_id'     => $this->lastClient()->id,
             'training_id'   => 2,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 1,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 3,
+        ]);
+
+        $this->assertDatabaseHas('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 5,
+        ]);
+
+        $this->assertDatabaseMissing('client_config', 
+        [
+            'client_id'     => $this->lastClient()->id,
+            'config_id'     => 2,
         ]);
     }
 
