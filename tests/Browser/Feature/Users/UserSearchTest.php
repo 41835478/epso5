@@ -13,6 +13,8 @@ class UserSearchTest extends DuskTestCase
 {
     use ClientHelpers;
 
+    protected $page = '/dashboard/users';
+
     /*
     |--------------------------------------------------------------------------
     | Search users
@@ -22,7 +24,7 @@ class UserSearchTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit('/dashboard/users')
+                ->visit($this->page)
                 ->type('search_name', $this->createGod()->name)
                 ->pause(1000)
                 ->with('.table', function ($table) {

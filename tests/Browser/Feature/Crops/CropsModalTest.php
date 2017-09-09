@@ -12,6 +12,7 @@ class CropsModalTest extends DuskTestCase
 {
     use CropHelpers;
 
+    protected $page = '/dashboard/crops';
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ class CropsModalTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit('/dashboard/crops')
+                ->visit($this->page)
                 ->click('.button-crop_type-click')
                 ->waitFor('#modal-crop-variety-types');
         });

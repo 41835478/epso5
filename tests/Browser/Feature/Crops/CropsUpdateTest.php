@@ -12,6 +12,8 @@ class CropsUpdateTest extends DuskTestCase
 {
     use CropHelpers;
 
+    protected $route = 'dashboard.admin.crops.edit';
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class CropsUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.crops.edit', $this->lastCrop()->id)
+                ->visitRoute($this->route, $this->lastCrop()->id)
                 ->type('crop_name', $this->makeCrop()->crop_name)
                 ->type('crop_module', $this->makeCrop()->crop_module)
                 ->type('crop_description', $this->makeCrop()->crop_description)

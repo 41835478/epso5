@@ -12,6 +12,8 @@ class TrainingUpdateTest extends DuskTestCase
 {
     use TrainingHelpers;
     
+    protected $route = 'dashboard.admin.trainings.edit';
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class TrainingUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.trainings.edit', $this->lastTraining()->id)
+                ->visitRoute($this->route, $this->lastTraining()->id)
                 ->type('training_name', $this->makeTraining()->training_name)
                 ->type('training_description', $this->makeTraining()->training_description)
                 ->press(trans('buttons.edit'))

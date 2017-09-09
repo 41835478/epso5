@@ -12,6 +12,8 @@ class CityUpdateTest extends DuskTestCase
 {
     use CityHelpers;
     
+    protected $route = 'dashboard.admin.cities.edit';//$this->route
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class CityUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.cities.edit', $this->lastCity()->id)
+                ->visitRoute($this->route, $this->lastCity()->id)
                 ->type('city_name', $this->makeCity()->city_name)
                 ->type('city_lat', $this->makeCity()->city_lat)
                 ->type('city_lng', $this->makeCity()->city_lng)

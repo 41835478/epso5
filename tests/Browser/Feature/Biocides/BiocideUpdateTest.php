@@ -12,6 +12,8 @@ class BiocideUpdateTest extends DuskTestCase
 {
     use BiocideHelpers;
     
+    protected $route = 'dashboard.admin.biocides.edit';
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class BiocideUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.biocides.edit', $this->lastBiocide()->id)
+                ->visitRoute($this->route, $this->lastBiocide()->id)
                 ->type('biocide_name', $this->makeBiocide()->biocide_name)
                 ->type('biocide_num', $this->makeBiocide()->biocide_num)
                 ->type('biocide_formula', $this->makeBiocide()->biocide_formula)

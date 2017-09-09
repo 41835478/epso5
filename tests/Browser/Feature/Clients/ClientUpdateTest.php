@@ -12,6 +12,8 @@ class ClientUpdateTest extends DuskTestCase
 {
     use ClientHelpers;
     
+    protected $route = 'dashboard.admin.clients.edit';
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class ClientUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.clients.edit', $this->lastClient()->id)
+                ->visitRoute($this->route, $this->lastClient()->id)
                 ->type('client_name', $this->makeClient()->client_name)
                 ->type('client_email', $this->makeClient()->client_email)
                 ->type('client_address', $this->makeClient()->client_address)

@@ -12,6 +12,8 @@ class ConfigUpdateTest extends DuskTestCase
 {
     use ConfigHelpers;
     
+    protected $route = 'dashboard.admin.configs.edit';
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -21,7 +23,7 @@ class ConfigUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute('dashboard.admin.configs.edit', $this->lastConfig()->id)
+                ->visitRoute($this->route, $this->lastConfig()->id)
                 ->type('config_name', $this->makeConfig()->config_name)
                 ->type('config_description', $this->makeConfig()->config_description)
                 ->press(trans('buttons.edit'))
