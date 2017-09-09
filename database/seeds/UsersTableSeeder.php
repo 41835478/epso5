@@ -15,6 +15,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('users')->delete();
+
         //Create the God User
         $god = factory(User::class, 'user_god')->create([
             'name'      => 'Damián Antonio Aguilar',
