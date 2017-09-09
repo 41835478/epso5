@@ -1,6 +1,10 @@
 <?php
 
+use App\Repositories\Cities\City;
+use App\Repositories\CropVarieties\CropVariety;
+use App\Repositories\Patterns\Pattern;
 use App\Repositories\Plots\Plot;
+use App\Repositories\Users\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,21 +14,40 @@ use App\Repositories\Plots\Plot;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Plot::class, function (Faker\Generator $faker) {
+    /**
+     * @var Defaults
+     */    
+    $defaultValue                   = 1;
+    $crop_variety                   = CropVariety::inRandomOrder()->first();
+    $pattern                        = Pattern::where('crop_id', $defaultValue)->inRandomOrder()->first();
+    $user                           = User::inRandomOrder()->first();
+    $city                           = City::inRandomOrder()->first();
+    $distance                       = randonWithDecimals();
+    $number                         = rand(1000, 10000);
+    $boolean                        = rand(0, 1);
+    $plot_reference                 = null;
+    $plot_framework                 = rand(1, 4);
+
     return [
-        'plot_name'            => $faker->company,
-        // 'DummySingula_email'            => $faker->unique()->safeEmail,
-        // 'plot_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
-        // 'plot_phone'           => $faker->tollFreePhoneNumber,
-        // 'plot_reference'       => $faker->shuffle('ABCDEF0123456789'),
-        // 'plot_lat'             => $faker->latitude($min = -90, $max = 90),
-        // 'plot_lng'             => $faker->longitude($min = -180, $max = 180),
-        // 'plot_web'             => $faker->url,
-        // 'plot_number'          => $faker->swiftBicNumber,
-        // 'plot_randon_num'      => $faker->randomNumber($nbDigits = 4, $strict = false),
-        // 'plot_zip'             => $faker->postcode,
-        // 'plot_google'          => $faker->unique()->userName . '@gmail.com',
-        // 'plot_linkedin'        => 'http://linkedin.com/' . $faker->slug,
-        // 'plot_twitter'         => '@' . $faker->unique()->userName,
-        // 'plot_facebook'        => 'http://www.facebook.com/user/' . $faker->slug,
+        'client_id'                 => $client ?? $defaultValue,
+        'crop_id'                   => $crop ?? $defaultValue,
+        'crop_variety_id'           => $crop_variety->id,
+        'pattern_id'                => $pattern->id,
+        'user_id'                   => $user->id,
+        'city_id'                   => $city->id,
+        'region_id'                 => $city->region_id,
+        'state_id'                  => $city->state_id,
+        'country_id'                => $city->country_id,
+        'climatic_station_id'       => $defaultValue,
+        'climatic_station_distance' => $distance,
+        'plot_name'                 => $faker->company,
+        'plot_quantity'             => $number,
+        'plot_crop_type'            => $boolean,
+        'plot_reference'            => $plot_reference,
+        'plot_framework_x'          => $plot_framework,
+        'plot_framework_y'          => $plot_framework,
+        'plot_area'                 => $number,
+        'plot_green_cover'          => $boolean,
+        'plot_start_date'           => $faker->date($format = 'Y-m-d', $max = 'now'),
     ];
 });
