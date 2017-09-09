@@ -44,6 +44,7 @@ class MakeRepository extends MakeRepositoryConstructor
     protected $dataTablesTraits;
     protected $html5Traits;
     protected $stub;
+    protected $tests;
     
     /**
      * Create a new command instance.

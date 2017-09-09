@@ -1,0 +1,30 @@
+<?php
+
+use App\Repositories\DummyClass\DummyModel;
+
+/*
+|--------------------------------------------------------------------------
+| Factory for DummyModel
+|--------------------------------------------------------------------------
+*/
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(DummyModel::class, function (Faker\Generator $faker) {
+    return [
+        'DummySingular_name'            => $faker->company,
+        // 'DummySingula_email'            => $faker->unique()->safeEmail,
+        // 'DummySingular_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        // 'DummySingular_phone'           => $faker->tollFreePhoneNumber,
+        // 'DummySingular_reference'       => $faker->shuffle('ABCDEF0123456789'),
+        // 'DummySingular_lat'             => $faker->latitude($min = -90, $max = 90),
+        // 'DummySingular_lng'             => $faker->longitude($min = -180, $max = 180),
+        // 'DummySingular_web'             => $faker->url,
+        // 'DummySingular_number'          => $faker->swiftBicNumber,
+        // 'DummySingular_randon_num'      => $faker->randomNumber($nbDigits = 4, $strict = false),
+        // 'DummySingular_zip'             => $faker->postcode,
+        // 'DummySingular_google'          => $faker->unique()->userName . '@gmail.com',
+        // 'DummySingular_linkedin'        => 'http://linkedin.com/' . $faker->slug,
+        // 'DummySingular_twitter'         => '@' . $faker->unique()->userName,
+        // 'DummySingular_facebook'        => 'http://www.facebook.com/user/' . $faker->slug,
+    ];
+});

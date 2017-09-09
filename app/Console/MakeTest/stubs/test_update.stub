@@ -1,0 +1,38 @@
+<?php
+
+namespace Tests\Browser\Tests\DummyClass;
+
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+use Tests\Helpers\DummyModelHelpers;
+
+class DummyModelUpdateTest extends DuskTestCase
+{
+    use DummyModelHelpers;
+    
+    protected $route = 'dashboard.admin.DummyTable.edit';
+
+    /*
+    |--------------------------------------------------------------------------
+    | Update clients
+    |--------------------------------------------------------------------------
+    */
+    public function test_admin_can_update_a_DummySingular()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($admin = $this->createAdmin())
+                ->visitRoute($this->route, $this->lastDummyModel()->id)
+                ->type('DummySingular_name', $this->makeDummyModel()->DummySingular_name)
+                // ->type('DummySingular_description', $this->makeDummyModel()->DummySingular_description)
+                ->press(trans('buttons.edit'))
+                ->assertSee(__('The items has been updated successfuly'));
+        });
+
+        $this->assertDatabaseHas('DummyTable', [
+            'DummySingular_name'           => $this->makeDummyModel()->DummySingular_name,
+            // 'DummySingular_description'    => $this->makeDummyModel()->DummySingular_description,
+        ]);
+    }
+}

@@ -1,0 +1,65 @@
+<?php 
+
+namespace Tests\Helpers;
+
+use App\Repositories\DummyClass\DummyModel;
+
+trait DummyModelHelpers
+{    
+    protected $createDummyModel;
+    protected $firstDummyModel;
+    protected $lastDummyModel;
+    protected $makeDummyModel;
+
+    /**
+     * Create an item and storing it
+     *
+     * @return Object
+     */
+    public function createDummyModel() : DummyModel
+    {
+        if($this->createDummyModel) {
+            return $this->createDummyModel;
+        }
+        return $this->createDummyModel = factory(DummyModel::class)->create();
+    }
+
+    /**
+     * Create an item but not storing it!!!
+     *
+     * @return Object
+     */
+    public function makeDummyModel() : DummyModel
+    {
+        if($this->makeDummyModel) {
+            return $this->makeDummyModel;
+        }
+        return $this->makeDummyModel = factory(DummyModel::class)->make();
+    }
+
+    /**
+     * Last item created
+     *
+     * @return Object
+     */
+    public function lastDummyModel() : DummyModel
+    {
+        if($this->lastDummyModel) {
+            return $this->lastDummyModel;
+        }
+        return $this->lastDummyModel = DummyModel::orderBy('id', 'desc')->first();
+    }
+
+    /**
+     * Firt created item
+     *
+     * @return Object
+     */
+    public function firstDummyModel() : DummyModel
+    {
+        if($this->firstDummyModel) {
+            return $this->firstDummyModel;
+        }
+        return $this->firstDummyModel = DummyModel::orderBy('id', 'asc')->first();
+    }
+}

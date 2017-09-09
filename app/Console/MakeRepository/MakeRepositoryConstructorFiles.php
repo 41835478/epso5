@@ -66,6 +66,23 @@ trait MakeRepositoryConstructorFiles
                 case 'forms:search':
                     $file = 'resources/views/dashboard/DummyTable/forms/search.blade';
                     break;
+
+                //Tests
+                case 'helper':
+                    $file = 'tests/Helpers/DummyModelHelpers';
+                    break;
+                case 'factory':
+                    $file = 'database/factories/DummyClassFactory';
+                    break;
+                case 'test:create':
+                    $file = 'tests/Browser/Feature/DummyClass/DummyModelCreateTest';
+                    break;
+                case 'test:search':
+                    $file = 'tests/Browser/Feature/DummyClass/DummyModelSearchTest';
+                    break;
+                case 'test:update':
+                    $file = 'tests/Browser/Feature/DummyClass/DummyModelUpdateTest';
+                    break;
             }
 
             return $this->filter($file);
