@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            {!! print_r (Credentials::config()) !!}
+            {!! randonWithDecimals(10, 12) !!}
         </div>
     </div>
 @endsection
