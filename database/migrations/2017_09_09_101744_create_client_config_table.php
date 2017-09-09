@@ -26,6 +26,6 @@ class CreateClientConfigTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('client_config');
     }
 }
