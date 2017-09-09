@@ -20,12 +20,6 @@
                 'title' => icon('world', trans('navbar.admin:countries')),
                 'url' => route('dashboard.admin.cities.index'),
             ])->subMenuItem([
-                'title' => icon('tree', trans('navbar.admin:training')),
-                'url' => route('dashboard.admin.trainings.index'),
-            ])->subMenuItem([
-                'title' => icon('config', trans('navbar.admin:config')),
-                'url' => route('dashboard.admin.configs.index'),
-            ])->subMenuItem([
                 'title' => icon('users', trans('navbar.admin:clients')),
                 'url' => route('dashboard.admin.clients.index'),
             ])->subMenuItem([
@@ -34,10 +28,21 @@
             ])->subMenuItem([
                 'title' => icon('biocides', trans('navbar.admin:biocides')),
                 'url' => route('dashboard.admin.biocides.index'),
-            ])->subMenuItem([
+            ])
+            ->divider()
+            ->subMenuItem([
+                'title' => icon('tree', trans('navbar.admin:training')),
+                'url' => route('dashboard.admin.trainings.index'),
+            ])
+            ->subMenuItem([
+                'title' => icon('config', trans('navbar.admin:config')),
+                'url' => route('dashboard.admin.configs.index'),
+            ])
+            ->subMenuItem([
                 'title' => icon('irrigations', trans('navbar.admin:irrigation')),
                 'url' => route('dashboard.admin.irrigations.index'),
-            ])->output()
+            ])
+            ->output()
         )
 
         //Tools submenu
