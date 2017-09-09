@@ -26,5 +26,6 @@ $factory->define(DummyModel::class, function (Faker\Generator $faker) {
         // 'DummySingular_linkedin'        => 'http://linkedin.com/' . $faker->slug,
         // 'DummySingular_twitter'         => '@' . $faker->unique()->userName,
         // 'DummySingular_facebook'        => 'http://www.facebook.com/user/' . $faker->slug,
+        // 'DummySingular_date'            => $faker->date($format = 'Y-m-d', $max = 'now'),
     ];
 });
