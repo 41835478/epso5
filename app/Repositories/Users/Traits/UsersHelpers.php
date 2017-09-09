@@ -63,14 +63,14 @@ trait UsersHelpers {
             ->delete();
     }
 
-    /**
-     * Delete profiles
-     * @return  boolean
-     */
-    private function deleteProfiles()
-    {
-        return $this->profile
-            ->inLists(items_list())
-            ->delete();
-    }
+    // /**
+    //  * Delete profiles
+    //  * @return  boolean
+    //  */
+    // private function deleteProfiles()
+    // {
+    //     return $this->profile
+    //         ->inLists(items_list())
+    //         ->delete();
+    // }
 }

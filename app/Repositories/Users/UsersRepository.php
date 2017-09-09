@@ -78,7 +78,10 @@ class UsersRepository extends Repository {
         //items_list() from helpers/strings.php
         return DB::transaction(function () {
             //App\Repositories\Users\Traits\UsersHelpers;
-            if($this->deleteUsers() && $this->deleteProfiles()) {
+            // if($this->deleteUsers() && $this->deleteProfiles()) {
+            //     return true;
+            // }
+            if($this->deleteUsers()) {
                 return true;
             }
             return false;
