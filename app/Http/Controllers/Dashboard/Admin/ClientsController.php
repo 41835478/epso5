@@ -6,6 +6,7 @@ use App\DataTables\Clients\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\ClientsRequest;
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Configs\ConfigsRepository;
 use App\Repositories\Crops\CropsRepository;
 use App\Repositories\Irrigations\IrrigationsRepository;
 use App\Repositories\Regions\RegionsRepository;
@@ -17,6 +18,7 @@ class ClientsController extends DashboardController
     /**
      * @var protected
      */
+    protected $config;
     protected $controller;
     protected $irrigation;
     protected $table;
@@ -55,13 +57,14 @@ class ClientsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
+    public function create(ConfigsRepository $config, CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
     {
-        return view(dashboard_path($this->section . '.create'))            
+        return view(dashboard_path($this->section . '.create'))    
+            ->withConfigs($config->all())
+            ->withCrops($crop->all())        
             ->withIrrigations($irrigation->all())
             ->withRegions($region->all())
-            ->withTrainings($training->all())
-            ->withCrops($crop->all());
+            ->withTrainings($training->all());
     }
 
     /**
@@ -92,14 +95,15 @@ class ClientsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
+    public function edit($id, ConfigsRepository $config, CropsRepository $crop, IrrigationsRepository $irrigation, RegionsRepository $region, TrainingsRepository $training)
     {
         return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id))
+            ->withConfigs($config->all())
+            ->withCrops($crop->all())       
+            ->withData($this->controller->find($id)) 
             ->withIrrigations($irrigation->all())
             ->withRegions($region->all())
-            ->withTrainings($training->all())
-            ->withCrops($crop->all());
+            ->withTrainings($training->all());
     }
 
     /**

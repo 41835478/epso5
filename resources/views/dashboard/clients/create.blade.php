@@ -9,6 +9,7 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.create')], 
         ])
+        @slot('configs', $configs ?? null)
         @slot('crops', $crops ?? null)
         @slot('irrigations', $irrigations ?? null)
         @slot('regions', $regions ?? null)

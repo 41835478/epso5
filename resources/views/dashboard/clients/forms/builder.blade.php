@@ -18,3 +18,7 @@
 {{-- Irrigations alloweds --}}
 <legend class="title">@lang('sections/clients.form:irrigations')</legend>
 @include(dashboard_path('clients.forms.sections.irrigations'))
+
+{{-- Configs alloweds --}}
+<legend class="title">@lang('sections/clients.form:configs')</legend>
+@include(dashboard_path('clients.forms.sections.configs'))

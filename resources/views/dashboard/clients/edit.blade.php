@@ -10,6 +10,7 @@
             [trans('base.edit')], 
         ])
         {{-- Add the data --}}
+        @slot('configs', $configs ?? null)
         @slot('crops', $crops ?? null)
         @slot('data', $data)
         @slot('irrigations', $irrigations ?? null)
