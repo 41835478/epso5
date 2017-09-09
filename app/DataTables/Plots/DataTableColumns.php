@@ -26,17 +26,6 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
             $this->setColumn(trans('units.area'), 'plot_area'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
         ];
         if(!Credentials::isAdmin()) {
             return array_merge([$this->createCheckbox()], $client, $columns);
