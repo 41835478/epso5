@@ -4,7 +4,7 @@ use App\Repositories\Trainings\Training;
 
 /*
 |--------------------------------------------------------------------------
-| Users and Profile Factories
+| Factory for trainings
 |--------------------------------------------------------------------------
 */
 

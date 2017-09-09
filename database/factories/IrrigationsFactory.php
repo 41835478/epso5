@@ -4,7 +4,7 @@ use App\Repositories\Irrigations\Irrigation;
 
 /*
 |--------------------------------------------------------------------------
-| Users and Profile Factories
+| Factory for geolocations
 |--------------------------------------------------------------------------
 */
 
