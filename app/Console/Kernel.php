@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\MakeDracarys',
         'App\Console\MakeRepository',
+        'App\Console\MakeTest',
     ];
 
     /**
