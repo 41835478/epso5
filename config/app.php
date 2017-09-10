@@ -12,7 +12,8 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Agroepso',
+    'name'      => 'Agroepso',
+    'version'   => '5.4.1',
 
     /*
     |--------------------------------------------------------------------------
