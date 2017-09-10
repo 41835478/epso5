@@ -4,7 +4,7 @@
 <meta name="_token" content="{{ csrf_token() }}" />
 
 {{-- Customize Title --}}
-<title>@yield('meta-title', 'Title')</title>
+<title>@yield('meta-title', config('app.name') . ' v' . config('app.version') . ' - ' . trans_title($section))</title>
 
 {{-- MetaTags --}}
 <meta name="description" content="@yield('meta-description', 'Description')">

@@ -2,7 +2,7 @@
     
     Menu::new()
     ->brand([
-        'title' => 'Agroepso v5.4',
+        'title' => config('app.name') . ' v' . config('app.version'),
         'url' => route('dashboard'),
     ])
 
