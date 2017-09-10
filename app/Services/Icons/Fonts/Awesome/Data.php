@@ -33,6 +33,7 @@ return [
     'info'              => 'info-circle',
     'invoice'           => 'file-text',
     'map'               => 'map-marker',
+    'minus'             => 'minus',
     'new'               => 'plus-circle',
     'note'              => 'sticky-note',
     'password'          => 'unlock-alt',
