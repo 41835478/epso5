@@ -20,20 +20,25 @@ abstract class Repository
     /**
      * Prepare the database query for the yajra dataTable service
      * @param   string   $columns
+     * @param   string   $id [In case we need an extra variable to check with something...]
+     * @param   string   $table [Just in case we need to add de table name for avoid ambiguous row names]
      * @return  ajax
      */
-    public function dataTable(array $columns = ['*'], $id = null)
+    public function dataTable(array $columns = ['*'], $id = null, $table = null)
     {
+        //Just in case we need to add de table name for avoid ambiguous row names
+        $table = $table ? $table . '.' : '';
+        //
         return $this->model
             ->select($columns)
             ->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
                 return $query;
             })
-            ->when(Credentials::maxRole() === 'editor', function ($query) {
-                return $query->where('client_id', Credentials::client());
+            ->when(Credentials::maxRole() === 'editor', function ($query) use ($table) {
+                return $query->where($table . 'client_id', Credentials::client());
             })
-            ->when(Credentials::maxRole() === 'user', function ($query) {
-                return $query->where('user_id', Credentials::id());
+            ->when(Credentials::maxRole() === 'user', function ($query) use ($table) {
+                return $query->where($table . 'user_id', Credentials::id());
             });
     }
 
