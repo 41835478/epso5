@@ -37,7 +37,7 @@ class DataTable extends Repository
         }
 
         $query = app(PlotsRepository::class)
-            ->dataTable()
+            ->dataTable($columns = ['*'], $id = null, $table = 'plots')
             ->select($this->section . '.*')
             ->with($relationships);
 
