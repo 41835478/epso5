@@ -1,16 +1,34 @@
-{{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
-    ->addGroupClass('col-md-3')
-    ->autofocus()
-!!}
+@Role('admin')
+    {{-- Search by: Client --}}
+    {!! BootForm::text(sections('clients.title'), 'search_client')
+        ->addGroupClass('col-md-2')
+        ->autofocus()
+    !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
-    ->addGroupClass('col-md-3')
-!!}
+    {{-- Search by: Crops --}}
+    {!! BootForm::text(sections('crops.title'), 'search_crop')
+        ->addGroupClass('col-md-2')
+    !!}
+@endRole
 
-{{-- Search by: ID --}}
-{!! BootForm::text(trans('financials.id'), 'search_id')
+@Role('editor')
+    {{-- Search by: User --}}
+    {!! BootForm::text(sections('users.title'), 'search_user')
+        ->addGroupClass('col-md-2')
+    !!}
+@endRole
+
+{{-- Search by: Plot --}}
+{!! BootForm::text(sections('plots.title'), 'search_plot')
     ->addGroupClass('col-md-2')
-    ->addClass('number')
+!!}
+
+{{-- Search by: Variety --}}
+{!! BootForm::text(sections('crop_varieties.title'), 'search_variety')
+    ->addGroupClass('col-md-2')
+!!}
+
+{{-- Search by: City --}}
+{!! BootForm::text(sections('cities.title'), 'search_city')
+    ->addGroupClass('col-md-2')
 !!}
