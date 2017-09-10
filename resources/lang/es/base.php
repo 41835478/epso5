@@ -23,7 +23,8 @@ return [
     | Geolocation
     |--------------------------------------------------------------------------
     */
-   'height'         => 'Altitud',
+   'height'         => 'Altitud sobre el nivel del mar',
+   'height:min'     => 'Altitud',
    'catastro'       => 'Catastro',
    'GPS'            => 'GPS',
    'latitude'       => 'Latitud',

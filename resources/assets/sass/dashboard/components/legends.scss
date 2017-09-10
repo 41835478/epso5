@@ -19,6 +19,17 @@
             span {
                 margin-right: 10px;
             }
+
+            .info {
+                font-weight: 900;
+                float: left;
+                width: 100px;
+                color: $color-gray-dark;
+            }
+        }
+
+        li.alternate:nth-child(odd) {
+            background: $brand-yellow;
         }
     }
 }

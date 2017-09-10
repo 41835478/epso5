@@ -10667,6 +10667,17 @@ form .checkBoxCustom {
   margin-right: 10px;
 }
 
+#legend ul li .info {
+  font-weight: 900;
+  float: left;
+  width: 100px;
+  color: #616161;
+}
+
+#legend ul li.alternate:nth-child(odd) {
+  background: #fcf8e3;
+}
+
 /** 
  * Modals
  */

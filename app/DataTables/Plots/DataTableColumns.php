@@ -27,12 +27,12 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
             $this->setColumnWithRelationship(trans('persona.zip:min'), 'geolocation.geo_zip'),
-            $this->setColumn(trans('units.m2'), 'plot_area'),
-            $this->setColumn(trans('units.percent'), 'plot_percent_cultivated_land'),
+            $this->setColumn(trans('units.m2:min'), 'plot_area'),
+            $this->setColumn(trans('units.percent:min'), 'plot_percent_cultivated_land'),
             $this->setColumnWithRelationship(trans('base.catastro'), 'geolocation.geo_catastro'),
             $this->setColumnWithRelationship(trans('base.latitude'), 'geolocation.geo_lat'),
             $this->setColumnWithRelationship(trans('base.longitude'), 'geolocation.geo_lng'),
-            $this->setColumnWithRelationship(trans('base.height'), 'geolocation.geo_height'),
+            $this->setColumnWithRelationship(trans('base.height:min'), 'geolocation.geo_height'),
         ];
         //Filtering the relationships
         if(Credentials::isAdmin()) {
