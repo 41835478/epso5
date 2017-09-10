@@ -19,20 +19,20 @@ class PlotUpdateTest extends DuskTestCase
     | Update clients
     |--------------------------------------------------------------------------
     */
-    public function test_admin_can_update_a_plot()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute($this->route, $this->lastPlot()->id)
-                ->type('plot_name', $this->makePlot()->plot_name)
-                // ->type('plot_description', $this->makePlot()->plot_description)
-                ->press(trans('buttons.edit'))
-                ->assertSee(__('The items has been updated successfuly'));
-        });
+    // public function test_admin_can_update_a_plot()
+    // {
+    //     $this->browse(function (Browser $browser) {
+    //         $browser->loginAs($admin = $this->createAdmin())
+    //             ->visitRoute($this->route, $this->lastPlot()->id)
+    //             ->type('plot_name', $this->makePlot()->plot_name)
+    //             // ->type('plot_description', $this->makePlot()->plot_description)
+    //             ->press(trans('buttons.edit'))
+    //             ->assertSee(__('The items has been updated successfuly'));
+    //     });
 
-        $this->assertDatabaseHas('plots', [
-            'plot_name'           => $this->makePlot()->plot_name,
-            // 'plot_description'    => $this->makePlot()->plot_description,
-        ]);
-    }
+    //     $this->assertDatabaseHas('plots', [
+    //         'plot_name'           => $this->makePlot()->plot_name,
+    //         // 'plot_description'    => $this->makePlot()->plot_description,
+    //     ]);
+    // }
 }

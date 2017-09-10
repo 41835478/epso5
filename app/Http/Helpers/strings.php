@@ -23,3 +23,16 @@ if (!function_exists('items_list')) {
         return explode(',', request('item-list'));
     }
 }
+
+/**
+ * Convert a list of items in a array
+ * @param  string $text 
+ * @param  string $length 
+ * @return string
+ */
+if (!function_exists('typeText')) {
+    function typeText($text, $length = 5)
+    {
+        return substr($text, 0, $length);
+    }
+}

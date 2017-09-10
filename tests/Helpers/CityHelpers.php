@@ -3,10 +3,13 @@
 namespace Tests\Helpers;
 
 use App\Repositories\Cities\City;
+use App\Repositories\Plots\Plot;
 
 trait CityHelpers
 {    
     protected $lastCity;
+    protected $firstCityFromPlot;
+    protected $lastCityFromPlot;
     protected $makeCity;
     protected $setLocalization;
     protected $setLocalizationByName;
@@ -47,6 +50,38 @@ trait CityHelpers
             return $this->lastCity;
         }
         return $this->lastCity = City::orderBy('id', 'desc')->first();
+    }
+
+    /**
+     * Create a client but not storing it!!!
+     *
+     * @param  string $type
+     *
+     * @return Object
+     */
+    public function firstCityFromPlot($type = 'id')
+    {
+        if($this->firstCityFromPlot) {
+            return $this->firstCityFromPlot;
+        }
+        $id = Plot::select('city_id')->groupBy('city_id')->orderBy('id', 'asc')->first()->city_id;
+        return ($type === 'id') ? $id : City::find($id)->city_name;
+    }
+
+    /**
+     * Create a client but not storing it!!!
+     *
+     * @param  string $type
+     *
+     * @return Object
+     */
+    public function lastCityFromPlot($type = 'id')
+    {
+        if($this->lastCityFromPlot) {
+            return $this->lastCityFromPlot;
+        }
+        $id = Plot::select('city_id')->groupBy('city_id')->orderBy('id', 'desc')->first()->city_id;
+        return ($type === 'id') ? $id : City::find($id)->city_name;
     }
 
     public function setLocalization(string $type)
