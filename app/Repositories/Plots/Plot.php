@@ -2,19 +2,17 @@
 
 namespace App\Repositories\Plots;
 
-//use App\Repositories\Traits\Date;
-//use App\Repositories\Plots\Traits\PlotsEvents;
-//use App\Repositories\Plots\Traits\PlotsPresenters;
+use App\Repositories\Plots\Traits\PlotsPresenters;
 use App\Repositories\Plots\Traits\PlotsRelationships;
-//use App\Repositories\Plots\Traits\PlotsScopes;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Repositories\_Traits\Date;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Plot extends Model  {
 
-    use Notifiable, PlotsRelationships, SoftDeletes;
+    use Date, Notifiable, PlotsPresenters, PlotsRelationships, SoftDeletes;
 
     /**
      * The database table used by the model.

@@ -9,15 +9,14 @@ trait PlotsPresenters {
     | Accessors & Mutators
     |--------------------------------------------------------------------------
     */
+    public function setPlotStartDateAttribute($value)
+    {
+        $this->attributes['plot_start_date'] = $this->setDate($value);
+    }
 
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = $value;
-    // }
-
-    // public function getNameAttribute($value)
-    // {
-    //     return ucfirst($value);
-    // }
-    // 
+    public function getPlotStartDateAttribute($value)
+    {
+        return $this->getDate($value);
+    }
+    
 }

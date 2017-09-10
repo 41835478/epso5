@@ -2,7 +2,7 @@
 
 namespace App\Repositories\DummyClass;
 
-//use App\Repositories\Traits\Date;
+//use App\Repositories\_Traits\Date;
 //use App\Repositories\DummyClass\Traits\DummyClassEvents;
 //use App\Repositories\DummyClass\Traits\DummyClassPresenters;
 //use App\Repositories\DummyClass\Traits\DummyClassRelationships;
