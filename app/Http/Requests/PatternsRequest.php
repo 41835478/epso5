@@ -27,8 +27,7 @@ class PatternsRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'pattern_name' => 'required',
         ];
     }
 
@@ -40,8 +39,7 @@ class PatternsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'pattern_name' => trans('persona.name'),
         ];
     }
 

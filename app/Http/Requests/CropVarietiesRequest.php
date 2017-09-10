@@ -27,8 +27,8 @@ class CropVarietiesRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'crop_variety_name' => 'required',
+            'crop_id'           => 'required',
         ];
     }
 
@@ -40,8 +40,8 @@ class CropVarietiesRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'crop_variety_name' => trans('persona.name'),
+            'crop_id'           => trans_title('crops', 'singular'),
         ];
     }
 

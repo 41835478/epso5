@@ -21,7 +21,5 @@
     {{-- Variety: type --}}
     {!! BootForm::text(sections('crop_varieties.type'), 'crop_variety_type')
         ->addGroupClass('col-md-4')
-        ->autofocus()
-        ->required()
     !!}
 </div>
