@@ -26,9 +26,14 @@ class ConfigsRequest extends FormRequest
      */
     public function rules()
     {
+        if(request('row_id')) {
+            return [
+                'config_name' => 'required',
+            ];
+        }
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'config_name'   => 'required',
+            'config_key'    => 'required',
         ];
     }
 
@@ -40,8 +45,8 @@ class ConfigsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'config_name'   => trans('persona.name'),
+            'config_key'    => trans('base.key'),
         ];
     }
 
