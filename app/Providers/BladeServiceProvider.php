@@ -30,6 +30,11 @@ class BladeServiceProvider extends ServiceProvider
         });
 
         //Blade: endRoles()
+        Blade::directive('endRole', function () {
+            return '<?php endif; ?>';
+        });
+
+        //Blade: endRoles()
         Blade::directive('endRoles', function () {
             return '<?php endif; ?>';
         });
