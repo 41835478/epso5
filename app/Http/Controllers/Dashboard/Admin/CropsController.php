@@ -18,6 +18,7 @@ class CropsController extends DashboardController
     /**
      * @var private
      */
+    private $legend     = 'crops';
     private $parent;
     private $role       = 'admin';
     private $section    = 'crops';
@@ -29,6 +30,7 @@ class CropsController extends DashboardController
         
         //Sharing in the view
         view()->share([
+            'legend'    => $this->legend,
             'section'   => $this->section,
             'role'      => $this->role
         ]);

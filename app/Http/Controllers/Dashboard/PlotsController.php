@@ -19,10 +19,10 @@ class PlotsController extends DashboardController
     /**
      * @var private
      */
+    private $legend     = 'plots';
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'user';
     private $section    = 'plots';
-    private $legend     = 'plots';
 
     public function __construct(PlotsRepository $controller, DataTable $table)
     {
@@ -30,8 +30,8 @@ class PlotsController extends DashboardController
         $this->table        = $table;
         //Sharing in the view
         view()->share([
+            'legend'    => $this->legend,
             //'parent'   => $this->parent,
-            //'legend'    => $this->legend,
             'section'   => $this->section,
             'role'      => $this->role
         ]);

@@ -22,6 +22,6 @@
 
     {{-- Legends --}}
     @component(component_path('legend'))
-        @slot('legendContent', legend_path())
+        @slot('legendContent', legend_path($legend ?? null))
     @endcomponent
 @endsection

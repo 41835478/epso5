@@ -28,10 +28,10 @@
 
     {{-- 
         Legends: For a customized legend, 
-        pass the $section variable to the legend_path() function, 
+        pass the $legend variable to the legend_path() function, 
         or keep it empty for default 
     --}}
     @component(component_path('legend'))
-        @slot('legendContent', legend_path())
+        @slot('legendContent', legend_path($legend ?? null))
     @endcomponent
 @endsection
