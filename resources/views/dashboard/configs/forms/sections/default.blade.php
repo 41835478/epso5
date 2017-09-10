@@ -13,7 +13,8 @@
     {{-- Configuration: name --}}
     {!! BootForm::text(trans('base.key'), 'config_key')
         ->addGroupClass('col-md-4')
-        ->required()
+        ->required(isset($data) ? false : true)
+        ->disabled(isset($data) ? false : true)
     !!}
 
     {{-- Configuration: description --}}
