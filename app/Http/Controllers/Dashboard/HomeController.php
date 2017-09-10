@@ -7,6 +7,29 @@ use App\Http\Controllers\DashboardController;
 class HomeController extends DashboardController
 {
     /**
+     * @var protected
+     */
+    protected $controller;
+    protected $table;
+
+    /**
+     * @var private
+     */
+    private $legend;
+    private $parent;
+    private $role       = 'user';
+    private $section    = 'home';
+
+    public function __construct()
+    {
+        //Sharing in the view
+        view()->share([
+            'section'   => $this->section,
+            'role'      => $this->role
+        ]);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
