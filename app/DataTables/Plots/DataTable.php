@@ -52,7 +52,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'city.city_name', 'checkbox', 'plot_name', 'user.name'])
+            ->rawColumns(['action', 'city.city_name', 'checkbox', 'crop_variety.crop_variety_name', 'plot_name', 'user.name'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
@@ -61,6 +61,14 @@ class DataTable extends Repository
                 return $this
                     ->formatString($data->user->name ?? null, $data->user ?? null);
             })
+            ->editColumn('crop_variety.crop_variety_name', function($data) {
+                return $this
+                    ->formatString($data->crop_variety->crop_variety_name ?? null, $data->crop_variety ?? null);
+            })
+            ->editColumn('region.region_name', function($data) {
+                return $this
+                    ->formatString($data->region->region_name ?? null, $data->region ?? null);
+            })
             ->editColumn('city.city_name', function($data) {
                 return $this
                     ->formatString($data->city->city_name ?? null, $data->city ?? null);
@@ -68,6 +76,9 @@ class DataTable extends Repository
             ->editColumn('plot_name', function($data) {
                 return $this
                     ->formatString($data->plot_name ?? null);
+            })
+            ->editColumn('geolocation.geo_height', function($data) {
+                return sprintf('%s m', ceil($data->geolocation->geo_height));
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
