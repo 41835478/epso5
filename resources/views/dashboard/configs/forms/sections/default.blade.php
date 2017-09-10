@@ -14,7 +14,7 @@
     {!! BootForm::text(trans('base.key'), 'config_key')
         ->addGroupClass('col-md-4')
         ->required(isset($data) ? false : true)
-        ->disabled(isset($data) ? false : true)
+        ->disable(isset($data) ? true : false)
     !!}
 
     {{-- Configuration: description --}}
