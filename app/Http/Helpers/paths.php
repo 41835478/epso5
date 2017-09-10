@@ -69,9 +69,9 @@ if (!function_exists('form_path')) {
  * @return string
  */
 if (!function_exists('legend_path')) {
-    function legend_path($file = 'default')
+    function legend_path($file = null)
     {
-        return dashboard_path('_components.legends.') . $file;
+        return dashboard_path('_components.legends.') . ($file ?? 'default');
     }
 }
 
