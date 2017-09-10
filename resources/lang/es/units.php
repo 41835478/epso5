@@ -8,4 +8,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'area'              => 'Superficie',
+    'percent'           => '%', //Percent of cultivated land
+    'm2'                => 'm<sup>2</sup>',
 ];

@@ -8,7 +8,8 @@ return [
     |--------------------------------------------------------------------------
     */
    
-    'button:all'        => 'Ver todo',
-    'button:personal'   => 'Inf. Personal',
-    'button:social'     => 'Redes sociales',
+    'button:all'            => 'Ver todo',
+    'button:minimize'       => 'Reducido',
+    'button:personal'       => 'Inf. Personal',
+    'button:social'         => 'Redes sociales',
 ];
