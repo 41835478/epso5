@@ -52,8 +52,7 @@ class PlotCreateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->assertPathIs($this->pathToCreate);
         });
     }
 
@@ -62,8 +61,8 @@ class PlotCreateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->visit($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate);
         });
     }
 }
