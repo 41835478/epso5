@@ -11,3 +11,5 @@ Homestead.yaml
 testing.sqlite
 
 checkList.odt
+
+.env.production

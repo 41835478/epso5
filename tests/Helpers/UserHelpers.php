@@ -25,7 +25,7 @@ trait UserHelpers
         if($this->createUser) {
             return $this->createUser;
         }
-        return $this->createUser = User::last();
+        return $this->createUser = User::orderBy('id', 'desc')->first();
     }
 
     /**

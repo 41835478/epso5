@@ -20,20 +20,20 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $defaultValue                   = 1;
     $crop_variety                   = CropVariety::inRandomOrder()->first();
     $pattern                        = Pattern::where('crop_id', $defaultValue)->inRandomOrder()->first();
-    $user                           = User::inRandomOrder()->first();
     $city                           = City::inRandomOrder()->first();
     $distance                       = randonWithDecimals();
     $number                         = rand(1000, 10000);
     $boolean                        = rand(0, 1);
     $plot_reference                 = null;
     $plot_framework                 = rand(1, 4);
+    $select                         = rand(1, 2);
 
     return [
-        'client_id'                 => $client ?? $defaultValue,
+        'client_id'                 => $client ?? $select,
         'crop_id'                   => $crop ?? $defaultValue,
         'crop_variety_id'           => $crop_variety->id,
         'pattern_id'                => $pattern->id,
-        'user_id'                   => $user->id,
+        'user_id'                   => $plot_framework,
         'city_id'                   => $city->id,
         'region_id'                 => $city->region_id,
         'state_id'                  => $city->state_id,

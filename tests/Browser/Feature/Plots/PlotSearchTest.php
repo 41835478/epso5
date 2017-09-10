@@ -6,11 +6,14 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
+use Tests\Helpers\ClientHelpers;
+use Tests\Helpers\CropHelpers;
 use Tests\Helpers\PlotHelpers;
+use Tests\Helpers\UserHelpers;
 
 class PlotSearchTest extends DuskTestCase
 {
-    use PlotHelpers;
+    use ClientHelpers, CropHelpers, PlotHelpers, UserHelpers;
     
     protected $path = '/dashboard/plots';
 
@@ -24,20 +27,29 @@ class PlotSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_name', $this->lastPlot()->plot_name)
-                ->pause(500)
+                ->type('search_client', $this->createClientValencia()->client_name)
+                ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastPlot()->plot_name);
-                    $table->assertDontSee($this->firstPlot()->plot_name);
+                    $table->assertSee($this->createClientValencia()->client_name);
+                    $table->assertDontSee($this->createClientEpso()->client_name);
                 });
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_id', $this->lastPlot()->id)
-                ->pause(500)
+                ->type('search_crop', $this->firstCrop()->crop_name)
+                ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastPlot()->plot_name);
-                    $table->assertDontSee($this->firstPlot()->plot_name);
+                    $table->assertSee($this->firstCrop()->crop_name);
+                    $table->assertDontSee($this->secondCrop()->crop_name);
+                });
+        
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_user', $this->createAdmin()->name)
+                ->pause(1000)
+                ->with('.table', function ($table) {
+                    $table->assertSee($this->createAdmin()->name);
+                    $table->assertDontSee($this->createUser()->name);
                 });
         });
     }

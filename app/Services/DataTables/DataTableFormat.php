@@ -2,6 +2,8 @@
 
 namespace App\Services\DataTables;
 
+use Agent;
+
 trait DataTableFormat
 {
     protected $placement = 'right';
@@ -24,10 +26,15 @@ trait DataTableFormat
      */
    public function formatString($text, $data = null)
    {
-       if(in_array($this->type, $this->typeAllowed)) {
+        //Filter for testing!!!!
+        if(config('app.env') === 'testing') {
+            return $text;
+        }
+        //Verify methods
+        if(in_array($this->type, $this->typeAllowed)) {
             return $this->stringDeleted($text, $data);
-       }
-       return $text;
+        }
+            return $text;
    }
    
     /*

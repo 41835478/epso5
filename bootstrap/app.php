@@ -23,9 +23,9 @@ $app = new Illuminate\Foundation\Application(
 | Load the env file, base on the the current enviroment
 | gethostname() = "iMac-Computer.local"
 */
-if (isset(explode('.', gethostname())[1]) && explode('.', gethostname())[1] === 'local') {
-    $app->loadEnvironmentFrom('.env.local');
-}
+// if (isset(explode('.', gethostname())[1]) && explode('.', gethostname())[1] === 'local') {
+//     $app->loadEnvironmentFrom('.env.local');
+// }
 
 /*
 |--------------------------------------------------------------------------

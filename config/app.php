@@ -195,6 +195,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
@@ -253,6 +254,7 @@ return [
          * Package Facades...
          */
         //'Application' => App\Services\Application\ApplicationFacade::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
         'BootForm' => AdamWathan\BootForms\Facades\BootForm::class,
         'Credentials' => App\Services\Credentials\CredentialsFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,

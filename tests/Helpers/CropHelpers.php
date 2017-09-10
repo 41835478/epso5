@@ -7,6 +7,7 @@ use App\Repositories\Crops\Crop;
 trait CropHelpers
 {    
     protected $firstCrop;
+    protected $secondCrop;
     protected $lastCrop;
     protected $makeCrop;
 
@@ -38,6 +39,21 @@ trait CropHelpers
             return $this->firstCrop;
         }
         return $this->firstCrop = Crop::orderBy('id', 'asc')->first();
+    }
+
+    /**
+     * Create a client but not storing it!!!
+     *
+     * @param  string $id
+     *
+     * @return Object
+     */
+    public function secondCrop() : Crop
+    {
+        if($this->secondCrop) {
+            return $this->secondCrop;
+        }
+        return $this->secondCrop = Crop::find(2);
     }
 
     /**

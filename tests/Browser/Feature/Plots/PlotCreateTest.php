@@ -30,11 +30,11 @@ class PlotCreateTest extends DuskTestCase
                 ->visit($this->pathToList)
                 ->click('#button-config')
                 ->click('#button-create-link')
-                ->assertPathIs($this->pathToCreate)
+                ->assertPathIs($this->pathToCreate);
                 // ->type('plot_name', $this->makePlot()->plot_name)
                 // ->type('plot_description', $this->makePlot()->plot_description)
-                ->press(trans('buttons.new'))
-                ->assertSee(__('The item has been create successfuly'));
+                // ->press(trans('buttons.new'))
+                // ->assertSee(__('The item has been create successfuly'));
         });
     }
 
