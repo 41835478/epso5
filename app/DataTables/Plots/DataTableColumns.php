@@ -17,10 +17,9 @@ trait DataTableColumns
          * @param  string $name
          * @param  array $attributes [Add extra attributes]
          */
-        $client = [$this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name')];
-        $user   = [$this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name')];
-
-        $columns = [
+        $column_client = [$this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name')];
+        $column_user   = [$this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name')];
+        $column_all = [
             $this->setColumnWithRelationship(trans_title('crops', 'singular'), 'crop.crop_name'),
             $this->setColumnWithRelationship(trans_title('crop_varieties', 'singular'), 'crop_variety.crop_variety_name'),
             $this->setColumn(trans_title('plots'), 'plot_name'),
@@ -28,13 +27,14 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
             $this->setColumn(trans('units.area'), 'plot_area'),
         ];
+        //Filtering the relationships
         if(Credentials::isAdmin()) {
-            return array_merge([$this->createCheckbox()], $client, $user, $columns);
+            return array_merge([$this->createCheckbox()], $column_client, $column_user, $column_all);
         }
         if(Credentials::isEditor()) {
-            return array_merge([$this->createCheckbox()], $user, $columns);
+            return array_merge([$this->createCheckbox()], $column_user, $column_all);
         }
-        return array_merge([$this->createCheckbox()], $columns);
+            return array_merge([$this->createCheckbox()], $column_all);
     }
 
     /**

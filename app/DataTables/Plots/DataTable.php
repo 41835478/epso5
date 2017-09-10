@@ -8,6 +8,7 @@ use App\DataTables\Plots\DataTableSearch;
 use App\Repositories\Plots\PlotsRepository;
 use App\Repositories\Plots\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Credentials;
 
 class DataTable extends Repository
 {
@@ -26,18 +27,19 @@ class DataTable extends Repository
      */
     public function query()
     {
+        //Filtering the relationships
+        if(Credentials::isAdmin()) {
+            $relationships = ['city', 'client', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
+        } elseif(Credentials::isEditor()) {
+            $relationships = ['city', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
+        } else {
+            $relationships = ['city', 'crop', 'crop_variety', 'geolocation', 'region'];
+        }
+
         $query = app(PlotsRepository::class)
             ->dataTable()
             ->select($this->section . '.*')
-            ->with([
-                'city', 
-                'client', 
-                'crop', 
-                'crop_variety', 
-                'geolocation', 
-                'region', 
-                'user'
-            ]);
+            ->with($relationships);
 
         return $this->applyScopes($query);
     }
@@ -50,7 +52,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox', 'plot_name', 'user.name'])
+            ->rawColumns(['action', 'city.city_name', 'checkbox', 'plot_name', 'user.name'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
@@ -58,6 +60,10 @@ class DataTable extends Repository
             ->editColumn('user.name', function($data) {
                 return $this
                     ->formatString($data->user->name ?? null, $data->user ?? null);
+            })
+            ->editColumn('city.city_name', function($data) {
+                return $this
+                    ->formatString($data->city->city_name ?? null, $data->city ?? null);
             })
             ->editColumn('plot_name', function($data) {
                 return $this
