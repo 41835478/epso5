@@ -31,7 +31,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
 
     return [
         'client_id'                 => $client ?? $select,
-        'crop_id'                   => $crop ?? $defaultValue,
+        'crop_id'                   => $crop ?? $select,
         'crop_variety_id'           => $crop_variety->id,
         'pattern_id'                => $pattern->id,
         'user_id'                   => $user,
