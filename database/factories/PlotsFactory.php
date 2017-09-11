@@ -25,7 +25,8 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $number                         = rand(1000, 10000);
     $boolean                        = rand(0, 1);
     $plot_reference                 = null;
-    $plot_framework                 = rand(1, 4);
+    $user                           = rand(1, 4);
+    $plot_framework                 = $user . 'x' . $user;
     $select                         = rand(1, 2);
 
     return [
@@ -33,7 +34,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'crop_id'                   => $crop ?? $defaultValue,
         'crop_variety_id'           => $crop_variety->id,
         'pattern_id'                => $pattern->id,
-        'user_id'                   => $plot_framework,
+        'user_id'                   => $user,
         'city_id'                   => $city->id,
         'region_id'                 => $city->region_id,
         'state_id'                  => $city->state_id,
@@ -44,8 +45,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'plot_quantity'             => $number,
         'plot_crop_type'            => $boolean,
         'plot_reference'            => $plot_reference,
-        'plot_framework_x'          => $plot_framework,
-        'plot_framework_y'          => $plot_framework,
+        'plot_framework'            => $plot_framework,
         'plot_area'                 => $number,
         'plot_green_cover'          => $boolean,
         'plot_start_date'           => $faker->date($format = 'Y-m-d', $max = 'now'),

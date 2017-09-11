@@ -30,8 +30,7 @@ class CreatePlotsTable extends Migration
             $table->integer('plot_quantity')->nullable()->comment("The total number of crops");
             $table->string('plot_crop_type', 3)->comment("In the grape case: 0/1 white or red");
             $table->string('plot_reference', 50)->nullable()->comment("Internal Reference of the Plot");
-            $table->decimal('plot_framework_x', 6, 2)->comment("Framework planting: Row spacing in meters.");
-            $table->decimal('plot_framework_y', 6, 2)->comment("Framework planting: distance between strains in meters.");
+            $table->string('plot_framework', 6)->comment("Framework planting: 0x0");
             $table->decimal('plot_area', 12, 2);
             $table->string('plot_green_cover', 1);
             $table->string('plot_percent_cultivated_land', 3)->default(100)->comment("Percentage of cultivated land without deciamals");
