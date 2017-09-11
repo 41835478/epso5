@@ -18,8 +18,16 @@
         ->required() 
     !!}
 
+    {{-- Field: % crop in the land --}}
+    {!! BootForm::InputGroup(trans('units.percent:alt'), 'plot_percent_cultivated_land')
+        ->addGroupClass('col-lg-2 col-md-6')
+        ->addClass('number')
+        ->defaultValue(100)
+        ->afterAddon(icon('percent'))
+    !!}
+
     {{-- Field: date --}}
-    {!! BootForm::InputGroup(trans('dates.date'), 'plot_start_date')
+    {!! BootForm::InputGroup(sections('crops.date'), 'plot_start_date')
         ->addGroupClass('col-lg-2 col-md-6')
         ->addClass('date')
         ->afterAddon(icon('date'))

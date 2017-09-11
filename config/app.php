@@ -187,6 +187,7 @@ return [
         App\Services\Html\HtmlProvider::class,
         App\Services\Menus\MenusProvider::class,
         App\Providers\RepositoryServiceProvider::class,
+        App\Providers\ValidatorServiceProvider::class,
 
         /*
          * Package Service Providers...

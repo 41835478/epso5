@@ -105,6 +105,7 @@ return [
             'dimensions'    => 'Las dimensiones de la imagen no son las correctas. Sobrepasan los límites de 250x250 pixels.',
         ],
     ],
+    'checkbox_unique' => 'Solo se puede añadir un cultivo por cliente!!!',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

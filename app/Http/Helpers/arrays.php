@@ -31,15 +31,33 @@ if (!function_exists('random_array')) {
 /**
  * Return a range array
  * @param  int $start
- * @param  int $end 
+ * @param  int $end
  * @return  string
  */
 if (!function_exists('range')) {
     function range(int $start, int $end, array $lists = [])
     {
-        for($x = 0; $x < $start; $x++) {
+        for ($x = 0; $x < $start; $x++) {
             $lists[$x] = $x;
         }
         return $lists;
+    }
+}
+
+/**
+ * Return a range array
+ * @param  int $field
+ * @param  int $key ['id', 'name']
+ * @return  string
+ */
+if (!function_exists('getConfig')) {
+    function getConfig($field, $key = null)
+    {
+        //Return a string: 'client' and 'crop'
+        if ($key) {
+            return Credentials::config()->get($field)[$key][0];
+        }
+        //Return an array: 'config', 'irrigation', 'region' and 'training'
+        return Credentials::config()->get($field);
     }
 }

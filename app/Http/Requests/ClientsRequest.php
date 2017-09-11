@@ -26,10 +26,12 @@ class ClientsRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'client_name'           => 'required',
             'client_email'          => 'required|email',
             'client_contact'        => 'required',
+            'crop_id'               => 'checkboxUnique',
         ];
     }
 
@@ -50,6 +52,7 @@ class ClientsRequest extends FormRequest
             'client_city'           => trans('persona.city'),
             'client_state'          => trans('persona.state'),
             'client_country'        => trans('persona.country'),
+            'crop_id'               => sections('crops.title'),
         ];
     }
 

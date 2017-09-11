@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            {!! app()->environment() !!}
+            {!! print_r(Credentials::config()->get('irrigations')) !!}
         </div>
     </div>
 @endsection
