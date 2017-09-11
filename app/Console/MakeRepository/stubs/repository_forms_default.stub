@@ -20,7 +20,7 @@
 
     {{-- Addon --}}
     {!! BootForm::InputGroup(trans('base.date'), 'agronomic_date')
-        ->addGroupClass('col-lg-2 col-md-6')
+        ->addGroupClass('col-md-2')
         ->addClass('date')
         ->afterAddon(icon('calendar'))
         ->required() 
