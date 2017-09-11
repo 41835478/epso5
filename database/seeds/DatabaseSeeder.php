@@ -32,5 +32,12 @@ class DatabaseSeeder extends Seeder
 
         //The last one: because need for all the previus seed to populate!!!
         $this->call(PlotsTableSeeder::class);
+
+        //Testing relationships!!!!
+        $this->call(ClientConfigTableSeeder::class);
+        $this->call(ClientCropTableSeeder::class);
+        $this->call(ClientIrrigationTableSeeder::class);
+        $this->call(ClientRegionTableSeeder::class);
+        $this->call(ClientTrainingTableSeeder::class);
     }
 }
