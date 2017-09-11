@@ -14,7 +14,7 @@ class ValidatorServiceProvider extends ServiceProvider {
             foreach ($value as $item) {
                 $status++;
             }
-            return ($status == 1) ? true : false;
+            return ($status === 1) ? true : false;
         });
     }
 
