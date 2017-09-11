@@ -54473,6 +54473,36 @@ if ($('#state_id')) {
 }
 
 /** 
+* Select: users
+*/
+if ($('#client_id')) {
+    $('#client_id').on('change', function () {
+        //Define the variable 
+        var $container = $('#user_id');
+        //Add loading class 
+        $container.empty().addClass('loading');
+        //Get the data via AJAX
+        $.get(window.location.origin + '/dashboard/ajax/users', { client: $('#client_id').val() }, function (data) {
+            //Only if there is data
+            if (data.length > 0) {
+                //First empty option field
+                $container.append($('<option>', { value: '', text: '' }));
+                //Built the select
+                $.each(data, function (index, element) {
+                    $container.append($('<option>', {
+                        value: element.id,
+                        text: element.name
+                    }));
+                });
+                $container.prop('disabled', false).prop('required', true).removeClass('loading');
+            } else {
+                $container.prop('disabled', true).prop('required', false).removeClass('loading');
+            }
+        });
+    });
+}
+
+/** 
 * Crops: Load the crops types
 */
 if ($('#modal-crop-variety-types')) {
