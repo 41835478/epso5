@@ -19,7 +19,7 @@ trait Config
     {        
         return Cache::rememberForever('cache-client-' . $this->client(), function() {
             $client = app(ClientsRepository::class)->find($this->client());
-            $crop   = $client->crop->pluck('crop_name', 'id')->all();
+            $crop   = $client->crop->all();
             return collect([
                 'client' => [
                     'id'    => $client->id,
@@ -29,8 +29,9 @@ trait Config
                     (count($client->config->pluck('id')->all()) > 0) ? $client->config->pluck('config_key', 'id')->all() : null
                 ],
                 'crop' => [
-                    'id'    => array_keys($crop),
-                    'name'  => array_values($crop),
+                    'id'        => $crop[0]['id'],
+                    'name'      => $crop[0]['crop_name'],
+                    'module'    => $crop[0]['crop_module'],
                 ],
                 'irrigation' => [
                     (count($client->irrigation->pluck('id')->all()) > 0) ? $client->irrigation->pluck('irrigation_name', 'id')->all() : null
