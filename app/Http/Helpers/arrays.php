@@ -55,7 +55,7 @@ if (!function_exists('getConfig')) {
     {
         //Return a string: 'client' and 'crop'
         if ($key) {
-            return Credentials::config()->get($field)[$key][0];
+            return Credentials::config()->get($field)[$key][0] ?? Credentials::config()->get($field)[$key];
         }
         //Return an array: 'config', 'irrigation', 'region' and 'training'
         return Credentials::config()->get($field);
