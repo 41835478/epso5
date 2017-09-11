@@ -6,7 +6,7 @@ use App\Repositories\Clients\Client;
 use App\Repositories\Clients\Traits\ClientsHelpers;
 use App\Repositories\Repository;
 use App\Services\Images\Images;
-use DB;
+use Credentials, DB;
 
 class ClientsRepository extends Repository
 {
@@ -53,5 +53,19 @@ class ClientsRepository extends Repository
         });
         //Create an error
         return false;
+    }
+
+    /**
+     * List of clients by role
+     * @return  array
+     */
+    public function listOfClientsByRole()
+    {
+        if(Credentials::isAdmin()) {
+            return ['' => ''] + $this->model
+                ->pluck('client_name', 'id')
+                ->toArray();
+        }
+            return [];
     }
 }

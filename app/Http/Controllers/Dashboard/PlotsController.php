@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\DataTables\Plots\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Plots\PlotsRepository;
 use App\Http\Requests\PlotsRequest;
-//use Credentials;
+use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Plots\PlotsRepository;
+use App\Repositories\Users\UsersRepository;
+// use Credentials;
 //use Illuminate\Http\Request;
 
 class PlotsController extends DashboardController
@@ -94,8 +96,12 @@ class PlotsController extends DashboardController
      */
     public function edit($id)
     {
+        list($clients, $users) = $this->controller->getAdministration();   
+
         return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+            ->withClients($clients)
+            ->withData($this->controller->find($id))
+            ->withUsers($users);
     }
 
     /**

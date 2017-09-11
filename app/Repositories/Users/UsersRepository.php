@@ -6,7 +6,7 @@ use App\Repositories\Profiles\ProfilesRepository;
 use App\Repositories\Repository;
 use App\Repositories\Users\Traits\UsersHelpers;
 use App\Repositories\Users\User;
-use DB;
+use Credentials, DB;
 
 class UsersRepository extends Repository {
 
@@ -86,5 +86,22 @@ class UsersRepository extends Repository {
             }
             return false;
         });
+    }
+
+    /**
+     * List of users by role
+     * Only return the list of user if the role is editor.
+     * Use the Credentials::config() facade, throw the helper getConfig(), to get the client ID
+     * @return  array
+     */
+    public function listOfUsersByRole()
+    {
+        if(Credentials::isEditor()) {
+            return ['' => ''] + $this->model
+                ->where('client_id', getConfig('client', 'id'))
+                ->pluck('name', 'id')
+                ->toArray();
+        }
+            return [];
     }
 }
