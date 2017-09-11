@@ -27,6 +27,7 @@ return [
     'exit'              => 'power-off',
     'file'              => 'file-text',
     'form'              => 'check-square-o',
+    'framework'         => 'align-justify',
     'graph'             => 'line-chart',
     'hashtag'           => 'hashtag',
     'id'                => 'id-card',

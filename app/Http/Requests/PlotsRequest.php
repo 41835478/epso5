@@ -27,8 +27,9 @@ class PlotsRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'filter::1',
-            //'field2'          => 'filter::2',
+            'plot_name'         => 'required',
+            'plot_area'         => 'required',
+            'plot_framework'    => 'required|regex:/[0-9]{1}x[0-9]{1}/',
         ];
     }
 

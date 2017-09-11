@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'framework'         => 'Marco de plantación',
+    'framework:min'     => 'Marco',
     'framework:x'       => 'Separación entre líneas',
     'framework:y'       => 'Distancia entre cepas',
     'crop'              => 'Información del cultivo: :crop',

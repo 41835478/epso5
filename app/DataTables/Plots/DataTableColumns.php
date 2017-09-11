@@ -29,6 +29,7 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.zip:min'), 'geolocation.geo_zip'),
             $this->setColumn(trans('units.m2:min'), 'plot_area'),
             $this->setColumn(trans('units.percent:min'), 'plot_percent_cultivated_land'),
+            $this->setColumn(sections('plots.framework:min'), 'plot_framework'),
             $this->setColumnWithRelationship(trans('base.catastro'), 'geolocation.geo_catastro'),
             $this->setColumnWithRelationship(trans('base.latitude'), 'geolocation.geo_lat'),
             $this->setColumnWithRelationship(trans('base.longitude'), 'geolocation.geo_lng'),
