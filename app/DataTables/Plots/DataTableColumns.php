@@ -54,13 +54,13 @@ trait DataTableColumns
         //Filtering the relationships
         if(Credentials::isAdmin()) {
             $columns_minimize = [
-                'show' => [3, 4, 5, 7, 8, 10, 12, 15, 16],
-                'hide' => [1, 2, 6, 9, 11, 13, 14],
+                'show' => [3, 4, 5, 7, 8, 10, 12, 13, 16, 17],
+                'hide' => [1, 2, 6, 9, 11, 14, 15],
             ];
         } elseif(Credentials::isEditor()) {
             $columns_minimize = [
-            'show' => [2, 3, 4, 6, 7, 9, 11, 14, 15],
-            'hide' => [1, 5, 8, 10, 12, 13],
+            'show' => [2, 3, 4, 6, 7, 9, 11, 12, 15, 16],
+            'hide' => [1, 2, 5, 8, 10, 13, 14],
             ];
         } else {
             //User don't need filter for columns
