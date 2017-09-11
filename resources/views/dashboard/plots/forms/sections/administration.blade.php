@@ -20,6 +20,12 @@
         {{-- Field: Client --}}
         {!! BootForm::hidden('client_id')->value(getConfig('client', 'id') ?? null) !!}
 
+        {{-- Field: Crop --}}
+        {!! BootForm::hidden('crop_id')->value(getConfig('crop', 'id') ?? null) !!}
+
+        {{-- Field: Crop module --}}
+        {!! BootForm::hidden('crop_module')->value(getConfig('crop', 'module') ?? null) !!}
+
         {{-- Field: User --}}
         {!! BootForm::select(sections('users.title'), 'user_id')
             ->addGroupClass('col-md-4')
