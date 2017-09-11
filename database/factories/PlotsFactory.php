@@ -48,6 +48,6 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'plot_framework'            => $plot_framework,
         'plot_area'                 => $number,
         'plot_green_cover'          => $boolean,
-        'plot_start_date'           => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'plot_start_date'           => $faker->date($format = 'd/m/Y', $max = 'now'),
     ];
 });
