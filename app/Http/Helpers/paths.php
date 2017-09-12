@@ -88,6 +88,19 @@ if (!function_exists('modal_path')) {
 }
 
 /**
+ * Generate the modals path
+ * @param  string $module 
+ * @param  string $file 
+ * @return string
+ */
+if (!function_exists('module_path')) {
+    function module_path(string $module, $file = 'default')
+    {
+        return dashboard_path('_modules.' . $module . '.') . $file;
+    }
+}
+
+/**
  * Generate the image path
  * @param  string $file 
  * @return string

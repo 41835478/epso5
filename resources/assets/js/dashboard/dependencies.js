@@ -15,6 +15,16 @@ window._ = require('lodash');
 // */
     require( './jquery/_include.js' );
 
+// /**
+// * The application sections
+// */
+    require('./sections.js');
+
+// /**
+// * The application modules
+// */
+    require('./modules.js');
+
 /**
 * The dataTables components
 */

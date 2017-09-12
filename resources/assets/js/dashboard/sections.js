@@ -5,7 +5,7 @@
  * ////////////////////////////
  *
  */
-     var loading = '<div class="col-md-12 text-center"><img src="../../images/loading.gif"></div>';
+    var loading = '<div class="col-md-12 text-center"><img src="../../../images/loading.gif"></div>';
 
     /** 
     * Select: State
@@ -39,14 +39,16 @@
     }
 
     /** 
-    * Select: users
+    * Select: users for plots (With module)
     */
     if($( '#client_id' )) {
         $( '#client_id' ).on( 'change', function() {
-            //Define the variable 
-            var $container = $('#user_id');
+            //Define the variables
+            var $container  = $('#user_id');
+            var $module     = $('#load-module');
             //Add loading class 
             $container.empty().addClass('loading');
+            $module.html( loading );
             //Get the data via AJAX
             $.get( window.location.origin + '/dashboard/ajax/users', { client: $('#client_id').val() }, 
             function( data ) {
@@ -66,12 +68,22 @@
                     $container.prop( 'disabled', true ).prop( 'required', false ).removeClass('loading');
                 }
             });
+            //Add módule value
             if($( '#crop_module' )) {
                 $.get( window.location.origin + '/dashboard/ajax/modules', { client: $('#client_id').val() }, 
                 function( data ) {
                     //Only if there is data
                     if( data.length > 0 ) {
-                        $( '#crop_module' ).val( data );
+                        //Load the module
+                        if( $( '#crop_module' ).val( data ) ) {
+                            //Load the module
+                            $.get( window.location.origin + '/dashboard/ajax/modules/load', { module: data }, 
+                            function( output ) {
+                                $module.html( output );
+                            });  
+                        }
+                    } else {
+                        $module.html( '' );
                     }
                 });
             }

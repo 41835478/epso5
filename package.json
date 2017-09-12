@@ -21,7 +21,7 @@
     "datatables.net-buttons-bs": "1.2.4",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-webpack-plugin": "^1.5.0-beta.0",
-    "jquery": "3.1.1",
+    "jquery": "3.2.1",
     "jquery-mask-plugin": "1.14",
     "json-loader": "0.5.4",
     "laravel-mix": "^1.0",
