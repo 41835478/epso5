@@ -15,6 +15,7 @@ class ModulesLoadController extends Controller
      */
     public function __invoke()
     {
-        return view(module_path(request('module')));
+        $moduleName = request('crop');
+        return view(module_path(request('module')), compact('moduleName'));
     }
 }

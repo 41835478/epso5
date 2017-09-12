@@ -54542,10 +54542,11 @@ if ($('#state_id')) {
     $('#state_id').on('change', function () {
         //Define the variable 
         var $container = $('#region_id');
+        var $state = $('#state_id');
         //Add loading class 
         $container.empty().addClass('loading');
         //Get the data via AJAX
-        $.get(window.location.origin + '/dashboard/ajax/regions', { state: $('#state_id').val() }, function (data) {
+        $.get(window.location.origin + '/dashboard/ajax/regions', { state: $state.val() }, function (data) {
             //Only if there is data
             if (data.length > 0) {
                 //First empty option field
@@ -54571,13 +54572,14 @@ if ($('#state_id')) {
 if ($('#client_id')) {
     $('#client_id').on('change', function () {
         //Define the variables
+        var $clientID = $('#client_id').val();
         var $container = $('#user_id');
         var $module = $('#load-module');
         //Add loading class 
         $container.empty().addClass('loading');
         $module.html(loading);
         //Get the data via AJAX
-        $.get(window.location.origin + '/dashboard/ajax/users', { client: $('#client_id').val() }, function (data) {
+        $.get(window.location.origin + '/dashboard/ajax/users', { client: $clientID }, function (data) {
             //Only if there is data
             if (data.length > 0) {
                 //First empty option field
@@ -54596,16 +54598,18 @@ if ($('#client_id')) {
         });
         //Add módule value
         if ($('#crop_module')) {
-            $.get(window.location.origin + '/dashboard/ajax/modules', { client: $('#client_id').val() }, function (data) {
+            $.get(window.location.origin + '/dashboard/ajax/modules', { client: $clientID }, function (data) {
                 //Only if there is data
                 if (data.module && data.id) {
                     //Add values 
                     $('#crop_module').val(data.module);
                     $('#crop_id').val(data.id);
-                    //Load the module
-                    $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module }, function (output) {
-                        $module.html(output);
-                    });
+                    if (data.module.length > 0) {
+                        //Load the module
+                        $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, crop: data.name }, function (output) {
+                            $module.html(output);
+                        });
+                    }
                 } else {
                     $module.html('');
                 }

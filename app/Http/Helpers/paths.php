@@ -96,7 +96,9 @@ if (!function_exists('modal_path')) {
 if (!function_exists('module_path')) {
     function module_path(string $module, $file = 'default')
     {
-        return dashboard_path('_modules.' . $module . '.') . $file;
+        return ($module === 'error') 
+            ? dashboard_path('_modules.error')
+            : dashboard_path('_modules.' . $module . '.') . $file;
     }
 }
 

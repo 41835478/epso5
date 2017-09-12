@@ -63,7 +63,11 @@ class PlotsController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path($this->section . '.create'));
+        list($clients, $users) = $this->controller->getAdministration();
+
+        return view(dashboard_path($this->section . '.create'))            
+            ->withClients($clients)
+            ->withUsers($users);
     }
 
     /**
@@ -96,12 +100,8 @@ class PlotsController extends DashboardController
      */
     public function edit($id)
     {
-        list($clients, $users) = $this->controller->getAdministration();   
-
         return view(dashboard_path($this->section . '.edit'))
-            ->withClients($clients)
-            ->withData($this->controller->find($id))
-            ->withUsers($users);
+            ->withData($this->controller->find($id));
     }
 
     /**

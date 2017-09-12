@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class ModulesController extends Controller
 {
+    protected $errorMessage = 'error';
+
     /**
      * Get an ajax response
      *
@@ -19,8 +21,9 @@ class ModulesController extends Controller
         $client = $clients->find(request('client'));
         $module = $client->crop->all();
         $response = [
-            'module'    => ($module[0]['crop_module'] ?? null), 
-            'id'        => ($module[0]['id'] ?? null)
+            'name'      => ($module[0]['crop_name'] ?? $this->errorMessage), 
+            'module'    => ($module[0]['crop_module'] ?? $this->errorMessage), 
+            'id'        => ($module[0]['id'] ?? $this->errorMessage)
         ];
             return response()->json($response);
     }
