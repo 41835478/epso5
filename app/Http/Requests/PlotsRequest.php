@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Credentials;
 
 class PlotsRequest extends FormRequest
 {
@@ -26,14 +27,22 @@ class PlotsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        //Sections
+        $administration = [
             'client_id'         => 'required|integer',
             'crop_id'           => 'required|integer',
             'crop_module'       => 'required',
+        ];
+        $plot = [
             'plot_name'         => 'required',
             'plot_area'         => 'required',
             'plot_framework'    => 'required|regex:/[0-9]{1}x[0-9]{1}/',
         ];
+        //Add filters 
+        if(!Credentials::isEditor()) {
+            $administration = array_merge(['user_id' => 'required|integer'], $administration);
+        }
+            return array_merge($administration, $plot);
     }
 
     /**
@@ -44,12 +53,13 @@ class PlotsRequest extends FormRequest
     public function attributes()
     {
         return [
+            'user_id'           => trans_title('users', 'singular'),
             'client_id'         => trans_title('clients', 'singular'),
-            'crop_id'           => trans_title('plots', 'singular'),
+            'crop_id'           => trans_title('crops', 'singular'),
+            'plot_name'         => trans_title('plots', 'singular'),
             'crop_module'       => trans('base.module'),
-            'plot_name'         => trans('plots'),
-            'plot_area'         => trans('plots'),
-            'plot_framework'    => trans('plots'),
+            'plot_area'         => trans('units.area'),
+            'plot_framework'    => sections('plots.framework'),
         ];
     }
 
