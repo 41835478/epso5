@@ -30,6 +30,7 @@ class Plot extends Model  {
     protected $fillable = [
         'client_id',
         'crop_id',
+        'crop_module',
         'crop_variety_id',
         'pattern_id',
         'user_id',

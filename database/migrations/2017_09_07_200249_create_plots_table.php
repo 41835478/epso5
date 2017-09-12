@@ -17,6 +17,7 @@ class CreatePlotsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('client_id')->unsigned()->index();
             $table->integer('crop_id')->unsigned()->index();
+            $table->string('crop_module', 20);
             $table->integer('crop_variety_id')->unsigned()->index();
             $table->integer('pattern_id')->unsigned()->index();
             $table->integer('city_id')->unsigned()->index();

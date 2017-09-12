@@ -66,6 +66,15 @@
                     $container.prop( 'disabled', true ).prop( 'required', false ).removeClass('loading');
                 }
             });
+            if($( '#crop_module' )) {
+                $.get( window.location.origin + '/dashboard/ajax/modules', { client: $('#client_id').val() }, 
+                function( data ) {
+                    //Only if there is data
+                    if( data.length > 0 ) {
+                        $( '#crop_module' ).val( data );
+                    }
+                });
+            }
         });
     }
 

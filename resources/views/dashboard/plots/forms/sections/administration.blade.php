@@ -15,6 +15,9 @@
             ->options([])
         !!}
 
+        {{-- Field: Crop module --}}
+        {!! BootForm::hidden('crop_module')->id('crop_module') !!}
+
     @elseIfRole('editor')
 
         {{-- Field: Client --}}
