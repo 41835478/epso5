@@ -18,6 +18,10 @@ class ModulesController extends Controller
     {
         $client = $clients->find(request('client'));
         $module = $client->crop->all();
-            return response()->json($module[0]['crop_module'] ?? null);
+        $response = [
+            'module'    => ($module[0]['crop_module'] ?? null), 
+            'id'        => ($module[0]['id'] ?? null)
+        ];
+            return response()->json($response);
     }
 }

@@ -27,6 +27,9 @@ class PlotsRequest extends FormRequest
     public function rules()
     {
         return [
+            'client_id'         => 'required|integer',
+            'crop_id'           => 'required|integer',
+            'crop_module'       => 'required',
             'plot_name'         => 'required',
             'plot_area'         => 'required',
             'plot_framework'    => 'required|regex:/[0-9]{1}x[0-9]{1}/',
@@ -41,8 +44,12 @@ class PlotsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans_title('crops', 'singular'),
-            //'field2'            => trans('base.module'),
+            'client_id'         => trans_title('clients', 'singular'),
+            'crop_id'           => trans_title('plots', 'singular'),
+            'crop_module'       => trans('base.module'),
+            'plot_name'         => trans('plots'),
+            'plot_area'         => trans('plots'),
+            'plot_framework'    => trans('plots'),
         ];
     }
 

@@ -54589,23 +54589,23 @@ if ($('#client_id')) {
                         text: element.name
                     }));
                 });
-                $container.prop('disabled', false).prop('required', true).removeClass('loading');
+                $container.prop('disabled', false).removeClass('loading');
             } else {
-                $container.prop('disabled', true).prop('required', false).removeClass('loading');
+                $container.prop('disabled', true).removeClass('loading');
             }
         });
         //Add módule value
         if ($('#crop_module')) {
             $.get(window.location.origin + '/dashboard/ajax/modules', { client: $('#client_id').val() }, function (data) {
                 //Only if there is data
-                if (data.length > 0) {
+                if (data.module && data.id) {
+                    //Add values 
+                    $('#crop_module').val(data.module);
+                    $('#crop_id').val(data.id);
                     //Load the module
-                    if ($('#crop_module').val(data)) {
-                        //Load the module
-                        $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data }, function (output) {
-                            $module.html(output);
-                        });
-                    }
+                    $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module }, function (output) {
+                        $module.html(output);
+                    });
                 } else {
                     $module.html('');
                 }
