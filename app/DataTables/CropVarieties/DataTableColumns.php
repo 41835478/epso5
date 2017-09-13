@@ -17,7 +17,9 @@ trait DataTableColumns
          */
         return [
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans_title('crops', 'singular'), 'crop.crop_name'),
+            $this->setColumnWithRelationship(trans_title('crops', 'singular'), 'crop.crop_name', [
+                'orderable' => false,
+            ]),
             $this->setColumn(trans_title('crop_varieties'), 'crop_variety_name'),
             $this->setColumnWithRelationship(sections('crop_varieties.type'), 'crop_variety_type.crop_variety_type_name', [
                 'defaultContent' => no_result(),
