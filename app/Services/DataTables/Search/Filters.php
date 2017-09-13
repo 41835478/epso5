@@ -4,6 +4,8 @@ namespace App\Services\DataTables\Search;
 
 trait Filters {
 
+    private $min_chars = 3;
+
     /**
      * Column search by change (The same that input but for select)
      * @param   string   $containerID   [The container ID] 
@@ -31,8 +33,10 @@ trait Filters {
     {
         return "
             $('#{$containerID}').on('keyup', function(){
-                var value = $('#{$containerID}').val();
-                $( table ).DataTable().column( {$columnNumber} ).search( value ? '' + value + '' : '' ).draw();
+                if($(this).val().length >= {$this->min_chars}) {
+                    var value = $('#{$containerID}').val();
+                    $( table ).DataTable().column( {$columnNumber} ).search( value ? '' + value + '' : '' ).draw();
+                }
             });
         ";
     }
