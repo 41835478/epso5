@@ -6,6 +6,7 @@ use App\DataTables\CropVarieties\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\CropVarietiesRequest;
 use App\Repositories\CropVarieties\CropVarietiesRepository;
+use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
 use App\Repositories\Crops\CropsRepository;
 
 class CropVarietiesController extends DashboardController
@@ -14,7 +15,9 @@ class CropVarietiesController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $crop;
     protected $table;
+    protected $type;
 
     /**
      * @var private
@@ -23,9 +26,10 @@ class CropVarietiesController extends DashboardController
     private $role       = 'admin';
     private $section    = 'crop_varieties';
 
-    public function __construct(CropVarietiesRepository $controller, DataTable $table)
+    public function __construct(CropVarietiesRepository $controller, CropsRepository $crop, DataTable $table)
     {
         $this->controller   = $controller;
+        $this->crop         = $crop;
         $this->table        = $table;
         
         //Sharing in the view
@@ -41,13 +45,12 @@ class CropVarietiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id, CropsRepository $crop)
+    public function show($id)
     {
         //Crop ID
-        $cropName = $crop->find($id)->crop_name ?? null;
-
-        return $this->table
-            ->render(dashboard_path($this->section . '.index'), compact('cropName'));
+        $crops = $this->crop->find($id) ?? null;
+            return $this->table
+                ->render(dashboard_path($this->section . '.index'), compact('crops'));
     }
 
     /**
@@ -55,9 +58,11 @@ class CropVarietiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CropVarietyTypesRepository $type)
     {
-        return view(dashboard_path($this->section . '.create'));
+        $crop   = $this->crop->find(request('crop'));
+        $types  = ($crop->crop_type > 0) ? $type->selectByCrop($crop->id): [];
+            return view(dashboard_path($this->section . '.create'), compact('crop', 'types'));
     }
 
     /**
@@ -73,7 +78,7 @@ class CropVarietiesController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.show', request('crop_id'))
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -90,12 +95,12 @@ class CropVarietiesController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CropsRepository $crop)
+    public function edit($id, $cropId, CropVarietyTypesRepository $type)
     {
-        $crops = $crop->lists(['id', 'crop_name']);
-        //
-        return view(dashboard_path($this->section . '.edit'), compact('crops'))
-            ->withData($this->controller->find($id));
+        $crop   = $this->crop->find($cropId);
+        $types  = ($crop->crop_type > 0) ? $type->selectByCrop($crop->id): [];
+            return view(dashboard_path($this->section . '.edit'), compact('crop', 'types'))
+                ->withData($this->controller->find($id));
     }
 
     /**
@@ -112,7 +117,7 @@ class CropVarietiesController extends DashboardController
 
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->section . '.show', request('crop_id'))
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

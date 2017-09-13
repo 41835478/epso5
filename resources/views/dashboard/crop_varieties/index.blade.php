@@ -7,10 +7,10 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($parent), route('dashboard.' . $role . '.' . $parent . '.index')],
-            [$cropName . ' (' . sections($section . '.variety:plural') . ')'],
+            [trans_title($section) . ': ' . $crops->crop_name],
         ])
         @slot('dropdownItems', [
-            [Html::class('dropdown-item')->linkCreate($role, $section)], 
+            [Html::class('dropdown-item')->linkCreate($role, $section, ['crop' => $crops->id])], 
         ])
     @endcomponent
 

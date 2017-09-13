@@ -66,13 +66,17 @@ abstract class DataTablesBuilder extends DataTable {
      * @param  array $attributes [Add extra attributes]
      * @return array
      */
-    protected function setColumnWithRelationship($title, $relationship) : array
+    protected function setColumnWithRelationship($title, $relationship, $attributes = []) : array
     {
-        return [
+        $column = [
                 'title' => $title, 
                 'name' => $relationship, 
                 'data' => $relationship, 
             ];
+
+        return $attributes
+            ? array_merge($column, $attributes)
+            : $column;
     }
 
     /**

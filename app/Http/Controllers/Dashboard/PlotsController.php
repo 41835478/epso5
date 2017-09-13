@@ -102,7 +102,7 @@ class PlotsController extends DashboardController
     {
         $data           = $this->controller->find($id);
         $cropTypes      = $this->type->selectByCrop($data->crop_id);
-        $cropVarieties  = $this->variety->selectByCrop($data->crop_id);
+        $cropVarieties  = $this->variety->selectByCrop($data->crop_id, $data->crop_variety_type);
             return view(dashboard_path($this->section . '.edit'), compact('cropTypes', 'cropVarieties', 'data'))
                 ->withUsers($user->listOfUsersByRole());
     }
