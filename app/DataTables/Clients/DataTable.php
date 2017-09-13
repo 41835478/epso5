@@ -54,7 +54,7 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             })
             ->editColumn('crop', function($data) {
-                return $data->crop->first()->crop_name ?? '-';
+                return $data->crop->first()->crop_name ?? no_result();
             })
             ->editColumn('client_image', function($data) {
                 return Html::thumbnail($data->client_image);
