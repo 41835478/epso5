@@ -12,13 +12,6 @@
         @slot('dropdownItems', [
             [Html::class('dropdown-item')->linkCreate($role, $section)], 
             [Html::class('dropdown-item')->linkEliminate($role, $section)],
-            {{-- Breadcrumb Dropdow Items: Example --}}
-            {{--[
-                'title' => icon('form', 'TitleExample'),
-                'route' => 'http://www.example1.com',
-                'type' => 'delete',
-                'class' => 'classExample',
-            ],--}} 
         ])
     @endcomponent
 
