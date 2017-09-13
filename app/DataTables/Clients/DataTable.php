@@ -31,7 +31,8 @@ class DataTable extends Repository
     {
         $query = app(ClientsRepository::class)
             ->dataTable()
-            ->select($this->section . '.*');
+            ->select($this->section . '.*')
+            ->with('crop');
 
         return $this->applyScopes($query);
     }
@@ -51,6 +52,9 @@ class DataTable extends Repository
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
+            })
+            ->editColumn('crop', function($data) {
+                return $data->crop->first()->crop_name ?? '-';
             })
             ->editColumn('client_image', function($data) {
                 return Html::thumbnail($data->client_image);
