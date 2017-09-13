@@ -29,7 +29,7 @@
                 'title' => icon('biocides', trans('navbar.admin:biocides')),
                 'url' => route('dashboard.admin.biocides.index'),
             ])
-            ->divider()
+            ->line()
             ->subMenuItem([
                 'title' => icon('tree', trans('navbar.admin:training')),
                 'url' => route('dashboard.admin.trainings.index'),
@@ -54,7 +54,7 @@
             Menu::new()
             ->subMenuItem([
                 'title' => trans('navbar.tools:roles:title'),
-            ])->divider()
+            ])->line()
             ->subMenuItem([
                 'title' => icon('assign', trans('selects.roles.god')),
                 'url' => route('dashboard.user.tools.role', 0),
@@ -126,7 +126,9 @@
                'title' => icon('add', trans('navbar.plots:new')),
                'url' => route('dashboard.user.plots.create'),
            ])
-           ->divider()
+           ->line([
+              'role' => 'editor',
+           ])
            ->subMenuItem([
                'title' => icon('assign', trans('navbar.plots:assign')),
                'url' => 'http://',
