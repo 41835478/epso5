@@ -1,16 +1,10 @@
-{{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{{-- Search by: Variety --}}
+{!! BootForm::text(sections('crop_varieties.title'), 'search_variety')
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
+{{-- Search by: Type --}}
+{!! BootForm::text(sections('crop_variety_types.title'), 'search_type')
     ->addGroupClass('col-md-3')
-!!}
-
-{{-- Search by: ID --}}
-{!! BootForm::text(trans('financials.id'), 'search_id')
-    ->addGroupClass('col-md-2')
-    ->addClass('number')
 !!}
