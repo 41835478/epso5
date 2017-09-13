@@ -43,21 +43,3 @@ if (!function_exists('range')) {
         return $lists;
     }
 }
-
-/**
- * Return a range array
- * @param  int $field
- * @param  int $key ['id', 'name']
- * @return  string
- */
-if (!function_exists('getConfig')) {
-    function getConfig($field, $key = null)
-    {
-        //Return a string: 'client' and 'crop'
-        if ($key) {
-            return Credentials::config()->get($field)[0][$key] ?? Credentials::config()->get($field)[$key];
-        }
-        //Return an array: 'config', 'irrigation', 'region' and 'training'
-        return Credentials::config()->get($field);
-    }
-}
