@@ -9,6 +9,9 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.edit')], 
         ])
+        @slot('dropdownItems', [
+            [Html::class('dropdown-item')->linkCreate($role, $section)], 
+        ])
         {{-- Add the data --}}
         @slot('data', $data)
         {{-- Add other slot --}}

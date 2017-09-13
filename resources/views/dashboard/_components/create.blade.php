@@ -3,7 +3,7 @@
         {{-- Breadcrumb --}}
         @component(component_path('breadcrumb'))
             {{-- Breadcrumb items --}}
-            @slot('breadcrumbItems', $breadcrumbItems)
+            @slot('breadcrumbItems', $breadcrumbItems ?? null)
         @endcomponent
     </div>
 
