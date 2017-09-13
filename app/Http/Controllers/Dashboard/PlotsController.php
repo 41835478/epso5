@@ -6,6 +6,8 @@ use App\DataTables\Plots\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\PlotsRequest;
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\CropVarieties\CropVarietiesRepository;
+use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
 use App\Repositories\Plots\PlotsRepository;
 use App\Repositories\Users\UsersRepository;
 // use Credentials;
@@ -25,11 +27,15 @@ class PlotsController extends DashboardController
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'user';
     private $section    = 'plots';
+    private $type;
+    private $variety;
 
-    public function __construct(PlotsRepository $controller, DataTable $table)
+    public function __construct(CropVarietyTypesRepository $type, CropVarietiesRepository $variety, DataTable $table, PlotsRepository $controller)
     {
         $this->controller   = $controller;
         $this->table        = $table;
+        $this->type         = $type;
+        $this->variety      = $variety;
         //Sharing in the view
         view()->share([
             'legend'    => $this->legend,
@@ -37,8 +43,6 @@ class PlotsController extends DashboardController
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -49,10 +53,6 @@ class PlotsController extends DashboardController
     public function index()
     {
         return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'plots:action'
-            // ])
             ->render(dashboard_path($this->section . '.index'));
     }
 
@@ -100,9 +100,11 @@ class PlotsController extends DashboardController
      */
     public function edit($id, UsersRepository $user)
     {
-        return view(dashboard_path($this->section . '.edit'))
-            ->withUsers($user->listOfUsersByRole())
-            ->withData($this->controller->find($id));
+        $data           = $this->controller->find($id);
+        $cropTypes      = $this->type->selectByCrop($data->crop_id);
+        $cropVarieties  = $this->variety->selectByCrop($data->crop_id);
+            return view(dashboard_path($this->section . '.edit'), compact('cropTypes', 'cropVarieties', 'data'))
+                ->withUsers($user->listOfUsersByRole());
     }
 
     /**

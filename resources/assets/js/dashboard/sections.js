@@ -97,22 +97,22 @@
     /** 
     * Crops: Load the crops types
     */
-    if($('#modal-crop-variety-types')) {
-        $('#modal-crop-variety-types').on('shown.bs.modal', function(event) {
+    if( $( '#modal-crop-variety-types' ) ) {
+        $( '#modal-crop-variety-types' ).on( 'shown.bs.modal', function( event ) {
             //Set variables
-            var $modal      = $(this);
-            var $button     = $(event.relatedTarget);
-            var $cropName   = $button.attr('data-cropName');
-            var $cropId     = $button.attr('data-cropId');
-            var $container  = $('#ajax-crop-variety-types');
+            var $modal      = $( this );
+            var $button     = $( event.relatedTarget );
+            var $cropName   = $button.attr( 'data-cropName' );
+            var $cropId     = $button.attr( 'data-cropId' );
+            var $container  = $( '#ajax-crop-variety-types' );
             //Loading
-            $container.html(loading);
+            $container.html( loading) ;
             //Add crop name to the title
-            $('#title-crop-variety-types').html($cropName);
+            $( '#title-crop-variety-types' ).html( $cropName );
             //Load the form
             $.get( window.location.origin + '/dashboard/ajax/cropVarietyTypes', { crop: $cropId }, 
             function( data ) {
-                $container.html(data);
+                $container.hide( ).html( data ).fadeIn( 'slow' );
             });
         });
     }

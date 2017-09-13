@@ -168,6 +168,6 @@ abstract class Repository
     {
         return $this->model
             ->where($field, '=', $value)
-            ->first($columns);
+            ->get($columns);
     }
 }

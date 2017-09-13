@@ -35,6 +35,20 @@ class CropVarietyTypesRepository extends Repository
      * @param   int     $crop
      * @return  boolean
      */
+    public function selectByCrop(int $crop, array $columns = ['id', 'name'])
+    {
+        return ['' => ''] + $this->model
+            ->select(['crop_variety_type_code AS id', 'crop_variety_type_name AS name'])
+            ->where('crop_id', $crop)
+            ->pluck($columns[1], $columns[0])
+            ->toArray();
+    }
+
+    /**
+     * Return all the records by crop
+     * @param   int     $crop
+     * @return  boolean
+     */
     public function store($id = null)
     {
         //First delete all the crop types 

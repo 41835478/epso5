@@ -54099,11 +54099,6 @@ __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 __webpack_require__("./resources/assets/js/dashboard/jquery/_include.js");
 
 // /**
-// * The application sections
-// */
-__webpack_require__("./resources/assets/js/dashboard/sections.js");
-
-// /**
 // * The application modules
 // */
 __webpack_require__("./resources/assets/js/dashboard/modules.js");
@@ -54325,6 +54320,7 @@ $(document).ready(function () {
     __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
     __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
     __webpack_require__("./resources/assets/js/dashboard/jquery/tables.js");
+    __webpack_require__("./resources/assets/js/dashboard/sections.js");
 });
 
 /***/ }),
@@ -54635,7 +54631,7 @@ if ($('#modal-crop-variety-types')) {
         $('#title-crop-variety-types').html($cropName);
         //Load the form
         $.get(window.location.origin + '/dashboard/ajax/cropVarietyTypes', { crop: $cropId }, function (data) {
-            $container.html(data);
+            $container.hide().html(data).fadeIn('slow');
         });
     });
 }

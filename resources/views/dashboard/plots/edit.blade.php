@@ -16,6 +16,9 @@
         @slot('data', $data)
         {{-- Add other slot --}}
         @slot('clients', $clients ?? [])
+        @slot('cropName', getCropName($data ?? null))
+        @slot('cropTypes', $cropTypes ?? [])
+        @slot('cropVarieties', $cropVarieties ?? [])
         @slot('users', $users ?? [])
     @endcomponent
 
