@@ -33,7 +33,7 @@ trait Filters {
     {
         return "
             $('#{$containerID}').on('keyup', function(){
-                if($(this).val().length >= {$this->min_chars}) {
+                if($(this).val().length >= {$this->min_chars} || !$(this).val()) {
                     var value = $('#{$containerID}').val();
                     $( table ).DataTable().column( {$columnNumber} ).search( value ? '' + value + '' : '' ).draw();
                 }
