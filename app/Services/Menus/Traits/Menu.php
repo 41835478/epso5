@@ -80,14 +80,18 @@ trait Menu {
     }
 
     /**
-     * Generate a vertical separator for the items
+     * Generate a vertical separator (line) between items
      * @param integer $margin [numeric]
      * @return App\Services\Menus\MenusBuilder;
      */
-    public function divider() : Builder
+    public function line($attributes = []) : Builder
     {
+        //Get the variables
+        $attributes['title'] = '<div class="dropdown-divider"></div>';
+        extract($this->getAttributes($attributes), EXTR_PREFIX_SAME, "wddx");
+
         //Set the raw html
-        $this->constructor[] = '<div class="dropdown-divider"></div>';
+        $this->constructor[] = $title;
 
         return $this;
     }
