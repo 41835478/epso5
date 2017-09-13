@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Dashboard\Editor;
 
 use App\DataTables\Plots\DataTable;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Repositories\Plots\PlotsRepository;
 
-class PlotsAssignController extends Controller
+class PlotsAssignController extends DashboardController
 {
     /**
      * @var protected
@@ -18,7 +18,7 @@ class PlotsAssignController extends Controller
      * @var private
      */
     private $legend     = 'plots';
-    private $role       = 'editor';
+    private $role       = 'user';//Warning, this is because we want to keep all the links, like: create, edit or index. See the $route variable in assign.blade.php!!!
     private $section    = 'plots';
 
     public function __construct(PlotsRepository $controller, DataTable $table)
@@ -41,12 +41,12 @@ class PlotsAssignController extends Controller
      */
     public function __invoke()
     {
-        dd('Hellow');
         return $this->table
             //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'plots:action'
-            // ])
-            ->render(dashboard_path($this->section . '.index'));
+            //Return only row without users
+            ->setValue([
+                'no_users' => true
+            ])
+            ->render(dashboard_path($this->section . '.assign'));
     }
 }

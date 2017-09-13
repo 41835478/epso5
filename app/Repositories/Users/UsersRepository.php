@@ -70,6 +70,37 @@ class UsersRepository extends Repository {
     }
 
     /**
+     * Prepare the database query for the yajra dataTable service
+     * @param   string   $columns
+     * @param   string   $id [In case we need an extra variable to check with something...]
+     * @param   string   $table [Just in case we need to add de table name for avoid ambiguous row names]
+     * @return  ajax
+     */
+    public function dataTable(array $columns = ['*'], $id = null, $table = null)
+    {
+        //Just in case we need to add de table name for avoid ambiguous row names
+        $table = $table ? $table . '.' : '';
+        //
+        return $this->model
+            ->select($columns)
+            ->when(Credentials::maxRole() === 'god', function ($query) {
+                return $query;
+            })
+            ->when(Credentials::maxRole() === 'admin', function ($query) use ($table) {
+                return $query->where($table . 'is_god', false);
+            })
+            ->when(Credentials::maxRole() === 'editor', function ($query) use ($table) {
+                return $query
+                    ->where($table . 'is_god', false)
+                    ->where($table . 'is_admin', false)
+                    ->where($table . 'client_id', Credentials::client());
+            })
+            ->when(Credentials::maxRole() === 'user', function ($query) use ($table) {
+                return $query->where($table . 'user_id', Credentials::id());
+            });
+    }
+
+    /**
      * Eliminate a list of items from the DB
      * @return  boolean
      */

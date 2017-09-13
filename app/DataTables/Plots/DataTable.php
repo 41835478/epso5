@@ -27,19 +27,13 @@ class DataTable extends Repository
      */
     public function query()
     {
-        //Filtering the relationships
-        if(Credentials::isAdmin()) {
-            $relationships = ['city', 'client', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
-        } elseif(Credentials::isEditor()) {
-            $relationships = ['city', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
-        } else {
-            $relationships = ['city', 'crop', 'crop_variety', 'geolocation', 'region'];
-        }
+        //Show only row with the user_id field empty
+        $id = $this->getValue('no_users') ? true : null;
 
         $query = app(PlotsRepository::class)
-            ->dataTable($columns = ['*'], $id = null, $table = 'plots')
+            ->dataTable($columns = ['*'], $id, $table = 'plots')
             ->select($this->section . '.*')
-            ->with($relationships);
+            ->with(SELF::relationships());
 
         return $this->applyScopes($query);
     }
@@ -83,5 +77,16 @@ class DataTable extends Repository
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
             });
+    }
+
+    private function relationships()
+    {
+        //Filtering the relationships
+        if(Credentials::isAdmin()) {
+            return $this->getValue('no_users') 
+            ? ['city', 'client', 'crop', 'crop_variety', 'geolocation', 'region']//Remove the user relationship when search for plot without users...
+            : ['city', 'client', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
+        } 
+        return ['city', 'crop', 'crop_variety', 'geolocation', 'region', 'user'];
     }
 }
