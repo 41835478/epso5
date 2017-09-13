@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'administration'    => 'Datos de configuración: Para los nives administrador y editor',
+    'assign'            => 'Listado de parcelas sin usuario',
     'crop'              => 'Información del cultivo',
     'framework'         => 'Marco de plantación',
     'framework:min'     => 'Marco',
