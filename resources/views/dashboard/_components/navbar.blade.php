@@ -127,11 +127,11 @@
                'url' => route('dashboard.user.plots.create'),
            ])
            ->line([
-              'role' => 'editor',
+                'role' => 'editor',
            ])
            ->subMenuItem([
                'title' => icon('assign', trans('navbar.plots:assign')),
-               'url' => 'http://',
+               'url' => route('dashboard.editor.plots.assign'),
                'role' => 'editor',
            ])->output()
        )
