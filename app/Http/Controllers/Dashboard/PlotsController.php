@@ -98,9 +98,10 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, UsersRepository $user)
     {
         return view(dashboard_path($this->section . '.edit'))
+            ->withUsers($user->listOfUsersByRole())
             ->withData($this->controller->find($id));
     }
 
