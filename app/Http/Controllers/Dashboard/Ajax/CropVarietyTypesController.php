@@ -20,7 +20,6 @@ class CropVarietyTypesController extends Controller
         $cropId     = request('crop');
         $cropName   = $crops->find($cropId)->crop_name;
         $cropData   = $cropsVarietyTypes->allByCrop($cropId);
-
-        return view('dashboard.crop_variety_types.default', compact('cropId', 'cropName', 'cropData'));
+            return view('dashboard.crop_variety_types.default', compact('cropId', 'cropName', 'cropData'));
     }
 }
