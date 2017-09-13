@@ -29,7 +29,7 @@ class DataTable extends Repository
     {
         $query = app(CropVarietiesRepository::class)
             ->dataTable()
-            ->where('crop_id', Route::input('crop_variety'))
+            ->where('crop_varieties.crop_id', Route::input('crop_variety'))
             ->select($this->section . '.*')
             ->with(['crop', 'crop_variety_type']);
 
