@@ -186,6 +186,7 @@ return [
         App\Providers\HelperServiceProvider::class,
         App\Services\Html\HtmlProvider::class,
         App\Services\Menus\MenusProvider::class,
+        App\Services\Minify\MinifyProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
 
@@ -264,6 +265,7 @@ return [
         'Html' => App\Services\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Menu' => App\Services\Menus\MenusFacade::class,
+        'Minify' => App\Services\Minify\MinifyFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
