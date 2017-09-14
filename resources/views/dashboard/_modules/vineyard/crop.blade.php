@@ -16,7 +16,7 @@
     </div>
 
     {{-- Field: Crop Variety --}}
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-3">
         <label class="control-label" for="crop_variety_id">{{ sections('crop_varieties.title') }}</label>
         <select name="crop_variety_id" id="crop_variety_id" class="form-control" required="required">
             @foreach($cropVarieties as $key => $value)
@@ -24,7 +24,36 @@
             @endforeach
         </select>
     </div>
+
+    {{-- Field: Crop Patterns --}}
+    <div class="form-group col-md-3">
+        <label class="control-label" for="pattern_id">{{ sections('patterns.title') }}</label>
+        <select name="pattern_id" id="pattern_id" class="form-control">
+            @foreach($cropPatterns as $key => $value)
+                {!! selected($data->pattern_id ?? null, $key, $value) !!}
+            @endforeach
+        </select>
+    </div>
+
+    {{-- Field: Crop quantity --}}
+    <div class="form-group col-md-2">
+        <label class="control-label" for="plot_quantity">{{ sections('plots.quantity') }}</label>
+        <div class="input-group">
+            <input type="text" name="plot_quantity" value="{{ isset($data) ? $data->plot_quantity : null }}" id="plot_quantity" class="form-control number">
+            <span class="input-group-addon">uds</span>
+        </div>
+    </div>
 </div>
-<script>
-    {!! Minify::file('crops_variety')->js() !!}
-</script>
+
+{{-- Add the custom JS --}}
+@if(isset($data))
+    @section('javascript')
+        <script>
+            {!! Minify::file('crops_variety')->js() !!}
+        </script>
+    @endsection
+@else
+    <script>
+        {!! Minify::file('crops_variety')->js() !!}
+    </script>
+@endif

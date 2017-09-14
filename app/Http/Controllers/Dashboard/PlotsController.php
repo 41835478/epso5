@@ -8,6 +8,7 @@ use App\Http\Requests\PlotsRequest;
 use App\Repositories\Clients\ClientsRepository;
 use App\Repositories\CropVarieties\CropVarietiesRepository;
 use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
+use App\Repositories\Patterns\PatternsRepository;
 use App\Repositories\Plots\PlotsRepository;
 use App\Repositories\Users\UsersRepository;
 // use Credentials;
@@ -98,12 +99,13 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, UsersRepository $user)
+    public function edit($id, UsersRepository $user, PatternsRepository $pattern)
     {
         $data           = $this->controller->find($id);
-        $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id);
-        $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type);
-            return view(dashboard_path($this->section . '.edit'), compact('cropTypes', 'cropVarieties', 'data'))
+        $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id) ?? [];
+        $cropPatterns   = $pattern->selectByCrop($cropId = $data->crop_id) ?? [];
+        $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type) ?? [];
+            return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTypes', 'cropVarieties', 'data'))
                 ->withUsers($user->listOfUsersByRole($client = $data->client_id));
     }
 

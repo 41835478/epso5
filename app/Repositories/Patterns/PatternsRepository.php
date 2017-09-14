@@ -17,4 +17,18 @@ class PatternsRepository extends Repository
     {
         $this->model = $model;
     }
+
+    /**
+     * Return all the records by crop
+     * @param   int     $crop
+     * @return  boolean
+     */
+    public function selectByCrop(int $crop, array $columns = ['id', 'name'])
+    {
+        return ['' => ''] + $this->model
+            ->select(['id', 'pattern_name AS name'])
+            ->where('crop_id', $crop)
+            ->pluck($columns[1], $columns[0])
+            ->toArray();
+    }
 }

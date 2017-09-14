@@ -47,16 +47,3 @@ if (!function_exists('getCropId')) {
         return getConfig('crop', 'id');
     }
 }
-
-/**
- * Get the crop module name
- * @param  int $field
- * @param  int $key ['id', 'name']
- * @return  string
- */
-if (!function_exists('getModule')) {
-    function getModule()
-    {
-        return getConfig('crop', 'module');
-    }
-}

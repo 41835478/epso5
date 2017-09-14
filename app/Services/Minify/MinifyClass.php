@@ -11,6 +11,15 @@ class MinifyClass {
      * @param $files
      * @return mixed|string
      */
+    public function debug()
+    {
+            return $this->buffer;
+    }
+
+    /**
+     * @param $files
+     * @return mixed|string
+     */
     public function css()
     {
         $buffer = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $this->buffer);

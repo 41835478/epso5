@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'info'              => 'Información del patrones/pies',
-    'title'             => 'Patrón',
+    'title'             => 'Patrones/Pies',
+    'title:min'         => 'Patrón',
     'title:plural'      => 'Patrones',
 ];
