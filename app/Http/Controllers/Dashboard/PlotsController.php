@@ -101,10 +101,10 @@ class PlotsController extends DashboardController
     public function edit($id, UsersRepository $user)
     {
         $data           = $this->controller->find($id);
-        $cropTypes      = $this->type->selectByCrop($data->crop_id);
-        $cropVarieties  = $this->variety->selectByCrop($data->crop_id, $data->crop_variety_type);
+        $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id);
+        $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type);
             return view(dashboard_path($this->section . '.edit'), compact('cropTypes', 'cropVarieties', 'data'))
-                ->withUsers($user->listOfUsersByRole());
+                ->withUsers($user->listOfUsersByRole($client = $data->client_id));
     }
 
     /**

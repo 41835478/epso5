@@ -72,8 +72,7 @@ class UsersController extends DashboardController
     public function edit(int $id, ClientsRepository $client)
     {
         $clients = $client->lists(['id', 'client_name'], set_true('I want the firt option field empty!!!'));
-        $data = $this->controller
-            ->find($id);
+        $data = $this->controller->find($id);
         //Check if the user own the database record
         //and if the role is authorizate
         if(!Credentials::authorize($data)) {
@@ -92,25 +91,23 @@ class UsersController extends DashboardController
     {
         //Check if the user own the database record
         //and if the role is authorizate in: App\Repositories\Repository
-        $update = $this->controller
-            ->store($id);
-        //
-        return $update 
-            ? redirect()
-                ->route(Credentials::isEditor() 
-                    //God, Admin and Editor case
-                    ? 'dashboard.user.users.index' 
-                    //User case
-                    : 'dashboard.user.users.edit', Credentials::id()
-                )
-                ->withStatus(__('The items has been updated successfuly'))
-            : redirect()
-                ->back()
-                ->withInput()
-                ->withErrors([
-                __('An error occurred during the updating process'), 
-                __('If the error persist, please contact with the system administrator')
-            ]);
+        $update = $this->controller->store($id);
+            return $update 
+                ? redirect()
+                    ->route(Credentials::isEditor() 
+                        //God, Admin and Editor case
+                        ? 'dashboard.user.users.index' 
+                        //User case
+                        : 'dashboard.user.users.edit', Credentials::id()
+                    )
+                    ->withStatus(__('The items has been updated successfuly'))
+                : redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors([
+                    __('An error occurred during the updating process'), 
+                    __('If the error persist, please contact with the system administrator')
+                ]);
     }
 
     /**
@@ -124,20 +121,17 @@ class UsersController extends DashboardController
         if(!Credentials::isEditor()) {
             return Credentials::accessError();
         }
-        //
-        $create = $this->controller
-            ->store();
-        //
-        return $create 
-            ? redirect()
-                ->route('dashboard.user.users.index')
-                ->withStatus(__('The item has been create successfuly'))
-            : redirect()
-                ->back()
-                ->withInput()
-                ->withErrors([
-                __('An error occurred during the creating process'), 
-                __('If the error persist, please contact with the system administrator')
-            ]);
+        $create = $this->controller->store();
+            return $create 
+                ? redirect()
+                    ->route('dashboard.user.users.index')
+                    ->withStatus(__('The item has been create successfuly'))
+                : redirect()
+                    ->back()
+                    ->withInput()
+                    ->withErrors([
+                    __('An error occurred during the creating process'), 
+                    __('If the error persist, please contact with the system administrator')
+                ]);
     }
 }

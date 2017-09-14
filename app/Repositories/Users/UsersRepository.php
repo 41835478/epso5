@@ -134,13 +134,14 @@ class UsersRepository extends Repository {
      * List of users by role
      * Only return the list of user if the role is editor.
      * Use the Credentials::config() facade, throw the helper getConfig(), to get the client ID
+     * @param  integer $client
      * @return  array
      */
-    public function listOfUsersByRole()
+    public function listOfUsersByRole($client = null)
     {
         if(Credentials::isEditor()) {
             return ['' => ''] + $this->model
-                ->where('client_id', getConfig('client', 'id'))
+                ->where('client_id', $client ?? getConfig('client', 'id'))
                 ->pluck('name', 'id')
                 ->toArray();
         }
