@@ -46,14 +46,8 @@
 </div>
 
 {{-- Add the custom JS --}}
-@if(isset($data))
-    @section('javascript')
-        <script>
-            {!! Minify::file('crops_variety')->js() !!}
-        </script>
-    @endsection
-@else
+@section('javascript')
     <script>
-        {!! Minify::file('crops_variety')->js() !!}
+        {!! Minify::folder('vineyard')->js() !!}
     </script>
-@endif
+@endsection

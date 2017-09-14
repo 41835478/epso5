@@ -2,7 +2,7 @@
 
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
-    {!! BootForm::hidden('crop_id')->value($data->crop_id ?? null) !!}
+    {!! BootForm::hidden('crop_id')->value($data->crop_id ?? (Request::get('crop') ?? null)) !!}
 
     {{-- Patterns: name --}}
     {!! BootForm::text(trans('persona.name'), 'pattern_name')
@@ -11,8 +11,8 @@
         ->required()
     !!}
 
-    {{-- Patterns: description --}}
-    {!! BootForm::text(trans('base.description'), 'pattern_description')
-        ->addGroupClass('col-md-8')
+    {{-- Patterns: reference --}}
+    {!! BootForm::text(trans('base.reference'), 'pattern_reference')
+        ->addGroupClass('col-md-4')
     !!}
 </div>

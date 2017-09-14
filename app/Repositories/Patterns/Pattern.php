@@ -32,6 +32,6 @@ class Pattern extends Model  {
     protected $fillable = [        
         'crop_id',
         'pattern_name', 
-        'pattern_reference'
+        'pattern_reference',
     ];
 }

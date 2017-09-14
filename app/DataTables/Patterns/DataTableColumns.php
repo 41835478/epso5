@@ -20,7 +20,7 @@ trait DataTableColumns
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumnWithRelationship(sections('crops.title'), 'crop.crop_name'),
             $this->setColumn(trans_title('patterns'), 'pattern_name'),
-            $this->setColumn(trans('base.description'), 'pattern_description', [
+            $this->setColumn(trans('base.reference'), 'pattern_reference', [
                  'defaultContent' => no_result(),
             ]),
         ];

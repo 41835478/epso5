@@ -54098,11 +54098,6 @@ __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 // */
 __webpack_require__("./resources/assets/js/dashboard/jquery/_include.js");
 
-// /**
-// * The application modules
-// */
-__webpack_require__("./resources/assets/js/dashboard/modules.js");
-
 /**
 * The dataTables components
 */
@@ -54306,8 +54301,7 @@ function total_decimals(number) {
  * ////////////////////////////
  *
  */
-
-$(document).ready(function () {
+$(function () {
     /**
      * Place the CSRF token as a header on all pages for access in AJAX requests
      */
@@ -54316,7 +54310,6 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
-
     __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
     __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
     __webpack_require__("./resources/assets/js/dashboard/jquery/tables.js");
@@ -54503,19 +54496,6 @@ $('.buttons-select-all,.buttons-select-none').on('click', function (event) {
         checkbox.prop('checked', false);
     }
 });
-
-/***/ }),
-
-/***/ "./resources/assets/js/dashboard/modules.js":
-/***/ (function(module, exports) {
-
-/**
- *
- * ////////////////////////////
- * ////// * Application modules  * //////
- * ////////////////////////////
- *
- */
 
 /***/ }),
 

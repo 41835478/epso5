@@ -5,7 +5,7 @@ namespace App\Services\Minify;
 class MinifyClass {
 
     private $buffer;
-    private $extension = 'js';
+    private $file = 'javascript.js';
 
     /**
      * @param $files
@@ -47,22 +47,22 @@ class MinifyClass {
      * @param $file
      * @return string
      */
-    public function file($file)
+    public function folder($module)
     {
-        $path           = resource_path('assets/js/dashboard/custom/' . $file . '.' . $this->extension);
+        $path           = resource_path('views/dashboard/_modules/' . $module . '/' . $this->file);
         $this->buffer   = file_get_contents($path);
             return $this;
     }
 
     /**
-     * Set the extension
+     * Set the file
      *
-     * @param $extension
+     * @param $file
      * @return string
      */
-    public function extension($extension)
+    public function file($file)
     {
-        $this->extension = $extension;
+        $this->file = $file;
             return $this;
     }
 }

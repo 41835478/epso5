@@ -16,6 +16,7 @@ return [
     'legend'        => 'Información y/o leyenda',
     'list'          => 'Listado',
     'module'        => 'Módulo',
+    'reference'     => 'Referencia',
     'tools'         => 'Herramientas',
 
     /*
