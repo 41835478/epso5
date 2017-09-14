@@ -12,7 +12,9 @@ use App\Repositories\DummyClass\DummyModel;
 $factory->define(DummyModel::class, function (Faker\Generator $faker) {
     return [
         'DummySingular_name'            => $faker->company,
-        // 'DummySingula_email'            => $faker->unique()->safeEmail,
+        // 'DummySingular_word'            => $faker->word,
+        // 'DummySingular_words'           => $faker->words($nb = 3, $asText = false),
+        // 'DummySingular_email'           => $faker->unique()->safeEmail,
         // 'DummySingular_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
         // 'DummySingular_phone'           => $faker->tollFreePhoneNumber,
         // 'DummySingular_reference'       => $faker->shuffle('ABCDEF0123456789'),
