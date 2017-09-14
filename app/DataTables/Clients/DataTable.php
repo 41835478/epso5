@@ -30,7 +30,7 @@ class DataTable extends Repository
     public function query()
     {
         $query = app(ClientsRepository::class)
-            ->dataTable()
+            ->dataTable($columns = ['*'], $id = null, $table = 'clients')
             ->select($this->section . '.*')
             ->with('crop');
 

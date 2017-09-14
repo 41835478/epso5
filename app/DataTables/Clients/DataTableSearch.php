@@ -17,9 +17,9 @@ trait DataTableSearch
          */
         return [
             $this->setColumnSearch('number', 'search_id', 1),
-            $this->setColumnSearch('input', 'search_client', 2),
-            $this->setColumnSearch('input', 'search_contact', 9),
-            $this->setColumnSearch('input', 'search_email', 10),
+            $this->setColumnSearch('input', 'search_client', 3),
+            $this->setColumnSearch('input', 'search_contact', 10),
+            $this->setColumnSearch('input', 'search_email', 11),
         ];
     }
 }
