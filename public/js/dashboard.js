@@ -54602,7 +54602,7 @@ if ($('#client_id')) {
                     $('#crop_id').val(data.id);
                     if (data.module.length > 0) {
                         //Load the module
-                        $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, crop: data.name }, function (output) {
+                        $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, cropName: data.name, cropId: data.id }, function (output) {
                             $module.html(output);
                         });
                     }
