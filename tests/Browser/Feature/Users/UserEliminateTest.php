@@ -10,8 +10,6 @@ use Tests\DuskTestCase;
 
 class UserEliminateTest extends DuskTestCase
 {
-    use DatabaseTransactions;
-    
     protected $usersRoute = '/dashboard/users';
 
 /*
