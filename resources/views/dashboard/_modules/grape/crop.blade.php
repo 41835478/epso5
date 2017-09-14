@@ -9,6 +9,7 @@
     <div class="form-group col-md-2">
         <label class="control-label" for="crop_variety_id">{{ sections('crop_varieties.title') }}</label>
         <select name="crop_variety_id" id="crop_variety_id" class="form-control" required="required">
+            <option></option>
             @foreach($cropVarieties as $key => $value)
                 {!! selected($data->crop_variety_id ?? null, $key, $value) !!}
             @endforeach

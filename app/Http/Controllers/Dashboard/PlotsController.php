@@ -67,7 +67,7 @@ class PlotsController extends DashboardController
         list($clients, $users) = $this->controller->getAdministration();
         $cropTypes      = $this->type->selectByCrop($cropId = getCropId()) ?? null;
         $cropPatterns   = $pattern->selectByCrop($cropId = getCropId()) ?? null;
-        $cropVarieties  = [];
+        $cropVarieties  = $this->variety->selectByCrop($cropId = getCropId()) ?? [];
             return view(dashboard_path($this->section . '.create'), compact('cropPatterns', 'cropTypes', 'cropVarieties'))            
                 ->withClients($clients)
                 ->withUsers($users);

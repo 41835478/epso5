@@ -20,6 +20,7 @@
     <div class="form-group col-md-3">
         <label class="control-label" for="crop_variety_id">{{ sections('crop_varieties.title') }}</label>
         <select name="crop_variety_id" id="crop_variety_id" class="form-control" required="required">
+            <option></option>
             @foreach($cropVarieties as $key => $value)
             {!! selected($data->crop_variety_id ?? null, $key, $value) !!}
             @endforeach
@@ -30,6 +31,7 @@
     <div class="form-group col-md-3">
         <label class="control-label" for="pattern_id">{{ sections('patterns.title') }}</label>
         <select name="pattern_id" id="pattern_id" class="form-control">
+            <option></option>
             @foreach($cropPatterns as $key => $value)
             {!! selected($data->pattern_id ?? null, $key, $value) !!}
             @endforeach
