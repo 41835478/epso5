@@ -31,7 +31,7 @@ class CropVarietyTypesRepository extends Repository
     }
 
     /**
-     * Return all the records by crop
+     * Return all the records by crop in array format
      * @param   int     $crop
      * @return  boolean
      */

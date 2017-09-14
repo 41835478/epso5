@@ -42,6 +42,7 @@ class RegionsRepository extends Repository
             return response()->json(null);
         }
 
+        //Set columns
         $columns = !empty($columns) 
             ? $columns 
             : ['id', $row . ' AS name'];

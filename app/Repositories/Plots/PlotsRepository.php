@@ -47,22 +47,32 @@ class PlotsRepository extends Repository
     {
         //Just in case we need to add de table name for avoid ambiguous row names
         $table = $table ? $table . '.' : '';
-        //
-        $query = $this->model
-            ->select($columns)
-            ->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
-                return $query;
-            })
-            ->when(Credentials::maxRole() === 'editor', function ($query) use ($table) {
-                return $query->where($table . 'client_id', Credentials::client());
-            })
-            ->when(Credentials::maxRole() === 'user', function ($query) use ($table) {
-                return $query->where($table . 'user_id', Credentials::id());
-            });
+        //The query
+        $query = $this->model->select($columns);
+            //The filters
+            return $this->filter($query, $table, $id);
+    }
 
-        //Show only row without users
-        return $id
-            ? $query->where('user_id', null) 
-            : $query;
+    /**
+     * Filter by role and empty users
+     * @param   object   $query
+     * @param   string   $table
+     * @param   boolean  $emptyUser [Value from the controller assign]
+     * @return  ajax
+     */
+    private function filter($query, $table, $emptyUser = false)
+    {
+        return $query->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
+            return $query;
+        })
+        ->when(Credentials::maxRole() === 'editor', function ($query) use ($table) {
+            return $query->where($table . 'client_id', Credentials::client());
+        })
+        ->when(Credentials::maxRole() === 'user', function ($query) use ($table) {
+            return $query->where($table . 'user_id', Credentials::id());
+        })
+        ->when($emptyUser, function ($query) use ($table) {
+            return $query->where('user_id', null);
+        });
     }
 }
