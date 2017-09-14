@@ -11,7 +11,7 @@
         <select name="plot_crop_type" id="plot_crop_type" class="form-control" required="required">
             <option></option>
             @foreach($cropTypes as $key => $value)
-            {!! selected($data->plot_crop_type ?? null, $key, $value) !!}
+                {!! selected($data->plot_crop_type ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
@@ -33,7 +33,7 @@
         <select name="pattern_id" id="pattern_id" class="form-control">
             <option></option>
             @foreach($cropPatterns as $key => $value)
-            {!! selected($data->pattern_id ?? null, $key, $value) !!}
+                {!! selected($data->pattern_id ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
@@ -53,8 +53,9 @@
     <div class="form-group col-md-2">
         <label class="control-label" for="training_id">{{ sections('trainings.title') }}</label>
         <select name="training_id" id="training_id" class="form-control">
-            @foreach([] as $key => $value)
-            {!! selected($data->pattern_id ?? null, $key, $value) !!}
+            <option></option>
+            @foreach($cropTrainig as $key => $value)
+                {!! ARREGLAR ESTO!!!! !!}
             @endforeach
         </select>
     </div>

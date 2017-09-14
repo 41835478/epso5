@@ -47,3 +47,29 @@ if (!function_exists('getCropId')) {
         return getConfig('crop', 'id');
     }
 }
+
+/**
+ * Get the client ID
+ * @param  object $data
+ * @return  string
+ */
+if (!function_exists('getClientId')) {
+    function getClientId()
+    {
+        //Return an array: 'config', 'irrigation', 'region' and 'training'
+        return getConfig('client', 'id');
+    }
+}
+
+/**
+ * Get the client NAME
+ * @param  object $data
+ * @return  string
+ */
+if (!function_exists('getClientName')) {
+    function getClientName()
+    {
+        //Return an array: 'config', 'irrigation', 'region' and 'training'
+        return getConfig('client', 'name');
+    }
+}

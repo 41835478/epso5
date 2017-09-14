@@ -62,13 +62,14 @@ class PlotsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(PatternsRepository $pattern)
+    public function create(PatternsRepository $pattern, ClientsRepository $client)
     {
         list($clients, $users) = $this->controller->getAdministration();
         $cropTypes      = $this->type->selectByCrop($cropId = getCropId()) ?? null;
         $cropPatterns   = $pattern->selectByCrop($cropId = getCropId()) ?? null;
         $cropVarieties  = $this->variety->selectByCrop($cropId = getCropId()) ?? [];
-            return view(dashboard_path($this->section . '.create'), compact('cropPatterns', 'cropTypes', 'cropVarieties'))            
+        $cropTrainig    = $client->find(getClientId())->training->pluck('training_name', 'id')->toArray() ?? [];
+            return view(dashboard_path($this->section . '.create'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties'))            
                 ->withClients($clients)
                 ->withUsers($users);
     }
@@ -101,13 +102,14 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, UsersRepository $user, PatternsRepository $pattern)
+    public function edit($id, ClientsRepository $client, PatternsRepository $pattern, UsersRepository $user)
     {
         $data           = $this->controller->find($id);
         $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id) ?? [];
         $cropPatterns   = $pattern->selectByCrop($cropId = $data->crop_id) ?? [];
         $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type) ?? [];
-            return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTypes', 'cropVarieties', 'data'))
+        $cropTrainig    = $client->find(getClientId())->training->pluck('training_name', 'id')->toArray() ?? [];
+            return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data'))
                 ->withUsers($user->listOfUsersByRole($client = $data->client_id));
     }
 

@@ -12,6 +12,7 @@
         {{-- Add other slot --}}
         @slot('clients', $clients ?? [])
         @slot('cropName', getCropName($data ?? null))
+        @slot('cropTrainig', $cropTrainig ?? [])
         @slot('cropTypes', $cropTypes ?? [])
         @slot('cropVarieties', $cropVarieties ?? [])
         @slot('cropPatterns', $cropPatterns ?? [])
