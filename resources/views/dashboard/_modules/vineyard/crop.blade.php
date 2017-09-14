@@ -10,7 +10,7 @@
         <label class="control-label" for="plot_crop_type">{{ sections('crop_variety_types.title') }}</label>
         <select name="plot_crop_type" id="plot_crop_type" class="form-control" required="required">
             @foreach($cropTypes as $key => $value)
-                {!! selected($data->plot_crop_type ?? null, $key, $value) !!}
+            {!! selected($data->plot_crop_type ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
@@ -20,7 +20,7 @@
         <label class="control-label" for="crop_variety_id">{{ sections('crop_varieties.title') }}</label>
         <select name="crop_variety_id" id="crop_variety_id" class="form-control" required="required">
             @foreach($cropVarieties as $key => $value)
-                {!! selected($data->crop_variety_id ?? null, $key, $value) !!}
+            {!! selected($data->crop_variety_id ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
@@ -30,7 +30,7 @@
         <label class="control-label" for="pattern_id">{{ sections('patterns.title') }}</label>
         <select name="pattern_id" id="pattern_id" class="form-control">
             @foreach($cropPatterns as $key => $value)
-                {!! selected($data->pattern_id ?? null, $key, $value) !!}
+            {!! selected($data->pattern_id ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
@@ -45,15 +45,27 @@
     </div>
 </div>
 
+<div class="row">
+    {{-- Field: Crop --}}
+    <div class="form-group col-md-2">
+        <label class="control-label" for="training_id">{{ sections('trainings.title') }}</label>
+        <select name="training_id" id="training_id" class="form-control">
+            @foreach($crop->training as $key => $value)
+            {!! selected($data->pattern_id ?? null, $key, $value) !!}
+            @endforeach
+        </select>
+    </div>
+</div>
+
 {{-- Add the custom JS --}}
 @if(Request::ajax())
-    <script>
-        {!! Minify::folder('vineyard')->js() !!}
-    </script>
+<script>
+    {!! Minify::folder('vineyard')->js() !!}
+</script>
 @else
-    @section('javascript')
-        <script>
-            {!! Minify::folder('vineyard')->js() !!}
-        </script>
-    @endsection
+@section('javascript')
+<script>
+    {!! Minify::folder('vineyard')->js() !!}
+</script>
+@endsection
 @endif
