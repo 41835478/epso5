@@ -14,6 +14,7 @@ return [
         'admin:biocides'    => 'Fitosanitarios',
         'admin:irrigation'  => 'Riegos',
         'admin:training'    => 'Conducciones',
+        'admin:errors'      => 'Gestión de errores',
     /*
     |--------------------------------------------------------------------------
     | Navbar Menus: Users

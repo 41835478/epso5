@@ -16,6 +16,5 @@ Auth::routes();
 Route::get('/', 'Website\HomeController@index');
 
 if(env('APP_ENV') === 'local') {
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('dashboard.logout');
 }

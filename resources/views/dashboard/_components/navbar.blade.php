@@ -42,6 +42,11 @@
                 'title' => icon('irrigations', trans('navbar.admin:irrigation')),
                 'url' => route('dashboard.admin.irrigations.index'),
             ])
+            ->line()
+            ->subMenuItem([
+                'title' => icon('alert', trans('navbar.admin:errors')),
+                'url' => route('dashboard.god.errors'),
+            ])
             ->output()
         )
 
