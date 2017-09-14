@@ -10,6 +10,7 @@ trait UserHelpers
      * @var protected
      */
     protected $createUser;
+    protected $createUserBase;
     protected $createEditor;
     protected $createAdmin;
     protected $createGod;
@@ -26,6 +27,19 @@ trait UserHelpers
             return $this->createUser;
         }
         return $this->createUser = User::orderBy('id', 'desc')->first();
+    }
+
+    /**
+     * Creating an user
+     *
+     * @return object
+     */
+    public function createUserBase() : User
+    {
+        if($this->createUserBase) {
+            return $this->createUserBase;
+        }
+        return $this->createUserBase = User::find(4);
     }
 
     /**
