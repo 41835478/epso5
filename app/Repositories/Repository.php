@@ -2,10 +2,13 @@
 
 namespace App\Repositories;
 
+use App\Repositories\_Traits\Role;
 use Credentials;
 
 abstract class Repository
 {
+    use Role;
+
     /**
      * Get all the fields from storage
      * @param   array   $columns
@@ -26,20 +29,8 @@ abstract class Repository
      */
     public function dataTable(array $columns = ['*'], $id = null, $table = null)
     {
-        //Just in case we need to add de table name for avoid ambiguous row names
-        $table = $table ? $table . '.' : '';
-        //
-        return $this->model
-            ->select($columns)
-            ->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
-                return $query;
-            })
-            ->when(Credentials::maxRole() === 'editor', function ($query) use ($table) {
-                return $query->where($table . 'client_id', Credentials::client());
-            })
-            ->when(Credentials::maxRole() === 'user', function ($query) use ($table) {
-                return $query->where($table . 'user_id', Credentials::id());
-            });
+        //_Traits/Role.php
+        return $this->filterByRole($this->model->select($columns), $table);
     }
 
     /**
