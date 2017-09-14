@@ -23,16 +23,25 @@ class CropVarietyUpdateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visitRoute($this->route, $this->lastCropVariety()->id)
-                ->type('cropvariety_name', $this->makeCropVariety()->cropvariety_name)
-                // ->type('cropvariety_description', $this->makeCropVariety()->cropvariety_description)
-                ->press(trans('buttons.edit'))
+                ->visitRoute($this->route, [$this->lastCropVariety()->id, $this->lastCropVariety()->crop_id])
+                ->type('crop_variety_name', $this->makeCropVariety()->crop_variety_name);
+
+                if($this->makeCropVariety->crop_id == 1) {
+                    $browser->select('crop_variety_type', $this->makeCropVariety()->crop_variety_type);
+                } 
+
+                $browser->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('crop_varieties', [
-            'cropvariety_name'           => $this->makeCropVariety()->cropvariety_name,
-            // 'cropvariety_description'    => $this->makeCropVariety()->cropvariety_description,
+            'crop_variety_name' => $this->makeCropVariety()->crop_variety_name,
         ]);
+
+        if($this->makeCropVariety->crop_id == 1) {
+            $this->assertDatabaseHas('crop_varieties', [
+                'crop_variety_type' => $this->makeCropVariety()->crop_variety_type,
+            ]);
+        } 
     }
 }

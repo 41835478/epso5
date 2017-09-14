@@ -15,9 +15,8 @@ class CropVarietyCreateTest extends DuskTestCase
 
     protected $dashboard        = '/dashboard';
     protected $pathToCreate     = '/dashboard/crop_varieties/create?crop=';
-    protected $pathToCreateAlt  = '/dashboard/crop_varieties/create';
+    protected $pathToCreateBase = '/dashboard/crop_varieties/create';
     protected $pathToList       = '/dashboard/crop_varieties/';
-
 
     /*
     |--------------------------------------------------------------------------
@@ -32,14 +31,13 @@ class CropVarietyCreateTest extends DuskTestCase
                 ->visit($this->pathToList . $this->makeCropVariety()->crop_id)
                 ->click('#button-config')
                 ->click('#button-create-link')
-                ->assertPathIs($this->pathToCreateAlt)
                 ->assertInputValue('crop_id', $this->makeCropVariety()->crop_id)
                 ->type('crop_variety_name', $this->makeCropVariety()->crop_variety_name);
 
             if($this->makeCropVariety->crop_id == 1) {
                 $browser->select('crop_variety_type', $this->makeCropVariety()->crop_variety_type);
             } 
-            
+
             $browser->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
@@ -49,8 +47,8 @@ class CropVarietyCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
+                ->visit($this->pathToCreate . $this->makeCropVariety()->crop_id)
+                ->assertPathIs($this->pathToCreateBase);
         });
     }
 
@@ -58,7 +56,7 @@ class CropVarietyCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
-                ->visit($this->pathToCreate)
+                ->visit($this->pathToCreate . $this->makeCropVariety()->crop_id)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));
         });
@@ -68,7 +66,7 @@ class CropVarietyCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
-                ->visit($this->pathToCreate)
+                ->visit($this->pathToCreate . $this->makeCropVariety()->crop_id)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));
         });
