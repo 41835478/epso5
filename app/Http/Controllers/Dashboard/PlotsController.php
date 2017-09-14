@@ -62,13 +62,15 @@ class PlotsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(PatternsRepository $pattern)
     {
         list($clients, $users) = $this->controller->getAdministration();
-
-        return view(dashboard_path($this->section . '.create'))            
-            ->withClients($clients)
-            ->withUsers($users);
+        $cropTypes      = $this->type->selectByCrop($cropId = getCropId()) ?? [];
+        $cropPatterns   = $pattern->selectByCrop($cropId = getCropId()) ?? [];
+        $cropVarieties  = [];
+            return view(dashboard_path($this->section . '.create'), compact('cropPatterns', 'cropTypes', 'cropVarieties'))            
+                ->withClients($clients)
+                ->withUsers($users);
     }
 
     /**

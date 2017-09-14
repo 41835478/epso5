@@ -15,7 +15,8 @@ return [
     'framework:x'       => 'Separación entre líneas',
     'framework:y'       => 'Distancia entre cepas',
     'loading'           => icon('alert') . ' Seleccione un cliente para cargar el módulo de cultivo',
-    'plot'             => 'Información de la parcela',
+    'plot'              => 'Información de la parcela',
+    'quantity'          => 'Nº de cepas',
     'title'             => 'Parcela',
     'title:plural'      => 'Parcelas',
 ];
