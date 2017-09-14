@@ -56,7 +56,7 @@ class CitiesController extends DashboardController
     public function create(CountriesRepository $country, StatesRepository $state)
     {
         $countries  = $country->lists(['id', 'country_name']);
-        $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
+        $states     = $state->lists(['id', 'state_name']);
         //
         return view(dashboard_path($this->section . '.create'), compact('countries', 'states'));
     }
@@ -95,7 +95,7 @@ class CitiesController extends DashboardController
     {
         $data       = $this->controller->find($id);
         $countries  = $country->lists(['id', 'country_name']);
-        $states     = $state->lists(['id', 'state_name'], $firstEmptyField = true);
+        $states     = $state->lists(['id', 'state_name']);
         $regions    = $region->listsWithState($data->state_id);
         //
         return view(dashboard_path($this->section . '.edit'), compact('countries', 'regions', 'states'))

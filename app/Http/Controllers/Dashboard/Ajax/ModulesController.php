@@ -18,13 +18,16 @@ class ModulesController extends Controller
      */
     public function __invoke(ClientsRepository $clients)
     {
-        $client = $clients->find(request('client'));
-        $module = $client->crop->all();
-        $response = [
-            'name'      => ($module[0]['crop_name'] ?? $this->errorMessage), 
-            'module'    => ($module[0]['crop_module'] ?? $this->errorMessage), 
-            'id'        => ($module[0]['id'] ?? $this->errorMessage)
-        ];
+        if(is_numeric(request('client'))) {
+            $client = $clients->find(request('client'));
+            $module = $client->crop->all();
+            $response = [
+                'name'      => ($module[0]['crop_name'] ?? $this->errorMessage), 
+                'module'    => ($module[0]['crop_module'] ?? $this->errorMessage), 
+                'id'        => ($module[0]['id'] ?? $this->errorMessage)
+            ];
             return response()->json($response);
+        }
+        return response()->json([]);
     }
 }

@@ -62,15 +62,13 @@ abstract class Repository
     /**
      * Get all the results for a $field contents in the $items array
      * @param   string      $columns
-     * @param   boolean     $firstFieldEmpty
      * @return  collection
      */
-    public function lists(array $columns = [], bool $firstFieldEmpty = false)
+    public function lists(array $columns = [])
     {
-        $query = $this->model
+        return $this->model
             ->pluck($columns[1], $columns[0])
             ->toArray();
-        return $firstFieldEmpty ? ['' => ''] + $query : $query;
     }
 
     /**

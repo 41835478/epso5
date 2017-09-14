@@ -7,14 +7,14 @@
 
     {!! BootForm::select(trans('persona.state'), 'state_id')
         ->addGroupClass('col-md-3')
-        ->options($states)
+        ->options(setOptions($states))
         ->required()
     !!}
 
     @if(isset($data))
         {!! BootForm::select(trans('persona.region'), 'region_id')
             ->addGroupClass('col-md-3')
-            ->options($regions)
+            ->options(setOptions($regions))
             ->required()
         !!}
     @else 

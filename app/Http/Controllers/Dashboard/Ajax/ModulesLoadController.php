@@ -20,10 +20,13 @@ class ModulesLoadController extends Controller
         $cropId         = request('cropId');
         $cropName       = request('cropName');
         $module         = request('module');
-        $cropPatterns   = $pattern->selectByCrop($cropId) ?? [];
-        $cropTypes      = $type->selectByCrop($cropId) ?? [];
-        $cropVarieties  = [];
 
-        return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTypes', 'cropVarieties', 'module'));
+        if($cropId && $cropName && $module) {
+            $cropPatterns   = $pattern->selectByCrop($cropId) ?? [];
+            $cropTypes      = $type->selectByCrop($cropId) ?? [];
+            $cropVarieties  = [];
+                return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTypes', 'cropVarieties', 'module'));
+        }
+        return view(module_path('error'));
     }
 }

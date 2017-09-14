@@ -140,7 +140,7 @@ class UsersRepository extends Repository {
     public function listOfUsersByRole($client = null)
     {
         if(Credentials::isEditor()) {
-            return ['' => ''] + $this->model
+            return $this->model
                 ->where('client_id', $client ?? getConfig('client', 'id'))
                 ->pluck('name', 'id')
                 ->toArray();

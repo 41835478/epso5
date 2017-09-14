@@ -22,7 +22,7 @@
     @if($crop->crop_type > 0)
         {!! BootForm::select(sections('crop_varieties.type'), 'crop_variety_type')
             ->addGroupClass('col-md-2')
-            ->options($types)
+            ->options(setOptions($types))
             ->required()
         !!}
     @endif

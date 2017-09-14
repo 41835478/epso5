@@ -6,7 +6,7 @@
         {{-- Field: Client --}}
         {!! BootForm::select(sections('clients.title'), 'client_id')
             ->addGroupClass('col-md-4')
-            ->options($clients)
+            ->options(setOptions($clients))
             ->select(0)
             ->required()
         !!}
@@ -38,7 +38,7 @@
         {{-- Field: User ID --}}
         {!! BootForm::select(sections('users.title'), 'user_id')
             ->addGroupClass('col-md-4')
-            ->options($users)
+            ->options(setOptions($users))
             ->defaultValue(0)
         !!}
 

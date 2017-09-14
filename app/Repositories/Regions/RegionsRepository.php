@@ -59,12 +59,11 @@ class RegionsRepository extends Repository
      * @param   string      $state
      * @return  collection
      */
-    public function listsWithState($state, $columns = ['id', 'region_name'], $firstFieldEmpty = true)
+    public function listsWithState($state, $columns = ['id', 'region_name'])
     {
-        $query = $this->model
+        return $this->model
             ->where('state_id', $state)
             ->pluck($columns[1], $columns[0])
             ->toArray();
-        return $firstFieldEmpty ? ['' => ''] + $query : $query;
     }
 }

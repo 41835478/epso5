@@ -87,7 +87,7 @@
                             });  
                         }
                     } else {
-                        $module.html( '' );
+                        $module.html( window.errorModule );
                     }
                 });
             }

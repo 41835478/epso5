@@ -62,7 +62,7 @@ class ClientsRepository extends Repository
     public function listOfClientsByRole()
     {
         if(Credentials::isAdmin()) {
-            return ['' => ''] + $this->model
+            return $this->model
                 ->pluck('client_name', 'id')
                 ->toArray();
         }

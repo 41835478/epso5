@@ -25,7 +25,7 @@ class CropVarietiesRepository extends Repository
      */
     public function selectByCrop(int $crop, $type = null, array $columns = ['id', 'name'])
     {
-        return ['' => ''] + $this->model
+        return $this->model
             ->select(['id', 'crop_variety_name AS name'])
             ->where('crop_id', $crop)
             ->when($type, function ($query) use ($type) {

@@ -15,7 +15,7 @@
         {{-- Field: User ID --}}
         {!! BootForm::select(sections('users.title'), 'user_id')
             ->addGroupClass('col-md-4')
-            ->options($users)
+            ->options(setOptions($users))
             ->defaultValue(0)
         !!}
 

@@ -54587,7 +54587,7 @@ if ($('#client_id')) {
                         });
                     }
                 } else {
-                    $module.html('');
+                    $module.html(window.errorModule);
                 }
             });
         }
