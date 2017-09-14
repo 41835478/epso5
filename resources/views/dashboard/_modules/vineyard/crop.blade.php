@@ -46,8 +46,14 @@
 </div>
 
 {{-- Add the custom JS --}}
-@section('javascript')
+@if(Request::ajax())
     <script>
         {!! Minify::folder('vineyard')->js() !!}
     </script>
-@endsection
+@else
+    @section('javascript')
+        <script>
+            {!! Minify::folder('vineyard')->js() !!}
+        </script>
+    @endsection
+@endif
