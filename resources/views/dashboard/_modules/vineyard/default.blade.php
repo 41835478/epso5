@@ -25,3 +25,6 @@
         </select>
     </div>
 </div>
+<script>
+    {!! Minify::file('crops_variety')->js() !!}
+</script>

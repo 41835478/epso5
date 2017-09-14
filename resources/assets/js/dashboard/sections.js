@@ -13,10 +13,10 @@
     if($( '#state_id' )) {
         $( '#state_id' ).on( 'change', function() {
             //Define the variable 
-            var $container  = $('#region_id');
-            var $state      = $('#state_id');
+            var $container  = $( '#region_id' );
+            var $state      = $( '#state_id' );
             //Add loading class 
-            $container.empty().addClass('loading');
+            $container.empty().addClass( 'loading' );
             //Get the data via AJAX
             $.get( window.location.origin + '/dashboard/ajax/regions', { state: $state.val() }, 
             function( data ) {
@@ -31,9 +31,9 @@
                             text : element.name
                         }));
                     });
-                    $container.prop( 'disabled', false ).prop( 'required', true ).removeClass('loading');
+                    $container.prop( 'disabled', false ).prop( 'required', true ).removeClass( 'loading' );
                 } else {
-                    $container.prop( 'disabled', true ).prop( 'required', false ).removeClass('loading');
+                    $container.prop( 'disabled', true ).prop( 'required', false ).removeClass( 'loading' );
                 }
             });
         });
@@ -65,9 +65,9 @@
                             text : element.name
                         }));
                     });
-                    $container.prop( 'disabled', false ).removeClass('loading');
+                    $container.prop( 'disabled', false ).removeClass( 'loading' );
                 } else {
-                    $container.prop( 'disabled', true ).removeClass('loading');
+                    $container.prop( 'disabled', true ).removeClass( 'loading' );
                 }
             });
             //Add módule value
@@ -81,7 +81,7 @@
                         $( '#crop_id' ).val( data.id );
                         if(data.module.length > 0) {
                             //Load the module
-                            $.get( window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, crop: data.name }, 
+                            $.get( window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, cropName: data.name, cropId: data.id }, 
                             function( output ) {
                                 $module.html( output );
                             });  
