@@ -44,7 +44,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'climatic_station_distance' => $distance,
         'plot_name'                 => $faker->company,
         'plot_quantity'             => $number,
-        'plot_crop_type'            => $boolean,
+        'plot_crop_type'            => $crop_variety->crop_variety_type,
         'plot_reference'            => $plot_reference,
         'plot_framework'            => $plot_framework,
         'plot_area'                 => $number,
