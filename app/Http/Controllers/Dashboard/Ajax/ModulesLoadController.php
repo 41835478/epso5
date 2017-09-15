@@ -3,33 +3,45 @@
 namespace App\Http\Controllers\Dashboard\Ajax;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Clients\ClientsRepository;
-use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
-use App\Repositories\Patterns\PatternsRepository;
+use App\Repositories\Plots\PlotsRepository;
 use Illuminate\Http\Request;
 
 class ModulesLoadController extends Controller
 {
+    protected $plot;
+
+    public function __construct(PlotsRepository $plot)
+    {
+        $this->plot = $plot;
+    }
+
     /**
      * Get an ajax response
      *
      * @param  int  $id
      * @return Response
      */
-    public function __invoke(ClientsRepository $client, CropVarietyTypesRepository $type, PatternsRepository $pattern)
+    public function __invoke()
     {
-        $clientId       = request('client');
-        $cropId         = request('cropId');
-        $cropName       = request('cropName');
-        $module         = request('module');
+        list($clientId, $cropId, $cropName, $module) = self::setRequest();
+        $data = [
+            'client_id' => $clientId, 
+            'crop_id'   => $cropId,
+        ];
 
-        if($cropId && $cropName && $module) {
-            $cropPatterns   = $pattern->selectByCrop($cropId) ?? [];
-            $cropTypes      = $type->selectByCrop($cropId) ?? [];
-            $cropVarieties  = [];
-            $cropTrainig    = $client->find($clientId)->training->pluck('training_name', 'id')->toArray() ?? [];
+        if($clientId && $cropId && $cropName && $module) {
+            list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->plot->getCrop($data);
                 return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'module'));
         }
         return view(module_path('error'));
+    }
+
+    /**
+     * Set the request varialbes
+     * @return array
+     */
+    private function setRequest()
+    {
+        return [request('client'), request('cropId'), request('cropName'), request('module')];
     }
 }

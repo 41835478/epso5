@@ -68,4 +68,17 @@ class ClientsRepository extends Repository
         }
             return [];
     }
+
+    /**
+     * List of trainings by client
+     * @return  array
+     */
+    public function listOfTrainings($clientId)
+    {
+        return $this->model
+            ->find($clientId)
+            ->training
+            ->pluck('training_name', 'id')
+            ->toArray();
+    }
 }

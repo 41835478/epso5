@@ -3,6 +3,9 @@
 namespace App\Repositories\Plots;
 
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\CropVarieties\CropVarietiesRepository;
+use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
+use App\Repositories\Patterns\PatternsRepository;
 use App\Repositories\Plots\Plot;
 use App\Repositories\Plots\Traits\PlotsHelpers;
 use App\Repositories\Repository;
@@ -26,13 +29,42 @@ class PlotsRepository extends Repository
     }
 
     /**
-     * Create or update a record in storage
-     * @param   int     $id
+     * Get all the administration Values
      * @return  boolean
      */
     public function getAdministration()
     {
-        return [$this->client->listOfClientsByRole(), $this->user->listOfUsersByRole()]; 
+        return [
+            app(ClientsRepository::class)->listOfClientsByRole() ?? [], 
+            app(UsersRepository::class)->listOfUsersByRole() ?? []
+        ]; 
+    }
+
+    /**
+     * Get all the values for the crop
+     * @return  boolean
+     */
+    public function getCrop($data = null)
+    {
+        //Default values
+        list($clientId, $cropId) = self::getData($data);
+            return [
+                app(CropVarietyTypesRepository::class)->selectByCrop($cropId) ?? null, //Null because only show it if not null
+                app(PatternsRepository::class)->selectByCrop($cropId) ?? [], 
+                app(CropVarietiesRepository::class)->selectByCrop($cropId) ?? [], 
+                app(ClientsRepository::class)->listOfTrainings($clientId) ?? []
+            ];
+    }
+
+    private function getData($data)
+    {
+        if(isset($data['client_id'])) {
+            return [$data['client_id'], $data['crop_id']];
+        }
+        if(isset($data->client_id)) {
+            return [$data->client_id, $data->crop_id];
+        }
+            return [getClientId(), getCropId()];
     }
 
     /**

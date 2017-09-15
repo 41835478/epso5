@@ -28,19 +28,14 @@ class PlotsController extends DashboardController
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'user';
     private $section    = 'plots';
-    private $type;
-    private $variety;
 
-    public function __construct(CropVarietyTypesRepository $type, CropVarietiesRepository $variety, DataTable $table, PlotsRepository $controller)
+    public function __construct(DataTable $table, PlotsRepository $controller)
     {
         $this->controller   = $controller;
         $this->table        = $table;
-        $this->type         = $type;
-        $this->variety      = $variety;
         //Sharing in the view
         view()->share([
             'legend'    => $this->legend,
-            //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
@@ -62,16 +57,12 @@ class PlotsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(PatternsRepository $pattern, ClientsRepository $client)
+    public function create()
     {
         list($clients, $users) = $this->controller->getAdministration();
-        $cropTypes      = $this->type->selectByCrop($cropId = getCropId()) ?? null;
-        $cropPatterns   = $pattern->selectByCrop($cropId = getCropId()) ?? null;
-        $cropVarieties  = $this->variety->selectByCrop($cropId = getCropId()) ?? [];
-        $cropTrainig    = $client->find(getClientId())->training->pluck('training_name', 'id')->toArray() ?? [];
-            return view(dashboard_path($this->section . '.create'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties'))            
-                ->withClients($clients)
-                ->withUsers($users);
+        list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop();
+        //    
+        return view(dashboard_path($this->section . '.create'), compact('clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'users'));
     }
 
     /**
@@ -102,15 +93,13 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, ClientsRepository $client, PatternsRepository $pattern, UsersRepository $user)
+    public function edit($id, UsersRepository $user)
     {
-        $data           = $this->controller->find($id);
-        $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id) ?? [];
-        $cropPatterns   = $pattern->selectByCrop($cropId = $data->crop_id) ?? [];
-        $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type) ?? [];
-        $cropTrainig    = $client->find($data->client_id)->training->pluck('training_name', 'id')->toArray() ?? [];
-            return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data'))
-                ->withUsers($user->listOfUsersByRole($client = $data->client_id));
+        $data   = $this->controller->find($id);
+        $users = $user->listOfUsersByRole($client = $data->client_id);
+        list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop($data);
+        //
+        return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data', 'users'));
     }
 
     /**

@@ -32,6 +32,8 @@
         ->addGroupClass('col-md-2')
         ->addClass('number')
         ->defaultValue(100)
+        ->min(0)
+        ->max(100)
         ->afterAddon(icon('percent'))
     !!}
 
