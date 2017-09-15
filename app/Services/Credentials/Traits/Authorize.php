@@ -28,7 +28,10 @@ trait Authorize
         }
         //Check if the user has the same user_id as the database record
         if($this->role('user')) {
-            return ($model->id === $this->id()) ? true : false;
+            if($model->getTable() == 'users') {
+                return ($model->id === $this->id()) ? true : false;
+            }
+            return ($model->user_id === $this->id()) ? true : false;
         }
     } 
 
