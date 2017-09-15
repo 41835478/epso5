@@ -34,6 +34,7 @@ class CreatePlotsTable extends Migration
             $table->string('plot_framework', 6)->comment("Framework planting: 0x0");
             $table->decimal('plot_area', 12, 2);
             $table->string('plot_green_cover', 1);
+            $table->integer('plot_training')->unsigned();
             $table->string('plot_percent_cultivated_land', 3)->default(100)->comment("Percentage of cultivated land without deciamals");
             $table->date('plot_start_date')->nullable()->comment("Crops planting date");
             $table->softDeletes();

@@ -47,6 +47,7 @@ class Plot extends Model  {
         'plot_framework',
         'plot_area',
         'plot_green_cover',
+        'plot_training',
         'plot_percent_cultivated_land',
         'plot_start_date',
     ];
