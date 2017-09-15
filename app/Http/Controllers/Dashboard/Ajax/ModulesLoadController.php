@@ -23,15 +23,16 @@ class ModulesLoadController extends Controller
      */
     public function __invoke()
     {
-        list($clientId, $cropId, $cropName, $module) = self::setRequest();
+        list($clientId, $cropId, $cropName, $module, $type) = self::setRequest();
         $data = [
-            'client_id' => $clientId, 
+            'client_id' => $clientId,
             'crop_id'   => $cropId,
+            'type'      => $type,
         ];
 
-        if($clientId && $cropId && $cropName && $module) {
+        if ($clientId && $cropId && $cropName && $module) {
             list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->plot->getCrop($data);
-                return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'module'));
+            return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'module'));
         }
         return view(module_path('error'));
     }
@@ -42,6 +43,6 @@ class ModulesLoadController extends Controller
      */
     private function setRequest()
     {
-        return [request('client'), request('cropId'), request('cropName'), request('module')];
+        return [request('client'), request('cropId'), request('cropName'), request('module'), request('type')];
     }
 }

@@ -34,6 +34,7 @@ class PlotsRepository extends Repository
      */
     public function getAdministration()
     {
+        //Get the list of users and the list of clients. All base on the current user role!!!
         return [
             app(ClientsRepository::class)->listOfClientsByRole() ?? [], 
             app(UsersRepository::class)->listOfUsersByRole() ?? []
@@ -47,24 +48,30 @@ class PlotsRepository extends Repository
     public function getCrop($data = null)
     {
         //Default values
-        list($clientId, $cropId) = self::getData($data);
+        list($clientId, $cropId, $type) = self::getData($data);
             return [
-                app(CropVarietyTypesRepository::class)->selectByCrop($cropId) ?? null, //Null because only show it if not null
+                //Get the Crop variety type (only if exist...)
+                app(CropVarietyTypesRepository::class)->selectByCrop($cropId) ?? null,//Null because only show it if not null
+                //Get the Crop patterns
                 app(PatternsRepository::class)->selectByCrop($cropId) ?? [], 
-                app(CropVarietiesRepository::class)->selectByCrop($cropId) ?? [], 
+                //Only show the crop varieties if there is a type. If not, return empty and you need to load it by ajax.
+                //(Ex: in vineyards, first we need a variety type (like red or white), before a variety).
+                $type ? [] : app(CropVarietiesRepository::class)->selectByCrop($cropId),
+                //List of trainings for this client
                 app(ClientsRepository::class)->listOfTrainings($clientId) ?? []
             ];
     }
 
     private function getData($data)
     {
+        //In a few cases, we need to now if this crop has a crop_variety_type
         if(isset($data['client_id'])) {
-            return [$data['client_id'], $data['crop_id']];
+            return [$data['client_id'], $data['crop_id'], $data['type']];
         }
         if(isset($data->client_id)) {
-            return [$data->client_id, $data->crop_id];
+            return [$data->client_id, $data->crop_id, null];//Not needed the type, because we are editing, and we have to load!!!
         }
-            return [getClientId(), getCropId()];
+            return [getClientId(), getCropId(), getCropType()];
     }
 
     /**
