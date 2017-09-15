@@ -24,7 +24,7 @@ if (!function_exists('getConfig')) {
  * @return  string
  */
 if (!function_exists('getCropName')) {
-    function getCropName($data = null)
+    function getCropName($data = null) : string
     {
         //If we get data from the DB...
         if ($data) {
@@ -41,7 +41,7 @@ if (!function_exists('getCropName')) {
  * @return  string
  */
 if (!function_exists('getCropId')) {
-    function getCropId()
+    function getCropId() : int
     {
         //Return an array: 'config', 'irrigation', 'region' and 'training'
         return getConfig('crop', 'id');
@@ -54,7 +54,7 @@ if (!function_exists('getCropId')) {
  * @return  string
  */
 if (!function_exists('getClientId')) {
-    function getClientId()
+    function getClientId() : int
     {
         //Return an array: 'config', 'irrigation', 'region' and 'training'
         return getConfig('client', 'id');
@@ -67,9 +67,22 @@ if (!function_exists('getClientId')) {
  * @return  string
  */
 if (!function_exists('getClientName')) {
-    function getClientName()
+    function getClientName() : string
     {
         //Return an array: 'config', 'irrigation', 'region' and 'training'
         return getConfig('client', 'name');
+    }
+}
+
+/**
+ * Get the crop variety type value
+ * @param  object $data
+ * @return  string
+ */
+if (!function_exists('getCropType')) {
+    function getCropType() : bool
+    {
+        $configuration = collect(getConfig('config'))->flatten()->toArray();
+        return in_array('crop-type', $configuration) ? true : false;
     }
 }
