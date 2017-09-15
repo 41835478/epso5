@@ -51,11 +51,11 @@
 <div class="row">
     {{-- Field: Crop --}}
     <div class="form-group col-md-2">
-        <label class="control-label" for="training_id">{{ sections('trainings.title') }}</label>
-        <select name="training_id" id="training_id" class="form-control">
+        <label class="control-label" for="plot_training">{{ sections('trainings.title') }}</label>
+        <select name="plot_training" id="plot_training" class="form-control">
             <option></option>
             @foreach($cropTrainig as $key => $value)
-                {!! ARREGLAR ESTO!!!! !!}
+                {!! selected($data->plot_training ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
