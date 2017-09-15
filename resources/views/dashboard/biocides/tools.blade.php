@@ -11,11 +11,14 @@
         ])
 
         @slot('dropdownItems', [
-            [Html::class('dropdown-item')->linkCreate($role, $section)], 
-            [
-                'title' => icon('form', trans('buttons.tools')),
-                'route' => route('dashboard.admin.biocides.tools'),
-            ],
+            [Html::createLink($section, $role)], 
+            [Html::newLink(
+                [
+                    'title' => icon('form', trans('buttons.tools')),
+                    'route' => route('dashboard.admin.biocides.tools'), 
+                    'class' => 'dropdown-item',
+                ]
+            )],
         ])
     @endcomponent
 

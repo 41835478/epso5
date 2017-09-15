@@ -2,7 +2,7 @@
     @foreach($breadcrumbItems as $item)
         @if(count($item) == 2)
             <li class="breadcrumb-item">
-                {!! Html::link($item) !!}
+                {!! Html::newLink($item) !!}
             </li>
         @else
             <li class="breadcrumb-item active">{{ $item[0] }}</li>

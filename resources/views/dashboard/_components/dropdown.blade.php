@@ -6,7 +6,7 @@
 
         <div class="dropdown-menu dropdown-menu-right">
             @foreach($dropdownItems as $item)
-                {!! Html::class('dropdown')->link($item) !!}
+                {!! $item[0] !!}
             @endforeach
         </div>
     </div>

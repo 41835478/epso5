@@ -43,6 +43,8 @@ class PlotsRepository extends Repository
 
     /**
      * Get all the values for the crop
+     * @param mixed $data
+     * 
      * @return  boolean
      */
     public function getCrop($data = null)
@@ -62,6 +64,12 @@ class PlotsRepository extends Repository
             ];
     }
 
+    /**
+     * Get the default data for the plot
+     * @param object $data
+     * 
+     * @return  boolean
+     */
     private function getData($data)
     {
         //In a few cases, we need to now if this crop has a crop_variety_type

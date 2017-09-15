@@ -10,8 +10,8 @@
             [trans_title($section) . ': ' . $crops->crop_name],
         ])
         @slot('dropdownItems', [
-            [Html::class('dropdown-item')->linkCreate($role, $section, ['crop' => $crops->id])], 
-            [Html::class('dropdown-item')->linkEliminate($role, $section)],
+            [Html::createLink($section, $role)], 
+            [Html::deleteLink()], 
         ])
     @endcomponent
 

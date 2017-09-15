@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Html;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class HtmlProvider extends ServiceProvider
+class MacroServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,19 +13,18 @@ class HtmlProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        foreach (glob(app_path().'/Http/Macros/*.php') as $file) {
+            require_once($file);
+        }
     }
 
     /**
-     * Register the application services.
+     * Register the application repositories.
      *
      * @return void
      */
     public function register()
     {
-        $this->app->bind('HtmlProvider', function()
-        {
-            return new \App\Services\Html\HtmlClass;
-        });
+        //
     }
 }

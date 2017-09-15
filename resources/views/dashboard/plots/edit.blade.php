@@ -10,7 +10,7 @@
             [trans('base.edit')], 
         ])
         @slot('dropdownItems', [
-            [Html::class('dropdown-item')->linkCreate($role, $section)], 
+            [Html::createLink($section, $role)], 
         ])
         {{-- Add the data --}}
         @slot('data', $data)
