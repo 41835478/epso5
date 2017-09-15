@@ -108,7 +108,7 @@ class PlotsController extends DashboardController
         $cropTypes      = $this->type->selectByCrop($cropId = $data->crop_id) ?? [];
         $cropPatterns   = $pattern->selectByCrop($cropId = $data->crop_id) ?? [];
         $cropVarieties  = $this->variety->selectByCrop($cropId = $data->crop_id, $cropVaiety = $data->crop_variety_type) ?? [];
-        $cropTrainig    = $client->find(getClientId())->training->pluck('training_name', 'id')->toArray() ?? [];
+        $cropTrainig    = $client->find($data->client_id)->training->pluck('training_name', 'id')->toArray() ?? [];
             return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data'))
                 ->withUsers($user->listOfUsersByRole($client = $data->client_id));
     }

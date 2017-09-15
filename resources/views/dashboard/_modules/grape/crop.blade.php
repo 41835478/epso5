@@ -15,4 +15,15 @@
             @endforeach
         </select>
     </div>
+
+    {{-- Field: Crop --}}
+    <div class="form-group col-md-2">
+        <label class="control-label" for="plot_training">{{ sections('trainings.title') }}</label>
+        <select name="plot_training" id="plot_training" class="form-control">
+            <option></option>
+            @foreach($cropTrainig as $key => $value)
+                {!! selected($data->plot_training ?? null, $key, $value) !!}
+            @endforeach
+        </select>
+    </div>
 </div>
