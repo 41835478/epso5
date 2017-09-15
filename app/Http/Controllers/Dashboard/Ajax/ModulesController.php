@@ -22,9 +22,9 @@ class ModulesController extends Controller
             $client = $clients->find(request('client'));
             $module = $client->crop->all();
             $response = [
+                'id'        => ($module[0]['id'] ?? $this->errorMessage),
                 'name'      => ($module[0]['crop_name'] ?? $this->errorMessage), 
                 'module'    => ($module[0]['crop_module'] ?? $this->errorMessage), 
-                'id'        => ($module[0]['id'] ?? $this->errorMessage)
             ];
             return response()->json($response);
         }
