@@ -30,7 +30,21 @@ class PlotCreateTest extends DuskTestCase
                 ->visit($this->pathToList)
                 ->click('#button-config')
                 ->click('#button-create-link')
-                ->assertPathIs($this->pathToCreate);
+                ->assertPathIs($this->pathToCreate)
+                ->assertMissing('plot_crop_type')
+                ->assertMissing('crop_variety_id')
+                ->assertMissing('pattern_id')
+                ->assertMissing('plot_quantity')
+                ->assertMissing('crop_training')
+                ->select('client_id', 1)
+                ->select('user_id', 1)
+                ->pause(500)
+                ->select('plot_crop_type', 1)
+                ->pause(500)
+                ->select('crop_variety_id', 1)
+                ->select('pattern_id', 1)
+                ->type('plot_quantity', 1000)
+                ->select('crop_training', 1);
                 // ->type('plot_name', $this->makePlot()->plot_name)
                 // ->type('plot_description', $this->makePlot()->plot_description)
                 // ->press(trans('buttons.new'))
@@ -47,7 +61,7 @@ class PlotCreateTest extends DuskTestCase
         });
     }
 
-    public function test_editor_cant_create_plot()
+    public function test_editor_can_create_plot()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
@@ -56,11 +70,10 @@ class PlotCreateTest extends DuskTestCase
         });
     }
 
-    public function test_user_cant_create_plot()
+    public function test_user_can_create_plot()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
-                ->visit($this->pathToCreate)
                 ->visit($this->pathToCreate)
                 ->assertPathIs($this->pathToCreate);
         });

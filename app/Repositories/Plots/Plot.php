@@ -32,6 +32,7 @@ class Plot extends Model  {
         'crop_id',
         'crop_module',
         'crop_variety_id',
+        'crop_training',
         'pattern_id',
         'user_id',
         'city_id',
@@ -47,7 +48,6 @@ class Plot extends Model  {
         'plot_framework',
         'plot_area',
         'plot_green_cover',
-        'plot_training',
         'plot_percent_cultivated_land',
         'plot_start_date',
     ];
