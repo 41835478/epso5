@@ -32,6 +32,7 @@ trait Config
                     'id'        => $crop[0]['id'],
                     'name'      => $crop[0]['crop_name'],
                     'module'    => $crop[0]['crop_module'],
+                    'type'      => $crop[0]['crop_type'] ? true : false,
                 ],
                 'irrigation' => [
                     (count($client->irrigation->pluck('id')->all()) > 0) ? $client->irrigation->pluck('irrigation_name', 'id')->all() : null
