@@ -9,8 +9,8 @@
     /** 
     * Select: Crop Type
     */
-    if($( '#plot_crop_type' )) {
-        $( '#plot_crop_type' ).on( 'change', function() {
+    if($( '#crop_variety_type' )) {
+        $( '#crop_variety_type' ).on( 'change', function() {
             //Define the variable 
             var $container  = $( '#crop_variety_id' );
             var $type      = $( this );

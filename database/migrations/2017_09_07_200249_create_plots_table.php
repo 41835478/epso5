@@ -19,6 +19,7 @@ class CreatePlotsTable extends Migration
             $table->integer('crop_id')->unsigned()->index();
             $table->string('crop_module', 20);
             $table->integer('crop_variety_id')->unsigned()->index();
+            $table->integer('crop_variety_type')->unsigned()->comment("In the grape case: 0/1 white or red");
             $table->integer('crop_training')->unsigned();
             $table->integer('pattern_id')->unsigned()->index();
             $table->integer('city_id')->unsigned()->index();
@@ -30,7 +31,6 @@ class CreatePlotsTable extends Migration
             $table->decimal('climatic_station_distance', 12, 2);
             $table->string('plot_name');
             $table->integer('plot_quantity')->nullable()->comment("The total number of crops");
-            $table->string('plot_crop_type', 3)->comment("In the grape case: 0/1 white or red");
             $table->string('plot_reference', 50)->nullable()->comment("Internal Reference of the Plot");
             $table->string('plot_framework', 6)->comment("Framework planting: 0x0");
             $table->decimal('plot_area', 12, 2);

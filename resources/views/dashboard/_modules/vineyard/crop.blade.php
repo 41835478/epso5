@@ -7,11 +7,11 @@
 
     {{-- Field: Crop type --}}
     <div class="form-group col-md-2">
-        <label class="control-label" for="plot_crop_type">{{ sections('crop_variety_types.title') }}</label>
-        <select name="plot_crop_type" id="plot_crop_type" class="form-control" required="required">
+        <label class="control-label" for="crop_variety_type">{{ sections('crop_variety_types.title') }}</label>
+        <select name="crop_variety_type" id="crop_variety_type" class="form-control" required="required">
             <option></option>
             @foreach($cropTypes as $key => $value)
-                {!! Form::optionSelected($data->plot_crop_type ?? null, $key, $value) !!}
+                {!! Form::optionSelected($data->crop_variety_type ?? null, $key, $value) !!}
             @endforeach
         </select>
     </div>
