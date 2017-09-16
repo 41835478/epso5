@@ -23,6 +23,9 @@
             {!! BootForm::text(trans('base.code'), 'crop_variety_type_code[' . $loop->index . ']')
                 ->value($crop->crop_variety_type_code ?? null)
                 ->addGroupClass('col-md-4')
+                ->addClass('number')
+                ->min(1)
+                ->max(100)
             !!}
         </div>
         
@@ -49,6 +52,10 @@
         {{-- Crop: Variety code --}}
         {!! BootForm::text(trans('base.code'), 'crop_variety_type_code[' . ($last ?? 0) . ']')
             ->addGroupClass('col-md-4')
+            ->addClass('number')
+            ->defaultValue($last ? $last + 1 : 1)
+            ->min(1)
+            ->max(100)
         !!}
     </div>
 
