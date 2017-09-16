@@ -5,6 +5,50 @@
 | Selects
 |--------------------------------------------------------------------------
 */
+
+    /**
+     * Generate a input-group
+     * @param object $data
+     * @param array $optionsValues
+     * @param string $fieldName
+     * @param bool $required
+     * 
+     * @return  string
+     */
+    Form::macro('imputGroup', function($value = null, $fieldName, $icon, $class = null, $required = true)
+    {
+        //Default values 
+        $required = $required ? 'required="required"' : '';
+        $class = $class ? ' ' . $class : '';
+        //Html fields
+        $input  = sprintf('<input type="text" name="%s" value="%s" id="%s" class="form-control%s"%s>', $fieldName, $value, $fieldName, $class, $required);
+        $span   = sprintf('<span class="input-group-addon">%s</span>', $icon);
+        //Generate the input-group
+        return sprintf('<div class="input-group">%s%s</div>', $input, $span);
+    });
+
+    /**
+     * Generate a select
+     * @param object $data
+     * @param array $optionsValues
+     * @param string $fieldName
+     * @param bool $required
+     * 
+     * @return  string
+     */
+    Form::macro('createSelect', function($data, $optionsValues = [], $fieldName, $required = true)
+    {
+        //Default values
+        $options = '';
+        $required = $required ? 'required="required"' : '';
+        //Create all the options
+        foreach($optionsValues as $key => $value) {
+            $options .= Form::optionSelected($data->{$fieldName} ?? null, $key, $value);
+        }
+        //Generate the select
+        return sprintf('<select name="%s" id="%s" class="form-control"%s><option></option>%s</select>', $fieldName, $fieldName, $required, $options);
+    });
+
     /**
      * Generate a coustom option selected
      * @param object $data
