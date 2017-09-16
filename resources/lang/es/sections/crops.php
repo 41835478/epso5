@@ -9,6 +9,7 @@ return [
     */
     'date'              => 'Fecha de plantación',
     'info'              => 'Información del cultivo',
+    'quantity'          => 'Nº de cepas',
     'title'             => 'Cultivo',
     'title:plural'      => 'Cultivos',
 ];

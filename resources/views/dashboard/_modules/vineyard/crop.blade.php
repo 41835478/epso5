@@ -61,15 +61,17 @@
     </div>
 </div>
 
-{{-- Add the custom JS --}}
+{{-- Add the custom JS. --}}
 @if(Request::ajax())
-<script>
-    {!! Minify::folder('vineyard')->js() !!}
-</script>
+    {{-- When load pages with ajax, we need to keep the code in the loaded page. --}}
+    <script>
+        {!! Minify::folder('vineyard')->js() !!}
+    </script>
 @else
-@section('javascript')
-<script>
-    {!! Minify::folder('vineyard')->js() !!}
-</script>
-@endsection
+    {{-- In the other cases... just add the code to the javascript container --}}
+    @section('javascript')
+        <script>
+            {!! Minify::folder('vineyard')->js() !!}
+        </script>
+    @endsection
 @endif
