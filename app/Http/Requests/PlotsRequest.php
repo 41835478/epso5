@@ -33,16 +33,29 @@ class PlotsRequest extends FormRequest
             'crop_id'           => 'required|integer',
             'crop_module'       => 'required',
         ];
-        $plot = [
-            'plot_name'         => 'required',
-            'plot_area'         => 'required',
-            'plot_framework'    => 'required|regex:/[0-9]{1}x[0-9]{1}/',
+        $crop = [
+            'crop_quantity'     => 'sometimes|integer',
+            'crop_training'     => 'sometimes|integer',
+            'crop_variety_type' => 'sometimes|required|integer',
+            'crop_variety_id'   => 'sometimes|required|integer',
+            'pattern_id'        => 'sometimes|integer',
         ];
-        //Add filters 
+        $plot = [
+            'plot_area'                     => 'required',
+            'plot_framework'                => 'required|regex:/[0-9]{1}x[0-9]{1}/',
+            'plot_name'                     => 'required',
+            'plot_percent_cultivated_land'  => 'sometimes|max:100|min:0',
+            'plot_start_date'               => 'sometimes|date_format:d/m/Y|regex:/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/',
+        ];
+
+        //Role filters 
         if(!Credentials::isEditor()) {
+            //If the role is user, always is needed to add the user_id
+            //in the other cases are optative...
             $administration = array_merge(['user_id' => 'required|integer'], $administration);
         }
-            return array_merge($administration, $plot);
+
+        return array_merge($administration, $crop, $plot);
     }
 
     /**
@@ -53,13 +66,19 @@ class PlotsRequest extends FormRequest
     public function attributes()
     {
         return [
-            'user_id'           => trans_title('users', 'singular'),
-            'client_id'         => trans_title('clients', 'singular'),
-            'crop_id'           => trans_title('crops', 'singular'),
-            'plot_name'         => trans_title('plots', 'singular'),
-            'crop_module'       => trans('base.module'),
-            'plot_area'         => trans('units.area'),
-            'plot_framework'    => sections('plots.framework'),
+            'user_id'                       => trans_title('users', 'singular'),
+            'client_id'                     => trans_title('clients', 'singular'),
+            'crop_id'                       => trans_title('crops', 'singular'),
+            'crop_module'                   => trans('base.module'),
+            'crop_quantity'                 => trans('plots.quantity'),
+            'crop_training'                 => trans('plots.training'),
+            'crop_variety_type'             => sections('plots.type'),
+            'pattern_id'                    => sections('plots.pattern'),
+            'plot_area'                     => trans('units.area'),
+            'plot_name'                     => trans_title('plots', 'singular'),
+            'plot_framework'                => sections('plots.framework'),
+            'plot_percent_cultivated_land'  => sections('plots.percent'),
+            'plot_start_date'               => sections('plots.date'),
         ];
     }
 
