@@ -10,7 +10,10 @@
             [trans_title($section) . ': ' . $crops->crop_name],
         ])
         @slot('dropdownItems', [
-            [Html::createLink($section, $role)], 
+            [Html::createLink($section, $role, [
+                'crop' => $crops->id
+            ])], 
+            [Html::deleteLink()], 
         ])
     @endcomponent
 
@@ -20,7 +23,16 @@
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
 
-    {{-- Legends --}}
+    {{-- Modals --}}
+    @section('modals')
+        @include(modal_path('delete'))
+    @endsection
+    
+    {{-- 
+        Legends: For a customized legend, 
+        pass the $legend variable to the legend_path() function, 
+        or keep it empty for default 
+    --}}
     @component(component_path('legend'))
         @slot('legendContent', legend_path($legend ?? null))
     @endcomponent

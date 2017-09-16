@@ -18,7 +18,9 @@ Route::group([
         //Crops
         Route::resource('crops', 'Dashboard\Admin\CropsController', ['except' => ['destroy', 'show']]);
         Route::resource('crop_varieties', 'Dashboard\Admin\CropVarietiesController', ['except' => ['index', 'destroy', 'edit']]);
-        Route::get('crop_varieties/edit/{crop_variety}/{crop}', 'Dashboard\Admin\CropVarietiesController@edit')->name('crop_varieties.edit');
+        Route::post('crop_varieties/eliminate', 'Dashboard\Admin\CropVarietiesController@eliminate')->name('crop_varieties.eliminate');
+            //Because we need to include the crop variety types... look inside the controller!!!
+            Route::get('crop_varieties/edit/{crop_variety}/{crop}', 'Dashboard\Admin\CropVarietiesController@edit')->name('crop_varieties.edit');
         Route::post('crop_variety_types', 'Dashboard\Admin\CropVarietyTypesController@store')->name('crop_variety_types.store');
         //Irrigations
         Route::resource('irrigations', 'Dashboard\Admin\IrrigationsController', ['except' => ['destroy', 'show']]);
