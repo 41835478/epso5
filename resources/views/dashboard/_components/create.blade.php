@@ -23,8 +23,8 @@
                     <legend class="legend-required">{{ __('* Mandatory fields') }}</legend>
 
                     <div class="form-group text-center">
-                        <a href="{{ url()->previous() }}" class="btn btn-danger btn-lg">{!! icon('cancel', trans('buttons.cancel')) !!}</a>
-                        {!! BootForm::button(icon('new', trans('buttons.new')))->addClass('btn-success btn-lg')->type('submit') !!}
+                        {!! Form::cancelButton() !!}
+                        {!! Form::createButton() !!}
                     </div>
 
                 {!! BootForm::close() !!}

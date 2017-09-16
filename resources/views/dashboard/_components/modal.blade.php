@@ -21,7 +21,7 @@
                 @endif
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" id="button-modal-cancel">{!! icon('cancel', trans('buttons.cancel')) !!}</button>
+                {!! Form::cancelButton(['modal' => true]) !!}
                 {!! $modalButtons ?? null !!}
             </div>
         </div>

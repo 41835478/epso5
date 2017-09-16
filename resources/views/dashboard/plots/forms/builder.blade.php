@@ -6,3 +6,11 @@
 
 {{-- Crop information --}}
 @include(dashboard_path('plots.forms.sections.crop'))
+
+{{-- Crop Geolocation --}}
+@include(dashboard_path('plots.forms.sections.geolocation'))
+
+{{-- Customize JS --}}
+@section('default-javascript')
+    {!! mix('js/maps.js') !!}
+@endsection
