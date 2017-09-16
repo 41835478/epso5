@@ -38,7 +38,7 @@
     !!}
 
     {{-- Field: date --}}
-    {!! BootForm::InputGroup(sections('crops.date'), 'plot_start_date')
+    {!! BootForm::InputGroup(sections('crops.date:min'), 'plot_start_date')
         ->addGroupClass('col-md-2')
         ->addClass('date')
         ->afterAddon(icon('date'))

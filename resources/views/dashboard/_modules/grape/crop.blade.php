@@ -2,7 +2,7 @@
     {{-- Field: Crop --}}
     <div class="form-group col-md-2">
         {!! Form::label('plot_crop_name', sections('crops.title'), ['class' => 'control-label']) !!}
-        {!! Form::text('plot_crop_name', ($cropName ?? null), ['class' => 'form-control', 'readonly']) !!}
+        {!! Form::text('plot_crop_name', ($cropName ?? null), ['class' => 'form-control', 'disabled']) !!}
     </div>
 
     {{-- Field: Crop Variety --}}
@@ -40,7 +40,7 @@
 
     {{-- Field: Crop --}}
     <div class="form-group col-md-2">
-        {!! Form::label('crop_training', sections('trainings.title'), ['class' => 'control-label']) !!}
+        {!! Form::label('crop_training', sections('trainings.title:min'), ['class' => 'control-label']) !!}
         {!! Form::createSelect(
             $value          = ($data ?? null), 
             $optionsValues  = $cropTrainig, 

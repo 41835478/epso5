@@ -10574,7 +10574,8 @@ form .date,
 form .framework,
 form .year,
 form .time,
-form .number {
+form .number,
+form .right {
   text-align: right;
 }
 
@@ -10604,6 +10605,11 @@ form .checkBoxCustom {
 
 .break-line-max {
   padding: 30px 15px;
+}
+
+.separator {
+  border-bottom: 1px dotted #d4d4d4;
+  margin: 20px 0 25px 0;
 }
 
 .hidden {

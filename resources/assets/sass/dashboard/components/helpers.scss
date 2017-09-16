@@ -13,6 +13,11 @@
         padding: 30px 15px; 
     }
 
+    .separator {
+        border-bottom: 1px dotted $color-gray-lighter;
+        margin: 20px 0 25px 0; 
+    }
+
     .hidden {
         display: none !important;
         visibility: hidden !important;

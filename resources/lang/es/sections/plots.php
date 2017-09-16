@@ -20,6 +20,7 @@ return [
     'title'             => 'Parcela',
     'title:plural'      => 'Parcelas',
     'training'          => sections('trainings.title'),
+    'training:min'      => sections('trainings.title:min'),
     'type'              => sections('crop_variety_types.title'),
 
     /*
