@@ -27,14 +27,16 @@
      */
     Html::macro('createLink', function($section, $route, $routeValue = null)
     {
-        $route = $routeValue ? route('dashboard.' . $route . '.' . $section . '.create', $routeValue) : route('dashboard.' . $route . '.' . $section . '.create'); 
-            //Return the values
-            return Html::linkBuilder([
-                'title' => icon('new', trans('buttons.new')),
-                'class' => 'dropdown-item',
-                'route' => $route,
-                'id' => 'button-create-link',
-            ]);
+        $route = $routeValue 
+            ? route('dashboard.' . $route . '.' . $section . '.create', $routeValue) 
+            : route('dashboard.' . $route . '.' . $section . '.create'); 
+        //Return the values
+        return Html::linkBuilder([
+            'title' => icon('new', trans('buttons.new')),
+            'class' => 'dropdown-item',
+            'route' => $route,
+            'id' => 'button-create-link',
+        ]);
     }); 
 
     /**
