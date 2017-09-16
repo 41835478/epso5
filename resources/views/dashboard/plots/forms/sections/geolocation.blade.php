@@ -2,7 +2,8 @@
 
 <div class="row">
     <div class="col-md-8">
-        <div class="col-md-12 alert alert-danger" role="alert">
+        {{-- Alert: SIGPAC message --}}
+        <div class="col-md-12 alert alert-success" role="alert">
             {!! icon('alert', sections('plots.geolocation:alert')) !!}
         </div>
         <div class="row">
@@ -38,6 +39,6 @@
         </div>
     </div>
     <div class="col-md-4">
-        IMAGEN
+        <div id="simpleMap"></div>
     </div>
 </div>

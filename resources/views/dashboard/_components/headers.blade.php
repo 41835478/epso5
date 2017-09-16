@@ -23,8 +23,8 @@
 {{-- CSS --}}
 <link rel="stylesheet" href="@yield('css', mix('css/dashboard.css'))">
 <link rel="stylesheet" href="{{ url(icon_cdn()) }}">
+@yield('leaflet')
 @yield('custom-css')
-
 <!-- ALL BROWSERS -->
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
