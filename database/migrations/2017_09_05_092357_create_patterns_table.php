@@ -17,7 +17,7 @@ class CreatePatternsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('crop_id')->unsigned()->index();
             $table->string('pattern_name');
-            $table->string('pattern_reference');
+            $table->string('pattern_reference')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
