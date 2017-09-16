@@ -40,9 +40,9 @@
 
     {{-- Field: Crop quantity --}}
     <div class="form-group col-md-2">
-        <label class="control-label" for="plot_quantity">{{ sections('plots.quantity') }}</label>
+        <label class="control-label" for="crop_quantity">{{ sections('plots.quantity') }}</label>
         <div class="input-group">
-            <input type="text" name="plot_quantity" value="{{ isset($data) ? $data->plot_quantity : null }}" id="plot_quantity" class="form-control number">
+            <input type="text" name="crop_quantity" value="{{ isset($data) ? $data->crop_quantity : null }}" id="crop_quantity" class="form-control number">
             <span class="input-group-addon">uds</span>
         </div>
     </div>
