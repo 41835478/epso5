@@ -43,7 +43,7 @@
         $required = $required ? 'required="required"' : '';
         //Create all the options
         foreach($optionsValues as $key => $value) {
-            $options .= Form::optionSelected($data->{$fieldName} ?? null, $key, $value);
+            $options .= macro_optionSelected($data->{$fieldName} ?? null, $key, $value);
         }
         //Generate the select
         return sprintf('<select name="%s" id="%s" class="form-control"%s><option></option>%s</select>', $fieldName, $fieldName, $required, $options);
@@ -51,17 +51,23 @@
 
     /**
      * Generate a coustom option selected
-     * @param object $data
+     * @param object $databaseValue
      * @param string $value
      * @param string $title
      * 
      * @return  string
      */
-    Form::macro('optionSelected', function($data, $value = null, $title = null)
-    {
-        $selected = ($data == $value) ? ' selected' : '';
-            return sprintf('<option data-title="%s" value="%s"%s>%s</option>', $title, $value, $selected, $title);
-    });
+    /**
+     * Helper: checkbox container html5
+     * @return string
+     */
+    if (!function_exists('macro_optionSelected')) {
+        function macro_optionSelected($databaseValue, $value = null, $title = null)
+        {
+            $selected = ($databaseValue == $value) ? ' selected' : '';
+                return sprintf('<option data-title="%s" value="%s"%s>%s</option>', $title, $value, $selected, $title);
+        }
+    }
 
 /*
 |--------------------------------------------------------------------------
@@ -85,8 +91,8 @@
             : $checked = '';
             //Return the checkbox
             return sprintf(
-                Form::checkboxContainer(), 
-                sprintf(Form::checkboxConstructor($data, $relationship, $id), $id, $checked, $name)
+                macro_checkboxContainer(), 
+                sprintf(macro_checkboxConstructor($data, $relationship, $id), $id, $checked, $name)
             );
     }); 
 
@@ -98,17 +104,20 @@
      * 
      * @return  string
      */
-    Form::macro('checkboxConstructor', function($data, $relationship, $id)
-    {
-        return '<input type="checkbox" id="checkbox-' . $relationship . '-' . $id . '" name="' . $relationship . '_id[]" value="%s" class="checkBoxCustom"%s> %s';
-    }); 
+    if (!function_exists('macro_checkboxConstructor')) {
+        function macro_checkboxConstructor($data, $relationship, $id)
+        {
+            return '<input type="checkbox" id="checkbox-' . $relationship . '-' . $id . '" name="' . $relationship . '_id[]" value="%s" class="checkBoxCustom"%s> %s';
+        }
+    }
 
     /**
      * Helper: checkbox container html5
-     * 
-     * @return  string
+     * @return string
      */
-    Form::macro('checkboxContainer', function()
-    {
-        return '<div class="col-lg-2"><div class="checkbox"><label class="control-label">%s</label></div></div>';
-    }); 
+    if (!function_exists('macro_checkboxContainer')) {
+        function macro_checkboxContainer()
+        {
+            return '<div class="col-lg-2"><div class="checkbox"><label class="control-label">%s</label></div></div>';
+        }
+    }
