@@ -16,10 +16,12 @@ return [
     'framework:x'       => 'Separación entre líneas',
     'framework:y'       => 'Distancia entre cepas',
     'loading'           => icon('alert') . ' Seleccione un cliente para cargar el módulo de cultivo',
+    'pattern'           => sections('patterns.title'),
     'plot'              => 'Información de la parcela',
     'percent'           => trans('units.percent:alt'),
-    'quantity'          => 'Nº de cepas',
+    'quantity'          => sections('crops.quantity'),
     'title'             => 'Parcela',
     'title:plural'      => 'Parcelas',
+    'training'          => sections('trainings.title'),
     'type'              => sections('crop_variety_types.title'),
 ];
