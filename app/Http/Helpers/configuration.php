@@ -82,7 +82,6 @@ if (!function_exists('getClientName')) {
 if (!function_exists('getCropType')) {
     function getCropType() : bool
     {
-        $configuration = collect(getConfig('config'))->flatten()->toArray();
-        return in_array('crop-type', $configuration) ? true : false;
+        return getConfig('crop', 'type');
     }
 }
