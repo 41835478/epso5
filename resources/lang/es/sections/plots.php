@@ -21,4 +21,5 @@ return [
     'quantity'          => 'Nº de cepas',
     'title'             => 'Parcela',
     'title:plural'      => 'Parcelas',
+    'type'              => sections('crop_variety_types.title'),
 ];
