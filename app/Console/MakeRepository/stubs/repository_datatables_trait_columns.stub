@@ -22,6 +22,7 @@ trait DataTableColumns
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,
             //      'searchable' => false,
+            //      'defaultContent' => no_result(),
             // ]),
             // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
             // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
