@@ -44,6 +44,15 @@
             ])
             ->line()
             ->subMenuItem([
+                'title' => icon('alert', trans('navbar.admin:climatic_stations')),
+                'url' => route('dashboard.admin.climatic_stations.index'),
+            ])
+            ->subMenuItem([
+                'title' => icon('alert', trans('navbar.admin:climatics')),
+                'url' => route('dashboard.admin.climatic_stations.index'),
+            ])
+            ->line()
+            ->subMenuItem([
                 'title' => icon('alert', trans('navbar.admin:errors')),
                 'url' => route('dashboard.god.errors'),
             ])

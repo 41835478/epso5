@@ -12,13 +12,6 @@
         @slot('dropdownItems', [
             [Html::createLink($section, $role)], 
             [Html::deleteLink()], 
-            {{-- [Html::newLink(
-                [
-                    'title' => icon('form', trans('buttons.tools')),
-                    'route' => route('dashboard.admin.biocides.tools'), 
-                    'class' => 'dropdown-item',
-                ]
-            )], --}}
         ])
     @endcomponent
 
@@ -27,11 +20,6 @@
 
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
-
-    {{-- Modals --}}
-    @section('modals')
-        @include(modal_path('delete'))
-    @endsection
 
     {{-- 
         Legends: For a customized legend, 

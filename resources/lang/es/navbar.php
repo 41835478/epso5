@@ -7,14 +7,16 @@ return [
     |--------------------------------------------------------------------------
     */
     'admin' => 'Administración',
-        'admin:clients'     => 'Clientes',
-        'admin:config'      => 'Configuración',
-        'admin:countries'   => 'Ciudades',
-        'admin:crops'       => 'Cultivos',
-        'admin:biocides'    => 'Fitosanitarios',
-        'admin:irrigation'  => 'Riegos',
-        'admin:training'    => 'Conducciones',
-        'admin:errors'      => 'Gestión de errores',
+        'admin:clients'             => 'Clientes',
+        'admin:climatic_stations'   => 'Estaciones meteorológicas',
+        'admin:climatics'           => 'Datos climáticos',
+        'admin:config'              => 'Configuración',
+        'admin:countries'           => 'Ciudades',
+        'admin:crops'               => 'Cultivos',
+        'admin:biocides'            => 'Fitosanitarios',
+        'admin:irrigation'          => 'Riegos',
+        'admin:training'            => 'Conducciones',
+        'admin:errors'              => 'Gestión de errores',
     /*
     |--------------------------------------------------------------------------
     | Navbar Menus: Users

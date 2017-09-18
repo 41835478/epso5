@@ -33,6 +33,9 @@ class DatabaseSeeder extends Seeder
         //The last one: because need for all the previus seed to populate!!!
         $this->call(PlotsTableSeeder::class);
 
+        //Climatic
+        $this->call(ClimaticStationsTableSeeder::class);
+
         //Testing relationships!!!!
         $this->call(ClientConfigTableSeeder::class);
         $this->call(ClientCropTableSeeder::class);
