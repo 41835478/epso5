@@ -65,4 +65,16 @@ class PlotsRepository extends Repository
             return $query->where('user_id', null);
         });
     }
+
+    /**
+     * Get all the active stations (climatic stations)
+     * @return  array
+     */
+    public function activeStations()
+    {
+        return $this->model
+            ->select('climatic_station_id')
+            ->distinct()
+            ->get();
+    }
 }
