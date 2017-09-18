@@ -7,7 +7,7 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
-            [trans('base.list')], 
+            [$breadcrumb ?? trans('base.list')], 
         ])
         @slot('dropdownItems', [
             [Html::createLink($section, $role)], 

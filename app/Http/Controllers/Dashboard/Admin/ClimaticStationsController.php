@@ -107,10 +107,14 @@ class ClimaticStationsController extends DashboardController
      */
     public function update(ClimaticStationsRequest $request, $id)
     {
+        //Because we are using the same update controller for: 'dashboard.admin.climatic_stations.active' and for 'dashboard.admin.climatic_stations.index'
+        //We want a different redirection base on the previus route
+        $route = request('previus_route') ?? 'dashboard.' . $this->role . '.' . $this->section . '.index';
+        //Then update
         $update = $this->controller->store($id);
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route($route)
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

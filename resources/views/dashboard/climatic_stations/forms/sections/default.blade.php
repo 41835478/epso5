@@ -3,6 +3,10 @@
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
+    @if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName() == 'dashboard.admin.climatic_stations.active')
+        {!! BootForm::hidden('previus_route')->value('dashboard.admin.climatic_stations.active') !!}
+    @endif
+
     {{-- Field: Climatic station name --}}
     {!! BootForm::text(trans_title('climatic_stations', 'singular'), 'station_name')
         ->addGroupClass('col-md-4')
