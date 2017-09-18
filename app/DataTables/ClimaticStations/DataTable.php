@@ -7,6 +7,7 @@ use App\DataTables\ClimaticStations\DataTableJavascript;
 use App\DataTables\ClimaticStations\DataTableSearch;
 use App\Repositories\ClimaticStations\ClimaticStationsRepository;
 use App\Repositories\ClimaticStations\UsersRepository;
+use App\Repositories\Plots\PlotsRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 
 class DataTable extends Repository
@@ -26,8 +27,15 @@ class DataTable extends Repository
      */
     public function query()
     {
+        $filter = $this->getValue('filter');
         $query = app(ClimaticStationsRepository::class)
             ->dataTable()
+            ->when($filter, function($query) {
+                //Get all the plots gruop by different climatic stations. Get all the different stations.
+                $plots = app(PlotsRepository::class)->activeStations();
+                //Show only this stations
+                return $query->whereIn('id', $plots);
+            })
             ->select($this->section . '.*');
 
         return $this->applyScopes($query);

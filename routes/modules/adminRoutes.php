@@ -18,6 +18,7 @@ Route::group([
         Route::resource('clients', 'Dashboard\Admin\ClientsController', ['except' => ['destroy', 'show']]);
         //Climatics
         Route::resource('climatic_stations', 'Dashboard\Admin\ClimaticStationsController', ['except' => ['destroy', 'show']]);
+        Route::get('climatic_stations/active', 'Dashboard\Admin\ClimaticStationsActivesController')->name('climatic_stations.active');
         //Configs
         Route::resource('configs', 'Dashboard\Admin\ConfigsController', ['except' => ['destroy', 'show']]);
         //Crops

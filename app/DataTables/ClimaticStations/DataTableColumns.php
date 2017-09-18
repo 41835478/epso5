@@ -19,19 +19,13 @@ trait DataTableColumns
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans('base.reference'), 'station_reference'),
-            $this->setColumn(sections('climatic_stations.aemet'), 'station_reference'),
+            $this->setColumn(sections('climatic_stations.aemet'), 'station_reference_by_city', [
+                'defaultContent' => no_result(),
+            ]),
             $this->setColumn(trans_title('climatic_stations'), 'station_name'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans('persona.city'), 'station_city_name'),
+            $this->setColumn(trans('geolocations.lat'), 'station_lat'),
+            $this->setColumn(trans('geolocations.lng'), 'station_lng'),
         ];
     }
 

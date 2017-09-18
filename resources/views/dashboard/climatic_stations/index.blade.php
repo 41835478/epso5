@@ -11,7 +11,13 @@
         ])
         @slot('dropdownItems', [
             [Html::createLink($section, $role)], 
-            [Html::deleteLink()], 
+            [Html::newLink(
+                [
+                    'title' => icon('form', sections('climatic_stations.active')),
+                    'route' => route('dashboard.admin.climatic_stations.active'), 
+                    'class' => 'dropdown-item',
+                ]
+            )],
         ])
     @endcomponent
 
