@@ -49,7 +49,7 @@
             ])
             ->subMenuItem([
                 'title' => icon('alert', trans('navbar.admin:climatics')),
-                'url' => route('dashboard.admin.climatic_stations.index'),
+                'url' => route('dashboard.admin.climatics.index'),
             ])
             ->line()
             ->subMenuItem([

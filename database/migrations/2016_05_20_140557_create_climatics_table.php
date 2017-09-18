@@ -15,7 +15,7 @@ class CreateClimaticsTable extends Migration
         Schema::connection('mysql_climatic')->create('climatics', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->integer('station_id')->unsigned()->index();
-            $table->string('station_ref')->index();
+            $table->string('station_reference')->index();
             $table->dateTime('climatic_date');
             $table->decimal('climatic_precipIntensity', 6, 2)->nullable()->comment('Millimeters per hour');
             $table->decimal('climatic_temperature', 4, 2)->nullable()->comment('Degrees Celsius for average temperature');
