@@ -1,3 +1,4 @@
+/database/seeds
 /node_modules
 /public/storage
 /public/hot
@@ -6,10 +7,7 @@
 /.idea
 Homestead.json
 Homestead.yaml
-.env
-/database/seeds
-testing.sqlite
-
-checkList.odt
-
 .env.production
+*.env
+*.odt
+*.db
