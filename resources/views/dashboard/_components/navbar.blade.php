@@ -72,7 +72,13 @@
             ])->subMenuItem([
                 'title' => icon('assign', trans('selects.roles.user')),
                 'url' => route('dashboard.user.tools.role', 3),
-            ])->output()
+            ])
+            ->line()
+            ->subMenuItem([
+                'title' => icon('alert', 'Tests'),
+                'url' => route('dashboard.admin.test'),
+            ])
+            ->output()
         )
         ->separator()
 

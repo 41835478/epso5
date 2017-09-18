@@ -5,6 +5,9 @@ Route::group([
         'as'            => 'admin.', 
         'middleware'    => 'role:admin'
     ], function () {
+        //Testing
+        Route::get('test', 'Dashboard\TestController')->name('test');
+
         //Biocides
         Route::resource('biocides', 'Dashboard\Admin\BiocidesController', ['except' => ['destroy', 'show']]);
         Route::get('biocides/tools/index', 'Dashboard\Admin\BiocidesToolsController@index')->name('biocides.tools');
