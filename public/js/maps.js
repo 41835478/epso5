@@ -35636,18 +35636,19 @@ $('.buttons-select-all,.buttons-select-none').on('click', function (event) {
 /***/ (function(module, exports) {
 
 $(function () {
+    /////////////////////
+    // Map default variables
+    /////////////////////    
+    var zoom = 17;
+    var lat = window.currentLat;
+    var lng = window.currentLng;
+    var marker = null;
+    L.Icon.Default.imagePath = '../../../../images/';
+
     /**
      * Generate the map
      */
-    if (typeof L !== 'undefined') {
-        /////////////////////
-        // Map default variables
-        /////////////////////    
-        var zoom = 17;
-        var lat = window.currentLat;
-        var lng = window.currentLng;
-        var marker = null;
-        L.Icon.Default.imagePath = '../../../../images/';
+    if (typeof L !== 'undefined' && lat && lng) {
         /////////////////////
         // Dafault map
         /////////////////////  
