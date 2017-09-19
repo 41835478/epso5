@@ -18,15 +18,15 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans('base.ine'), 'ine_id', [
-                'defaultContent' => no_result(),
-            ]),
             $this->setColumn(trans_title('cities', 'singular'), 'city_name'),
             $this->setColumn(trans('base.latitude'), 'city_lat'),
             $this->setColumn(trans('base.longitude'), 'city_lng'),
             $this->setColumnWithRelationship(trans('persona.country'), 'country.country_name'),
             $this->setColumnWithRelationship(trans('persona.state'), 'state.state_name'),
             $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
+            $this->setColumn(trans('base.ine'), 'ine_id', [
+                'defaultContent' => no_result(),
+            ]),
         ];
     }
 
