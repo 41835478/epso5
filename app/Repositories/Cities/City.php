@@ -31,6 +31,7 @@ class City extends Model  {
     protected $fillable = [
         'country_id', 
         'state_id', 
+        'state_ine_id',
         'region_id', 
         'ine_id',
         'city_name', 

@@ -51,6 +51,15 @@ class DataTable extends Repository
                 return view($this->getAction(), compact('data'))
                     ->render();
             })
+            ->editColumn('country.country_name', function($date){
+                return sprintf('%s (%s)', $date->country->country_name, $date->country_id);
+            })
+            ->editColumn('state.state_name', function($date){
+                return sprintf('%s (%s)', $date->state->state_name, $date->state_id);
+            })
+            ->editColumn('region.region_name', function($date){
+                return sprintf('%s (%s)', $date->region->region_name, $date->region_id);
+            })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
             });

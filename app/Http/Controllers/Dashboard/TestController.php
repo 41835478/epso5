@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Repositories\Cities\City;
 use App\Repositories\Climatics\Api\ClimaticApi;
 use App\Repositories\Regions\Region;
+use App\Repositories\States\State;
 use Carbon\Carbon;
 use DB;
 
@@ -28,18 +29,11 @@ class TestController extends DashboardController
      */
     public function __invoke()
     {
-        $cities = City::whereNull('ine_id')->get();
-        $list = json_decode(file_get_contents(app_path('Repositories/Cities/cities.js')));
-        foreach($cities as $citie) {
-          foreach($list as $item) {
-            if($item->nm == $citie->city_name) {
-              City::find($citie->id)->update([
-                'ine_id' => $item->id
-              ]);
-              sleep(1);
-            }
-          }
-          sleep(1);
+        $states = State::all();
+        foreach($states as $state) {
+          City::where('state_id', $state->id)->update([
+            'state_ine_id' => $state->state_ine_id
+          ]);
         }
     }
 
