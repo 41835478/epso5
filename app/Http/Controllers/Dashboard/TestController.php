@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Cities\City;
+use App\Repositories\Climatics\Api\ClimaticApi;
 use App\Repositories\Regions\Region;
 use Carbon\Carbon;
 use DB;
@@ -27,7 +28,19 @@ class TestController extends DashboardController
      */
     public function __invoke()
     {
-        dd($this->aemetStationData());
+        $cities = City::whereNull('ine_id')->get();
+        $list = json_decode(file_get_contents(app_path('Repositories/Cities/cities.js')));
+        foreach($cities as $citie) {
+          foreach($list as $item) {
+            if($item->nm == $citie->city_name) {
+              City::find($citie->id)->update([
+                'ine_id' => $item->id
+              ]);
+              sleep(1);
+            }
+          }
+          sleep(1);
+        }
     }
 
     public function aemetStationData()

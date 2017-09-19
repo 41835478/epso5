@@ -38,7 +38,6 @@ class ClimaticStation extends Model  {
      */
     protected $fillable = [
         'station_reference', 
-        'station_reference_by_city',
         'station_name', 
         'station_city_name', 
         'station_region_name', 

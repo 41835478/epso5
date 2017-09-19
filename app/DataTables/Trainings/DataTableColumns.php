@@ -20,7 +20,7 @@ trait DataTableColumns
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans_title('trainings'), 'training_name'),
             $this->setColumn(trans('base.description'), 'training_description', [
-                 'defaultContent' => no_result(),
+                'defaultContent' => no_result(),
             ]),
         ];
     }

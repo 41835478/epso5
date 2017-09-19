@@ -16,7 +16,6 @@ class CreateClimaticStationsTable extends Migration
         Schema::connection('mysql_climatic')->create('climatic_stations', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('station_reference', 10)->unique();
-            $table->string('station_reference_by_city', 10)->unique()->nullable();
             $table->string('station_name');
             $table->string('station_city_name');
             $table->string('station_region_name');

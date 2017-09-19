@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
             $table->integer('country_id')->unsigned()->index();
             $table->integer('state_id')->unsigned()->index();
             $table->integer('region_id')->unsigned()->index();
+            $table->string('ine_id')->nullable();
             $table->decimal('city_lat', 10, 6)->default(0);
             $table->decimal('city_lng', 10, 6)->default(0);
             $table->string('city_name', 100);

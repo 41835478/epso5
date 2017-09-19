@@ -12,6 +12,7 @@ return [
     'description'   => 'Descripción',
     'edit'          => 'Editar',
     'form'          => 'Formulario',
+    'ine'           => 'Código INE',
     'key'           => 'Clave',
     'legend'        => 'Información y/o leyenda',
     'list'          => 'Listado',

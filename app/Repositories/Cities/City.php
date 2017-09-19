@@ -32,6 +32,7 @@ class City extends Model  {
         'country_id', 
         'state_id', 
         'region_id', 
+        'ine_id',
         'city_name', 
         'city_lat', 
         'city_lng'

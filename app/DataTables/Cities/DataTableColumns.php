@@ -18,6 +18,9 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
+            $this->setColumn(trans('base.ine'), 'ine_id', [
+                'defaultContent' => no_result(),
+            ]),
             $this->setColumn(trans_title('cities', 'singular'), 'city_name'),
             $this->setColumn(trans('base.latitude'), 'city_lat'),
             $this->setColumn(trans('base.longitude'), 'city_lng'),
