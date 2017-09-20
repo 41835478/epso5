@@ -28,9 +28,10 @@ return [
     | Legends
     |--------------------------------------------------------------------------
     */
-   'administration'    => 'Datos de configuración: Para los nives administrador y editor',
-   'crop'              => 'Información del cultivo',
-   'geolocation'       => 'Datos de geolocalización',
-   'geolocation:alert' => '¿Son correctos los siguientes datos del SIGPAC? Si no lo son, por favor, modifíquelos.', 
-   'plot'              => 'Información de la parcela',
+   'administration'     => 'Datos de configuración: Para los nives administrador y editor',
+   'climatic'           => 'Información climática',
+   'crop'               => 'Información del cultivo',
+   'geolocation'        => 'Datos de geolocalización',
+   'geolocation:alert'  => '¿Son correctos los siguientes datos del SIGPAC? Si no lo son, por favor, modifíquelos.', 
+   'plot'               => 'Información de la parcela',
 ];
