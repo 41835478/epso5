@@ -4,6 +4,7 @@ namespace App\Repositories\Plots\Traits;
 
 use App\Repositories\Cities\City;
 use App\Repositories\Clients\Client;
+use App\Repositories\ClimaticStations\ClimaticStation;
 use App\Repositories\Countries\Country;
 use App\Repositories\CropVarieties\CropVariety;
 use App\Repositories\Crops\Crop;
@@ -27,6 +28,11 @@ trait PlotsRelationships {
     public function client()
     {
         return $this->belongsTo(Client::class)->withTrashed();
+    }
+
+    public function climatic_station()
+    {
+        return $this->belongsTo(ClimaticStation::class)->withTrashed();
     }
 
     public function country()

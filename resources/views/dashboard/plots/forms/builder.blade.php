@@ -10,6 +10,9 @@
 {{-- Crop Geolocation --}}
 @include(dashboard_path('plots.forms.sections.geolocation'))
 
+{{-- Climatic stations --}}
+@include(dashboard_path('plots.forms.sections.climatic'))
+
 {{-- Customize JS --}}
 @section('default-javascript')
     {!! mix('js/maps.js') !!}
