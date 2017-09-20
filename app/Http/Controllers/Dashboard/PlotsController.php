@@ -58,11 +58,21 @@ class PlotsController extends DashboardController
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    { 
+        return view(dashboard_path($this->section . '.create'));
+    }
+
+    /**
+     * Show the form for configurate a new plot resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function configurate()
+    {  
         list($clients, $users) = $this->controller->getAdministration();
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop();
         //    
-        return view(dashboard_path($this->section . '.create'), compact('clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'users'));
+        return view(dashboard_path($this->section . '.configurate'), compact('clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'users'));
     }
 
     /**
