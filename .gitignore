@@ -13,3 +13,5 @@ Homestead.yaml
 *.db
 
 *.csv
+
+.env.dusk
