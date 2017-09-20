@@ -32,7 +32,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     return [
         'client_id'                 => $client ?? $select,
         'crop_id'                   => $select,
-        'crop_module'               => ($select == 1) ? 'grape' : 'vineyard',
+        'crop_module'               => ($select == 1) ? 'vineyard' : 'grape',
         'crop_variety_id'           => $crop_variety->id,
         'crop_variety_type'         => $crop_variety->crop_variety_type,
         'crop_quantity'             => $number,
