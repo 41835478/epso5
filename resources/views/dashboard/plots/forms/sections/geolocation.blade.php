@@ -47,12 +47,6 @@
         <div class="separator"></div>
 
         <div class="row">
-            {{-- Field: Country --}}
-            {!! BootForm::text(trans('geolocations.country'), 'country.country_name')
-                ->addGroupClass('col-md-3')
-                ->disabled()
-            !!}
-
             {{-- Field: State --}}
             {!! BootForm::text(trans('geolocations.state:min'), 'state.state_name')
                 ->addGroupClass('col-md-3')
@@ -67,6 +61,12 @@
         
             {{-- Field: City --}}
             {!! BootForm::text(trans('geolocations.city'), 'city.city_name')
+                ->addGroupClass('col-md-3')
+                ->disabled()
+            !!}
+
+            {{-- Field: Zip --}}
+            {!! BootForm::text(trans('geolocations.zip'), 'geolocation.zip')
                 ->addGroupClass('col-md-3')
                 ->disabled()
             !!}
@@ -92,5 +92,13 @@
         ->addGroupClass('col-md-2')
         ->addClass('right')
         ->disabled()
+    !!}
+
+    {{-- Field: Hight --}}
+    {!! BootForm::InputGroup(trans('base.height:min'), 'geolocations.geo_height')
+        ->addGroupClass('col-md-2')
+        ->addClass('number')
+        ->afterAddon('m')
+        ->disabled() 
     !!}
 </div>
