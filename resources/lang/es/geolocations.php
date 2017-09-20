@@ -10,6 +10,7 @@ return [
     'aggregate'          => 'Agregado',
     'city'              => 'Ciudad',
     'country'           => 'País',
+    'distance'          => 'Distancia',
     'precinct'          => 'Recinto',
     'lat'               => 'Latitud',
     'lng'               => 'Longitud',

@@ -12,4 +12,5 @@ return [
     'info'              => 'Información de las estaciones meteorológicas',
     'title'             => 'Estación meteorológica',
     'title:plural'      => 'Estaciones meteorológicas',
+    'title:ref'         => 'Est. meteorológica ref.',
 ];
