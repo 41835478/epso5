@@ -14,6 +14,6 @@ mix
     .copy('./resources/assets/img', './public/images', false)
     .js('./resources/assets/js/dashboard.js', './public/js')
     .js('./resources/assets/js/maps.js', './public/js')
-    .js('./resources/assets/js/geolocation.js', './public/js')
+    .js('./resources/assets/js/geolocations.js', './public/js')
     .sass('./resources/assets/sass/dashboard.scss', './public/css')
     .version();

@@ -8,7 +8,7 @@
 
 {{-- Customize JS --}}
 @section('default-javascript')
-    {!! mix('js/maps.js') !!}
+    {!! mix('js/geolocations.js') !!}
 @endsection
 
 {{-- Leaflet libraries --}}
