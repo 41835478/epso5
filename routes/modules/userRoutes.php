@@ -13,7 +13,7 @@ Route::group([
 
         //Plots
         Route::resource('plots', 'Dashboard\PlotsController', ['except' => ['destroy', 'show']]); 
-        Route::get('plots/test', 'Dashboard\PlotsController@configurate')->name('plots.test');
-        Route::post('plots/configurate', 'Dashboard\PlotsController@configurate')->name('plots.configurate');
+        Route::get('plots/test', 'Dashboard\PlotsConfigurateController@configurate')->name('plots.test');
+        Route::post('plots/configurate', 'Dashboard\PlotsConfigurateController@configurate')->name('plots.configurate');
         Route::post('plots/eliminate', 'Dashboard\PlotsController@eliminate')->name('plots.eliminate');
 });

@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use App\DataTables\Plots\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\PlotsRequest;
-use App\Repositories\Clients\ClientsRepository;
-use App\Repositories\CropVarieties\CropVarietiesRepository;
-use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
-use App\Repositories\Patterns\PatternsRepository;
 use App\Repositories\Plots\PlotsRepository;
+use App\Repositories\Regions\RegionsRepository;
 use App\Repositories\Users\UsersRepository;
 // use Credentials;
 //use Illuminate\Http\Request;
@@ -21,6 +18,7 @@ class PlotsController extends DashboardController
      */
     protected $controller;
     protected $table;
+    protected $user;
     /**
      * @var private
      */
@@ -29,10 +27,11 @@ class PlotsController extends DashboardController
     private $role       = 'user';
     private $section    = 'plots';
 
-    public function __construct(DataTable $table, PlotsRepository $controller)
+    public function __construct(DataTable $table, PlotsRepository $controller, UsersRepository $user)
     {
         $this->controller   = $controller;
         $this->table        = $table;
+        $this->user         = $user;
         //Sharing in the view
         view()->share([
             'legend'    => $this->legend,
@@ -57,22 +56,10 @@ class PlotsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(RegionsRepository $region)
     { 
-        return view(dashboard_path($this->section . '.create'));
-    }
-
-    /**
-     * Show the form for configurate a new plot resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function configurate()
-    {  
-        list($clients, $users) = $this->controller->getAdministration();
-        list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop();
-        //    
-        return view(dashboard_path($this->section . '.configurate'), compact('clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'users'));
+        $regions = $region->lists(['id', 'region_name']);
+            return view(dashboard_path($this->section . '.create'), compact('regions'));
     }
 
     /**
@@ -103,10 +90,10 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, UsersRepository $user)
+    public function edit($id)
     {
         $data   = $this->controller->find($id);
-        $users = $user->listOfUsersByRole($client = $data->client_id);
+        $users = $this->user->listOfUsersByRole($client = $data->client_id);
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop($data);
         //
         return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data', 'users'));

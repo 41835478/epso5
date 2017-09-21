@@ -21,7 +21,7 @@
         {!! Form::createSelect(
             $data           = ($data ?? null), 
             $optionsValues  = $cropVarieties, 
-            $fieldName = 'crop_variety_id'
+            $fieldName      = 'crop_variety_id'
         ) !!}
     </div>
 
