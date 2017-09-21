@@ -13,12 +13,7 @@ window._ = require('lodash');
 // /**
 // * The jquery components
 // */
-    require( './jquery/_include.js' );
-        
-/**
-* The maps components
-*/
-    require( './libraries/geolocations.js' );
+    require( './jquery/_include_geolocations.js' );
 
 /**
 * The Jquery mask

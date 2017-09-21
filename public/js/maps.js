@@ -35235,12 +35235,7 @@ __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 // /**
 // * The jquery components
 // */
-__webpack_require__("./resources/assets/js/dashboard/jquery/_include.js");
-
-/**
-* The maps components
-*/
-__webpack_require__("./resources/assets/js/dashboard/libraries/maps.js");
+__webpack_require__("./resources/assets/js/dashboard/jquery/_include_maps.js");
 
 /**
 * The Jquery mask
@@ -35264,8 +35259,8 @@ window.jMaskGlobals = __webpack_require__("./node_modules/jquery-mask-plugin/dis
 window.axios = __webpack_require__("./node_modules/axios/index.js");
 
 window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
+  'X-CSRF-TOKEN': window.Laravel.csrfToken,
+  'X-Requested-With': 'XMLHttpRequest'
 };
 
 /**
@@ -35295,49 +35290,13 @@ window.axios.defaults.headers.common = {
  *
  */
 /* harmony default export */ __webpack_exports__["a"] = ({
-    clear_form: clear_form,
-    select_all: select_all,
     form_action: form_action,
+    form_clear: form_clear,
+    form_comboBox: form_comboBox,
+    form_select_create: form_select_create,
+    select_all: select_all,
     text_area: text_area
 });
-
-/** 
- * Clear/Reset a form by ID
- */
-function clear_form(formID) {
-    //Form container
-    var form = $('#' + formID);
-
-    //Reset all the input, select and textareas
-    form.find('input:text, input:hidden, input:password, input:file, select, textarea').not('input[name="_token"]').val('');
-
-    //Reset all the checkboxes and radio buttons
-    form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
-
-    //Submit the form
-    form.submit();
-}
-
-/** 
- * Select or unselect all the checkboxes
- */
-function select_all() {
-    //Get the checkboxes
-    var target = $(this);
-    var checkboxes = target.closest('form').find(':checkbox');
-    var flag = target.is(':checked');
-    var table = target.closest('table').find('tbody tr');
-
-    //Toogle the checkboxes
-    checkboxes.prop('checked', flag);
-
-    //Add active class 
-    table.removeClass('selected');
-
-    if (flag) {
-        table.addClass('selected');
-    }
-}
 
 /** 
  * Update the form action, with a link/item (using the data-url="value")
@@ -35345,28 +35304,90 @@ function select_all() {
 function form_action(formID, item) {
     //The form #id
     var form = $('#' + formID);
-
     //Submit the form
     return form.attr('action', item.data('url')) ? form.submit() : false;
 }
 
 /** 
- * Count the characters of a textarea and print the output
- */
+* Clear/Reset a form by ID
+*/
+function form_clear(formID) {
+    //Form container
+    var form = $('#' + formID);
+    //Reset all the input, select and textareas
+    form.find('input:text, input:hidden, input:password, input:file, select, textarea').not('input[name="_token"]').val('');
+    //Reset all the checkboxes and radio buttons
+    form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+    //Submit the form
+    form.submit();
+}
+
+/** 
+* Creating a select combo box
+*/
+function form_comboBox(container, selected, routePath) {
+    //Add loading class 
+    container.empty().addClass('loading');
+    //Get the data via AJAX
+    $.get(window.location.origin + routePath, { search: selected }, function (data) {
+        //Generate the form select
+        form_select_create(data, container);
+    });
+}
+
+/** 
+* Creating a new form
+*/
+function form_select_create(data, container) {
+    if (data.length > 0) {
+        //First empty option field
+        container.append($('<option>', { value: '', text: '' }));
+        //Built the select
+        $.each(data, function (index, element) {
+            container.append($('<option>', {
+                value: element.id,
+                text: element.name
+            }));
+        });
+        //Remove loading class, and enable the container
+        container.prop('disabled', false).prop('required', true).removeClass('loading');
+    } else {
+        //Remove loading class, and disable the container
+        container.prop('disabled', true).prop('required', false).removeClass('loading');
+    }
+}
+
+/** 
+* Select or unselect all the checkboxes
+*/
+function select_all() {
+    //Get the checkboxes
+    var target = $(this);
+    var checkboxes = target.closest('form').find(':checkbox');
+    var flag = target.is(':checked');
+    var table = target.closest('table').find('tbody tr');
+    //Toogle the checkboxes
+    checkboxes.prop('checked', flag);
+    //Add active class 
+    table.removeClass('selected');
+    if (flag) {
+        table.addClass('selected');
+    }
+}
+
+/** 
+* Count the characters of a textarea and print the output
+*/
 function text_area() {
     //Get the containers
     var textarea = $(this);
     var message = $('#textareaAlert-' + textarea.attr('id'));
-
     //Max length for textarea 
     var maxlength = textarea.attr('maxlength');
-
     //Get the limit from maxlength attribute  
     var limit = parseInt(maxlength);
-
     //get the current text inside the textarea  
     var text = textarea.val();
-
     //Output the text
     return text.length > 0 ? message.html('Ha escrito <b>' + text.length + '</b> caracteres de los ' + maxlength + ' permitidos') : message.html('');
 }
@@ -35424,7 +35445,7 @@ function total_decimals(number) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/dashboard/jquery/_include.js":
+/***/ "./resources/assets/js/dashboard/jquery/_include_maps.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -35445,8 +35466,8 @@ $(function () {
     });
     __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
     __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/tables.js");
-    __webpack_require__("./resources/assets/js/dashboard/sections.js");
+    __webpack_require__("./resources/assets/js/dashboard/jquery/sections.js");
+    __webpack_require__("./resources/assets/js/dashboard/jquery/maps.js");
 });
 
 /***/ }),
@@ -35517,7 +35538,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 * Reset a form 
 */
 if ($('#clear-form')) {
-    $('#clear-form').on('click', __WEBPACK_IMPORTED_MODULE_0__javascript_forms_js__["a" /* default */].clear_form);
+    $('#clear-form').on('click', __WEBPACK_IMPORTED_MODULE_0__javascript_forms_js__["a" /* default */].form_clear);
 }
 
 /** 
@@ -35594,90 +35615,53 @@ $('form').not('#login').find('input, select, textarea').each(function () {
 
 /***/ }),
 
-/***/ "./resources/assets/js/dashboard/jquery/tables.js":
+/***/ "./resources/assets/js/dashboard/jquery/maps.js":
 /***/ (function(module, exports) {
+
+/////////////////////
+// Map default variables
+/////////////////////    
+var zoom = 17;
+var lat = window.currentLat;
+var lng = window.currentLng;
+var marker = null;
+L.Icon.Default.imagePath = '../../../../images/';
 
 /**
- *
- * ////////////////////////////
- * ////// * Jquery Tables / DataTables  * //////
- * ////////////////////////////
- *
+ * Generate the map
  */
-/** 
-* Select row
-*/
-
-// Handle click on checkbox
-$('#dataTableBuilder').on('click', 'tbody tr', function (event) {
-    var checkbox = $(this).find(':checkbox');
-    checkbox.prop('checked', !checkbox.is(':checked'));
-    //Default value
-    $(this).removeClass('selected');
-
-    if (checkbox.is(':checked') && !$(this).hasClass('selected')) {
-        $(this).addClass('selected');
-    }
-});
-
-$('.buttons-select-all,.buttons-select-none').on('click', function (event) {
-    var tr = $('#dataTableBuilder tbody tr');
-    var checkbox = tr.find(':checkbox');
-    if (tr.hasClass('selected')) {
-        checkbox.prop('checked', true);
-    } else {
-        checkbox.prop('checked', false);
-    }
-});
-
-/***/ }),
-
-/***/ "./resources/assets/js/dashboard/libraries/maps.js":
-/***/ (function(module, exports) {
-
-$(function () {
+if (typeof L !== 'undefined' && lat && lng) {
     /////////////////////
-    // Map default variables
-    /////////////////////    
-    var zoom = 17;
-    var lat = window.currentLat;
-    var lng = window.currentLng;
-    var marker = null;
-    L.Icon.Default.imagePath = '../../../../images/';
-
-    /**
-     * Generate the map
-     */
-    if (typeof L !== 'undefined' && lat && lng) {
-        /////////////////////
-        // Dafault map
-        /////////////////////  
-        var map = new L.Map('simpleMap').setView(new L.LatLng(lat, lng), zoom, { animation: true });
-        // Disable drag and zoom handlers.
-        map.dragging.disable();
-        map.touchZoom.disable();
-        map.doubleClickZoom.disable();
-        map.scrollWheelZoom.disable();
-        map.keyboard.disable();
-        //Set PNOA layer
-        var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
-            attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
-            layers: 'OI.OrthoimageCoverage',
-            format: 'image/jpeg',
-            transparent: false,
-            version: '1.3.0',
-            crs: L.CRS.EPSG4326
-        }).addTo(map);
-        //Generate the marker
-        marker = L.marker(new L.LatLng(lat, lng)).addTo(map);
-    }
-});
+    // Dafault map
+    /////////////////////  
+    var map = new L.Map('simpleMap').setView(new L.LatLng(lat, lng), zoom, { animation: true });
+    // Disable drag and zoom handlers.
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.keyboard.disable();
+    //Set PNOA layer
+    var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
+        attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
+        layers: 'OI.OrthoimageCoverage',
+        format: 'image/jpeg',
+        transparent: false,
+        version: '1.3.0',
+        crs: L.CRS.EPSG4326
+    }).addTo(map);
+    //Generate the marker
+    marker = L.marker(new L.LatLng(lat, lng)).addTo(map);
+}
 
 /***/ }),
 
-/***/ "./resources/assets/js/dashboard/sections.js":
-/***/ (function(module, exports) {
+/***/ "./resources/assets/js/dashboard/jquery/sections.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__javascript_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/javascript/forms.js");
 /**
  *
  * ////////////////////////////
@@ -35685,36 +35669,22 @@ $(function () {
  * ////////////////////////////
  *
  */
+
+
 var loading = '<div class="col-md-12 text-center"><img src="../../../images/loading.gif"></div>';
 
 /** 
 * Select: State
 */
 if ($('#state_id')) {
-    $('#state_id').on('change', function () {
-        //Define the variable 
-        var $container = $('#region_id');
-        var $state = $('#state_id');
-        //Add loading class 
-        $container.empty().addClass('loading');
-        //Get the data via AJAX
-        $.get(window.location.origin + '/dashboard/ajax/regions', { state: $state.val() }, function (data) {
-            //Only if there is data
-            if (data.length > 0) {
-                //First empty option field
-                $container.append($('<option>', { value: '', text: '' }));
-                //Built the select
-                $.each(data, function (index, element) {
-                    $container.append($('<option>', {
-                        value: element.id,
-                        text: element.name
-                    }));
-                });
-                $container.prop('disabled', false).prop('required', true).removeClass('loading');
-            } else {
-                $container.prop('disabled', true).prop('required', false).removeClass('loading');
-            }
-        });
+    $('#state_id').on('change', function (e) {
+        e.preventDefault();
+        //Define the variables
+        var $container = $('#region_id'),
+            $state = $('#state_id').val(),
+            $route = '/dashboard/ajax/regions';
+        //Generate the combobox: states > regions
+        __WEBPACK_IMPORTED_MODULE_0__javascript_forms_js__["a" /* default */].form_comboBox($container, $state, $route);
     });
 }
 
@@ -35722,43 +35692,29 @@ if ($('#state_id')) {
 * Select: users for plots (With module)
 */
 if ($('#client_id')) {
-    $('#client_id').on('change', function () {
+    $('#client_id').on('change', function (e) {
+        e.preventDefault();
         //Define the variables
-        var $clientID = $('#client_id').val();
-        var $container = $('#user_id');
-        var $module = $('#load-module');
+        var $container = $('#user_id'),
+            $clientID = $('#client_id').val(),
+            $route = '/dashboard/ajax/users',
+            $module = $('#load-module');
         //Add loading class 
-        $container.empty().addClass('loading');
         $module.html(loading);
-        //Get the data via AJAX
-        $.get(window.location.origin + '/dashboard/ajax/users', { client: $clientID }, function (data) {
-            //Only if there is data
-            if (data.length > 0) {
-                //First empty option field
-                $container.append($('<option>', { value: '', text: '' }));
-                //Built the select
-                $.each(data, function (index, element) {
-                    $container.append($('<option>', {
-                        value: element.id,
-                        text: element.name
-                    }));
-                });
-                $container.prop('disabled', false).removeClass('loading');
-            } else {
-                $container.prop('disabled', true).removeClass('loading');
-            }
-        });
+        //Generate the combobox: clients > users
+        __WEBPACK_IMPORTED_MODULE_0__javascript_forms_js__["a" /* default */].form_comboBox($container, $clientID, $route);
         //Add módule value
         if ($('#crop_module')) {
-            $.get(window.location.origin + '/dashboard/ajax/modules', { client: $clientID }, function (data) {
+            $.get(window.location.origin + '/dashboard/ajax/modules', { search: $clientID }, function (data) {
                 //Only if there is data
                 if (data.module && data.id) {
                     //Add values 
-                    $('#crop_module').val(data.module);
-                    $('#crop_id').val(data.id);
+                    $('#crop_module').val(data.module), $('#crop_id').val(data.id);
                     if (data.module.length > 0) {
                         //Load the module
-                        $.get(window.location.origin + '/dashboard/ajax/modules/load', { module: data.module, cropName: data.name, cropId: data.id, client: $clientID, type: data.type }, function (output) {
+                        $.get(window.location.origin + '/dashboard/ajax/modules/load', {
+                            module: data.module, cropName: data.name, cropId: data.id, client: $clientID, type: data.type
+                        }, function (output) {
                             $module.html(output);
                         });
                     }
@@ -35776,17 +35732,17 @@ if ($('#client_id')) {
 if ($('#modal-crop-variety-types')) {
     $('#modal-crop-variety-types').on('shown.bs.modal', function (event) {
         //Set variables
-        var $modal = $(this);
-        var $button = $(event.relatedTarget);
-        var $cropName = $button.attr('data-cropName');
-        var $cropId = $button.attr('data-cropId');
-        var $container = $('#ajax-crop-variety-types');
+        var $modal = $(this),
+            $button = $(event.relatedTarget),
+            $cropName = $button.attr('data-cropName'),
+            $cropId = $button.attr('data-cropId'),
+            $container = $('#ajax-crop-variety-types');
         //Loading
         $container.html(loading);
         //Add crop name to the title
         $('#title-crop-variety-types').html($cropName);
         //Load the form
-        $.get(window.location.origin + '/dashboard/ajax/cropVarietyTypes', { crop: $cropId }, function (data) {
+        $.get(window.location.origin + '/dashboard/ajax/cropVarietyTypes', { search: $cropId }, function (data) {
             $container.hide().html(data).fadeIn('slow');
         });
     });

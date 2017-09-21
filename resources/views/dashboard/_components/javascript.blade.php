@@ -7,6 +7,6 @@
     {{-- CSRF protection --}}
     window.Laravel  = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
 </script>
-<script src="@yield('default-javascript', mix('js/dashboard.js'))"></script>
 @yield('javascript')
+<script src="@yield('default-javascript', mix('js/dashboard.js'))"></script>
 @yield('dataTables')

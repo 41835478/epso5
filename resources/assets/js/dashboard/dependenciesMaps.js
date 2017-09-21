@@ -13,12 +13,7 @@ window._ = require('lodash');
 // /**
 // * The jquery components
 // */
-    require( './jquery/_include.js' );
-        
-/**
-* The maps components
-*/
-    require( './libraries/maps.js' );
+    require( './jquery/_include_maps.js' );
 
 /**
 * The Jquery mask

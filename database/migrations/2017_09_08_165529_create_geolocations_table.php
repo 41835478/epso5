@@ -31,6 +31,8 @@ class CreateGeolocationsTable extends Migration
             $table->string('geo_catastro', 30)->nullable();
             $table->string('geo_zip', 10)->nullable();
             $table->decimal('geo_height', 6, 2)->nullable();
+            $table->integer('frame_width')->nullable()->comment('Map tile width');
+            $table->integer('frame_height')->nullable()->comment('Map tile height');
             $table->softDeletes();
             $table->timestamps();
         });

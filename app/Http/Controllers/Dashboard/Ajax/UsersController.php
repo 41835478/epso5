@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function __invoke(UsersRepository $users)
     {
         return $users->ajax(
-            $id         = request('client'), 
+            $id         = request('search'), 
             $row        = 'client_id', 
             $columns    = ['id', 'name']);
     }

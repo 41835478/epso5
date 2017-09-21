@@ -1,14 +1,22 @@
 @extends('dashboard')
 
 @section('content')
-
-    CREATE!!!!
-
+    {{-- Plot geolocation search --}}
+    @include(dashboard_path('plots.forms.geolocation.search'))
 @endsection
 
 {{-- Customize JS --}}
 @section('default-javascript')
     {!! mix('js/geolocations.js') !!}
+@endsection
+
+@section('javascript')
+    <script>
+        {{-- Default variables --}}
+        var textError = '{{ trans("geolocations.submit.error") }}',
+            textConfirm = '{{ trans("geolocations.submit.confirm") }}',
+            textButton  = '{{ icon("globe", trans("geolocations.new.add")) }}';
+    </script>
 @endsection
 
 {{-- Leaflet libraries --}}

@@ -29,12 +29,12 @@ class TestController extends DashboardController
      */
     public function __invoke()
     {
-        $states = State::all();
-        foreach($states as $state) {
-          City::where('state_id', $state->id)->update([
-            'state_ine_id' => $state->state_ine_id
-          ]);
-        }
+      // $WRONG  = 17;
+      // $RIGHT  = 10;
+
+      // City::where('state_id', $WRONG)->update([
+      //   'state_alt_id' => $RIGHT
+      // ]);
     }
 
     public function aemetStationData()

@@ -18,8 +18,8 @@ class ModulesController extends Controller
      */
     public function __invoke(ClientsRepository $clients)
     {
-        if(is_numeric(request('client'))) {
-            $client = $clients->find(request('client'));
+        if(is_numeric(request('search'))) {
+            $client = $clients->find(request('search'));
             $module = $client->crop->all();
             $response = [
                 'id'        => ($module[0]['id'] ?? $this->errorMessage),

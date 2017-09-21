@@ -17,7 +17,7 @@ class RegionsController extends Controller
     public function __invoke(RegionsRepository $regions)
     {
         return $regions->ajax(
-            $id         = request('state'), 
+            $id         = request('search'), 
             $row        = 'state_id', 
             $columns    = ['id', 'region_name AS name']);
     }

@@ -13,7 +13,7 @@
     */
     if( $( '#clear-form' ) ) {
         $( '#clear-form' )
-            .on( 'click', forms.clear_form );
+            .on( 'click', forms.form_clear );
     }
 
     /** 

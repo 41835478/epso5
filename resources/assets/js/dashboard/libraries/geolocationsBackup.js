@@ -1,8 +1,8 @@
-var text0   = '';
-var text1   = '';
-var button  = '<div class="text-center"><button type="submit" class="btn btn-danger">' + text6 + '</button></div>';
-var message = '<div style="padding:10px"><li><b>' + text2 + '</b>,' + text3 + '</li><li><b>' + text4 + '</b>,' + text5 + '.</li><br><div>' + button + '</div></div>';
-
+var message =   '<div id="geolocationMessage">' +
+                    '<li>' + textError + '</li>' +
+                    '<li>' + textConfirm + '</li><br>' + 
+                    '<div class="text-center"><button type="submit" class="btn btn-danger">' + textButton + '</button></div>' +
+                '</div>';
 var searchButton = $( '#searchButton' );
 
 /** 
@@ -56,7 +56,7 @@ function clearGeolocation( disabledCity ) {
     if( disabledCity ) {
         $( '#city' ).prop( 'disabled', true ).val('');
     }
-    $( '#city_id, #plot_data, #plot_lat, #plot_lng' ).val('');
+    clear();
     //Disable search button
     searchButton.prop( 'disabled', true );
     //Remove success
@@ -77,6 +77,14 @@ function success() {
 function fail() {
     //Remove success
     $( '#city' ).parent( 'div' ).removeClass( 'has-success' );
+}
+
+/** 
+ * Remove success
+ */
+function clear() {
+    //Remove success
+    $( '#geo_x,#geo_y,#geo_bbox,#geo_lat,#geo_lng,#frame_width,#frame_height' ).val( null );
 }
 
 /////////////////////
@@ -196,7 +204,7 @@ map.on( 'zoomend', function( e ) {
     if( zoom <= zoomPlots ) {
         $( '#hideMessage' ).hide( 'fast' );
         $( '#map' ).css('cursor', 'auto');
-        $( '#plot_data' ).val( null );
+        clear();
         //Remove sigpac
         map.removeLayer( sigpac );
         //Remove marker if we zoom at it exits
@@ -241,16 +249,17 @@ function showPosition( e ) {
     var y               = point.y; 
     var width           = map.getSize().x;
     var height          = map.getSize().y;
-    var data            = [pointLat, pointLng, bbox, width, height, x, y];
-
     //Generate the marker
     marker  = L.marker( e.latlng )
         .addTo( map )
         .bindPopup( message )
         .openPopup();
-
     //Get the lat, lng and bbox
-    $( '#plot_data' ).val( data ), 
-    $( '#plot_lat' ).val( pointLat ), 
-    $( '#plot_lng' ).val( pointLng );
+    $( '#geo_x' ).val( x ), 
+    $( '#geo_y' ).val( y ), 
+    $( '#geo_bbox' ).val( bbox ), 
+    $( '#geo_lat' ).val( pointLat ), 
+    $( '#geo_lng' ).val( pointLng ),
+    $( '#frame_width' ).val( width ),
+    $( '#frame_height' ).val( height );
 } 
