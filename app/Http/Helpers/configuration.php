@@ -85,3 +85,15 @@ if (!function_exists('getCropType')) {
         return getConfig('crop', 'type');
     }
 }
+
+/**
+ * Get all the regions allowed for this client
+ * @param  object $data
+ * @return  string
+ */
+if (!function_exists('getRegions')) {
+    function getRegions() : array
+    {
+        return getConfig('region')[0];
+    }
+}

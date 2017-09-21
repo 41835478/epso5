@@ -34,4 +34,5 @@
 @import "dashboard/components/tools";
 
 // Vendors
-@import "dashboard/components/dataTables";
+@import "dashboard/vendor/autocomplete";
+@import "dashboard/vendor/dataTables/dataTables";

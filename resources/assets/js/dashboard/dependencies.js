@@ -8,12 +8,12 @@ window._ = require('lodash');
  */
     window.$ = window.jQuery = require( 'jquery' );
     window.Tether = require( 'tether' );
+    window.Auto = require('../vendor/autocomplete.js')
     require( 'bootstrap' );
-
 // /**
 // * The jquery components
 // */
-    require( './jquery/_include.js' );
+    require( './include/_include.js' );
         
 /**
 * The dataTables components

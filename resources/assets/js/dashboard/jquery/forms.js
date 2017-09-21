@@ -5,8 +5,8 @@
  * ////////////////////////////
  *
  */
-    import forms from '../javascript/forms.js';
-    import numbers from '../javascript/numbers.js';
+    import forms from '../helpers/forms.js';
+    import numbers from '../helpers/numbers.js';
 
     /** 
     * Reset a form 

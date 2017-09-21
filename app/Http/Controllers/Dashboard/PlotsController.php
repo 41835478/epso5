@@ -6,7 +6,6 @@ use App\DataTables\Plots\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\PlotsRequest;
 use App\Repositories\Plots\PlotsRepository;
-use App\Repositories\Regions\RegionsRepository;
 use App\Repositories\Users\UsersRepository;
 // use Credentials;
 //use Illuminate\Http\Request;
@@ -56,10 +55,9 @@ class PlotsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(RegionsRepository $region)
+    public function create()
     { 
-        $regions = $region->lists(['id', 'region_name']);
-            return view(dashboard_path($this->section . '.create'), compact('regions'));
+        return view(dashboard_path($this->section . '.create'));
     }
 
     /**

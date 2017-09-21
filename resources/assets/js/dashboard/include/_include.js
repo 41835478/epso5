@@ -14,8 +14,8 @@ $( function() {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
-    require('./bootstrap.js');
-    require('./forms.js');
-    require('./tables.js');
-    require('./sections.js');
+    require('../jquery/bootstrap.js');
+    require('../jquery/forms.js');
+    require('../jquery/tables.js');
+    require('../jquery/sections.js');
 });

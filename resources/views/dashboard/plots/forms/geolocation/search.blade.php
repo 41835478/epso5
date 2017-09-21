@@ -4,7 +4,7 @@
             <div class="row">
                 {!! BootForm::select(trans('persona.region'), 'region_id')
                     ->addGroupClass('col-lg-3 col-md-6')
-                    ->options(setOptions($regions) ?? [])
+                    ->options(setOptions(getRegions()) ?? [])
                     ->required()
                 !!}  
 

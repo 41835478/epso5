@@ -6,7 +6,7 @@
         cursor: default; 
         border: 1px solid #ccc; 
         border-top: 0; 
-        background: $color-gray-light; 
+        background: $color-white !important; 
         box-shadow: -1px 1px 3px rgba(0,0,0,.1);
 
         /* core styles should not be changed */
@@ -43,6 +43,6 @@
     }
 
     .autocomplete-suggestion.selected { 
-        background: $color-gray;
+        background: $brand-danger !important;
         color: $color-white; 
     }

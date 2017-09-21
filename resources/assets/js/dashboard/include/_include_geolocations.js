@@ -14,7 +14,7 @@ $( function() {
             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         }
     });
-    require('./bootstrap.js');
-    require('./forms.js');
-    require('./geolocations.js');
+    require('../jquery/bootstrap.js');
+    require('../jquery/forms.js');
+    require('../jquery/geolocations.js');
 });
