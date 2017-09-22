@@ -35446,7 +35446,7 @@ function form_status(container) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/dashboard/helpers/geolocation.js":
+/***/ "./resources/assets/js/dashboard/helpers/maps.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35473,13 +35473,13 @@ var lat = 40.4469;
 var lng = -3.6914;
 var marker = null;
 //Icons
-L.Icon.Default.imagePath = '../../../../img';
+L.Icon.Default.imagePath = window.location.origin + '/images/';
 
 /////////////////////
 // Map functions
 /////////////////////    
-function generateMap() {
-    var map = new L.Map('map').setView(new L.LatLng(lat, lng), zoom, { animation: true });
+function generateMap(customLat, customLng, customZoon, mapContainer) {
+    var map = new L.Map(mapContainer || 'map').setView(new L.LatLng(customLat || lat, customLng || lng), customZoon || zoom, { animation: true });
     //Remove options from the map
     map.dragging.disable();
     map.touchZoom.disable();
@@ -35487,13 +35487,6 @@ function generateMap() {
     map.scrollWheelZoom.disable();
     map.keyboard.disable();
     $('.leaflet-control-zoom').css('visibility', 'hidden');
-    //Set OSM layer
-    var mapabase = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>',
-        opacity: 0,
-        transparent: true,
-        crs: L.CRS.EPSG4326
-    }).addTo(map);
     //Set PNOA layer
     var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
         attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
@@ -35737,7 +35730,7 @@ $('form').not('#login').find('input, select, textarea').each(function () {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/autocomplete.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_geolocation_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/geolocation.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/maps.js");
 /**
  * ////////////////////////////
  * ////// * Libraries  * //////
@@ -35860,7 +35853,7 @@ SEARCH.button.on('click', function (e) {
  * ////////////////////////////
  */
 // Dafault map
-var map = __WEBPACK_IMPORTED_MODULE_2__helpers_geolocation_js__["a" /* default */].generateMap();
+var map = __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__["a" /* default */].generateMap();
 
 /***/ }),
 

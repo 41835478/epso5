@@ -5,7 +5,7 @@
  */
     import autocomplete from '../helpers/autocomplete.js';
     import forms from '../helpers/forms.js';
-    import geolocation from '../helpers/geolocation.js';
+    import maps from '../helpers/maps.js';
 /**
  * ////////////////////////////
  * ////// * Default values  * //////
@@ -121,4 +121,4 @@
  * ////////////////////////////
  */
     // Dafault map
-    var map = geolocation.generateMap();
+    var map = maps.generateMap();

@@ -35403,6 +35403,63 @@ function form_status(container) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/dashboard/helpers/maps.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ *
+ * ////////////////////////////
+ * ////// * Geolocation Functions  * //////
+ * ////////////////////////////
+ *
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    generateMap: generateMap
+});
+
+/////////////////////
+// Map variables
+/////////////////////            
+var zoom = 7;
+var zoomSearch = 15;
+var zoomPlots = 17;
+var maxZoom = 18;
+var lat = 40.4469;
+var lng = -3.6914;
+var marker = null;
+//Icons
+L.Icon.Default.imagePath = window.location.origin + '/images/';
+
+/////////////////////
+// Map functions
+/////////////////////    
+function generateMap(customLat, customLng, customZoon, mapContainer) {
+    var map = new L.Map(mapContainer || 'map').setView(new L.LatLng(customLat || lat, customLng || lng), customZoon || zoom, { animation: true });
+    //Remove options from the map
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.keyboard.disable();
+    $('.leaflet-control-zoom').css('visibility', 'hidden');
+    //Set PNOA layer
+    var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
+        attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
+        layers: 'OI.OrthoimageCoverage',
+        format: 'image/jpeg',
+        transparent: false,
+        version: '1.3.0',
+        crs: L.CRS.EPSG4326,
+        maxZoom: maxZoom
+    }).addTo(map);
+    //Return the map value
+    return map;
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard/helpers/numbers.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -35625,42 +35682,33 @@ $('form').not('#login').find('input, select, textarea').each(function () {
 /***/ }),
 
 /***/ "./resources/assets/js/dashboard/jquery/maps.js":
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_maps_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/maps.js");
+
+
 
 /////////////////////
 // Map default variables
 /////////////////////    
-var zoom = 17;
 var lat = window.currentLat;
 var lng = window.currentLng;
+var zoon = 18;
+var container = 'simpleMap';
 var marker = null;
-L.Icon.Default.imagePath = '../../../../images/';
 
 /**
  * Generate the map
  */
 if (typeof L !== 'undefined' && lat && lng) {
-    /////////////////////
-    // Dafault map
-    /////////////////////  
-    var map = new L.Map('simpleMap').setView(new L.LatLng(lat, lng), zoom, { animation: true });
-    // Disable drag and zoom handlers.
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.keyboard.disable();
-    //Set PNOA layer
-    var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
-        attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
-        layers: 'OI.OrthoimageCoverage',
-        format: 'image/jpeg',
-        transparent: false,
-        version: '1.3.0',
-        crs: L.CRS.EPSG4326
-    }).addTo(map);
-    //Generate the marker
-    marker = L.marker(new L.LatLng(lat, lng)).addTo(map);
+  /////////////////////
+  // Dafault map
+  /////////////////////  
+  var map = __WEBPACK_IMPORTED_MODULE_0__helpers_maps_js__["a" /* default */].generateMap(lat, lng, zoon, container);
+  //Generate the marker
+  marker = L.marker(new L.LatLng(lat, lng)).addTo(map);
 }
 
 /***/ }),
