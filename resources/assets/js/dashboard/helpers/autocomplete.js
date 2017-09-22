@@ -26,11 +26,7 @@
     }
 
     function container( name, type ) {
-        if (type === undefined) {
-            type = 'name';
-        }
-        if( type == 'id') {
-            return '#' + name + '_id';
-        }
-        return '#' + name + '_name';
+        if (type === undefined) { type = 'name'; }
+        if( type == 'id') { return '#' + name + '_id'; }
+            return '#' + name + '_name';
     }

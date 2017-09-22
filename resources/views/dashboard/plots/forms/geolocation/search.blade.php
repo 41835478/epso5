@@ -9,7 +9,8 @@
                 !!}  
 
                 {!! BootForm::text(trans('persona.city'), 'city_name')
-                    ->addGroupClass('col-lg-3 col-md-6')
+                    ->addGroupClass('col-lg-3 col-md-6 has-danger has-success')
+                    ->addClass('form-control-danger')
                     ->disabled()
                 !!}  
 

@@ -35295,6 +35295,7 @@ window.axios.defaults.headers.common = {
     form_clear: form_clear,
     form_comboBox: form_comboBox,
     form_select_create: form_select_create,
+    form_status: form_status,
     select_all: select_all,
     text_area: text_area
 });
@@ -35391,6 +35392,13 @@ function text_area() {
     var text = textarea.val();
     //Output the text
     return text.length > 0 ? message.html('Ha escrito <b>' + text.length + '</b> caracteres de los ' + maxlength + ' permitidos') : message.html('');
+}
+
+/** 
+* Change the form status class
+*/
+function form_status(container) {
+    return $(container).toggleClass('form-control-success').toggleClass('form-control-danger');
 }
 
 /***/ }),

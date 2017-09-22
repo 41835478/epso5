@@ -29,14 +29,10 @@ class CitiesRepository extends Repository
             return response()->json(null);
         }
 
-        $columns = !empty($columns) 
-            ? $columns 
-            : ['id', $row . ' AS name'];
-
         $query = $this->model
             ->where('city_name', 'LIKE', '%' . $term . '%')
             ->where('region_id', $row)
-            ->select($columns[0], $columns[1])
+            ->select(['id', 'city_name AS name', 'city_lat AS lat', 'city_lng AS lng'])
             ->orderBy('city_name', 'asc');
 
         return response()->json($query->get());

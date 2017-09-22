@@ -35338,6 +35338,7 @@ function container(name, type) {
     form_clear: form_clear,
     form_comboBox: form_comboBox,
     form_select_create: form_select_create,
+    form_status: form_status,
     select_all: select_all,
     text_area: text_area
 });
@@ -35434,6 +35435,77 @@ function text_area() {
     var text = textarea.val();
     //Output the text
     return text.length > 0 ? message.html('Ha escrito <b>' + text.length + '</b> caracteres de los ' + maxlength + ' permitidos') : message.html('');
+}
+
+/** 
+* Change the form status class
+*/
+function form_status(container) {
+    return $(container).toggleClass('form-control-success').toggleClass('form-control-danger');
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashboard/helpers/geolocation.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ *
+ * ////////////////////////////
+ * ////// * Geolocation Functions  * //////
+ * ////////////////////////////
+ *
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    generateMap: generateMap
+});
+
+/////////////////////
+// Map variables
+/////////////////////            
+var zoom = 7;
+var zoomSearch = 15;
+var zoomPlots = 17;
+var maxZoom = 18;
+var lat = 40.4469;
+var lng = -3.6914;
+var marker = null;
+//Icons
+L.Icon.Default.imagePath = '../../../../img';
+
+/////////////////////
+// Map functions
+/////////////////////    
+function generateMap() {
+    var map = new L.Map('map').setView(new L.LatLng(lat, lng), zoom, { animation: true });
+    //Remove options from the map
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.keyboard.disable();
+    $('.leaflet-control-zoom').css('visibility', 'hidden');
+    //Set OSM layer
+    var mapabase = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>',
+        opacity: 0,
+        transparent: true,
+        crs: L.CRS.EPSG4326
+    }).addTo(map);
+    //Set PNOA layer
+    var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
+        attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
+        layers: 'OI.OrthoimageCoverage',
+        format: 'image/jpeg',
+        transparent: false,
+        version: '1.3.0',
+        crs: L.CRS.EPSG4326,
+        maxZoom: maxZoom
+    }).addTo(map);
+    //Return the map value
+    return map;
 }
 
 /***/ }),
@@ -35664,11 +35736,15 @@ $('form').not('#login').find('input, select, textarea').each(function () {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/autocomplete.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_geolocation_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/geolocation.js");
 /**
  * ////////////////////////////
  * ////// * Libraries  * //////
  * ////////////////////////////
  */
+
+
 
 /**
  * ////////////////////////////
@@ -35676,15 +35752,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * ////////////////////////////
  */
 var xhr;
-var SEARCH = SEARCH || {};
 var CITY = CITY || {};
 var GEO = GEO || {};
 var REGION = REGION || {};
+var SEARCH = SEARCH || {};
+//------------------------//
+CITY.containerRoot = 'city';
+CITY.containerId = __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot, 'id');
+CITY.containerName = __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot);
+CITY.route = '/dashboard/ajax/cities';
+REGION.container = $('#region_id');
+SEARCH.button = $('#searchButton');
 /**
  * ////////////////////////////
  * ////// * Geolocation functions  * //////
  * ////////////////////////////
  */
+//Remove all the geolocation data
+function removeGeolocationData() {
+    return $('#city_id,#city_name,#geo_x,#geo_y,#geo_bbox,#geo_lat,#geo_lng,#frame_width,#frame_height').val(null);
+}
+
+//Disable de search button
+function disableSearchButton() {
+    if (!SEARCH.button.val()) {
+        return SEARCH.button.prop('disabled', true);
+    };
+}
+
+//Autocomplete: render item
+function _renderItem(item) {
+    return '<div class="autocomplete-suggestion" data-id="' + item['id'] + '" data-title="' + item['name'] + '" data-lat="' + item['lat'] + '" data-lng="' + item['lng'] + '">' + '<span class="item-number">' + item['id'] + '</span> - ' + item['name'] + '</div>';
+};
+
+//Autocomplete: on select
+function _onSelect(containerRoot, item) {
+    $(CITY.containerName).val(item.data('title'));
+    $(CITY.containerId).val(item.data('id'));
+    $('#geo_lat').val(item.data('lat'));
+    $('#geo_lng').val(item.data('lng'));
+}
 
 /**
  * ////////////////////////////
@@ -35695,24 +35802,21 @@ var REGION = REGION || {};
 /** 
 * Select region
 */
-REGION.container = $('#region_id');
 REGION.container.on('change', function () {
     if (REGION.container.val() > 0) {
         $('#city_name').prop('disabled', false);
     } else {
         $('#city_name,#searchButton').prop('disabled', true);
-        $('#city_id,#city_name,#geo_x,#geo_y,#geo_bbox,#geo_lat,#geo_lng,#frame_width,#frame_height').val(null);
+        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        removeGeolocationData();
     }
 });
 
 /** 
 * Autocomplete city
 */
-//Define the variables
-CITY.route = '/dashboard/ajax/cities';
-CITY.containerRoot = 'city';
 //Generate the autocomplete for cities
-$(__WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot)).autoComplete({
+$(CITY.containerName).autoComplete({
     minChars: 3,
     source: function source(query, response) {
         try {
@@ -35723,23 +35827,40 @@ $(__WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].cont
         });
     },
     renderItem: function renderItem(item, search) {
-        return __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].renderItem(item);
+        $(__WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container('city')).removeClass('form-control-success').addClass('form-control-danger');
+        return _renderItem(item);
     },
     onSelect: function onSelect(e, term, item) {
-        $('#searchButton').prop('disabled', false);
-        __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].onSelect(CITY.containerRoot, item);
+        SEARCH.button.prop('disabled', false);
+        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        _onSelect(CITY.containerRoot, item);
+    }
+});
+
+/** 
+* Empty city and disable search button if input has no value
+*/
+$(CITY.containerName).on('keyup', function () {
+    if (!$(this).val()) {
+        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        SEARCH.button.prop('disabled', true);
+        removeGeolocationData();
     }
 });
 
 /** 
 * Diseable search button if no city selected
 */
-SEARCH.button = $('#searchButton');
 SEARCH.button.on('click', function (e) {
-    e.preventDefault();if (!SEARCH.button.val()) {
-        SEARCH.button.prop('disabled', true);
-    };
+    e.preventDefault();disableSearchButton();
 });
+/**
+ * ////////////////////////////
+ * ////// * Maps  * //////
+ * ////////////////////////////
+ */
+// Dafault map
+var map = __WEBPACK_IMPORTED_MODULE_2__helpers_geolocation_js__["a" /* default */].generateMap();
 
 /***/ }),
 

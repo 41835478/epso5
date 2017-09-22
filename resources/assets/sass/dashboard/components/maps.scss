@@ -1,5 +1,13 @@
-#simpleMap { 
+.defaultMap {
     width:      100%;
+    border:     1px solid $color-gray;    
+}
+
+#map {
+    @extend     .defaultMap;
+}
+
+#simpleMap { 
+    @extend     .defaultMap;
     height:     300px;
-    border:     1px solid $color-gray;
 }

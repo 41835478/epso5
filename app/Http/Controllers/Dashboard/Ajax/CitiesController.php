@@ -19,6 +19,6 @@ class CitiesController extends Controller
         return $cities->ajax(
             $id         = request('query'), 
             $region     = request('region'), 
-            $columns    = ['id', 'city_name AS name']);
+            $columns    = []);
     }
 }

@@ -3,6 +3,7 @@
 @section('content')
     {{-- Plot geolocation search --}}
     @include(dashboard_path('plots.forms.geolocation.search'))
+    <div id="map" class="col-md-12 h-75"></div>
 @endsection
 
 {{-- Customize JS --}}
