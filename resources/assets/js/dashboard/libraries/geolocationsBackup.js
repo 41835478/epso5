@@ -11,10 +11,11 @@ var searchButton = $( '#searchButton' );
 $( '#region_id' ).on( 'change' , function() {
     //Reset button by default
     $( '#searchButton' ).prop( 'disabled' , true);
+    var clearValues = clearGeolocation( true );
     //reset regions and cities
-    if( $( this ).val() == '' ) {
+    if( $( this ).val()) {
         //Remove values from the form fields
-        clearGeolocation( true );
+        $( '#city' ).prop( 'disabled' , false ).val('').focus();
     } else {
         $( '#city' ).prop( 'disabled' , false ).val('').focus();
     }

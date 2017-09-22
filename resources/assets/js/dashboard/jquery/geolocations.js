@@ -44,12 +44,15 @@
 
     //Autocomplete: render item
     function renderItem( item ) {
+        $( CITY.containerName ).removeClass( 'form-control-success' ).addClass('form-control-danger');
         return '<div class="autocomplete-suggestion" data-id="' + item[ 'id' ] + '" data-title="' + item[ 'name' ] + '" data-lat="' + item[ 'lat' ] + '" data-lng="' + item[ 'lng' ] + '">'
             + '<span class="item-number">' + item[ 'id' ] + '</span> - ' + item[ 'name' ] + '</div>';
     };
 
     //Autocomplete: on select
     function onSelect( containerRoot, item ) {
+        SEARCH.button.prop( 'disabled', false );
+        forms.form_status( CITY.containerName );
         $( CITY.containerName ).val( item.data( 'title' ) );
         $( CITY.containerId ).val( item.data( 'id' ) );
         $( '#geo_lat' ).val( item.data( 'lat' ) );
@@ -66,12 +69,13 @@
      * Select region
      */
     REGION.container.on('change', function(){
+        removeGeolocationData();
+        $( CITY.containerName ).addClass('form-control-danger').removeClass('form-control-success');
         if(REGION.container.val() > 0) {
-            $( '#city_name' ).prop( 'disabled', false );
+            $( CITY.containerName ).prop( 'disabled', false );
         } else {
             $( '#city_name,#searchButton' ).prop( 'disabled', true ); 
             forms.form_status( CITY.containerName ); 
-            removeGeolocationData();
         }
     });
 
@@ -88,12 +92,9 @@
             });
         },
         renderItem: function ( item, search ){
-            $( autocomplete.container( 'city' ) ).removeClass( 'form-control-success' ).addClass('form-control-danger');
             return renderItem( item );
         },
         onSelect: function( e, term, item ) {
-            SEARCH.button.prop( 'disabled', false );
-            forms.form_status( CITY.containerName );
             onSelect( CITY.containerRoot, item );
         }
     });
@@ -113,7 +114,8 @@
     * Diseable search button if no city selected
     */
     SEARCH.button.on( 'click', function( e ) {
-        e.preventDefault(); disableSearchButton();
+        e.preventDefault(); 
+        maps.searchMap( map, $( '#geo_lat' ).val(), $( '#geo_lng' ).val() );
     })
 /**
  * ////////////////////////////

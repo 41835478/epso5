@@ -35459,7 +35459,8 @@ function form_status(container) {
  */
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-    generateMap: generateMap
+    generateMap: generateMap,
+    searchMap: searchMap
 });
 
 /////////////////////
@@ -35477,16 +35478,12 @@ L.Icon.Default.imagePath = window.location.origin + '/images/';
 
 /////////////////////
 // Map functions
-/////////////////////    
+///////////////////// 
+//Generate a new map   
 function generateMap(customLat, customLng, customZoon, mapContainer) {
     var map = new L.Map(mapContainer || 'map').setView(new L.LatLng(customLat || lat, customLng || lng), customZoon || zoom, { animation: true });
     //Remove options from the map
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.keyboard.disable();
-    $('.leaflet-control-zoom').css('visibility', 'hidden');
+    var disableControlsFromMap = disableControls(map);
     //Set PNOA layer
     var base = L.tileLayer.wms('//www.ign.es/wms-inspire/pnoa-ma', {
         attribution: '<a href="http://www.ign.es" target="_blank">© Instituto Geográfico Nacional</a>',
@@ -35499,6 +35496,38 @@ function generateMap(customLat, customLng, customZoon, mapContainer) {
     }).addTo(map);
     //Return the map value
     return map;
+}
+
+//Search GPS in a map
+function searchMap(map, lat, lng) {
+    //If there is a place to locate...
+    if ($('#city_id').val()) {
+        //Set the new location
+        map.setView(new L.LatLng(lat, lng), zoomSearch, { animation: true });
+        enableControls(map);
+    }
+}
+
+//Disable all controls from map
+function disableControls(map) {
+    //Remove options from the map
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.keyboard.disable();
+    $('.leaflet-control-zoom').css('visibility', 'hidden');
+}
+
+//Enable all controls from map
+function enableControls(map) {
+    // Enable drag and zoom handlers.
+    map.dragging.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+    map.keyboard.enable();
+    $('.leaflet-control-zoom').css('visibility', 'visible');
 }
 
 /***/ }),
@@ -35775,11 +35804,14 @@ function disableSearchButton() {
 
 //Autocomplete: render item
 function _renderItem(item) {
+    $(CITY.containerName).removeClass('form-control-success').addClass('form-control-danger');
     return '<div class="autocomplete-suggestion" data-id="' + item['id'] + '" data-title="' + item['name'] + '" data-lat="' + item['lat'] + '" data-lng="' + item['lng'] + '">' + '<span class="item-number">' + item['id'] + '</span> - ' + item['name'] + '</div>';
 };
 
 //Autocomplete: on select
 function _onSelect(containerRoot, item) {
+    SEARCH.button.prop('disabled', false);
+    __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
     $(CITY.containerName).val(item.data('title'));
     $(CITY.containerId).val(item.data('id'));
     $('#geo_lat').val(item.data('lat'));
@@ -35796,12 +35828,13 @@ function _onSelect(containerRoot, item) {
 * Select region
 */
 REGION.container.on('change', function () {
+    removeGeolocationData();
+    $(CITY.containerName).addClass('form-control-danger').removeClass('form-control-success');
     if (REGION.container.val() > 0) {
-        $('#city_name').prop('disabled', false);
+        $(CITY.containerName).prop('disabled', false);
     } else {
         $('#city_name,#searchButton').prop('disabled', true);
         __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
-        removeGeolocationData();
     }
 });
 
@@ -35820,12 +35853,9 @@ $(CITY.containerName).autoComplete({
         });
     },
     renderItem: function renderItem(item, search) {
-        $(__WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container('city')).removeClass('form-control-success').addClass('form-control-danger');
         return _renderItem(item);
     },
     onSelect: function onSelect(e, term, item) {
-        SEARCH.button.prop('disabled', false);
-        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
         _onSelect(CITY.containerRoot, item);
     }
 });
@@ -35845,7 +35875,8 @@ $(CITY.containerName).on('keyup', function () {
 * Diseable search button if no city selected
 */
 SEARCH.button.on('click', function (e) {
-    e.preventDefault();disableSearchButton();
+    e.preventDefault();
+    __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__["a" /* default */].searchMap(map, $('#geo_lat').val(), $('#geo_lng').val());
 });
 /**
  * ////////////////////////////
