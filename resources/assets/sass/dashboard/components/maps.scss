@@ -1,6 +1,7 @@
 .defaultMap {
     width:      100%;
-    border:     1px solid $color-gray;    
+    border:     1px solid $color-gray;  
+    z-index:    999 !important;  
 }
 
 #map {

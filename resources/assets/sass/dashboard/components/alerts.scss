@@ -5,3 +5,12 @@
     .alert-container {
         margin: 10px;
     }
+
+    .alert-message {
+        position:   absolute;
+        display:    none;
+        top:        $navbar-height * 2;
+        right:      $navbar-height/2;
+        width:      250px;
+        z-index:    1001;
+    }

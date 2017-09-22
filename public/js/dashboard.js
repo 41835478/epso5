@@ -54268,7 +54268,10 @@ function text_area() {
 /** 
 * Change the form status class
 */
-function form_status(container) {
+function form_status(container, forceStatus) {
+    if (forceStatus == false) {
+        return $(container).removeClass('form-control-success');
+    }
     return $(container).toggleClass('form-control-success').toggleClass('form-control-danger');
 }
 

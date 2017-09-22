@@ -19,12 +19,12 @@
     }
 
     .hidden {
-        display: none !important;
-        visibility: hidden !important;
+        display: none;
+        visibility: hidden;
     } 
 
     .hide {
-        display: none !important;
+        display: none;
     }
 
     .highlight {
@@ -41,7 +41,7 @@
     }
 
     .loading {    
-        background-color: #ffffff;
+        background-color: $color-white;
         background-image: url("~/images/loading.gif");
         background-size: 25px 25px;
         background-repeat: no-repeat;

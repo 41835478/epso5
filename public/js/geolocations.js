@@ -35279,6 +35279,29 @@ window.axios.defaults.headers.common = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/dashboard/helpers/alerts.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ *
+ * ////////////////////////////
+ * ////// * Helpers Functions  * //////
+ * ////////////////////////////
+ *
+ */
+
+/* unused harmony default export */ var _unused_webpack_default_export = ({
+    showAlert: showAlert
+});
+
+function showAlert(containerRoot) {
+    $('.alert-message').hide();
+    $('#' + containerRoot).fadeIn();
+};
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard/helpers/autocomplete.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -35440,7 +35463,10 @@ function text_area() {
 /** 
 * Change the form status class
 */
-function form_status(container) {
+function form_status(container, forceStatus) {
+    if (forceStatus == false) {
+        return $(container).removeClass('form-control-success');
+    }
     return $(container).toggleClass('form-control-success').toggleClass('form-control-danger');
 }
 
@@ -35460,7 +35486,11 @@ function form_status(container) {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     generateMap: generateMap,
-    searchMap: searchMap
+    getFeatureInfo: getFeatureInfo,
+    sigPac: sigPac,
+    searchMap: searchMap,
+    showPosition: showPosition,
+    getVariable: getVariable
 });
 
 /////////////////////
@@ -35498,6 +35528,18 @@ function generateMap(customLat, customLng, customZoon, mapContainer) {
     return map;
 }
 
+//Add a sigpac layer
+function sigPac(map) {
+    return L.tileLayer.wms('//wms.magrama.es/wms/wms.aspx', {
+        attribution: '<a href="http://www.magrama.gob.es/es/" target="_blank">SIGPAC ©</a>',
+        layers: 'PARCELA',
+        format: 'image/png',
+        transparent: true,
+        version: '1.1.0',
+        crs: L.CRS.EPSG4326
+    });
+}
+
 //Search GPS in a map
 function searchMap(map, lat, lng) {
     //If there is a place to locate...
@@ -35528,6 +35570,42 @@ function enableControls(map) {
     map.scrollWheelZoom.enable();
     map.keyboard.enable();
     $('.leaflet-control-zoom').css('visibility', 'visible');
+}
+
+// Get data from map
+function getFeatureInfo(e) {
+    //Show the button to add plot if the zoom is right
+    if (zoom > zoomPlots) {
+        //Show the marker
+        showPosition(e);
+    }
+}
+
+// Get the variable
+function getVariable(variable) {
+    return eval(variable);
+}
+
+//Get the position of a point
+function showPosition(e) {
+    //Clean the map of markers
+    if (marker !== null) {
+        map.removeLayer(marker);
+    }
+    //Set the position
+    var point = map.latLngToContainerPoint(e.latlng, map.getZoom());
+    //Defined variables for the bbox
+    var pointLat = e.latlng.lat,
+        pointLng = e.latlng.lng,
+        bbox = map.getBounds().toBBoxString(),
+        x = point.x,
+        y = point.y,
+        width = map.getSize().x,
+        height = map.getSize().y;
+    //Generate the marker
+    marker = L.marker(e.latlng).addTo(map).bindPopup(message).openPopup();
+    //Get the lat, lng and bbox
+    $('#geo_x').val(x), $('#geo_y').val(y), $('#geo_bbox').val(bbox), $('#geo_lat').val(pointLat), $('#geo_lng').val(pointLng), $('#frame_width').val(width), $('#frame_height').val(height);
 }
 
 /***/ }),
@@ -35757,14 +35835,16 @@ $('form').not('#login').find('input, select, textarea').each(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/autocomplete.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/maps.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_alerts_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/alerts.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_autocomplete_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/autocomplete.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/maps.js");
 /**
  * ////////////////////////////
  * ////// * Libraries  * //////
  * ////////////////////////////
  */
+
 
 
 
@@ -35778,10 +35858,12 @@ var CITY = CITY || {};
 var GEO = GEO || {};
 var REGION = REGION || {};
 var SEARCH = SEARCH || {};
+var TOOLTIP = '<div class="tooltip tooltip-message" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>';
+var marker, sigpac, zoom, zoomPlots;
 //------------------------//
 CITY.containerRoot = 'city';
-CITY.containerId = __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot, 'id');
-CITY.containerName = __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot);
+CITY.containerId = __WEBPACK_IMPORTED_MODULE_1__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot, 'id');
+CITY.containerName = __WEBPACK_IMPORTED_MODULE_1__helpers_autocomplete_js__["a" /* default */].container(CITY.containerRoot);
 CITY.route = '/dashboard/ajax/cities';
 REGION.container = $('#region_id');
 SEARCH.button = $('#searchButton');
@@ -35797,7 +35879,7 @@ function removeGeolocationData() {
 
 //Disable de search button
 function disableSearchButton() {
-    if (!SEARCH.button.val()) {
+    if (!$(CITY.containerName).val()) {
         return SEARCH.button.prop('disabled', true);
     };
 }
@@ -35811,7 +35893,7 @@ function _renderItem(item) {
 //Autocomplete: on select
 function _onSelect(containerRoot, item) {
     SEARCH.button.prop('disabled', false);
-    __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+    __WEBPACK_IMPORTED_MODULE_2__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
     $(CITY.containerName).val(item.data('title'));
     $(CITY.containerId).val(item.data('id'));
     $('#geo_lat').val(item.data('lat'));
@@ -35828,13 +35910,17 @@ function _onSelect(containerRoot, item) {
 * Select region
 */
 REGION.container.on('change', function () {
+    //Reset all data...
     removeGeolocationData();
+    //Add error by default to the input field for city
     $(CITY.containerName).addClass('form-control-danger').removeClass('form-control-success');
     if (REGION.container.val() > 0) {
-        $(CITY.containerName).prop('disabled', false);
+        //Enable city field and add success!!
+        $(CITY.containerName).prop('disabled', false).tooltip({ template: TOOLTIP }).focus();
     } else {
+        //Error and fail...
         $('#city_name,#searchButton').prop('disabled', true);
-        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        __WEBPACK_IMPORTED_MODULE_2__helpers_forms_js__["a" /* default */].form_status(CITY.containerName, false);
     }
 });
 
@@ -35845,6 +35931,9 @@ REGION.container.on('change', function () {
 $(CITY.containerName).autoComplete({
     minChars: 3,
     source: function source(query, response) {
+        //Reset the tooltips 
+        $('.tooltip-message').tooltip('hide');
+        //Get ajax response with cache
         try {
             xhr.abort();
         } catch (e) {}
@@ -35865,18 +35954,20 @@ $(CITY.containerName).autoComplete({
 */
 $(CITY.containerName).on('keyup', function () {
     if (!$(this).val()) {
-        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        //Show or hide class for success or fail
+        __WEBPACK_IMPORTED_MODULE_2__helpers_forms_js__["a" /* default */].form_status(CITY.containerName);
+        //Disable search button
         SEARCH.button.prop('disabled', true);
+        //Reset all data...
         removeGeolocationData();
     }
 });
 
 /** 
-* Diseable search button if no city selected
+* Search city by GPS
 */
-SEARCH.button.on('click', function (e) {
-    e.preventDefault();
-    __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__["a" /* default */].searchMap(map, $('#geo_lat').val(), $('#geo_lng').val());
+SEARCH.button.on('click', function () {
+    __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].searchMap(map, $('#geo_lat').val(), $('#geo_lng').val());
 });
 /**
  * ////////////////////////////
@@ -35884,7 +35975,44 @@ SEARCH.button.on('click', function (e) {
  * ////////////////////////////
  */
 // Dafault map
-var map = __WEBPACK_IMPORTED_MODULE_2__helpers_maps_js__["a" /* default */].generateMap();
+var map = __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].generateMap();
+
+//Load sigpac layer when zoom is right
+map.on('zoomend', function (e) {
+    //Get the current map zoom
+    zoom = map.getZoom();
+    zoomPlots = __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].getVariable('zoomPlots');
+    //If zoom is right to select a plot, we allow adding plots.
+    if (zoom > zoomPlots) {
+        //Show the message and collet the data from the plot
+        $('#alert-zoom-success').show('slow');
+        $('#map').css('cursor', 'progress');
+        map.on('click', __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].getFeatureInfo);
+        //Add the SIGPAC layer 
+        sigpac = __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].sigPac(map);
+        sigpac.addTo(map);
+    }
+
+    //Hide the message if the zoom is not enought
+    if (zoom <= zoomPlots) {
+        $('#alert-zoom-message').hide('fast');
+        $('#map').css('cursor', 'auto');
+        //Remove sigpac
+        if (sigpac) {
+            map.removeLayer(sigpac);
+        }
+        //Remove marker if we zoom at it exits
+        if (marker) {
+            map.removeLayer(marker);
+        }
+    };
+});
+
+//Load the wms info
+map.on('click', __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].getFeatureInfo);
+
+//Geolocation allowed
+map.on('locationfound', __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].showPosition);
 
 /***/ }),
 

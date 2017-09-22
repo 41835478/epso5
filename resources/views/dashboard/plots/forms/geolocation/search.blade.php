@@ -11,6 +11,8 @@
                 {!! BootForm::text(trans('persona.city'), 'city_name')
                     ->addGroupClass('col-lg-3 col-md-6 has-danger has-success')
                     ->addClass('form-control-danger')
+                    ->data('placement', 'bottom')
+                    ->title('Empiece a escribir el nombre de la ciudad/municipio y el sistema empezará a sugerirle resultados: haga click sobre el que busca.')
                     ->disabled()
                 !!}  
 

@@ -3,6 +3,14 @@
 @section('content')
     {{-- Plot geolocation search --}}
     @include(dashboard_path('plots.forms.geolocation.search'))
+    <div id="alert-zoom-success" class="alert alert-message alert-success" role="alert">
+        <div class="card-header bg-success">{!! icon('ok', trans('geolocations.add.ready')) !!}</div>
+        <div class="card-block">
+            {{ trans('geolocations.marker.text') }} {!! Html::image('images/marker-icon.png', null, ['class' => 'icon']) !!}. 
+            {{ trans('geolocations.marker.text_next') }} 
+            <a href="#" class="btn btn-danger">{!! icon('globe', trans('geolocations.add.title')) !!}</a>
+        </div>
+    </div>
     <div id="map" class="col-md-12 h-75"></div>
 @endsection
 

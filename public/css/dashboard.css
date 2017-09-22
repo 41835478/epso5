@@ -10293,6 +10293,15 @@ a:visited {
   margin: 10px;
 }
 
+.alert-message {
+  position: absolute;
+  display: none;
+  top: 100px;
+  right: 25px;
+  width: 250px;
+  z-index: 1001;
+}
+
 /** 
  * Login, register,...
  */
@@ -10617,12 +10626,12 @@ form .checkBoxCustom {
 }
 
 .hidden {
-  display: none !important;
-  visibility: hidden !important;
+  display: none;
+  visibility: hidden;
 }
 
 .hide {
-  display: none !important;
+  display: none;
 }
 
 .highlight {
@@ -10640,7 +10649,7 @@ form .checkBoxCustom {
 
 .loading,
 .loading-right {
-  background-color: #ffffff;
+  background-color: #fff;
   background-image: url("/images/loading.gif");
   background-size: 25px 25px;
   background-repeat: no-repeat;
@@ -10694,6 +10703,7 @@ form .checkBoxCustom {
 #simpleMap {
   width: 100%;
   border: 1px solid #838383;
+  z-index: 999 !important;
 }
 
 #simpleMap {
@@ -10992,6 +11002,11 @@ table .th {
 
 #tools li {
   margin: 30px 0;
+}
+
+.tooltip-message .tooltip-inner {
+  max-width: 350px;
+  width: 350px;
 }
 
 .autocomplete-suggestions {
