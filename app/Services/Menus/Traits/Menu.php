@@ -106,6 +106,10 @@ trait Menu {
         //Get the variables
         extract($this->getAttributes($attributes), EXTR_PREFIX_SAME, "wddx");
 
+        if(isset($inClientList) && !in_array($inClientList, getMenuBar())) {
+            return $this;
+        }
+
         //Add each item to the constructor
         if(isset($title)) {
             $this->constructor[] = sprintf('<li class="nav-item %s %s"><a href="%s" class="nav-link">%s</a></li>', $class, $active, $url, $title);

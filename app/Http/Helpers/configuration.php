@@ -94,6 +94,18 @@ if (!function_exists('getCropType')) {
 if (!function_exists('getRegions')) {
     function getRegions() : array
     {
-        return getConfig('region')[0];
+        return getConfig('region')[0] ?? [];
+    }
+}
+
+/**
+ * Get all the menubar items allowed for this client
+ * @param  object $data
+ * @return  string
+ */
+if (!function_exists('getMenuBar')) {
+    function getMenuBar() : array
+    {
+        return getConfig('menuBar')[0] ?? [];
     }
 }

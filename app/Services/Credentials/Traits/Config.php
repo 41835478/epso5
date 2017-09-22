@@ -25,7 +25,7 @@ trait Config
                     'id'    => $client->id,
                     'name'  => $client->client_name,
                 ],
-                'config' => [
+                'menuBar' => [
                     (count($client->config->pluck('id')->all()) > 0) ? $client->config->pluck('config_key', 'id')->all() : null
                 ],
                 'crop' => [

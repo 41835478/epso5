@@ -131,6 +131,7 @@
             'title' => icon('equipment', trans('navbar.equipment')),
             'url' => '',
             'active' => true,
+            'inClientList' => 'machines',
         ])
 
        //Plots submenu
@@ -161,6 +162,7 @@
             'title' => icon('workers', trans('navbar.workers')),
             'url' => '',
             'active' => true,
+            'inClientList' => 'workers',
         ])
 
     //End Container

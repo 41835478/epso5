@@ -26,6 +26,7 @@ class MenusBuilder
     protected $allowedAttributes = [
         'active',
         'class',
+        'inClientList',
         'role',
         'title',
         'tools',
