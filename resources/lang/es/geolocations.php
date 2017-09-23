@@ -1,5 +1,10 @@
 <?php
 
+//Generate a custom button for search
+$searchButton = Form::button(icon('search', trans('buttons.search')), [
+    'class' => 'btn btn-success btn-sm',
+]); 
+
 return [
 
     /*
@@ -38,7 +43,7 @@ return [
         'city' => [
             1 => 'Empiece a escribir el nombre de la ciudad/municipio y el sistema le sugerirá resultados.',
             2 => 'Haga click, sobre la ciudad/municipio que está buscando.',
-            3 => 'Pulse en el botón ' . BootForm::button(icon('search', trans('buttons.search')))->addGroupClass('col-md-3')->class('btn btn-success btn-sm'),
+            3 => 'Pulse en el botón ' . $searchButton,
         ],
         'instructions'      => 'Haga click sobre la parcela, y aparecerá un marcador como este',
         'instructions_next' => 'Una vez aparezca en el mapa, pulse en el botón similar a este',
