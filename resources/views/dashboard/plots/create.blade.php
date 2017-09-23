@@ -3,7 +3,47 @@
 @section('content')
     {{-- Plot geolocation search --}}
     @include(dashboard_path('plots.forms.geolocation.search'))
-    <div id="alert-zoom-success" class="alert alert-message alert-success" role="alert">
+    
+    {{-- Information alerts: city alert --}}
+    @component(component_path('info'))
+        @slot('containerID',    'alert-city-info')
+        @slot('backgrounColor', 'warning')
+        @slot('content')
+            <ul>
+                <li>{!! trans('geolocations.new.city.1') !!}</li>
+                <li>{!! trans('geolocations.new.city.2') !!}</li>
+            </ul>
+        @endslot
+    @endcomponent
+
+    {{-- Information alerts: push button --}}
+    @component(component_path('info'))
+        @slot('containerID',    'alert-push-info')
+        @slot('backgrounColor', 'warning')
+        @slot('content')
+            <ul>
+                <li>{!! trans('geolocations.new.city.3') !!}</li>
+            </ul>
+        @endslot
+    @endcomponent
+
+    {{-- Information alerts: browse alert --}}
+    @component(component_path('info'))
+        @slot('containerID',    'alert-zoom-info')
+        @slot('backgrounColor', 'info')
+        @slot('content')
+            <ul>
+                <li>{!! trans('geolocations.new.browse.1') !!}</li>
+                <li>{!! trans('geolocations.new.browse.2') !!}</li>
+                <li>{!! trans('geolocations.new.browse.3') !!}</li>
+            </ul>
+        @endslot
+    @endcomponent
+
+    <div id="alert-zoom-success" class="alert alert-message alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <div class="card-header bg-success">{!! icon('ok', trans('geolocations.add.ready')) !!}</div>
         <div class="card-block">
             {{ trans('geolocations.marker.text') }} {!! Html::image('images/marker-icon.png', null, ['class' => 'icon']) !!}. 

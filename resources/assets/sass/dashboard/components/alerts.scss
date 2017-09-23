@@ -1,7 +1,6 @@
 /** 
  * Alerts
  */
-
     .alert-container {
         margin: 10px;
     }
@@ -9,8 +8,14 @@
     .alert-message {
         position:   absolute;
         display:    none;
-        top:        $navbar-height * 2;
-        right:      $navbar-height/2;
-        width:      250px;
+        top:        10px;
+        right:      25px;
+        width:      350px;
         z-index:    1001;
+        box-shadow: $box-shadow;
+
+        ul {
+            margin:     5px;
+            padding:    5px;
+        }
     }

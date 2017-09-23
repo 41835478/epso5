@@ -10296,10 +10296,17 @@ a:visited {
 .alert-message {
   position: absolute;
   display: none;
-  top: 100px;
+  top: 10px;
   right: 25px;
-  width: 250px;
+  width: 350px;
   z-index: 1001;
+  -webkit-box-shadow: 2px 2px 2px #aeadad;
+          box-shadow: 2px 2px 2px #aeadad;
+}
+
+.alert-message ul {
+  margin: 5px;
+  padding: 5px;
 }
 
 /** 
@@ -11007,6 +11014,10 @@ table .th {
 .tooltip-message .tooltip-inner {
   max-width: 350px;
   width: 350px;
+}
+
+.note-popover {
+  display: none;
 }
 
 .autocomplete-suggestions {

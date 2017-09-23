@@ -7,6 +7,7 @@ return [
     | General lines
     |--------------------------------------------------------------------------
     */
+    'advice'        => 'Consejo(s)',
     'code'          => 'Código identificador',
     'create'        => 'Crear',
     'description'   => 'Descripción',

@@ -35900,6 +35900,10 @@ function _onSelect(containerRoot, item) {
     $('#geo_lng').val(item.data('lng'));
 }
 
+//Show info alert
+function showAlert(container) {
+    $('.alert-message').hide(), $(container).fadeIn('slow');
+}
 /**
  * ////////////////////////////
  * ////// * Geolocation jquery events  * //////
@@ -35916,7 +35920,9 @@ REGION.container.on('change', function () {
     $(CITY.containerName).addClass('form-control-danger').removeClass('form-control-success');
     if (REGION.container.val() > 0) {
         //Enable city field and add success!!
-        $(CITY.containerName).prop('disabled', false).tooltip({ template: TOOLTIP }).focus();
+        $(CITY.containerName).prop('disabled', false).focus();
+        //Show instructions
+        showAlert('#alert-city-info');
     } else {
         //Error and fail...
         $('#city_name,#searchButton').prop('disabled', true);
@@ -35946,6 +35952,8 @@ $(CITY.containerName).autoComplete({
     },
     onSelect: function onSelect(e, term, item) {
         _onSelect(CITY.containerRoot, item);
+        //Show instructions
+        showAlert('#alert-push-info');
     }
 });
 
@@ -35968,6 +35976,8 @@ $(CITY.containerName).on('keyup', function () {
 */
 SEARCH.button.on('click', function () {
     __WEBPACK_IMPORTED_MODULE_3__helpers_maps_js__["a" /* default */].searchMap(map, $('#geo_lat').val(), $('#geo_lng').val());
+    //Show instructions
+    showAlert('#alert-zoom-info');
 });
 /**
  * ////////////////////////////

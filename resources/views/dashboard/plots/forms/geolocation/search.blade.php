@@ -3,22 +3,20 @@
         <div class="card-block">
             <div class="row">
                 {!! BootForm::select(trans('persona.region'), 'region_id')
-                    ->addGroupClass('col-lg-3 col-md-6')
+                    ->addGroupClass('col-md-3')
                     ->options(setOptions(getRegions()) ?? [])
                     ->required()
                 !!}  
 
                 {!! BootForm::text(trans('persona.city'), 'city_name')
-                    ->addGroupClass('col-lg-3 col-md-6 has-danger has-success')
+                    ->addGroupClass('col-md-3 has-danger has-success')
                     ->addClass('form-control-danger')
-                    ->data('placement', 'bottom')
-                    ->title('Empiece a escribir el nombre de la ciudad/municipio y el sistema empezará a sugerirle resultados: haga click sobre el que busca.')
                     ->disabled()
                 !!}  
 
                 <div class="form-group">
                     {!! BootForm::button(icon('search', trans('buttons.search')))
-                        ->addGroupClass('col-lg-3 col-md-6')
+                        ->addGroupClass('col-md-3')
                         ->id('searchButton')
                         ->class('btn btn-success btn-search') 
                         ->type('button')

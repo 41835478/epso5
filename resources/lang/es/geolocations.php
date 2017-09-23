@@ -30,6 +30,16 @@ return [
     |--------------------------------------------------------------------------
     */
     'new' => [
+        'browse' => [
+            1 => 'Navegue por el mapa hasta que encuentre su parcela.',
+            2 => 'Haciendo doble click, o pulsando en el botón ' . '<b class="btn btn-secondary btn-sm">+</b>' . ' del mapa, aumentará el zoom.',
+            3 => 'Una vez se acerque lo suficiente, el sistema le avisará de que la parcela está lista para ser añadida.',
+        ],
+        'city' => [
+            1 => 'Empiece a escribir el nombre de la ciudad/municipio y el sistema le sugerirá resultados.',
+            2 => 'Haga click, sobre la ciudad/municipio que está buscando.',
+            3 => 'Pulse en el botón ' . BootForm::button(icon('search', trans('buttons.search')))->addGroupClass('col-md-3')->class('btn btn-success btn-sm'),
+        ],
         'instructions'      => 'Haga click sobre la parcela, y aparecerá un marcador como este',
         'instructions_next' => 'Una vez aparezca en el mapa, pulse en el botón similar a este',
         'ready'             => 'Ya puede añadir su parcela',
