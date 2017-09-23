@@ -30,8 +30,8 @@ class CitiesRepository extends Repository
         }
 
         $query = $this->model
-            ->where('city_name', 'LIKE', '%' . $term . '%')
             ->where('region_id', $row)
+            ->whereRaw('LOWER(`city_name`) LIKE ? ', '%' . trim(strtolower($term)) . '%')
             ->select(['id', 'city_name AS name', 'city_lat AS lat', 'city_lng AS lng'])
             ->orderBy('city_name', 'asc');
 
