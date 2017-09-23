@@ -40,18 +40,21 @@
         @endslot
     @endcomponent
 
-    <div id="alert-zoom-success" class="alert alert-message alert-success alert-dismissible fade show" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="card-header bg-success">{!! icon('ok', trans('geolocations.add.ready')) !!}</div>
-        <div class="card-block">
-            {{ trans('geolocations.marker.text') }} {!! Html::image('images/marker-icon.png', null, ['class' => 'icon']) !!}. 
-            {{ trans('geolocations.marker.text_next') }} 
-            <a href="#" class="btn btn-danger">{!! icon('globe', trans('geolocations.add.title')) !!}</a>
-        </div>
-    </div>
+    {{-- Information alerts: zoom success --}}
+    @component(component_path('info'))
+        @slot('containerID',    'alert-zoom-success')
+        @slot('backgrounColor', 'success')
+        @slot('title', trans('geolocations.new.ready'))
+        @slot('content')
+            <ul>
+                <li>{!! trans('geolocations.new.instructions', ['icon' => Html::image('images/marker-icon.png', null, ['class' => 'btn btn-secondary btn-sm icon'] )]) !!}</li>
+                <li>{!! trans('geolocations.new.instructions_next', ['icon' => '<span class="btn btn-danger btn-sm">' . icon('world', trans('geolocations.new.add')) . '</span>']) !!}</li>
+            </ul>
+        @endslot
+    @endcomponent
+
     <div id="map" class="col-md-12 h-75"></div>
+
 @endsection
 
 {{-- Customize JS --}}
@@ -64,7 +67,7 @@
         {{-- Default variables --}}
         var textError = '{{ trans("geolocations.submit.error") }}',
             textConfirm = '{{ trans("geolocations.submit.confirm") }}',
-            textButton  = '{{ icon("globe", trans("geolocations.new.add")) }}';
+            textButton  = '{!! icon("world", trans("geolocations.new.add")) !!}';
     </script>
 @endsection
 

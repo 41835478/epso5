@@ -15,10 +15,12 @@
     var xhr;
     var CITY = CITY || {};
     var GEO = GEO || {};
+    var marker  = null;
+    var message =  '<div id="geolocationMessage">' + '<li>' + textError + '</li>' + '<li>' + textConfirm + '</li><br>' + '<div class="text-center"><button type="submit" class="btn btn-danger">' + textButton + '</button></div>' + '</div>';    
     var REGION = REGION || {};
     var SEARCH = SEARCH || {};
     var TOOLTIP = '<div class="tooltip tooltip-message" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>';
-    var marker, sigpac, zoom, zoomPlots;
+    var sigpac, zoom, zoomPlots;
     //------------------------//
     CITY.containerRoot  = 'city';
     CITY.containerId    = autocomplete.container( CITY.containerRoot, 'id' );
@@ -66,6 +68,36 @@
     function showAlert( container ) {
         $( '.alert-message' ).hide(), $( container ).fadeIn('slow');
     }
+
+    // Get data from map
+    function getFeatureInfo( e ) {   
+        //Show the button to add plot if the zoom is right
+        if( zoom > zoomPlots ) {       
+            //Show the marker
+            showPosition( e );
+        }
+    }
+
+    //Get the position of a point
+    function showPosition( e ) {    
+        //Clean the map of markers
+        if( marker !== null ) { map.removeLayer( marker ); }
+        //Set the position
+        var point = map.latLngToContainerPoint( e.latlng, map.getZoom() );
+        //Defined variables for the bbox
+        var pointLat = e.latlng.lat, pointLng = e.latlng.lng, bbox = map.getBounds().toBBoxString(), x = point.x, y = point.y, 
+            width = map.getSize().x, height = map.getSize().y;
+        //Generate the marker
+        marker = L.marker( e.latlng ).addTo( map ).bindPopup( message ).openPopup();
+        //Get the lat, lng and bbox
+        $( '#geo_x' ).val( x ), 
+        $( '#geo_y' ).val( y ), 
+        $( '#geo_bbox' ).val( bbox ), 
+        $( '#geo_lat' ).val( pointLat ), 
+        $( '#geo_lng' ).val( pointLng ),
+        $( '#frame_width' ).val( width ),
+        $( '#frame_height' ).val( height );
+    } 
  /**
   * ////////////////////////////
   * ////// * Geolocation jquery events  * //////
@@ -154,23 +186,16 @@
         zoomPlots = maps.getVariable('zoomPlots');
         //If zoom is right to select a plot, we allow adding plots.
         if( zoom > zoomPlots ) {
-            //Show the message and collet the data from the plot
-            $( '#alert-zoom-success' ).show( 'slow' );
+            //Show the instructions and collet the data from the plot
+            showAlert('#alert-zoom-success');
             $( '#map' ).css('cursor', 'progress');
-            map.on( 'click', maps.getFeatureInfo );
-            //Add the SIGPAC layer 
-            sigpac = maps.sigPac( map );
-            sigpac.addTo( map );
+            map.on( 'click', getFeatureInfo );
         }
         
         //Hide the message if the zoom is not enought
         if( zoom <= zoomPlots ) {
             $( '#alert-zoom-message' ).hide( 'fast' );
             $( '#map' ).css('cursor', 'auto');
-            //Remove sigpac
-            if( sigpac ) {
-                map.removeLayer( sigpac );
-            }
             //Remove marker if we zoom at it exits
             if( marker ) { 
                 map.removeLayer( marker );
@@ -179,7 +204,7 @@
     });
 
     //Load the wms info
-    map.on( 'click', maps.getFeatureInfo );
+    map.on( 'click', getFeatureInfo);
 
     //Geolocation allowed
-    map.on( 'locationfound', maps.showPosition );  
+    map.on( 'locationfound', showPosition);  

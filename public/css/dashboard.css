@@ -10671,6 +10671,10 @@ form .checkBoxCustom {
  * Images
  */
 
+img.icon {
+  height: 30px;
+}
+
 /** 
  * Legends
  */

@@ -45,9 +45,9 @@ return [
             2 => 'Haga click, sobre la ciudad/municipio que está buscando.',
             3 => 'Pulse en el botón ' . $searchButton,
         ],
-        'instructions'      => 'Haga click sobre la parcela, y aparecerá un marcador como este',
-        'instructions_next' => 'Una vez aparezca en el mapa, pulse en el botón similar a este',
-        'ready'             => 'Ya puede añadir su parcela',
+        'instructions'      => 'Haga click sobre la parcela a añadir, y aparecerá un marcador silimar al siguiente :icon',
+        'instructions_next' => 'Una vez aparezca en el mapa, pulse en :icon',
+        'ready'             => 'Seleccione su parcela',
         'add'               => 'Añadir Parcela',
     ],
     'submit' => [
