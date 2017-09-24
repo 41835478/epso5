@@ -4,7 +4,7 @@
     {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.configurate'))->post()->id('createGeolocation') !!}
 
         {{-- Plot geolocation search --}}
-        @include(dashboard_path('plots.forms.geolocation.search'))
+        @include(dashboard_path('plots.forms.maps.search'))
         
         {{-- Information alerts: city alert --}}
         @component(component_path('info'))
