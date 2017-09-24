@@ -35627,6 +35627,29 @@ function total_decimals(number) {
 
 /***/ }),
 
+/***/ "./resources/assets/js/dashboard/include/_include.js":
+/***/ (function(module, exports) {
+
+/**
+ * Place the CSRF token as a header on all pages for access in AJAX requests
+ */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+});
+/**
+ * Avoid using enter with forms
+ */
+$(window).keydown(function (event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+    }
+});
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard/include/_include_geolocations.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -35638,17 +35661,11 @@ function total_decimals(number) {
  *
  */
 $(function () {
-    /**
-     * Place the CSRF token as a header on all pages for access in AJAX requests
-     */
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
-    __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/geolocations.js");
+  __webpack_require__("./resources/assets/js/dashboard/include/_include.js");
+
+  __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
+  __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
+  __webpack_require__("./resources/assets/js/dashboard/jquery/geolocations.js");
 });
 
 /***/ }),

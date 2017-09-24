@@ -54096,7 +54096,7 @@ __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
 // /**
 // * The jquery components
 // */
-__webpack_require__("./resources/assets/js/dashboard/include/_include.js");
+__webpack_require__("./resources/assets/js/dashboard/include/_include_general.js");
 
 /**
 * The dataTables components
@@ -54329,6 +54329,29 @@ function total_decimals(number) {
 /***/ }),
 
 /***/ "./resources/assets/js/dashboard/include/_include.js":
+/***/ (function(module, exports) {
+
+/**
+ * Place the CSRF token as a header on all pages for access in AJAX requests
+ */
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+});
+/**
+ * Avoid using enter with forms
+ */
+$(window).keydown(function (event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+    }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/dashboard/include/_include_general.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -54339,18 +54362,12 @@ function total_decimals(number) {
  *
  */
 $(function () {
-    /**
-     * Place the CSRF token as a header on all pages for access in AJAX requests
-     */
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
-    __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/tables.js");
-    __webpack_require__("./resources/assets/js/dashboard/jquery/sections.js");
+  __webpack_require__("./resources/assets/js/dashboard/include/_include.js");
+
+  __webpack_require__("./resources/assets/js/dashboard/jquery/bootstrap.js");
+  __webpack_require__("./resources/assets/js/dashboard/jquery/forms.js");
+  __webpack_require__("./resources/assets/js/dashboard/jquery/tables.js");
+  __webpack_require__("./resources/assets/js/dashboard/jquery/sections.js");
 });
 
 /***/ }),

@@ -1,21 +1,17 @@
 /**
- *
- * ////////////////////////////
- * ////// * The jquery default code  * //////
- * ////////////////////////////
- *
+ * Place the CSRF token as a header on all pages for access in AJAX requests
  */
-$( function() {
-    /**
-     * Place the CSRF token as a header on all pages for access in AJAX requests
-     */
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
-    require('../jquery/bootstrap.js');
-    require('../jquery/forms.js');
-    require('../jquery/tables.js');
-    require('../jquery/sections.js');
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    }
+});
+/**
+ * Avoid using enter with forms
+ */
+$(window).keydown(function(event){
+    if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+    }
 });

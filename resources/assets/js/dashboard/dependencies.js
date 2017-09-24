@@ -13,7 +13,7 @@ window._ = require('lodash');
 // /**
 // * The jquery components
 // */
-    require( './include/_include.js' );
+    require( './include/_include_general.js' );
         
 /**
 * The dataTables components
