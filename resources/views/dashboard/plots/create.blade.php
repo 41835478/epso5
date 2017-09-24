@@ -1,60 +1,64 @@
 @extends('dashboard')
 
 @section('content')
-    {{-- Plot geolocation search --}}
-    @include(dashboard_path('plots.forms.geolocation.search'))
-    
-    {{-- Information alerts: city alert --}}
-    @component(component_path('info'))
-        @slot('containerID',    'alert-city-info')
-        @slot('backgrounColor', 'warning')
-        @slot('content')
-            <ul>
-                <li>{!! trans('geolocations.new.city.1') !!}</li>
-                <li>{!! trans('geolocations.new.city.2') !!}</li>
-            </ul>
-        @endslot
-    @endcomponent
+    {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.configurate'))->post()->id('createGeolocation') !!}
 
-    {{-- Information alerts: push button --}}
-    @component(component_path('info'))
-        @slot('containerID',    'alert-push-info')
-        @slot('backgrounColor', 'warning')
-        @slot('content')
-            <ul>
-                <li>{!! trans('geolocations.new.city.3') !!}</li>
-            </ul>
-        @endslot
-    @endcomponent
+        {{-- Plot geolocation search --}}
+        @include(dashboard_path('plots.forms.geolocation.search'))
+        
+        {{-- Information alerts: city alert --}}
+        @component(component_path('info'))
+            @slot('containerID',    'alert-city-info')
+            @slot('backgrounColor', 'warning')
+            @slot('content')
+                <ul>
+                    <li>{!! trans('geolocations.new.city.1') !!}</li>
+                    <li>{!! trans('geolocations.new.city.2') !!}</li>
+                </ul>
+            @endslot
+        @endcomponent
 
-    {{-- Information alerts: browse alert --}}
-    @component(component_path('info'))
-        @slot('containerID',    'alert-zoom-info')
-        @slot('backgrounColor', 'info')
-        @slot('content')
-            <ul>
-                <li>{!! trans('geolocations.new.browse.1') !!}</li>
-                <li>{!! trans('geolocations.new.browse.2') !!}</li>
-                <li>{!! trans('geolocations.new.browse.3') !!}</li>
-            </ul>
-        @endslot
-    @endcomponent
+        {{-- Information alerts: push button --}}
+        @component(component_path('info'))
+            @slot('containerID',    'alert-push-info')
+            @slot('backgrounColor', 'warning')
+            @slot('content')
+                <ul>
+                    <li>{!! trans('geolocations.new.city.3') !!}</li>
+                </ul>
+            @endslot
+        @endcomponent
 
-    {{-- Information alerts: zoom success --}}
-    @component(component_path('info'))
-        @slot('containerID',    'alert-zoom-success')
-        @slot('backgrounColor', 'success')
-        @slot('title', trans('geolocations.new.ready'))
-        @slot('content')
-            <ul>
-                <li>{!! trans('geolocations.new.instructions', ['icon' => Html::image('images/marker-icon.png', null, ['class' => 'btn btn-secondary btn-sm icon'] )]) !!}</li>
-                <li>{!! trans('geolocations.new.instructions_next', ['icon' => '<span class="btn btn-danger btn-sm">' . icon('world', trans('geolocations.new.add')) . '</span>']) !!}</li>
-            </ul>
-        @endslot
-    @endcomponent
+        {{-- Information alerts: browse alert --}}
+        @component(component_path('info'))
+            @slot('containerID',    'alert-zoom-info')
+            @slot('backgrounColor', 'info')
+            @slot('content')
+                <ul>
+                    <li>{!! trans('geolocations.new.browse.1') !!}</li>
+                    <li>{!! trans('geolocations.new.browse.2') !!}</li>
+                    <li>{!! trans('geolocations.new.browse.3') !!}</li>
+                </ul>
+            @endslot
+        @endcomponent
 
-    <div id="map" class="col-md-12 h-75"></div>
+        {{-- Information alerts: zoom success --}}
+        @component(component_path('info'))
+            @slot('containerID',    'alert-zoom-success')
+            @slot('backgrounColor', 'success')
+            @slot('title', trans('geolocations.new.ready'))
+            @slot('content')
+                <ul>
+                    <li>{!! trans('geolocations.new.instructions', ['icon' => Html::image('images/marker-icon.png', null, ['class' => 'btn btn-secondary btn-sm icon'] )]) !!}</li>
+                    <li>{!! trans('geolocations.new.instructions_next', ['icon' => '<span class="btn btn-danger btn-sm">' . icon('world', trans('geolocations.new.add')) . '</span>']) !!}</li>
+                </ul>
+            @endslot
+        @endcomponent
 
+        {{-- Map container --}}
+        <div id="map" class="col-md-12 h-75"></div>
+
+    {!! BootForm::close() !!}
 @endsection
 
 {{-- Customize JS --}}

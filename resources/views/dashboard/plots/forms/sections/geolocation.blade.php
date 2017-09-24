@@ -70,6 +70,9 @@
                 ->addGroupClass('col-md-3')
                 ->disabled()
             !!}
+
+            {{-- Field: Hidden geolocation values --}}
+            @include('dashboard.plots.forms.geolocation.hiddenFields')
         </div>
     </div>
     <div class="col-md-4">
