@@ -7,7 +7,7 @@
 
     {{-- Field: Crop Variety --}}
     <div class="form-group col-md-3">
-        {!! Form::label('crop_variety_id', sections('crop_variety_types.title'), ['class' => 'control-label']) !!}
+        {!! Form::label('crop_variety_id', sections('crop_varieties.title'), ['class' => 'control-label']) !!}
         {!! Form::createSelect(
             $data           = ($data ?? null), 
             $optionsValues  = $cropVarieties, 
