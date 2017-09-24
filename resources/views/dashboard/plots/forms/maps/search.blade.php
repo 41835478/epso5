@@ -27,7 +27,7 @@
             </div>
 
             {{-- Field: Hidden geolocation values --}}
-            @include('dashboard.plots.forms.geolocation.hiddenFields')
+            @include('dashboard.plots.forms.maps.hiddenFields')
         </div>
     </div>
 </div>
