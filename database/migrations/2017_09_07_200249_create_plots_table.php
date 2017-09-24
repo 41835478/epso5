@@ -24,7 +24,7 @@ class CreatePlotsTable extends Migration
             $table->integer('crop_training')->unsigned();
             $table->integer('pattern_id')->unsigned()->index();
             $table->integer('city_id')->unsigned()->index();
-            $table->integer('country_id')->unsigned()->index();
+            $table->integer('country_id')->default(1)->unsigned()->index();
             $table->integer('region_id')->unsigned()->index();
             $table->integer('state_id')->unsigned()->index();
             $table->integer('user_id')->nullable()->comment("We need can add the user later...");
