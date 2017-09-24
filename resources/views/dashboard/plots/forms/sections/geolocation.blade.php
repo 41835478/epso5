@@ -44,64 +44,74 @@
             !!}
         </div>
 
-        <div class="separator"></div>
+        @if(isset($data))
+            <div class="separator"></div>
+            {{-- Localization values --}}
+            <div class="row">
+                {{-- Field: State --}}
+                {!! BootForm::text(trans('geolocations.state:min'), 'state.state_name')
+                    ->addGroupClass('col-md-3')
+                    ->disabled()
+                !!}
 
-        <div class="row">
-            {{-- Field: State --}}
-            {!! BootForm::text(trans('geolocations.state:min'), 'state.state_name')
-                ->addGroupClass('col-md-3')
-                ->disabled()
-            !!}
+                {{-- Field: Region --}}
+                {!! BootForm::text(trans('geolocations.region'), 'region.region_name')
+                    ->addGroupClass('col-md-3')
+                    ->disabled()
+                !!}
+            
+                {{-- Field: City --}}
+                {!! BootForm::text(trans('geolocations.city'), 'city.city_name')
+                    ->addGroupClass('col-md-3')
+                    ->disabled()
+                !!}
 
-            {{-- Field: Region --}}
-            {!! BootForm::text(trans('geolocations.region'), 'region.region_name')
-                ->addGroupClass('col-md-3')
-                ->disabled()
-            !!}
-        
-            {{-- Field: City --}}
-            {!! BootForm::text(trans('geolocations.city'), 'city.city_name')
-                ->addGroupClass('col-md-3')
-                ->disabled()
-            !!}
-
-            {{-- Field: Zip --}}
-            {!! BootForm::text(trans('geolocations.zip'), 'geolocation.zip')
-                ->addGroupClass('col-md-3')
-                ->disabled()
-            !!}
-
-            {{-- Field: Hidden geolocation values --}}
-            @include('dashboard.plots.forms.geolocation.hiddenFields')
-        </div>
+                {{-- Field: Zip --}}
+                {!! BootForm::text(trans('geolocations.zip'), 'geolocation.zip')
+                    ->addGroupClass('col-md-3')
+                    ->disabled()
+                !!}
+            </div>
+        @endif
     </div>
     <div class="col-md-4">
+        {{-- Load the map --}}
         <div id="simpleMap"></div>
     </div>
 </div>
 
-<div class="col-md-12 separator"></div>
+{{-- Fields with the value for: Latitude, Longitude and height --}}
+@if(isset($data))
+    <div class="col-md-12 separator"></div>
+    <div class="row">
+        {{-- Field: Latitude --}}
+        {!! BootForm::text(trans('geolocations.lat'), 'geolocation.geo_lat')
+            ->addGroupClass('col-md-2')
+            ->addClass('right')
+            ->disabled()
+        !!}
 
-<div class="row">
-    {{-- Field: Latitude --}}
-    {!! BootForm::text(trans('geolocations.lat'), 'geolocation.geo_lat')
-        ->addGroupClass('col-md-2')
-        ->addClass('right')
-        ->disabled()
-    !!}
+        {{-- Field: Longitude --}}
+        {!! BootForm::text(trans('geolocations.lng'), 'geolocation.geo_lng')
+            ->addGroupClass('col-md-2')
+            ->addClass('right')
+            ->disabled()
+        !!}
 
-    {{-- Field: Longitude --}}
-    {!! BootForm::text(trans('geolocations.lng'), 'geolocation.geo_lng')
-        ->addGroupClass('col-md-2')
-        ->addClass('right')
-        ->disabled()
-    !!}
+        {{-- Field: Hight --}}
+        {!! BootForm::InputGroup(trans('base.height:min'), 'geolocations.geo_height')
+            ->addGroupClass('col-md-2')
+            ->addClass('number')
+            ->afterAddon('m')
+            ->disabled() 
+        !!}
+    </div>
+@endif
 
-    {{-- Field: Hight --}}
-    {!! BootForm::InputGroup(trans('base.height:min'), 'geolocations.geo_height')
-        ->addGroupClass('col-md-2')
-        ->addClass('number')
-        ->afterAddon('m')
-        ->disabled() 
-    !!}
-</div>
+{{-- Field: Hidden geolocation values --}}
+@include('dashboard.plots.forms.maps.hiddenFields')
+
+{{-- Region --}}
+{!! BootForm::hidden('region_id')->value(request('region_id') ?? null) !!}
+{{-- City --}}
+{!! BootForm::hidden('city_id')->value(request('city_id') ?? null) !!}

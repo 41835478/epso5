@@ -11,7 +11,9 @@
 @include(dashboard_path('plots.forms.sections.geolocation'))
 
 {{-- Climatic stations --}}
-@include(dashboard_path('plots.forms.sections.climatic'))
+@if(isset($data))
+    @include(dashboard_path('plots.forms.sections.climatic'))
+@endif
 
 {{-- Customize JS --}}
 @section('default-javascript')
