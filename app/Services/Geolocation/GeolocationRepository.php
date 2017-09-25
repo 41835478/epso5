@@ -74,16 +74,19 @@ abstract class GeolocationRepository {
      */
     public function catastroToSigpac($reference)
     {
-        //Notas: son 20 dígitos 
+        //Convert the data to string
+        $reference = is_object($reference) 
+            ? $reference->get('reference') 
+            : $reference;
         //
-        if (strlen($reference) == 14) {
-            $sigpac_region    = substr($reference, 0, 2);
-            $sigpac_city      = substr($reference, 2, 3);
-            $sigpac_aggregate = $sigpac_zone = 0;
-            $sigpac_polygon   = substr($reference, 6, 3);
-            $sigpac_plot      = substr($reference, 9, 5);
-        }
-        return compact('sigpac_region', 'sigpac_city', 'sigpac_aggregate', 'sigpac_zone', 'sigpac_polygon', 'sigpac_plot');
+            return collect([
+                'sigpac_region'     => substr($reference, 0, 2), 
+                'sigpac_city'       => substr($reference, 2, 3), 
+                'sigpac_aggregate'  => 0, 
+                'sigpac_zone'       => 0, 
+                'sigpac_polygon'    => substr($reference, 6, 3), 
+                'sigpac_plot'       => substr($reference, 9, 5)
+            ]);
     }
 
     /*
