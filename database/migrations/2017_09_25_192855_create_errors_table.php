@@ -17,7 +17,7 @@ class CreateErrorsTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('user_id')->unsigned()->index();
             $table->string('error_url');
-            $table->string('error_description');
+            $table->text('error_description');
             $table->timestamps();
         });
     }
