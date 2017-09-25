@@ -55,7 +55,7 @@
         {!! BootForm::hidden('crop_module')->id('crop_module')->value(getConfig('crop', 'module') ?? null) !!}
 
         {{-- Field: User ID --}}
-        {{-- {!! BootForm::hidden('user_id')->id('user_id')->value(Credentials::id() ?? null) !!} --}}
+        {!! BootForm::hidden('user_id')->id('user_id')->value(Credentials::id() ?? null) !!}
 
     @endRole
 </div>
