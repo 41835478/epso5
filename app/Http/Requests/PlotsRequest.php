@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Repositories\Errors\ErrorsRepository;
-use Credentials;
 use Illuminate\Foundation\Http\FormRequest;
+use Credentials;
 
 class PlotsRequest extends FormRequest
 {
@@ -94,15 +94,9 @@ class PlotsRequest extends FormRequest
     {
         // If you want to customize what happens on a failed validation,
         // override this method.
-        $errorList = collect($errors)->map(function($error) {
-            return $error;
-        })->flatten()->implode('<br>');
+        $errorList = collect($errors)->map(function($error) { return $error; })->flatten()->implode('<br>');
         //Add the error to the DB 
-        $dbError = app(ErrorsRepository::class)->store([
-            'user_id'           => Credentials::id(),
-            'error_url'         => request()->url(),
-            'error_description' => 'Error de validation. ' . $errorList,
-        ]);
+        $createError = app(ErrorsRepository::class)->addError('Error de validation. ' . $errorList);
             //Redirect with errors
             return redirect()
                 ->route("dashboard.user.plots.index")
