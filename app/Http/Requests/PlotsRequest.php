@@ -34,18 +34,23 @@ class PlotsRequest extends FormRequest
             'crop_module'       => 'required',
         ];
         $crop = [
-            'crop_quantity'     => 'sometimes|integer',
-            'crop_training'     => 'sometimes|integer',
-            'crop_variety_type' => 'sometimes|required|integer',
-            'crop_variety_id'   => 'sometimes|required|integer',
-            'pattern_id'        => 'sometimes|integer',
+            'crop_variety_id'   => 'required|integer',
+        ];
+        $geolocation = [
+            'city_id'           => 'required|integer',
+            'geo_x'             => 'required',
+            'geo_y'             => 'required',
+            'geo_lat'           => 'required|numeric',
+            'geo_lng'           => 'required|numeric',
+            'geo_bbox'          => 'required',
+            'frame_width'       => 'required',
+            'frame_height'      => 'required',
+            'region_id'         => 'required|integer',
         ];
         $plot = [
             'plot_area'                     => 'required',
             'plot_framework'                => 'required|regex:/[0-9]{1}x[0-9]{1}/',
             'plot_name'                     => 'required',
-            'plot_percent_cultivated_land'  => 'sometimes|max:100|min:0',
-            'plot_start_date'               => 'sometimes|date_format:d/m/Y|regex:/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/',
         ];
 
         //Role filters 
@@ -55,7 +60,7 @@ class PlotsRequest extends FormRequest
             $administration = array_merge(['user_id' => 'required|integer'], $administration);
         }
 
-        return array_merge($administration, $crop, $plot);
+        return array_merge($administration, $crop, $geolocation, $plot);
     }
 
     /**
@@ -66,18 +71,15 @@ class PlotsRequest extends FormRequest
     public function attributes()
     {
         return [
-            'user_id'                       => trans_title('users', 'singular'),
+            'user_id'                       => trans('auth.user'),
+            'city_id'                       => trans('geolocations.city'),
             'client_id'                     => trans_title('clients', 'singular'),
             'crop_id'                       => trans_title('crops', 'singular'),
             'crop_module'                   => trans('base.module'),
-            'crop_quantity'                 => trans('plots.quantity'),
-            'crop_training'                 => trans('plots.training'),
-            'crop_variety_type'             => sections('plots.type'),
-            'pattern_id'                    => sections('plots.pattern'),
+            'crop_variety_id'               => sections('crop_varieties.variety'),
             'plot_area'                     => trans('units.area'),
             'plot_name'                     => trans_title('plots', 'singular'),
             'plot_framework'                => sections('plots.framework'),
-            'plot_percent_cultivated_land'  => sections('plots.percent'),
             'plot_start_date'               => sections('plots.date'),
         ];
     }
@@ -87,11 +89,18 @@ class PlotsRequest extends FormRequest
      *
      * @return array
      */
-    // public function response(array $errors)
-    // {
-    //     // If you want to customize what happens on a failed validation,
-    //     // override this method.
-    //     $errors[] = "Se ha producido un error al añadir su parcela. Los campos anteriormente nombrados, se encontraban vacios.";
-    //     return redirect()->route("dashboard.users.plots.geolocate")->withErrors($errors);
-    // }
+    public function response(array $errors)
+    {
+        // If you want to customize what happens on a failed validation,
+        // override this method.
+        $attribute      = collect($errors)->keys()->first();
+        $errorMessage   = errorMessageValidation($attribute);
+        //Add the error to the DB 
+        $dbError = app(App\Repositories\Errors\ErrorsRepository::class)->create([
+            ''
+        ]);
+            return redirect()
+                ->route("dashboard.user.plots.index")
+                ->withErrors($errorMessage);
+    }
 }

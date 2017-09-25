@@ -12,7 +12,8 @@ return [
     | Geolocations
     |--------------------------------------------------------------------------
     */
-    'aggregate'          => 'Agregado',
+    'aggregate'         => 'Agregado',
+    'catastro'          => 'Catastro',
     'city'              => 'Ciudad',
     'country'           => 'País',
     'distance'          => 'Distancia',
@@ -34,6 +35,7 @@ return [
     | Form messages
     |--------------------------------------------------------------------------
     */
+    'error' => 'Se ha producido un error interno. Estamos trabajando para solucionarlo. Por favor, copie el código que encontrará al final de este mensaje, y envíelo al email: <b>:email</b>',
     'new' => [
         'browse' => [
             1 => 'Navegue por el mapa hasta que encuentre su parcela.',

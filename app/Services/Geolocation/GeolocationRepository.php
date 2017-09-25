@@ -79,14 +79,14 @@ abstract class GeolocationRepository {
             ? $reference->get('reference') 
             : $reference;
         //
-            return collect([
+            return [
                 'region'     => substr($reference, 0, 2), 
                 'city'       => substr($reference, 2, 3), 
-                'aggregate'  => 0, 
-                'zone'       => 0, 
+                'aggregate'  => '0', 
+                'zone'       => '0', 
                 'polygon'    => substr($reference, 6, 3), 
-                'plot'       => substr($reference, 9, 5)
-            ]);
+                'plot'       => substr($reference, 9, 5),
+            ];
     }
 
     /*
