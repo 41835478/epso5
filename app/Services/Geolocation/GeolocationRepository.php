@@ -80,12 +80,12 @@ abstract class GeolocationRepository {
             : $reference;
         //
             return collect([
-                'sigpac_region'     => substr($reference, 0, 2), 
-                'sigpac_city'       => substr($reference, 2, 3), 
-                'sigpac_aggregate'  => 0, 
-                'sigpac_zone'       => 0, 
-                'sigpac_polygon'    => substr($reference, 6, 3), 
-                'sigpac_plot'       => substr($reference, 9, 5)
+                'region'     => substr($reference, 0, 2), 
+                'city'       => substr($reference, 2, 3), 
+                'aggregate'  => 0, 
+                'zone'       => 0, 
+                'polygon'    => substr($reference, 6, 3), 
+                'plot'       => substr($reference, 9, 5)
             ]);
     }
 
