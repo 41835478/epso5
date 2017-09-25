@@ -6,9 +6,11 @@
  * @return  string
  */
 if (!function_exists('errorMessageValidation')) {
-    function errorMessageValidation($error = '')
+    function errorMessageValidation($output = 'array')
     {
-        $errorCode = sprintf('Date: %s<br>From: %s<br>Error: %s', date('d/m/Y h:m:s'), request()->url(), $error);
-            return trans('geolocations.error', ['email' => config('mail.from.address')]) . '<hr>' . $errorCode;
+        $error = trans('errors.errorValidation');
+            return ($output == 'array') 
+                ? $error
+                : inplode(' ', $error);
     }
 }
