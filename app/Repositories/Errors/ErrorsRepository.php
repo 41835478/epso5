@@ -4,6 +4,7 @@ namespace App\Repositories\Errors;
 
 use App\Repositories\Repository;
 use App\Repositories\Errors\Error;
+use Credentials;
 
 class ErrorsRepository extends Repository
 {
@@ -15,13 +16,17 @@ class ErrorsRepository extends Repository
     }
 
     /**
-     * Create or update a record in storage
+     * Add new error
      * @param   int     $id (the array with the error information)
      * @return  boolean
      */
-    public function store($id = null)
+    public function addError($message)
     {
         //Create an Error
-        return $this->model->create($id);
+        return $this->model->create([
+            'user_id'           => Credentials::id(),
+            'error_url'         => request()->url(),
+            'error_description' => $message,
+        ]);
     }
 }
