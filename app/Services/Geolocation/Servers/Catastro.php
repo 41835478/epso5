@@ -38,6 +38,6 @@ class Catastro extends GeolocationRepository implements GeolocationContract {
             //Get the value
             return (!empty($reference[2][0])) 
                 ? collect(['reference' => $reference[2][0], 'url' => $url[1][0]]) 
-                : [];
+                : null;
     }
 }
