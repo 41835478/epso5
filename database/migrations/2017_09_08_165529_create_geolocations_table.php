@@ -29,6 +29,7 @@ class CreateGeolocationsTable extends Migration
             $table->string('geo_sigpac_plot', 10)->nullable();
             $table->string('geo_sigpac_precinct', 10)->nullable();
             $table->string('geo_catastro', 30)->nullable();
+            $table->string('geo_catastro_url')->nullable();
             $table->string('geo_zip', 10)->nullable();
             $table->decimal('geo_height', 6, 2)->nullable();
             $table->integer('frame_width')->nullable()->comment('Map tile width');
