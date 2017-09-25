@@ -13,4 +13,15 @@ class ErrorsRepository extends Repository
     {
         $this->model = $model;
     }
+
+    /**
+     * Create or update a record in storage
+     * @param   int     $id (the array with the error information)
+     * @return  boolean
+     */
+    public function store($id = null)
+    {
+        //Create an Error
+        return $this->model->create($id);
+    }
 }
