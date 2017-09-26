@@ -51,6 +51,9 @@ class DataTable extends Repository
                 return view($this->getAction(), compact('data'))
                     ->render();
             })
+            ->editColumn('checkbox', function($data) {
+                return $this->setCheckbox($data->id);
+            })
             ->editColumn('user.name', function($data) {
                 return $this
                     ->formatString($data->user->name ?? null, $data->user ?? null);
@@ -73,9 +76,6 @@ class DataTable extends Repository
             })
             ->editColumn('geolocation.geo_height', function($data) {
                 return sprintf('%s m', ceil($data->geolocation->geo_height));
-            })
-            ->editColumn('checkbox', function($data) {
-                return $this->setCheckbox($data->id);
             });
     }
 

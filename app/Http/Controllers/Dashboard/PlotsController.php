@@ -68,7 +68,6 @@ class PlotsController extends DashboardController
      */
     public function store(PlotsRequest $request)
     {
-        dd($request);
         $create = $this->controller->store();
             return $create 
                 ? redirect()

@@ -25,14 +25,14 @@ if (!function_exists('items_list')) {
 }
 
 /**
- * Convert a list of items in a array
+ * Reduce text length
  * @param  string $text 
  * @param  string $length 
  * @return string
  */
-// if (!function_exists('typeText')) {
-//     function typeText($text, $length = 5)
-//     {
-//         return substr($text, 0, $length);
-//     }
-// }
+if (!function_exists('typeText')) {
+    function typeText($text, $length = 5)
+    {
+        return substr($text, 0, $length);
+    }
+}
