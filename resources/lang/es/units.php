@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'area'              => 'Superficie',
+    'area:alt'          => 'Sup. cultivada',
     'percent'           => 'Porcentaje de suelo cultivado', //Percent of cultivated land
     'percent:alt'       => 'Suelo cultivado', //Percent of cultivated land
     'percent:min'       => '%', //Percent of cultivated land

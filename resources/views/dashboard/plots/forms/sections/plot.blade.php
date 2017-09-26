@@ -6,17 +6,9 @@
 
     {{-- Field: name --}}
     {!! BootForm::text(sections('plots.title'), 'plot_name')
-        ->addGroupClass('col-md-3')
+        ->addGroupClass('col-md-4')
         ->autofocus()
         ->required()
-    !!}
-
-    {{-- Field: area --}}
-    {!! BootForm::InputGroup(trans('units.area'), 'plot_area')
-        ->addGroupClass('col-md-2')
-        ->addClass('number')
-        ->afterAddon('m2')
-        ->required() 
     !!}
 
     {{-- Field: Framework --}}
@@ -24,6 +16,14 @@
         ->addGroupClass('col-md-2')
         ->addClass('framework')
         ->afterAddon('m')
+        ->required() 
+    !!}
+
+    {{-- Field: area --}}
+    {!! BootForm::InputGroup(trans('units.area'), 'plot_area')
+        ->addGroupClass('col-md-2')
+        ->addClass('number')
+        ->afterAddon('m2')
         ->required() 
     !!}
 
@@ -35,6 +35,15 @@
         ->min(0)
         ->max(100)
         ->afterAddon(icon('percent'))
+    !!}
+
+    {{-- Field: cultivated area --}}
+    {!! BootForm::InputGroup(trans('units.area:alt'), 'plot_area_cultivated')
+        ->addGroupClass('col-md-2')
+        ->addClass('number')
+        ->afterAddon('m2')
+        ->value(cultivatedArea($data ?? null))
+        ->disabled() 
     !!}
 
     {{-- Field: date --}}
