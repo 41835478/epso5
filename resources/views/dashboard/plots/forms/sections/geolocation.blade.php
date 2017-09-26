@@ -1,7 +1,8 @@
 <legend class="title">@lang('sections/plots.geolocation')</legend>
 
 <div class="row">
-    <div class="col-md-8">
+    {{-- No need for maps if not edit: change the row width -> 8 or 12 --}}
+    <div class="col-md-{!! conditional(isset($data), 8, 12) !!}">
         {{-- Alert: SIGPAC message --}}
         <div class="col-md-12 alert alert-success" role="alert">
             {!! icon('alert', sections('plots.geolocation:alert')) !!}
@@ -56,30 +57,30 @@
             {{-- Localization values --}}
             <div class="row">
                 {{-- Field: State --}}
-                {!! BootForm::text(trans('geolocations.state:min'), 'notForStored_name')
+                {!! BootForm::text(trans('geolocations.state:min'), 'geolocation.state_name')
                     ->addGroupClass('col-md-3')
                     ->value($data->state->state_name ?? null)
                     ->disabled()
                 !!}
 
                 {{-- Field: Region --}}
-                {!! BootForm::text(trans('geolocations.region'), 'notForStored_name')
+                {!! BootForm::text(trans('geolocations.region'), 'geolocation.region_name')
                     ->addGroupClass('col-md-3')
                     ->value($data->region->region_name ?? null)
                     ->disabled()
                 !!}
             
                 {{-- Field: City --}}
-                {!! BootForm::text(trans('geolocations.city'), 'notForStored_name')
+                {!! BootForm::text(trans('geolocations.city'), 'geolocation.city_name')
                     ->addGroupClass('col-md-3')
                     ->value($data->city->city_name ?? null)
                     ->disabled()
                 !!}
 
                 {{-- Field: Zip --}}
-                {!! BootForm::text(trans('geolocations.zip'), 'notForStored_zip')
+                {!! BootForm::text(trans('geolocations.zip'), 'geolocation.geo_zip')
                     ->addGroupClass('col-md-3')
-                    ->value($data->geolocation->geo_zip ?? null)
+                    ->addClass('right')
                     ->disabled()
                 !!}
             </div>
@@ -87,10 +88,12 @@
     </div>
 
     {{-- Load the map --}}
-    <div class="col-md-4">
-        {{-- Load the map --}}
-        <div id="simpleMap"></div>
-    </div>
+    @if(isset($data))
+        <div class="col-md-4">
+            {{-- Load the map --}}
+            <div id="simpleMap"></div>
+        </div>
+    @endif
 
 </div>
 
@@ -99,33 +102,29 @@
     <div class="col-md-12 separator"></div>
     <div class="row">
         {{-- Field: Catastro --}}
-        {!! BootForm::text(trans('geolocations.catastro'), 'notForStored_catastro')
+        {!! BootForm::text(trans('geolocations.catastro'), 'geolocation.geo_catastro')
             ->addGroupClass('col-md-2')
             ->addClass('right')
-            ->value($data->geolocation->geo_catastro ?? null)
             ->readonly()
         !!}
         {{-- Field: Latitude --}}
-        {!! BootForm::text(trans('geolocations.lat'), 'notForStored_lat')
+        {!! BootForm::text(trans('geolocations.lat'), 'geolocation.geo_lat')
             ->addGroupClass('col-md-2')
             ->addClass('right')
-            ->value($data->geolocation->geo_lat ?? null)
             ->disabled()
         !!}
 
         {{-- Field: Longitude --}}
-        {!! BootForm::text(trans('geolocations.lng'), 'notForStored_lng')
+        {!! BootForm::text(trans('geolocations.lng'), 'geolocation.geo_lng')
             ->addGroupClass('col-md-2')
             ->addClass('right')
-            ->value($data->geolocation->geo_lng ?? null)
             ->disabled()
         !!}
 
         {{-- Field: Hight --}}
-        {!! BootForm::InputGroup(trans('base.height:min'), 'notForStored_height')
+        {!! BootForm::InputGroup(trans('base.height:min'), 'geolocation.geo_height')
             ->addGroupClass('col-md-2')
             ->addClass('number')
-            ->value($data->geolocation->geo_height ?? null)
             ->afterAddon('m')
             ->disabled() 
         !!}
