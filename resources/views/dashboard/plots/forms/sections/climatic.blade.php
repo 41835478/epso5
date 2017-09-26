@@ -4,7 +4,6 @@
     {{-- Field: Climatic station --}}
     {!! BootForm::text(sections('climatic_stations.title:ref'), 'climatic_station.station_name')
         ->addGroupClass('col-md-4')
-        ->addClass('right')
         ->disabled()
     !!}
 
