@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Plots;
 
+use App\Repositories\Plots\Traits\PlotsEvents;
 use App\Repositories\Plots\Traits\PlotsPresenters;
 use App\Repositories\Plots\Traits\PlotsRelationships;
 use App\Repositories\_Traits\Date;
@@ -12,7 +13,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Plot extends Model  {
 
-    use Date, Notifiable, PlotsPresenters, PlotsRelationships, SoftDeletes;
+    use Date, Notifiable, PlotsEvents, PlotsPresenters, PlotsRelationships, SoftDeletes;
 
     /**
      * The database table used by the model.

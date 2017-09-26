@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Plots\Traits;
 
+use App\Jobs\Geolocation;
+
 trait PlotsEvents {
 
     /*
@@ -10,16 +12,12 @@ trait PlotsEvents {
     |--------------------------------------------------------------------------
     */
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
+    protected static function boot()
+    {
+        parent::boot();
 
-    //     static::saved(function ($model) {
-    //         SELF::CacheManagement($model);
-    //     });
-        
-    //     static::deleted(function ($model) {
-    //         SELF::CacheManagement($model);
-    //     });
-    // }
+        static::created(function ($model) {
+            $job = Geolocation::dispatch($model, $request = request());
+        });
+    }
 }
