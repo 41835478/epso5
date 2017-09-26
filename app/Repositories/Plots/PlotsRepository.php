@@ -54,8 +54,12 @@ class PlotsRepository extends Repository
         //Create an Item
         if (is_null($id)) {
             $plot = $this->model->create(request()->all());
+            //Add request values for geolocation db
             $request = array_merge(request()->all(), ['plot_id' => $plot->id]);
-                return app(GeolocationsRepository::class)->store($request) ? $plot : false;
+                //Add the geolocation values and execute the WMS jobs
+                return app(GeolocationsRepository::class)->create($request) 
+                    ? $plot 
+                    : false;
         }
         //Update an Item
         if(is_numeric($id)) {

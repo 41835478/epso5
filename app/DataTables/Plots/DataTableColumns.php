@@ -26,7 +26,6 @@ trait DataTableColumns
             $this->setColumn(trans('dates.date'), 'plot_start_date'),
             $this->setColumnWithRelationship(trans('persona.region'), 'region.region_name'),
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
-            $this->setColumnWithRelationship(trans('persona.zip:min'), 'geolocation.geo_zip', ['defaultContent' => no_result()]),
             $this->setColumn(trans('units.m2:min'), 'plot_area'),
             $this->setColumn(trans('units.percent:min'), 'plot_percent_cultivated_land'),
             $this->setColumn(sections('plots.framework:min'), 'plot_framework'),
@@ -54,13 +53,13 @@ trait DataTableColumns
         //Filtering the relationships
         if(Credentials::isAdmin()) {
             $columns_minimize = [
-                'show' => [3, 4, 5, 7, 8, 10, 12, 13, 16, 17],
-                'hide' => [1, 2, 6, 9, 11, 14, 15],
+                'show' => [3, 4, 5, 7, 8, 9, 11, 12, 15, 16],
+                'hide' => [1, 2, 6, 8, 10, 13, 14],
             ];
         } elseif(Credentials::isEditor()) {
             $columns_minimize = [
-            'show' => [2, 3, 4, 6, 7, 9, 11, 12, 15, 16],
-            'hide' => [1, 2, 5, 8, 10, 13, 14],
+            'show' => [2, 3, 4, 6, 7, 8, 10, 11, 15, 15],
+            'hide' => [1, 2, 5, 8, 9, 12, 13],
             ];
         } else {
             //User don't need filter for columns

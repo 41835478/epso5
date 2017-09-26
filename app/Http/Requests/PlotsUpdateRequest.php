@@ -50,7 +50,7 @@ class PlotsUpdateRequest extends FormRequest
             $administration = array_merge(['user_id' => 'required|integer'], $administration);
         }
 
-        return array_merge($administration, $crop, $geolocation, $plot);
+        return array_merge($administration, $crop, $plot);
     }
 
     /**

@@ -2,8 +2,9 @@
 
 namespace App\Repositories\Geolocations;
 
-use App\Repositories\Repository;
+use App\Jobs\GeolocationHeight;
 use App\Repositories\Geolocations\Plot;
+use App\Repositories\Repository;
 
 class GeolocationsRepository extends Repository
 {
@@ -19,11 +20,16 @@ class GeolocationsRepository extends Repository
      * @param   int     $id => $request
      * @return  boolean
      */
-    public function store($id = null)
+    public function create($request = null)
     {
         //Create an Item
-        if ($id) {
-            return $this->model->create($id);
+        if ($request) {
+            //Create the geolocation item
+            $geolocation = $this->model->create($request);
+            //All the jobs 
+            GeolocationHeight::dispatch($geolocation);
+            //Confirm the operations
+            return true;
         }
         return false;
     }

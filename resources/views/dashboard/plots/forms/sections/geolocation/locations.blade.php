@@ -23,12 +23,5 @@
             ->value($data->city->city_name ?? null)
             ->disabled()
         !!}
-
-        {{-- Field: Zip --}}
-        {!! BootForm::text(trans('geolocations.zip'), 'geolocation.geo_zip')
-            ->addGroupClass('col-md-3')
-            ->addClass('right')
-            ->disabled()
-        !!}
     </div>
 @endif
