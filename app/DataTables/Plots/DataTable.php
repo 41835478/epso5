@@ -75,7 +75,9 @@ class DataTable extends Repository
                     ->formatString($data->plot_name ?? null);
             })
             ->editColumn('geolocation.geo_height', function($data) {
-                return sprintf('%s m', ceil($data->geolocation->geo_height));
+                return isset($data->geolocation->geo_height) 
+                    ? sprintf('%s m', ceil($data->geolocation->geo_height)) 
+                    : no_result();
             });
     }
 
