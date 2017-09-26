@@ -25,5 +25,25 @@ class Geolocation extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'plot_id',
+        'geo_lat',
+        'geo_lng',
+        'geo_x',
+        'geo_y',
+        'geo_bbox',
+        'geo_sigpac_region',
+        'geo_sigpac_city',
+        'geo_sigpac_aggregate',
+        'geo_sigpac_zone',
+        'geo_sigpac_polygon',
+        'geo_sigpac_plot',
+        'geo_sigpac_precinct',
+        'geo_catastro',
+        'geo_catastro_url',
+        'geo_zip',
+        'geo_height',
+        'frame_width',
+        'frame_height',
+    ];
 }

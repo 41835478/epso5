@@ -43,3 +43,21 @@ if (!function_exists('catastroToSigpac')) {
     }
 }
 
+/**
+ * Get the state_id from the city_id
+ * @param string $cityId
+ * 
+ * @return string
+ */
+if (!function_exists('getState')) {
+    function getState($cityId = null)
+    {
+        //Default state: Comunidad Valenciana
+        $defaulState = 10; 
+        //If the city exists
+        if(is_numeric($cityId)) {
+            return app(App\Repositories\States\StatesRepository::class)->find($cityId) ?? $defaulState;
+        }
+            return $defaulState;
+    }
+}

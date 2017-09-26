@@ -3,6 +3,7 @@
 namespace App\Repositories\Plots;
 
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Geolocations\GeolocationsRepository;
 use App\Repositories\Plots\Plot;
 use App\Repositories\Plots\Traits\PlotsHelpers;
 use App\Repositories\Repository;
@@ -20,9 +21,9 @@ class PlotsRepository extends Repository
 
     public function __construct(Plot $model, ClientsRepository $client, UsersRepository $user)
     {
-        $this->client   = $client;
-        $this->model    = $model;
-        $this->user     = $user;
+        $this->client = $client;
+        $this->model  = $model;
+        $this->user   = $user;
     }
 
     /**
@@ -43,6 +44,39 @@ class PlotsRepository extends Repository
             return $this->filter($query, $table, $id);
     }
 
+    /**
+     * Create or update a record in storage
+     * @param   int     $id
+     * @return  boolean
+     */
+    public function store($id = null)
+    {
+        //Create an Item
+        if (is_null($id)) {
+            $plot = $this->model->create(request()->all());
+            $request = array_merge(request()->all(), ['plot_id' => $plot->id]);
+                return app(GeolocationsRepository::class)->store($request) ? $plot : false;
+        }
+        //Update an Item
+        if(is_numeric($id)) {
+            //Get the item
+            $item = $this->model->find($id);
+            //Check if the user own the database record
+            //and if the role is authorizate
+            if(!Credentials::authorize($item)) {
+                return Credentials::accessError();
+            }
+            return $item->update(request()->all());
+        }
+        return false;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
+   
     /**
      * Filter by role and empty users
      * @param   object   $query

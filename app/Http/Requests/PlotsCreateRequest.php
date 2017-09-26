@@ -6,7 +6,7 @@ use App\Repositories\Errors\ErrorsRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Credentials;
 
-class PlotsRequest extends FormRequest
+class PlotsCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

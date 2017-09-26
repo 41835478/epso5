@@ -12,14 +12,16 @@ class Geolocation implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $model;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($model)
     {
-        //
+        $this->model    = $model;
     }
 
     /**
@@ -29,6 +31,7 @@ class Geolocation implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $message = "Parcela: {$this->model->plot_name}. Latitud: {request('geo_lat')}";
+        mail('damian.aguilarm@gmail.com', 'Geolocation', $message);
     }
 }

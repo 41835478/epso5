@@ -1,3 +1,9 @@
+{!! BootForm::hidden('state_id')
+    ->id('state_id')
+    ->value(request('state_id') ?? getState(request('city_id')))
+    ->required()
+!!}  
+
 {!! BootForm::hidden('city_id')
     ->id('city_id')
     ->value(request('city_id') ?? null)

@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\DataTables\Plots\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Http\Requests\PlotsRequest;
+use App\Http\Requests\PlotsCreateRequest;
+use App\Http\Requests\PlotsUpdateRequest;
 use App\Repositories\Plots\PlotsRepository;
 use App\Repositories\Users\UsersRepository;
-// use Credentials;
-//use Illuminate\Http\Request;
 
 class PlotsController extends DashboardController
 {
@@ -66,7 +65,7 @@ class PlotsController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlotsRequest $request)
+    public function store(PlotsCreateRequest $request)
     {
         $create = $this->controller->store();
             return $create 
@@ -90,11 +89,12 @@ class PlotsController extends DashboardController
      */
     public function edit($id)
     {
+        //Set variables
         $data   = $this->controller->find($id);
         $users = $this->user->listOfUsersByRole($client = $data->client_id);
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop($data);
-        //
-        return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data', 'users'));
+            //Return the data
+            return view(dashboard_path($this->section . '.edit'), compact('cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'data', 'users'));
     }
 
     /**
@@ -104,7 +104,7 @@ class PlotsController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PlotsRequest $request, $id)
+    public function update(PlotsUpdateRequest $request, $id)
     {
         $update = $this->controller->store($id);
             return $update 
