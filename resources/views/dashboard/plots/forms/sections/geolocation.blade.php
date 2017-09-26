@@ -8,44 +8,45 @@
         </div>
         <div class="row">
             {{-- Field: SIGPAC Region --}}
-            {!! BootForm::text(trans('geolocations.region:alt'), 'geolocation.geo_sigpac_region')
+            {!! BootForm::text(trans('geolocations.region:alt'), 'geo_sigpac_region')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
-                ->value($sigpac['region'] ?? null)
+                ->value($sigpac['region'] ?? ($data->geolocation->geo_sigpac_region ?? null))
             !!}
 
             {{-- Field: SIGPAC City --}}
-            {!! BootForm::text(trans('geolocations.city'), 'geolocation.geo_sigpac_city')
+            {!! BootForm::text(trans('geolocations.city'), 'geo_sigpac_city')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
-                ->value($sigpac['city'] ?? null)
+                ->value($sigpac['city'] ?? ($data->geolocation->geo_sigpac_city ?? null))
             !!}
             
             {{-- Field: SIGPAC Aggregate --}}
-            {!! BootForm::text(trans('geolocations.aggregate'), 'geolocation.geo_sigpac_aggregate')
+            {!! BootForm::text(trans('geolocations.aggregate'), 'geo_sigpac_aggregate')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
-                ->value($sigpac['aggregate'] ?? null)
+                ->value($sigpac['aggregate'] ?? ($data->geolocation->geo_sigpac_aggregate ?? null))
             !!}
 
             {{-- Field: SIGPAC Zone --}}
-            {!! BootForm::text(trans('geolocations.zone'), 'geolocation.geo_sigpac_zone')
+            {!! BootForm::text(trans('geolocations.zone'), 'geo_sigpac_zone')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
-                ->value($sigpac['zone'] ?? null)
+                ->value($sigpac['zone'] ?? ($data->geolocation->geo_sigpac_zone ?? null))
             !!}
         
             {{-- Field: SIGPAC Plot --}}
-            {!! BootForm::text(trans('geolocations.plot'), 'geolocation.geo_sigpac_plot')
+            {!! BootForm::text(trans('geolocations.plot'), 'geo_sigpac_plot')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
-                ->value($sigpac['plot'] ?? null)
+                ->value($sigpac['plot'] ?? ($data->geolocation->geo_sigpac_plot ?? null))
             !!}
 
             {{-- Field: SIGPAC Precinct --}}
-            {!! BootForm::text(trans('geolocations.precinct'), 'geolocation.geo_sigpac_precinct')
+            {!! BootForm::text(trans('geolocations.precinct'), 'geo_sigpac_precinct')
                 ->addClass('right')
                 ->addGroupClass('col-md-2')
+                ->value($data->geolocation->geo_sigpac_precinct ?? null)
             !!}
         </div>
 
@@ -132,11 +133,13 @@
 @endif
 
 {{-- Field: Hidden geolocation values --}}
-@include('dashboard.plots.forms.maps.hiddenFields')
-{{-- catastro Name --}}
-{!! BootForm::hidden('geolocation.geo_catastro')->value($catastro['reference'] ?? null) !!}
-{{-- catastro URL --}}
-{!! BootForm::hidden('geolocation.geo_catastro_url')->value($catastro['url'] ?? null) !!}
-{{-- Region --}}
-{!! BootForm::hidden('region_id')->value(request('region_id') ?? null) !!}
-{{-- City: is inside the hiddenFields include --}}
+@if(!isset($data))
+    @include('dashboard.plots.forms.maps.hiddenFields')
+    {{-- catastro Name --}}
+    {!! BootForm::hidden('geo_catastro')->value($catastro['reference'] ?? null) !!}
+    {{-- catastro URL --}}
+    {!! BootForm::hidden('geo_catastro_url')->value($catastro['url'] ?? null) !!}
+    {{-- Region --}}
+    {!! BootForm::hidden('region_id')->value(request('region_id') ?? null) !!}
+    {{-- City: is inside the hiddenFields include --}}
+@endif
