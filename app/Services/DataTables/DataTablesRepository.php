@@ -87,15 +87,15 @@ abstract class DataTablesRepository extends DataTablesBuilder {
                     'extend' => 'print',
                     'text' => icon('print'),
                 ],
-                [
-                    'extend' => 'print',
-                    'text' => icon('hashtag'),
-                    'exportOptions' => [
-                        'modifier' => [
-                            'selected' => true,
-                        ],
-                    ],
-                ],
+                // [
+                //     'extend' => 'print',
+                //     'text' => icon('hashtag'),
+                //     'exportOptions' => [
+                //         'modifier' => [
+                //             'selected' => true,
+                //         ],
+                //     ],
+                // ],
                 'reset',
                 $this->setColumnsGroups(),
             ],
