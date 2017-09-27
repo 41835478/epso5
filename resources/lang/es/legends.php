@@ -9,6 +9,7 @@ return [
     */
    
     'edit'          => 'Editar campo',
+    'catastro'      => 'Enlace a la web del catastro',
     'crop:variety'  => 'Variedades de cultivo',
     'crop:pests'    => 'Plagas del cultivo',
     'crop:patterns' => 'Patrones/Pies del cultivo',

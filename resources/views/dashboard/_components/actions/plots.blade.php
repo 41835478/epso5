@@ -4,7 +4,7 @@
     </a>
     @if(isset($data->geolocation->geo_catastro_url))
         <a href="{!! $data->geolocation->geo_catastro_url !!}" target="_blank" class="btn btn-icon btn-info button-catastro-click">
-            {!! icon('info') !!}
+            {!! icon('world') !!}
         </a>
     @endif
 </div>
