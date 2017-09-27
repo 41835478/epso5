@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\DashboardController;
+use App\Repositories\ClimaticStations\ClimaticStationsRepository;
 use App\Repositories\Plots\PlotsRepository;
 use App\Services\Geolocation\Servers\Catastro;
 use Illuminate\Http\Request;
@@ -40,15 +41,18 @@ class PlotsConfigurateController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function configurate(Request $request)
+    public function configurate(Request $request, ClimaticStationsRepository $stations)
     {  
         //Get variables
         //Not posible to get catastro on a job queue, because we need the user can edit the sigpac...
         $catastro   = catastro($request);
         $sigpac     = catastroToSigpac($catastro);
+        $station    = $stations->closest($request);
         list($clients, $users) = $this->controller->getAdministration();
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop();
-        //    
-        return view(dashboard_path($this->section . '.configurate'), compact('catastro', 'clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'sigpac', 'users'));
+            //Return the data
+            return view(dashboard_path($this->section . '.configurate'), 
+                compact('catastro', 'clients', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'sigpac', 'station', 'users')
+            );
     }
 }

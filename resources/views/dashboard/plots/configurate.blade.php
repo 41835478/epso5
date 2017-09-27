@@ -18,6 +18,7 @@
         @slot('cropVarieties', $cropVarieties ?? [])
         @slot('cropPatterns', $cropPatterns ?? [])
         @slot('sigpac', $sigpac ?? [])
+        @slot('station', $station ?? [])
         @slot('users', $users ?? [])
     @endcomponent
 
