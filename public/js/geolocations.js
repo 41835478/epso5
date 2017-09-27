@@ -35840,7 +35840,7 @@ var xhr;
 var CITY = CITY || {};
 var GEO = GEO || {};
 var marker = null;
-var message = '<div id="geolocationMessage">' + '<li>' + textError + '</li>' + '<li>' + textConfirm + '</li><br>' + '<div class="text-center"><button type="submit" class="btn btn-danger">' + textButton + '</button></div>' + '</div>';
+var message = '<div id="geolocationMessage">' + '<li>' + textError + '</li>' + '<li>' + textConfirm + '</li><br>' + '<div class="text-center"><button type="submit" class="btn btn-danger" id="button-create-submit">' + textButton + '</button></div>' + '</div>';
 var REGION = REGION || {};
 var SEARCH = SEARCH || {};
 var TOOLTIP = '<div class="tooltip tooltip-message" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>';
