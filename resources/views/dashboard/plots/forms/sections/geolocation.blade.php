@@ -22,7 +22,7 @@
 
 {{-- Field: Hidden geolocation values --}}
 @if(!isset($data))
-    @include('dashboard.plots.forms.sections.maps.hiddenFields')
+    @include('dashboard.plots.forms.sections.geolocation.hiddenFields')
     {{-- catastro Name --}}
     {!! BootForm::hidden('geo_catastro')->value($catastro['reference'] ?? null) !!}
     {{-- catastro URL --}}
