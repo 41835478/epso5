@@ -23,6 +23,7 @@
 
     {{-- Modals --}}
     @section('modals')
+        @include(modal_path('plot'))
         @include(modal_path('delete'))
     @endsection
 
@@ -34,4 +35,15 @@
     @component(component_path('legend'))
         @slot('legendContent', legend_path($legend ?? null))
     @endcomponent
+@endsection
+
+@section('javascript')
+    <script>
+        $(function(){
+            $( document ).on( 'click', '.button-plot-click', function () {
+                var $catastro = $( this ).data( 'catastro' );
+                var $sigpac = $( this ).data( 'sigpac' );
+            });
+        })
+    </script>
 @endsection

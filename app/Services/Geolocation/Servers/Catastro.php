@@ -38,10 +38,13 @@ class Catastro extends GeolocationRepository implements GeolocationContract {
         //Proccess information
         preg_match_all('/<a\shref=\"([^\"]*)\">(.*)<\/a>/siU', $connection, $reference);
         preg_match_all('/<a href="(.*?)"/s', $connection, $url);
+        //The data 
+        $url        = $url[1][0] ?? null;
+        $reference  = $reference[2][0] ?? null;
             //Get the value
             return [
-                'reference' => ($reference[2][0] ?? null), 
-                'url'       => ($url[1][0] ?? null)
+                'reference' => $reference, 
+                'url'       => $url
             ];
     }
 }

@@ -17,7 +17,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $action  = false; //Cusmomize action
+    protected $action  = 'plots'; //Cusmomize action
     protected $section = 'plots';
 
     /**
