@@ -19,12 +19,9 @@ if (!function_exists('randonWithDecimals')) {
  * @return integer
  */
 if (!function_exists('cultivatedArea')) {
-    function cultivatedArea($data = null)
+    function cultivatedArea($attributes)
     {
-        if($data) {
-            $area = ($data->plot_area / 100) * $data->plot_percent_cultivated_land;
-                return number_format($area, 2, '.', '');
-        }
-        return null;
+        $operation = ($attributes['plot_area'] / 100) * $attributes['plot_percent_cultivated_land'];
+            return number_format($operation, 2, '.', '');
     }
 }
