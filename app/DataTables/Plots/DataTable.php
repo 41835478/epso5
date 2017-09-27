@@ -62,9 +62,6 @@ class DataTable extends Repository
                 return $this
                     ->formatString($data->crop_variety->crop_variety_name ?? null, $data->crop_variety ?? null);
             })
-            ->editColumn('plot_area', function($data) {
-                return cultivatedArea($data ?? null);
-            })
             ->editColumn('region.region_name', function($data) {
                 return $this
                     ->formatString($data->region->region_name ?? null, $data->region ?? null);

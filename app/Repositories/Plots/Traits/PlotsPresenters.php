@@ -18,5 +18,16 @@ trait PlotsPresenters {
     {
         return $this->getDate($value);
     }
-    
+
+    public function setPlotRealAreaAttribute($value)
+    {
+        $this->attributes['plot_real_area'] = cultivatedArea($this->attributes);
+    }
+
+    public function getPlotRealAreaAttribute($value)
+    {
+        return ($value <= 0) 
+            ? cultivatedArea($this->attributes) 
+            : $value;
+    }
 }

@@ -38,12 +38,11 @@
     !!}
 
     {{-- Field: cultivated area --}}
-    {!! BootForm::InputGroup(trans('units.area:alt'), 'plot_area_cultivated')
+    {!! BootForm::InputGroup(trans('units.area:alt'), 'plot_real_area')
         ->addGroupClass('col-md-2')
         ->addClass('number')
         ->afterAddon('m2')
-        ->value(cultivatedArea($data ?? null))
-        ->disabled() 
+        ->readonly() 
     !!}
 
     {{-- Field: date --}}
