@@ -9,13 +9,17 @@
     * Select row
     */
 
+    $( '#dataTableBuilder' ).on( 'click', 'tbody tr td:last-child', function( e ) {
+        e.stopPropagation();
+    });
+
     // Handle click on checkbox
     $( '#dataTableBuilder' ).on( 'click', 'tbody tr', function( event ) {
         var checkbox = $( this ).find( ':checkbox' );
         checkbox.prop( 'checked', !checkbox.is( ':checked' ) );
         //Default value
         $( this ).removeClass( 'selected' );
-
+        //If checked and is not selected -> then select
         if( checkbox.is( ':checked' ) && !$( this ).hasClass( 'selected' ) ) {
             $( this ).addClass( 'selected' );
         }
