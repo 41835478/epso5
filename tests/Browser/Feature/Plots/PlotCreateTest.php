@@ -12,10 +12,11 @@ class PlotCreateTest extends DuskTestCase
 {
     use PlotHelpers;
 
-    protected $dashboard    = '/dashboard';
-    protected $pathToCreate = '/dashboard/plots/create';
-    protected $pathToList   = '/dashboard/plots';
-
+    protected $dashboard        = '/dashboard';
+    protected $pathToCreate     = '/dashboard/plots/create';
+    protected $pathToList       = '/dashboard/plots';
+    protected $region           = 3; //Alicante
+    protected $city             = 'Orihuela';
 
     /*
     |--------------------------------------------------------------------------
@@ -24,12 +25,29 @@ class PlotCreateTest extends DuskTestCase
     */
     public function test_god_can_create_a_plot()
     {
-        $this->browse(function (Browser $browser) {
+        $button = icon('world', trans('geolocations.new.add'));
+
+        $this->browse(function (Browser $browser) use ($button) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->pathToList)
                 ->click('#button-config')
                 ->click('#button-create-link')
-                ->assertPathIs($this->pathToCreate);
+                ->assertPathIs($this->pathToCreate)
+                ->select('region_id', $this->region)
+                ->type('city_name', substr($this->city, 0, 3))
+                ->pause(1000)
+                ->with('.autocomplete-suggestion', function ($table) {
+                    $table->assertSee($this->city);
+                })
+                ->click("[data-title={$this->city}]")
+                ->waitFor('#searchButton')
+                ->press('#searchButton')
+                ->click('.leaflet-control-zoom-in')->pause(500)
+                ->click('.leaflet-control-zoom-in')->pause(500)
+                ->click('.leaflet-control-zoom-in')->pause(500)
+                ->click('#map')
+                ->press('#button-create-submit')
+                ->pause(5000);
         });
     }
 
