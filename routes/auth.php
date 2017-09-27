@@ -21,7 +21,7 @@ Route::name('dashboard')
 Route::group([
     'as' => 'dashboard.', 
     'prefix' => 'dashboard',
-    'middleware'    => 'locale'
+    'middleware'    => ['locale', 'https']
 ], function () {
         //Profiles
         //Route::resource('profiles', 'Dashboard\ProfilesController', ['only' => ['edit', 'update']]);  
