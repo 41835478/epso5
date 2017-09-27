@@ -28,6 +28,7 @@ class PlotCreateTest extends DuskTestCase
         $button = icon('world', trans('geolocations.new.add'));
 
         $this->browse(function (Browser $browser) use ($button) {
+            //Step 1: geolocate a plot
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->pathToList)
                 ->click('#button-config')
@@ -46,8 +47,9 @@ class PlotCreateTest extends DuskTestCase
                 ->click('.leaflet-control-zoom-in')->pause(500)
                 ->click('.leaflet-control-zoom-in')->pause(500)
                 ->click('#map')
-                ->press('#button-create-submit')
-                ->pause(5000);
+                ->press('#button-create-submit');
+                //Step 2: create a plot
+                $browser;
         });
     }
 
