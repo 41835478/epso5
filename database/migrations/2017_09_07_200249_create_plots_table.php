@@ -34,8 +34,9 @@ class CreatePlotsTable extends Migration
             $table->string('plot_reference', 50)->nullable()->comment("Internal Reference of the Plot");
             $table->string('plot_framework', 6)->comment("Framework planting: 0x0");
             $table->decimal('plot_area', 12, 2);
+            $table->decimal('plot_real_area', 12, 2)->comment("Real area base on the plot_area and the plot_percent_cultivated_land");
+            $table->tinyInteger('plot_percent_cultivated_land')->default(100)->comment("Percentage of cultivated land without deciamals");
             $table->string('plot_green_cover', 1)->nullable();
-            $table->string('plot_percent_cultivated_land', 3)->default(100)->comment("Percentage of cultivated land without deciamals");
             $table->date('plot_start_date')->nullable()->comment("Crops planting date");
             $table->softDeletes();
             $table->timestamps();
