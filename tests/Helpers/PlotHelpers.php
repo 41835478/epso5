@@ -62,4 +62,14 @@ trait PlotHelpers
         }
         return $this->firstPlot = Plot::orderBy('id', 'asc')->first();
     }
+
+    /**
+     * Format the framework value
+     *
+     * @return string
+     */
+    public function framework($string)
+    {
+        return substr($string, 0 , 1) . 'x' . substr($string, 1 , 1);
+    }
 }
