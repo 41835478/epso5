@@ -8,6 +8,7 @@ use App\Http\Requests\PlotsCreateRequest;
 use App\Http\Requests\PlotsUpdateRequest;
 use App\Repositories\Plots\PlotsRepository;
 use App\Repositories\Users\UsersRepository;
+use Credentials;
 
 class PlotsController extends DashboardController
 {
@@ -89,8 +90,14 @@ class PlotsController extends DashboardController
      */
     public function edit($id)
     {
-        //Set variables
+        //Set default data
         $data   = $this->controller->find($id);
+        //Check if the user own the database record
+        //and if the role is authorizate
+        if(!Credentials::authorize($data)) {
+            return Credentials::accessError();
+        }
+        //Set variables
         $users = $this->user->listOfUsersByRole($client = $data->client_id);
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop($data);
             //Return the data
