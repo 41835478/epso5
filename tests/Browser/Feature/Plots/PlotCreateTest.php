@@ -14,6 +14,7 @@ class PlotCreateTest extends DuskTestCase
 
     protected $dashboard        = '/dashboard';
     protected $pathToCreate     = '/dashboard/plots/create';
+    protected $pathToCreateTest = '/dashboard/plots/test';
     protected $pathToList       = '/dashboard/plots';
     protected $region           = 3; //Alicante
     protected $city             = 'Castell de Castells';
@@ -49,11 +50,12 @@ class PlotCreateTest extends DuskTestCase
                 ->click('#map')
                 ->press('#button-create-submit');
                 //Step 2: create a plot
-                $browser->assertMissing('plot_crop_type')
-                ->assertMissing('crop_variety_id')
-                ->assertMissing('pattern_id')
-                ->assertMissing('plot_quantity')
-                ->assertMissing('crop_training')
+                $browser
+                ->assertMissing('#plot_crop_type')
+                ->assertMissing('#crop_variety_id')
+                ->assertMissing('#pattern_id')
+                ->assertMissing('#plot_quantity')
+                ->assertMissing('#crop_training')
                 //Administration
                 ->select('client_id', 1)->pause(500)
                 ->select('user_id', 1)
@@ -76,8 +78,15 @@ class PlotCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
+                ->visit($this->pathToCreateTest)
+                ->assertPathIs($this->pathToCreateTest)
+                ->assertMissing('#plot_crop_type')
+                ->assertMissing('#crop_variety_id')
+                ->assertMissing('#pattern_id')
+                ->assertMissing('#crop_quantity')
+                ->assertMissing('#crop_training')
+                ->assertVisible('#client_id')
+                ->assertVisible('#user_id');
         });
     }
 
@@ -85,8 +94,15 @@ class PlotCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
+            ->visit($this->pathToCreateTest)
+            ->assertPathIs($this->pathToCreateTest)
+            ->assertMissing('#plot_crop_type')
+            ->assertMissing('#client_id')
+            ->assertVisible('#crop_variety_id')
+            ->assertVisible('#pattern_id')
+            ->assertVisible('#crop_quantity')
+            ->assertVisible('#crop_training')
+            ->assertVisible('#user_id');
         });
     }
 
@@ -94,8 +110,15 @@ class PlotCreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
+                ->visit($this->pathToCreateTest)
+                ->assertPathIs($this->pathToCreateTest)
+                ->assertMissing('#plot_crop_type')
+                ->assertMissing('#client_id')
+                ->assertMissing('#user_id')
+                ->assertVisible('#crop_variety_id')
+                ->assertVisible('#pattern_id')
+                ->assertVisible('#crop_quantity')
+                ->assertVisible('#crop_training');
         });
     }
 }
