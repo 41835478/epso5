@@ -16,7 +16,7 @@ class PlotCreateTest extends DuskTestCase
     protected $pathToCreate     = '/dashboard/plots/create';
     protected $pathToList       = '/dashboard/plots';
     protected $region           = 3; //Alicante
-    protected $city             = 'Orihuela';
+    protected $city             = 'Castell de Castells';
 
     /*
     |--------------------------------------------------------------------------
@@ -35,12 +35,12 @@ class PlotCreateTest extends DuskTestCase
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
                 ->select('region_id', $this->region)
-                ->type('city_name', substr($this->city, 0, 3))
+                ->type('city_name', substr($this->city, 0, 5))
                 ->pause(1000)
                 ->with('.autocomplete-suggestion', function ($table) {
                     $table->assertSee($this->city);
                 })
-                ->click("[data-title={$this->city}]")
+                ->click("[data-title='{$this->city}']")
                 ->waitFor('#searchButton')
                 ->press('#searchButton')
                 ->click('.leaflet-control-zoom-in')->pause(500)
