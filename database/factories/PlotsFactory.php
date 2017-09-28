@@ -4,6 +4,7 @@ use App\Repositories\Cities\City;
 use App\Repositories\CropVarieties\CropVariety;
 use App\Repositories\Patterns\Pattern;
 use App\Repositories\Plots\Plot;
+use App\Repositories\Trainings\Training;
 use App\Repositories\Users\User;
 
 /*
@@ -22,6 +23,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $crop_variety                   = CropVariety::inRandomOrder()->whereCropId($select)->first();
     $pattern                        = Pattern::whereCropId($select)->inRandomOrder()->first();
     $city                           = City::inRandomOrder()->first();
+    $training                       = rand(1, 2);
     $distance                       = randonWithDecimals();
     $number                         = rand(1000, 10000);
     $boolean                        = rand(0, 1);
@@ -31,8 +33,8 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $plot_framework                 = $user . $user;
 
     return [
-        'client_id'                     => $client ?? $select,
-        'crop_id'                       => $select,
+        'client_id'                     => $select,
+        'crop_id'                       => ($select == 1) ? 1 : 2,
         'crop_module'                   => ($select == 1) ? 'vineyard' : 'grape',
         'crop_variety_id'               => $crop_variety->id,
         'crop_variety_type'             => $crop_variety->crop_variety_type,
@@ -48,7 +50,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'plot_name'                     => $faker->company,
         'plot_reference'                => $plot_reference,
         'plot_framework'                => $plot_framework,
-        'plot_training'                 => $user,
+        'crop_training'                 => $training,
         'plot_area'                     => $number,
         'plot_percent_cultivated_land'  => $percent,
         'plot_green_cover'              => $boolean,
