@@ -22,10 +22,10 @@ trait MenuContainer {
      */
     private function htmlBuilder() : string
     {
-        $html = '<nav class="navbar navbar-toggleable-md ' . $this->navbarClass . '" role="navigation">';
-            $html .= '<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>';
+        $html = '<nav class="navbar navbar-light navbar-toggleable-md ' . $this->navbarClass . '" role="navigation">';
+            $html .= '<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>';
             $html .= $this->getBrand();
-            $html .= '<div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">';
+            $html .= '<div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">';
                 $html .= $this->getHtml();
             $html .= '</div>';
         $html .= '</nav>';

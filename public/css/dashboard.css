@@ -10427,6 +10427,11 @@ a:visited {
   border-radius: 100%;
 }
 
+.btn-icon {
+  padding: 8px;
+  margin: 2px;
+}
+
 .btn-success-alt {
   background-color: #2BBBAD;
   color: #fff;
