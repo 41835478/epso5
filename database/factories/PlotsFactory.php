@@ -18,8 +18,9 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
      * @var Defaults
      */    
     $defaultValue                   = 1;
-    $crop_variety                   = CropVariety::inRandomOrder()->first();
-    $pattern                        = Pattern::where('crop_id', $defaultValue)->inRandomOrder()->first();
+    $select                         = rand(1, 2);
+    $crop_variety                   = CropVariety::inRandomOrder()->whereCropId($select)->first();
+    $pattern                        = Pattern::whereCropId($select)->inRandomOrder()->first();
     $city                           = City::inRandomOrder()->first();
     $distance                       = randonWithDecimals();
     $number                         = rand(1000, 10000);
@@ -28,7 +29,6 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $plot_reference                 = null;
     $user                           = rand(1, 4);
     $plot_framework                 = $user . $user;
-    $select                         = rand(1, 2);
 
     return [
         'client_id'                     => $client ?? $select,
@@ -48,6 +48,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
         'plot_name'                     => $faker->company,
         'plot_reference'                => $plot_reference,
         'plot_framework'                => $plot_framework,
+        'plot_training'                 => $user,
         'plot_area'                     => $number,
         'plot_percent_cultivated_land'  => $percent,
         'plot_green_cover'              => $boolean,
