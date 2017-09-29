@@ -15,12 +15,12 @@ class CreateEdaphologiesTable extends Migration
     {
         Schema::create('edaphologies', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->integer('reference')->unsigned();
             $table->integer('plot_id')->unsigned()->index();
             $table->integer('edaphology_level')->default(1)->comment('1 for primary sample. 2 for secundary sample');
             $table->decimal('edaphology_lat', 10, 6)->nullable();
             $table->decimal('edaphology_lng', 10, 6)->nullable();
             $table->string('edaphology_name')->nullable()->comment('If the sample was taken from a specific place...');
+            $table->string('reference', 50)->nullable()->comment('If we need an internal reference or something...');
             $table->text('edaphology_observations')->nullable();
             $table->integer('edaphology_aggregate_stability')->unsigned()->default(0)->comment('Aggregate stability in %');
             $table->integer('edaphology_coarse_elements')->unsigned()->default(0)->comment('Coarse elements in %');
