@@ -45,12 +45,14 @@ class ClientUpdateTest extends DuskTestCase
             $browser
                 ->check('#checkbox-region-' . $this->makeRegion())
                 ->check('#checkbox-crop-1')
+                ->uncheck('#checkbox-crop-2')
                 ->check('#checkbox-training-1')
-                ->check('#checkbox-irrigation-1')
+                ->uncheck('#checkbox-training-2')
+                ->uncheck('#checkbox-irrigation-1')
+                ->check('#checkbox-irrigation-2')
                 ->check('#checkbox-irrigation-3')
                 ->check('#checkbox-config-1')
-                ->check('#checkbox-config-3')
-                ->check('#checkbox-config-5');
+                ->uncheck('#checkbox-config-2');
 
             $browser
                 ->press(trans('buttons.edit'))
@@ -96,13 +98,19 @@ class ClientUpdateTest extends DuskTestCase
         $this->assertDatabaseHas('client_irrigation', 
         [
             'client_id'         => $this->lastClient()->id,
-            'irrigation_id'     => 1,
+            'irrigation_id'     => 2,
+        ]);
+
+        $this->assertDatabaseHas('client_irrigation', 
+        [
+            'client_id'         => $this->lastClient()->id,
+            'irrigation_id'     => 3,
         ]);
 
         $this->assertDatabaseMissing('client_irrigation', 
         [
             'client_id'         => $this->lastClient()->id,
-            'irrigation_id'     => 2,
+            'irrigation_id'     => 1,
         ]);
     
         $this->assertDatabaseHas('client_training', 
@@ -121,18 +129,6 @@ class ClientUpdateTest extends DuskTestCase
         [
             'client_id'     => $this->lastClient()->id,
             'config_id'     => 1,
-        ]);
-
-        $this->assertDatabaseHas('client_config', 
-        [
-            'client_id'     => $this->lastClient()->id,
-            'config_id'     => 3,
-        ]);
-
-        $this->assertDatabaseHas('client_config', 
-        [
-            'client_id'     => $this->lastClient()->id,
-            'config_id'     => 5,
         ]);
 
         $this->assertDatabaseMissing('client_config', 
