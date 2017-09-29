@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\DataTables\Edaphologies\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Edaphologies\EdaphologiesRepository;
 use App\Http\Requests\EdaphologiesRequest;
+use App\Repositories\Edaphologies\EdaphologiesRepository;
+use App\Repositories\Plots\PlotsRepository;
 //use Credentials;
 //use Illuminate\Http\Request;
 
@@ -44,14 +45,15 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($plot)
+    public function show($id, PlotsRepository $plot)
     {
-        return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            ->setValue([
-                'plot' => $plot
-            ])
-            ->render(dashboard_path($this->section . '.index'));
+        $plot = $plot->find($id);
+            return $this->table
+                //Customize the action for datatables [dashboard/_components/actions]
+                ->setValue([
+                    'plot' => $plot
+                ])
+                ->render(dashboard_path($this->section . '.index'), compact('plot'));
     }
 
     /**
@@ -59,9 +61,10 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view(dashboard_path($this->section . '.create'));
+        $plot = $plot->find($id);
+            return view(dashboard_path($this->section . '.create'), compact('plot'));
     }
 
     /**

@@ -6,7 +6,7 @@
     @component(component_path('edit'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.' . $role . '.' . $section . '.show', request('plot'))],
+            [trans_title($section), route('dashboard.user.' . $section . '.show', request('plot'))],
             [trans('base.edit')], 
         ])
         {{-- Add the data --}}

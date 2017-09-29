@@ -6,20 +6,15 @@
     @component(component_path('breadcrumb'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.user.' . $section . '.show', request('plot'))],
-            [trans('base.list')], 
+            [trans_title($section), route('dashboard.user.' . $section . '.show', $plot->id)],
+            [trans_title('plots', 'singular') . ': ' . $plot->plot_name], 
         ])
-        @slot('dropdownItems', [
-            [Html::createLink($section, $role)], 
-            [Html::deleteLink()], 
-            {{-- [Html::newLink(
-                [
-                    'title' => icon('form', trans('buttons.tools')),
-                    'route' => route('dashboard.admin.biocides.tools'), 
-                    'class' => 'dropdown-item',
-                ]
-            )], --}}
-        ])
+        @Role('admin')
+            @slot('dropdownItems', [
+                [Html::createLink($section, $role)], 
+                [Html::deleteLink()], 
+            ])
+        @endRole
     @endcomponent
 
     {{-- Search --}}
