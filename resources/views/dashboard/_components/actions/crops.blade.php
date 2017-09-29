@@ -7,13 +7,7 @@
     </a>
     {{-- Crops types --}}
     @if($data->crop_type)
-        <a href="#" class="btn btn-icon btn-terciary button-crop_type-click" 
-            data-toggle="modal" 
-            data-target="#modal-crop-variety-types" 
-            data-cropId="{{ $data->id }}" 
-            data-cropName="{{ $data->crop_name }}">
-                {!! icon('crop-alt') !!}
-        </a>
+        <a href="{{ route('dashboard.' . $role . '.crop_variety_types.create', ['crop' => $data->id]) }}" class="btn btn-icon btn-terciary button-crop_type-click">{!! icon('crop-alt') !!}</a>
     @endif
     {{-- Crops types --}}
     <a href="{{ route('dashboard.' . $role . '.pests.show', $data->id) }}" class="btn btn-icon btn-danger button-pests-click">
