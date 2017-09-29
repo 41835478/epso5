@@ -13,7 +13,7 @@ trait CityHelpers
     protected $makeCity;
     protected $setLocalization;
     protected $setLocalizationByName;
-    protected $_Places_ID = [1, 10, 52];
+    protected $_Places_ID = [1, 10, 3];
     protected $_Places_Name = ['España', 'Comunitat Valenciana', 'Murcia', 'Almàssera'];
 
 

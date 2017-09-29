@@ -28,7 +28,7 @@ class UserEliminateTest extends DuskTestCase
                 ->click('#button-eliminate-link')
                 ->whenAvailable('#modal-error', function ($modal) {
                     $modal->assertSee(__('Selection error'))
-                        ->press('#button-modal-cancel');
+                        ->press('#button-cancel-submit');
                 });
         });
     }
