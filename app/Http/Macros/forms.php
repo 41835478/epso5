@@ -84,11 +84,16 @@
      * 
      * @return  string
      */
-    Form::macro('checkboxWithPivotTable', function($data, $relationship, $id, $name)
+    Form::macro('checkboxWithPivotTable', function($data = null, $relationship, $id, $name)
     {
-        $checked = in_array($id, $data->{$relationship}->pluck('id')->all()) 
-            ? $checked = ' checked="checked"' 
-            : $checked = '';
+        //Default values
+        $checked = '';
+        //Validate the data
+        if(!is_null($data)) {
+            if(in_array($id, $data->{$relationship}->pluck('id')->all())) {
+                $checked = ' checked="checked"';
+            }
+        }
             //Return the checkbox
             return sprintf(
                 macro_checkboxContainer(), 
