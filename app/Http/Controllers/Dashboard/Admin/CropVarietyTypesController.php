@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\DataTables\CropVarietyTypes\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
 use App\Http\Requests\CropVarietyTypesRequest;
+use App\Repositories\CropVarietyTypes\CropVarietyTypesRepository;
+use App\Repositories\Crops\CropsRepository;
 //use Credentials;
 //use Illuminate\Http\Request;
 
@@ -15,16 +16,38 @@ class CropVarietyTypesController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $crops;
 
     /**
      * @var private
      */
+    private $parent     = 'crops';
     private $role       = 'admin';
-    private $section    = 'crops';
+    private $section    = 'crop_variety_types';
 
-    public function __construct(CropVarietyTypesRepository $controller)
+    public function __construct(CropsRepository $crops, CropVarietyTypesRepository $controller)
     {
         $this->controller   = $controller;
+        $this->crops        = $crops;
+        //Sharing in the view
+        view()->share([
+            'parent'    => $this->parent,
+            'section'   => $this->section,
+            'role'      => $this->role
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $crop = $this->crops->find(request('crop'));
+        $types = $this->controller->allByCrop(request('crop'));
+            return view(dashboard_path($this->section . '.create'), compact('crop', 'types'));
     }
 
     /**
@@ -40,7 +63,7 @@ class CropVarietyTypesController extends DashboardController
 
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.' . $this->role . '.' . $this->parent . '.index')
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
