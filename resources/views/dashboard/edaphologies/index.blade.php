@@ -6,7 +6,7 @@
     @component(component_path('breadcrumb'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
+            [trans_title($section), route('dashboard.user.' . $section . '.show', request('plot'))],
             [trans('base.list')], 
         ])
         @slot('dropdownItems', [

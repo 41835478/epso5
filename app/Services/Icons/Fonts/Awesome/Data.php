@@ -20,6 +20,7 @@ return [
     'date'              => 'calendar',
     'delete'            => 'trash',
     'download'          => 'download',
+    'edaphology'        => 'tags',
     'edit'              => 'pencil',
     'email'             => 'envelope',
     'euro'              => 'eur',

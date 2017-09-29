@@ -44,13 +44,13 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($plot)
     {
         return $this->table
             //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'edaphologies:action'
-            // ])
+            ->setValue([
+                'plot' => $plot
+            ])
             ->render(dashboard_path($this->section . '.index'));
     }
 

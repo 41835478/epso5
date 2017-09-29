@@ -29,6 +29,9 @@ Route::group([
             //Because we need to include the crop variety types... look inside the controller!!!
             Route::get('crop_varieties/edit/{crop_variety}/{crop}', 'Dashboard\Admin\CropVarietiesController@edit')->name('crop_varieties.edit');
         Route::resource('crop_variety_types', 'Dashboard\Admin\CropVarietyTypesController', ['only' => ['create', 'store']]);
+        //Edaphologies 
+        Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['create', 'store', 'edit', 'update']]);
+        Route::post('edaphologies/eliminate', 'Dashboard\EdaphologiesController@eliminate')->name('edaphologies.eliminate');
         //Irrigations
         Route::resource('irrigations', 'Dashboard\Admin\IrrigationsController', ['except' => ['destroy', 'show']]);
         //Patterns

@@ -5,6 +5,8 @@ Route::group([
         'as'            => 'user.', 
         'middleware'    => 'role:user'
     ], function () {
+        //Edaphologies 
+        Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['show']]);
         //Routes for the GOD tools
         Route::get('tools/role/{id}', 'Dashboard\God\ToolsController@role')->name('tools.role');
 
