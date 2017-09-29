@@ -35850,28 +35850,6 @@ if ($('#client_id')) {
     });
 }
 
-/** 
-* Crops: Load the crops types
-*/
-if ($('#modal-crop-variety-types')) {
-    $('#modal-crop-variety-types').on('shown.bs.modal', function (event) {
-        //Set variables
-        var $modal = $(this),
-            $button = $(event.relatedTarget),
-            $cropName = $button.attr('data-cropName'),
-            $cropId = $button.attr('data-cropId'),
-            $container = $('#ajax-crop-variety-types');
-        //Loading
-        $container.html(loading);
-        //Add crop name to the title
-        $('#title-crop-variety-types').html($cropName);
-        //Load the form
-        $.get(window.location.origin + '/dashboard/ajax/cropVarietyTypes', { search: $cropId }, function (data) {
-            $container.hide().html(data).fadeIn('slow');
-        });
-    });
-}
-
 /***/ }),
 
 /***/ "./resources/assets/js/maps.js":
