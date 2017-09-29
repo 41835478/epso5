@@ -11,6 +11,7 @@
         ])
         @slot('configs', $configs ?? null)
         @slot('crops', $crops ?? null)
+        @slot('data', $data ?? null)
         @slot('irrigations', $irrigations ?? null)
         @slot('regions', $regions ?? null)
         @slot('trainings', $trainings ?? null)
