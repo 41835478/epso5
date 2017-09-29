@@ -14,7 +14,7 @@
             <div class="card-block">
 
                 {{-- Create form --}}
-                {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.store'))->post()->enctype('multipart/form-data') !!}
+                {!! BootForm::open()->action(($routeAction ?? route('dashboard.' . $role . '.' . $section . '.store')))->post()->enctype('multipart/form-data') !!}
 
                     {{-- Include the custom blade form --}}
                     @include('dashboard.' . $section . '.forms.builder')

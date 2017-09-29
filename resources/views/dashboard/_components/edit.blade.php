@@ -16,7 +16,7 @@
             <div class="card-block">
 
                 {{-- Edit form --}}
-                {!! BootForm::open()->action(route('dashboard.' . $role . '.' . $section . '.update', $data->id))->patch()->enctype('multipart/form-data') !!}
+                {!! BootForm::open()->action(($routeAction ?? route('dashboard.' . $role . '.' . $section . '.update', $data->id)))->patch()->enctype('multipart/form-data') !!}
                     {{-- Bind the data to the forms --}}
                     {!! BootForm::bind($data) !!}
 
