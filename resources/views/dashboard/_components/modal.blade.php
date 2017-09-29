@@ -1,8 +1,8 @@
-<div id="{{ $modalID ?? null }}" class="modal fade">
+<div id="{{ $modalID ?? null }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog {{ $modalSize ?? null }}" role="document">
         <div class="modal-content">
             <div class="modal-header {{ $bgColor ?? null }}">
-                <h4 class="modal-title">{!! $modalTitle ?? null !!}</h4>
+                <h4 class="modal-title" id="myModalLabel">{!! $modalTitle ?? null !!}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
