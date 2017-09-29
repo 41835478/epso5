@@ -28,9 +28,4 @@
     @component(component_path('legend'))
         @slot('legendContent', legend_path($legend ?? null))
     @endcomponent
-
-    {{-- Modals --}}
-    @section('modals')
-        @include(modal_path('crop_variety_types'), ['setCustomRoute' => null])
-    @endsection
 @endsection
