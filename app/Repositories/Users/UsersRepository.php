@@ -78,8 +78,6 @@ class UsersRepository extends Repository {
      */
     public function dataTable(array $columns = ['*'], $table = null, $userNull = false, $value = null)
     {
-        //Just in case we need to add de table name for avoid ambiguous row names
-        $table = $table ? $table . '.' : '';
         //The query
         $query = $this->model->select($columns);
             //The filters
@@ -94,6 +92,9 @@ class UsersRepository extends Repository {
      */
     protected function customFilterByRole($query, $table)
     {
+        //Just in case we need to add de table name for avoid ambiguous row names
+        $table = $table ? $table . '.' : '';
+        //Response
         return $query->when(Credentials::maxRole() === 'god', function ($query) {
             return $query;
         })
