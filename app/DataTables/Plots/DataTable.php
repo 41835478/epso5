@@ -28,10 +28,10 @@ class DataTable extends Repository
     public function query()
     {
         //Show only row with the user_id field empty
-        $id = $this->getValue('no_users') ? true : null;
+        $no_users = $this->getValue('no_users') ? true : false;
 
         $query = app(PlotsRepository::class)
-            ->dataTable($columns = ['*'], $id, $table = 'plots')
+            ->dataTable($columns = ['*'], $table = 'plots', $userNull = $no_users)
             ->select($this->section . '.*')
             ->with(SELF::relationships());
 
