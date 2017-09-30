@@ -19,8 +19,6 @@ trait Role
         $tableWithDot = $table 
             ? $table . '.' 
             : '';
-        //Check if table exists 
-        $checkTable = Schema::hasColumn($table, 'user_id');
         //Conditional query
         return 
             $query->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
@@ -29,11 +27,15 @@ trait Role
             ->when(Credentials::maxRole() === 'editor', function ($query) use ($tableWithDot) {
                 return $query->where($tableWithDot . 'client_id', Credentials::client());
             })
-            ->when($checkTable && Credentials::maxRole() === 'user', function ($query) use ($tableWithDot) {
-                return $query->where($tableWithDot . 'user_id', Credentials::id());
+            ->when(Credentials::maxRole() === 'user', function ($query) use ($table, $tableWithDot) {
+                if(Schema::hasColumn($table, 'user_id')) {
+                    return $query->where($tableWithDot . 'user_id', Credentials::id());
+                }
             })
-            ->when($checkTable && $userNull, function ($query) {
-                return $query->where('user_id', null);
+            ->when($userNull, function ($query) use ($table) {
+                if(Schema::hasColumn($table, 'user_id')) {
+                    return $query->where('user_id', null);
+                }
             });
     }
 }
