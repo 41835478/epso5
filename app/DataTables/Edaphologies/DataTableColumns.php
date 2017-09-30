@@ -17,8 +17,10 @@ trait DataTableColumns
          */
         return [
             $this->createCheckbox(),
+            $this->setColumnWithRelationship(trans_title('crops'), 'crop.crop_name'),
             $this->setColumnWithRelationship(trans_title('plots', 'single'), 'plot.plot_name'),
-            $this->setColumn(trans_title('edaphologies'), 'edaphology_name'),
+            $this->setColumn(sections('edaphologies.sample.name'), 'edaphology_name'),
+            $this->setColumn(sections('edaphologies.sample.type'), 'edaphology_level'),
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,
             //      'searchable' => false,
