@@ -31,7 +31,7 @@ class DataTable extends Repository
         $query = app(EdaphologiesRepository::class)
             ->dataTable($columns = ['*'], $table = 'edaphologies', $userNull = false, $plot)
             ->select($this->section . '.*')
-            ->with('plot');
+            ->with('crop', 'plot');
 
         return $this->applyScopes($query);
     }
