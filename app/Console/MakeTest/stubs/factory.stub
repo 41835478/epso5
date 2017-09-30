@@ -13,7 +13,7 @@ $factory->define(DummyModel::class, function (Faker\Generator $faker) {
     return [
         'DummySingular_name'            => $faker->company,
         // 'DummySingular_word'            => $faker->word,
-        // 'DummySingular_words'           => $faker->words($nb = 3, $asText = false),
+        // 'DummySingular_words'           => $faker->words($nb = 3, $asText = true),
         // 'DummySingular_email'           => $faker->unique()->safeEmail,
         // 'DummySingular_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
         // 'DummySingular_phone'           => $faker->tollFreePhoneNumber,
