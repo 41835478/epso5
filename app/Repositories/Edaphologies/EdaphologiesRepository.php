@@ -19,17 +19,19 @@ class EdaphologiesRepository extends Repository
     }
 
     /**
-     * Create or update a record in storage
-     * @param   int     $id
-     * @return  boolean
+     * Prepare the database query for the yajra dataTable service
+     * @param   string   $columns
+     * @param   string   $id [In case we need an extra variable to check with something...]
+     * @param   string   $table [Just in case we need to add de table name for avoid ambiguous row names]
+     * @return  ajax
      */
-    // public function store($id = null)
-    // {
-    //     return DB::transaction(function () use ($id) {
-    //         return true;
-    //     });
-    //     //Create an error
-    //     return false;
-    // }
+    public function dataTable(array $columns = ['*'], $table = null, $userNull = false, $value = null)
+    {
+        //The query
+        $query = $this->model
+            ->select($columns)->where('plot_id', $value);
+                //The filters
+                return $this->filterByRole($query, $table, $userNull);
+    }
 
 }
