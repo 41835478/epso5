@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Requests\EdaphologiesRequest;
 use App\Repositories\Edaphologies\EdaphologiesRepository;
 use App\Repositories\Plots\PlotsRepository;
-//use Credentials;
+use Credentials;
 //use Illuminate\Http\Request;
 
 class EdaphologiesController extends DashboardController
@@ -21,7 +21,7 @@ class EdaphologiesController extends DashboardController
      * @var private
      */
     private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
-    private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
+    private $parent     = 'plots';
     private $role       = 'admin';
     private $section    = 'edaphologies';
 
@@ -32,7 +32,7 @@ class EdaphologiesController extends DashboardController
         //Sharing in the view
         view()->share([
             //'legend'   => $this->legend,
-            //'parent'   => $this->parent,
+            'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
@@ -45,9 +45,18 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id, PlotsRepository $plot)
+    public function show($id, PlotsRepository $plotsRepository)
     {
-        $plot = $plot->find($id);
+        //Plot data
+        $plot = $plotsRepository->find($id);
+        //Filter by user throw plot table 
+        //because edaphology has no user_id 
+        //because is no mandatory to add user to plot...  
+        //If plot has no user... edaphology has no sense to have one, so the table has not user_id field.   
+        if(!Credentials::authorize($plot)) {
+            return Credentials::accessError();
+        }
+            //Get the table
             return $this->table
                 //Customize the action for datatables [dashboard/_components/actions]
                 ->setValue($plot)

@@ -24,15 +24,17 @@ trait Role
             $query->when(Credentials::maxRole() === 'god' || Credentials::maxRole() === 'admin', function ($query) {
                 return $query;
             })
-            ->when(Credentials::maxRole() === 'editor', function ($query) use ($tableWithDot) {
-                return $query->where($tableWithDot . 'client_id', Credentials::client());
+            ->when(Credentials::maxRole() === 'editor', function ($query) use ($table, $tableWithDot) {
+                if(Schema::hasColumn($table, 'client_id')) {
+                    return $query->where($tableWithDot . 'client_id', Credentials::client());
+                }
             })
             ->when(Credentials::maxRole() === 'user', function ($query) use ($table, $tableWithDot) {
                 if(Schema::hasColumn($table, 'user_id')) {
                     return $query->where($tableWithDot . 'user_id', Credentials::id());
                 }
             })
-            ->when($userNull, function ($query) use ($table) {
+            ->when($userNull && Credentials::isEditor(), function ($query) use ($table) {
                 if(Schema::hasColumn($table, 'user_id')) {
                     return $query->where('user_id', null);
                 }

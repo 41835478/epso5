@@ -5,7 +5,7 @@ namespace App\Repositories\Edaphologies;
 //use App\Repositories\_Traits\Date;
 //use App\Repositories\Edaphologies\Traits\EdaphologiesEvents;
 //use App\Repositories\Edaphologies\Traits\EdaphologiesPresenters;
-//use App\Repositories\Edaphologies\Traits\EdaphologiesRelationships;
+use App\Repositories\Edaphologies\Traits\EdaphologiesRelationships;
 //use App\Repositories\Edaphologies\Traits\EdaphologiesScopes;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Edaphology extends Model  {
 
-    use Notifiable;
+    use EdaphologiesRelationships, Notifiable;
 
     /**
      * The database table used by the model.

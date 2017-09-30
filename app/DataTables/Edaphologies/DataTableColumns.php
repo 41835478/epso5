@@ -17,7 +17,7 @@ trait DataTableColumns
          */
         return [
             $this->createCheckbox(),
-            $this->setColumn(trans('financials.id'), 'id'),
+            $this->setColumnWithRelationship(trans_title('plots', 'single'), 'plot.plot_name'),
             $this->setColumn(trans_title('edaphologies'), 'edaphology_name'),
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,

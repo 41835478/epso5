@@ -6,7 +6,7 @@
     @component(component_path('create'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.user.' . $section . '.show', request('plot'))],
+            [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
             [trans('base.create')], 
         ])
         {{-- Add other slot --}}

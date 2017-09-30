@@ -6,7 +6,7 @@
     @component(component_path('breadcrumb'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.user.' . $section . '.show', $plot->id)],
+            [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
             [trans_title('plots', 'singular') . ': ' . $plot->plot_name], 
         ])
         @Role('admin')

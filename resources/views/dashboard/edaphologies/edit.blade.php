@@ -6,8 +6,8 @@
     @component(component_path('edit'))
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
-            [trans_title($section), route('dashboard.user.' . $section . '.show', request('plot'))],
-            [trans('base.edit')], 
+            [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
+            [trans('base.edit') . ' ' . trans_title($section, 'singular') . ': ' . $data->plot->plot_name], 
         ])
         {{-- Add the data --}}
         @slot('data', $data)

@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Edaphologies\Traits;
 
+use App\Repositories\Plots\Plot;
+
 trait EdaphologiesRelationships {
 
     /*
@@ -10,10 +12,10 @@ trait EdaphologiesRelationships {
     |--------------------------------------------------------------------------
     */
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function plot()
+    {
+        return $this->belongsTo(Plot::class);
+    }
     // public function profile()
     // {
     //     return $this->hasOne(Profile::class);
