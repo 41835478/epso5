@@ -93,7 +93,7 @@ class PlotUpdateTest extends DuskTestCase
         });
     }
 
-    public function test_user_can_update_a_plot_from_other_user()
+    public function test_user_cant_update_a_plot_from_other_user()
     {
         $plot = $this->whereUserIsNot($this->createUserBase());
 
