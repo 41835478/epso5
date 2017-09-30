@@ -51,7 +51,7 @@ class EdaphologiesController extends DashboardController
             return $this->table
                 //Customize the action for datatables [dashboard/_components/actions]
                 ->setValue([
-                    'plot' => $plot
+                    'id' => $plot->id
                 ])
                 ->render(dashboard_path($this->section . '.index'), compact('plot'));
     }
