@@ -13,7 +13,7 @@ trait DataTableHelpers
      */
     public function setValue($value) {
         $this->getValue = $value;
-        return $this;
+            return $this;
     }
 
     /**
@@ -21,7 +21,7 @@ trait DataTableHelpers
      * @param string $value
      * @return object
      */
-    public function getValue($value) {
+    public function getValue($value = null) {
         return $this->getValue;
     }
 
