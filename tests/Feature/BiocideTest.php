@@ -9,7 +9,8 @@ use Tests\BrowserKitTestCase;
 
 class BiocideTest extends BrowserKitTestCase
 {
-    private $usersURL = '/dashboard/biocides';
+    private $usersURL   = 'https://localhost/dashboard/biocides';
+    private $dashboard  = 'https://localhost/dashboard';
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ class BiocideTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createEditor())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 
@@ -42,7 +43,7 @@ class BiocideTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createUser())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 }

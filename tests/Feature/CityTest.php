@@ -9,7 +9,8 @@ use Tests\BrowserKitTestCase;
 
 class CityTest extends BrowserKitTestCase
 {
-    private $usersURL = '/dashboard/cities';
+    private $usersURL = 'https://localhost/dashboard/cities';
+    private $dashboard  = 'https://localhost/dashboard';
 
     /*
     |--------------------------------------------------------------------------
@@ -34,7 +35,7 @@ class CityTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createEditor())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 
@@ -42,7 +43,7 @@ class CityTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createUser())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 }

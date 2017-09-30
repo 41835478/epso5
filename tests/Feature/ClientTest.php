@@ -9,8 +9,9 @@ use Tests\BrowserKitTestCase;
 
 class ClientTest extends BrowserKitTestCase
 {
-    private $usersURL = '/dashboard/clients';
-
+    private $usersURL = 'https://localhost/dashboard/clients';
+    private $dashboard  = 'https://localhost/dashboard';
+    
     /*
     |--------------------------------------------------------------------------
     | Access to client's page
@@ -34,7 +35,7 @@ class ClientTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createEditor())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 
@@ -42,7 +43,7 @@ class ClientTest extends BrowserKitTestCase
     {
         $response = $this->actingAs($this->createUser())
             ->visit($this->usersURL)
-            ->seePageIs('/dashboard')
+            ->seePageIs($this->dashboard)
             ->seeText(__('Your are not authorized to access this section'));
     }
 }
