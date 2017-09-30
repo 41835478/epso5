@@ -20,11 +20,12 @@ $factory->define(Edaphology::class, function (Faker\Generator $faker) {
 
     return [
         'plot_id'                                   => 1,
+        'client_id'                                 => 1,
         'edaphology_level'                          => rand(1, 2),
         'edaphology_lat'                            => $faker->latitude($min = 38, $max = 39),
         'edaphology_lng'                            => $faker->longitude($min = -0.94, $max = -0.95),
         'edaphology_name'                           => $faker->words($nb = 3, $asText = true),
-        'reference'                                 => $faker->swiftBicNumber,
+        'edaphology_reference'                      => $faker->swiftBicNumber,
         'edaphology_observations'                   => $faker->sentence($nbWords = 10, $variableNbWords = true),
         'edaphology_aggregate_stability'            => $percent,
         'edaphology_coarse_elements'                => $percent,

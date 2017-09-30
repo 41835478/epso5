@@ -15,6 +15,7 @@ class CreatePlotsTable extends Migration
     {
         Schema::create('plots', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->integer('user_id')->nullable()->comment("We need can add the user later...");
             $table->integer('client_id')->unsigned()->index();
             $table->integer('crop_id')->unsigned()->index();
             $table->string('crop_module', 20);
@@ -27,7 +28,6 @@ class CreatePlotsTable extends Migration
             $table->integer('country_id')->default(1)->unsigned()->index();
             $table->integer('region_id')->unsigned()->index();
             $table->integer('state_id')->unsigned()->index();
-            $table->integer('user_id')->nullable()->comment("We need can add the user later...");
             $table->integer('climatic_station_id')->unsigned()->index()->nullable();
             $table->decimal('climatic_station_distance', 12, 2)->nullable();
             $table->string('plot_name');
