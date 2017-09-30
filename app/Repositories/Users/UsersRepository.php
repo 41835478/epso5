@@ -76,23 +76,23 @@ class UsersRepository extends Repository {
      * @param   string   $table [Just in case we need to add de table name for avoid ambiguous row names]
      * @return  ajax
      */
-    public function dataTable(array $columns = ['*'], $id = null, $table = null)
+    public function dataTable(array $columns = ['*'], $table = null, $userNull = false, $value = null)
     {
         //Just in case we need to add de table name for avoid ambiguous row names
         $table = $table ? $table . '.' : '';
         //The query
         $query = $this->model->select($columns);
             //The filters
-            return $this->filter($query, $table);
+            return $this->customFilterByRole($query, $table);
     }
 
     /**
-     * Filter by role and empty users
+     * customFilterByRole by role and empty users
      * @param   object   $query
      * @param   string   $table
      * @return  ajax
      */
-    private function filter($query, $table)
+    protected function customFilterByRole($query, $table)
     {
         return $query->when(Credentials::maxRole() === 'god', function ($query) {
             return $query;
