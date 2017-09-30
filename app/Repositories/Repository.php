@@ -23,14 +23,15 @@ abstract class Repository
     /**
      * Prepare the database query for the yajra dataTable service
      * @param   string   $columns
-     * @param   string   $id [In case we need an extra variable to check with something...]
      * @param   string   $table [Just in case we need to add de table name for avoid ambiguous row names]
+     * @param   boolean  $userNull [Search for user null]
+     * @param   string   $value [In case we need an extra variable to check with something...]
      * @return  ajax
      */
-    public function dataTable(array $columns = ['*'], $id = null, $table = null)
+    public function dataTable(array $columns = ['*'], $table = null, $userNull = false, $value = null)
     {
         //_Traits/Role.php
-        return $this->filterByRole($this->model->select($columns), $table);
+        return $this->filterByRole($this->model->select($columns), $table, $userNull);
     }
 
     /**
