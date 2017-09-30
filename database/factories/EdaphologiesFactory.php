@@ -5,29 +5,39 @@ use App\Repositories\Edaphologies\Edaphology;
 /*
 |--------------------------------------------------------------------------
 | Factory for Edaphology
+    Sera necesario eliminar el seeder de las parcelas y crearlos desde aqui, como los perfiles
 |--------------------------------------------------------------------------
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Edaphology::class, function (Faker\Generator $faker) {
+    
+    $percent            = rand(1, 100);
+    $percentByPart[1]   = rand(10, 38);
+    $percentByPart[2]   = rand(1, (100 - $percentByPart[1]));
+    $percentByPart[3]   = 100 - $percentByPart[1] - $percentByPart[2];
+    $textures           = ['Arenoso', 'Franco arenoso', 'Franco limoso', 'Franco arenoso arcilloso', 'Arcilloso arenoso', 'Franco'];
+
     return [
-        'edaphology_name'            => $faker->company,
-        // 'edaphology_word'            => $faker->word,
-        // 'edaphology_words'           => $faker->words($nb = 3, $asText = false),
-        // 'edaphology_email'           => $faker->unique()->safeEmail,
-        // 'edaphology_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
-        // 'edaphology_phone'           => $faker->tollFreePhoneNumber,
-        // 'edaphology_reference'       => $faker->shuffle('ABCDEF0123456789'),
-        // 'edaphology_lat'             => $faker->latitude($min = -90, $max = 90),
-        // 'edaphology_lng'             => $faker->longitude($min = -180, $max = 180),
-        // 'edaphology_web'             => $faker->url,
-        // 'edaphology_number'          => $faker->swiftBicNumber,
-        // 'edaphology_randon_num'      => $faker->randomNumber($nbDigits = 4, $strict = false),
-        // 'edaphology_zip'             => $faker->postcode,
-        // 'edaphology_google'          => $faker->unique()->userName . '@gmail.com',
-        // 'edaphology_linkedin'        => 'http://linkedin.com/' . $faker->slug,
-        // 'edaphology_twitter'         => '@' . $faker->unique()->userName,
-        // 'edaphology_facebook'        => 'http://www.facebook.com/user/' . $faker->slug,
-        // 'edaphology_date'            => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'plot_id'                                   => 1,
+        'edaphology_level'                          => rand(1, 2),
+        'edaphology_lat'                            => $faker->latitude($min = 38, $max = 39),
+        'edaphology_lng'                            => $faker->longitude($min = -0.94, $max = -0.95),
+        'edaphology_name'                           => $faker->words($nb = 3, $asText = true),
+        'reference'                                 => $faker->swiftBicNumber,
+        'edaphology_observations'                   => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'edaphology_aggregate_stability'            => $percent,
+        'edaphology_coarse_elements'                => $percent,
+        'edaphology_sand'                           => $percentByPart[1],
+        'edaphology_silt'                           => $percentByPart[2],
+        'edaphology_clay'                           => $percentByPart[3],
+        'edaphology_ph'                             => rand(1, 14),
+        'edaphology_electric_conductivity'          => rand(100, 2500),
+        'edaphology_calcium_carbonate_equivalent'   => $percent,
+        'edaphology_active_lime'                    => $percent,
+        'edaphology_total_organic_matter'           => $percent,
+        'edaphology_organic_carbon'                 => $percent,
+        'edaphology_cation_exchange'                => $percent,
+        'edaphology_texture'                        => random_array($textures),
     ];
 });
