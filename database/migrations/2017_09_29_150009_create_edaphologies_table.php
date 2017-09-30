@@ -17,6 +17,7 @@ class CreateEdaphologiesTable extends Migration
             $table->increments('id')->unsigned();
             $table->integer('plot_id')->unsigned()->index();
             $table->integer('client_id')->unsigned()->index();
+            $table->integer('crop_id')->unsigned()->index();
             $table->integer('edaphology_level')->default(1)->comment('1 for primary sample. 2 for secundary sample');
             $table->decimal('edaphology_lat', 10, 6)->nullable();
             $table->decimal('edaphology_lng', 10, 6)->nullable();

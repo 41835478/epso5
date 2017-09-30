@@ -21,6 +21,7 @@ $factory->define(Edaphology::class, function (Faker\Generator $faker) {
     return [
         'plot_id'                                   => 1,
         'client_id'                                 => 1,
+        'crop_id'                                   => 1,
         'edaphology_level'                          => rand(1, 2),
         'edaphology_lat'                            => $faker->latitude($min = 38, $max = 39),
         'edaphology_lng'                            => $faker->longitude($min = -0.94, $max = -0.95),

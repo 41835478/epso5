@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Edaphologies\Traits;
 
+use App\Repositories\Crops\Crop;
 use App\Repositories\Plots\Plot;
 
 trait EdaphologiesRelationships {
@@ -12,12 +13,13 @@ trait EdaphologiesRelationships {
     |--------------------------------------------------------------------------
     */
 
+    public function crop()
+    {
+        return $this->belongsTo(Crop::class);
+    }
+
     public function plot()
     {
         return $this->belongsTo(Plot::class);
     }
-    // public function profile()
-    // {
-    //     return $this->hasOne(Profile::class);
-    // }
 }
