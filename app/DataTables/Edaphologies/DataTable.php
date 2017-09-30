@@ -26,10 +26,10 @@ class DataTable extends Repository
      */
     public function query()
     {
-        $filter = $this->getValue('id');
+        $plot = $this->getValue();
 
         $query = app(EdaphologiesRepository::class)
-            ->dataTable($columns = ['*'], $table = 'edaphologies', $userNull = false, $filter)
+            ->dataTable($columns = ['*'], $table = 'edaphologies', $userNull = false, $plot)
             ->select($this->section . '.*');
 
         return $this->applyScopes($query);
