@@ -57,12 +57,6 @@ class PlotsRepository extends Repository
         return false;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get all the active stations (climatic stations)
      * @return  array
@@ -73,5 +67,18 @@ class PlotsRepository extends Repository
             ->select('climatic_station_id')
             ->distinct()
             ->get();
+    }
+
+    /**
+     * Get all the results for a $field contents in the $items array
+     * @param   string      $columns
+     * @return  collection
+     */
+    public function listsByUser($user)
+    {
+        return $this->model
+            ->whereUserId($user)
+            ->pluck('id')
+            ->toArray();
     }
 }
