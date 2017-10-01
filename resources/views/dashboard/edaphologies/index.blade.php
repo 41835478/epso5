@@ -13,6 +13,11 @@
             @slot('dropdownItems', [
                 [Html::createLink($section, $role)], 
                 [Html::deleteLink()], 
+                [Html::newLink([
+                    'title' => icon('download', trans('buttons.pdf')),
+                    'route' => route('dashboard.user.' . $section . '.pdf'), 
+                    'class' => 'dropdown-item'
+                ])],
             ])
         @endRole
     @endcomponent
