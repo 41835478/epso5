@@ -7,7 +7,7 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
-            [sections($section . '.info') . ': ' . $plot->plot_name], 
+            [sections($section . '.info')], 
         ])
         @Role('admin')
             @slot('dropdownItems', [
@@ -19,6 +19,19 @@
 
     {{-- Search --}}
     @include(component_path('search'))
+
+    {{-- Plot data --}}
+    <div class="card mb-4">
+        <div class="card-block">
+            <h4 class="card-title">{{ trans_title('plots', 'singular') }}</h4>
+            <div class="row">
+                <div class="col-md-3"><b>{!! trans('persona.name') !!}</b>: {!! $plot->plot_name !!}</div>
+                <div class="col-md-3"><b>{!! trans_title('cities', 'singular') !!}</b>: {!! $plot->city->city_name !!}</div>
+                <div class="col-md-3"><b>{!! trans_title('crops', 'singular') !!}</b>: {!! $plot->crop->crop_name !!}</div>
+                <div class="col-md-3"><b>{!! trans_title('crop_varieties', 'singular') !!}</b>: {!! $plot->crop_variety->crop_variety_name !!}</div>
+            </div>
+        </div>
+    </div>
 
     {{-- DataTables --}}
     @include(component_path('dataTables'), ['tableFooter' => false])
