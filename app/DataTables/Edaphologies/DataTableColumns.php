@@ -116,8 +116,8 @@ trait DataTableColumns
     {
         //Columns groups
         $type     = [2];//Sample type
-        $group[1] = [1, 3, 4, 5, 6, 7];
-        $group[2] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+        $group[1] = [1, 3, 4, 5, 6];
+        $group[2] = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
         $group[3] = [last($group[2]) + 1];//Action
         //Results
         return [
