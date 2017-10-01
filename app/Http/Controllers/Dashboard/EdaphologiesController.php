@@ -20,7 +20,7 @@ class EdaphologiesController extends DashboardController
     /**
      * @var private
      */
-    private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
+    private $legend     = 'edaphologies';
     private $parent     = 'plots';
     private $role       = 'admin';
     private $section    = 'edaphologies';
@@ -31,13 +31,11 @@ class EdaphologiesController extends DashboardController
         $this->table        = $table;
         //Sharing in the view
         view()->share([
-            //'legend'   => $this->legend,
-            'parent'   => $this->parent,
+            'legend'    => $this->legend,
+            'parent'    => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**

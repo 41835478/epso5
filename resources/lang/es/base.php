@@ -7,20 +7,22 @@ return [
     | General lines
     |--------------------------------------------------------------------------
     */
-    'advice'        => 'Consejo(s)',
-    'code'          => 'Código identificador',
-    'create'        => 'Crear',
-    'description'   => 'Descripción',
-    'edit'          => 'Editar',
-    'form'          => 'Formulario',
-    'ine'           => 'Código INE',
-    'key'           => 'Clave',
-    'legend'        => 'Información y/o leyenda',
-    'list'          => 'Listado',
-    'module'        => 'Módulo',
-    'reference'     => 'Referencia',
-    'type'          => 'Tipo',
-    'tools'         => 'Herramientas',
+    'advice'          => 'Consejo(s)',
+    'code'            => 'Código identificador',
+    'create'          => 'Crear',
+    'description'     => 'Descripción',
+    'description:min' => 'Descrip',
+    'edit'            => 'Editar',
+    'form'            => 'Formulario',
+    'ine'             => 'Código INE',
+    'key'             => 'Clave',
+    'legend'          => 'Información y/o leyenda',
+    'list'            => 'Listado',
+    'module'          => 'Módulo',
+    'reference'       => 'Referencia',
+    'reference:min'   => 'Ref',
+    'type'            => 'Tipo',
+    'tools'           => 'Herramientas',
 
     /*
     |--------------------------------------------------------------------------
