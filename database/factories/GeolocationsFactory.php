@@ -17,8 +17,8 @@ $factory->define(Geolocation::class, function (Faker\Generator $faker) {
             $faker->randomNumber($nbDigits = 6, $strict = false);
 
     return [
-        'geo_lat'                   => $faker->latitude($min = -90, $max = 90),
-        'geo_lng'                   => $faker->longitude($min = -180, $max = 180),
+        'geo_lat'                   => $faker->latitude($min = 38, $max = 39),
+        'geo_lng'                   => $faker->longitude($min = -0.94, $max = -0.95),
         'geo_x'                     => rand(1000, 10000),
         'geo_y'                     => rand(1000, 10000),
         'geo_bbox'                  => $bbox,
