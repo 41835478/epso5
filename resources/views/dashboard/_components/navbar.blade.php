@@ -52,10 +52,6 @@
                 'url' => route('dashboard.admin.climatics.index'),
             ])
             ->line()
-            ->subMenuItem([
-                'title' => icon('alert', trans('navbar.admin:errors')),
-                'url' => route('dashboard.god.errors'),
-            ])
             ->output()
         )
 
@@ -83,6 +79,10 @@
                 'url' => route('dashboard.user.tools.role', 3),
             ])
             ->line()
+            ->subMenuItem([
+                'title' => icon('alert', trans('navbar.admin:errors')),
+                'url' => route('dashboard.god.errors'),
+            ])
             ->subMenuItem([
                 'title' => icon('alert', 'Tests'),
                 'url' => route('dashboard.admin.test'),
