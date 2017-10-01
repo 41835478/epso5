@@ -32,4 +32,22 @@ class EdaphologiesRepository extends Repository
             //The filters
             return $this->filterByRole($query, $table, $userNull);
     }
+
+    /**
+     * List of edaphologies for a plot
+     *
+     * @param  int    $plot
+     * @return \Illuminate\Http\Response
+     */
+    public function coordenates($plot)
+    {
+        return $this->model
+            ->where('plot_id', $plot)
+            ->orderBy('edaphology_level', 'asc')
+            ->get()
+            ->map(function($value){
+                return [$value->edaphology_reference, $value->edaphology_lat, $value->edaphology_lng];
+            })
+            ->toArray();
+    }
 }

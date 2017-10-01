@@ -54,11 +54,13 @@ class EdaphologiesController extends DashboardController
         if(!Credentials::authorize($plot)) {
             return Credentials::accessError();
         }
+            //Get coordenates from all the samples
+            $coordenates = $this->controller->coordenates($id);
             //Get the table
             return $this->table
                 //Customize the action for datatables [dashboard/_components/actions]
                 ->setValue($plot)
-                ->render(dashboard_path($this->section . '.index'), compact('plot'));
+                ->render(dashboard_path($this->section . '.index'), compact('coordenates', 'plot'));
     }
 
     /**

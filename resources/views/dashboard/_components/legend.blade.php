@@ -7,4 +7,6 @@
             </div>
         </div>
     </div>
+    {{-- Add custom float right content --}}
+    {!! $legendCustom ?? null !!}
 </div>
