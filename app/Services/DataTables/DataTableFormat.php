@@ -107,8 +107,11 @@ trait DataTableFormat
      */
     private function reduceString($text)
     {
-        $text_reduce = str_limit($text, $this->textLength);
-            return sprintf('<span data-toggle="tooltip" data-placement="%s" title="%s" data-animation="false">%s<span>', $this->placement, $text, $text_reduce);
+        if(strlen($text) > $this->textLength) {
+            $text_reduce = str_limit($text, $this->textLength);
+                return sprintf('<span data-toggle="tooltip" data-placement="%s" title="%s" data-animation="false">%s<span>', $this->placement, $text, $text_reduce);
+        }
+        return $text;
     }
 
     /*
