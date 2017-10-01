@@ -18,7 +18,7 @@ return [
     */
     'sample' => [
         'aggregate'             => 'Estabilidad agregados (%)',
-        'aggregate:min'         => 'Est Ag',
+        'aggregate:min'         => 'Agreg',
         'clay'                  => 'Arcilla (%)',
         'clay:min'              => 'Arcilla',
         'carbonate'             => 'CaCO3 Equivalente (%)',
