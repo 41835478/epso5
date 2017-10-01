@@ -7,7 +7,7 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
-            [trans_title('plots', 'singular') . ': ' . $plot->plot_name], 
+            [sections($section . '.info') . ': ' . $plot->plot_name], 
         ])
         @Role('admin')
             @slot('dropdownItems', [

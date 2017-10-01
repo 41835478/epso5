@@ -18,9 +18,26 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumnWithRelationship(trans_title('crops'), 'crop.crop_name'),
-            $this->setColumnWithRelationship(trans_title('plots', 'single'), 'plot.plot_name'),
-            $this->setColumn(sections('edaphologies.sample.name'), 'edaphology_name'),
-            $this->setColumn(sections('edaphologies.sample.type'), 'edaphology_level'),
+            $this->setColumn(trans('base.type'), 'edaphology_level'),
+            $this->setColumn(sections('edaphologies.sample.name'), 'edaphology_name', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('base.reference'), 'edaphology_reference', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('geolocations.lat'), 'edaphology_lat', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('geolocations.lng'), 'edaphology_lng', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('base.description'), 'edaphology_observations', [
+                'defaultContent' => no_result(),
+            ]),
+
+            $this->setColumn(sections('edaphologies.sample.aggregate:min'), 'edaphology_aggregate_stability', [
+                'defaultContent' => no_result(),
+            ]),
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,
             //      'searchable' => false,
@@ -42,16 +59,21 @@ trait DataTableColumns
      */
     protected function setColumnsGroups() : array
     {
+        //Columns groups
+        $group[1] = [1, 2, 3, 4, 5, 6, 7];
+        $group[2] = [8];
+        $group[3] = [implode('', $group[2]) + 1];//Action
+        //Results
         return [
             //$this->createColumnsGroupsAll(),
-            // $this->createColumnsGroups(icon('user', trans('tables.button:personal')), [
-            //     'show' => [0, 2, 3, 4, 5, 6],
-            //     'hide' => [1, 7, 8, 9],
-            // ]),
-            // $this->createColumnsGroups(icon('social', trans('tables.button:social')), [
-            //     'show' => [0, 7, 8, 9],
-            //     'hide' => [1, 2, 3, 4, 5, 6],
-            // ]),
+            $this->createColumnsGroups(icon('plots', trans('tables.button:plot')), [
+                'show' => array_merge($group[1], $group[3]),
+                'hide' => $group[2],
+            ]),
+            $this->createColumnsGroups(icon('file', trans('tables.button:data')), [
+                'show' => array_merge($group[2], $group[3]),
+                'hide' => $group[1],
+            ]),
         ];
     }
 }

@@ -19,6 +19,7 @@ return [
     'list'          => 'Listado',
     'module'        => 'Módulo',
     'reference'     => 'Referencia',
+    'type'          => 'Tipo',
     'tools'         => 'Herramientas',
 
     /*

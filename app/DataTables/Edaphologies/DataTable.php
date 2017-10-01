@@ -31,7 +31,8 @@ class DataTable extends Repository
         $query = app(EdaphologiesRepository::class)
             ->dataTable($columns = ['*'], $table = 'edaphologies', $userNull = false, $plot)
             ->select($this->section . '.*')
-            ->with('crop', 'plot');
+            ->with('crop')
+            ->orderBy('edaphology_level', 'ASC');
 
         return $this->applyScopes($query);
     }
@@ -44,10 +45,17 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'edaphology_observations'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
+            })
+            ->editColumn('edaphology_level', function($data) {
+                return sections('edaphologies.sample.type.' . $data->edaphology_level);
+            })
+            ->editColumn('edaphology_observations', function($data) {
+                return $this->textLength(30)
+                    ->formatString($data->edaphology_observations ?? null);
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);

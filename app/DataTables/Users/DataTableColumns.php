@@ -45,12 +45,12 @@ trait DataTableColumns
         return [
             $this->createColumnsGroupsAll(),
             $this->createColumnsGroups(icon('user', trans('tables.button:personal')), [
-                'show' => [0, 2, 3, 4, 5, 6],
-                'hide' => [1, 7, 8, 9],
+                'show' => [1, 2, 3, 4, 5, 6],
+                'hide' => [7, 8, 9],
             ]),
             $this->createColumnsGroups(icon('social', trans('tables.button:social')), [
-                'show' => [0, 7, 8, 9],
-                'hide' => [1, 2, 3, 4, 5, 6],
+                'show' => [1, 7, 8, 9],
+                'hide' => [2, 3, 4, 5, 6],
             ]),
         ];
     }
