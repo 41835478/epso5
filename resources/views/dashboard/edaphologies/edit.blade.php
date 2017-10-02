@@ -7,7 +7,8 @@
         {{-- Breadcrumb items [title, link] --}}
         @slot('breadcrumbItems', [
             [trans_title($parent), route('dashboard.user.' . $parent . '.index')],
-            [trans('base.edit') . ' ' . trans_title($section, 'singular') . ': ' . $data->plot->plot_name], 
+            [sections('plots.title') . ': ' . $data->plot->plot_name, route('dashboard.user.' . $section . '.show', $data->plot_id)],
+            [trans('base.edit') . ' - Ref: ' . $data->edaphology_reference], 
         ])
         {{-- Add the data --}}
         @slot('data', $data)

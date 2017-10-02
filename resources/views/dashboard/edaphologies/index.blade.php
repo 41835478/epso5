@@ -11,7 +11,7 @@
         ])
         @Role('admin')
             @slot('dropdownItems', [
-                [Html::createLink($section, $role)], 
+                [Html::createLink($section, $role, $plot->id)], 
                 [Html::deleteLink()], 
                 [Html::newLink([
                     'title' => icon('download', trans('buttons.pdf')),

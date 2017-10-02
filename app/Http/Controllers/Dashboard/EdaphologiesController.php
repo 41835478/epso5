@@ -16,6 +16,7 @@ class EdaphologiesController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $plots;
     protected $table;
     /**
      * @var private
@@ -25,9 +26,10 @@ class EdaphologiesController extends DashboardController
     private $role       = 'admin';
     private $section    = 'edaphologies';
 
-    public function __construct(EdaphologiesRepository $controller, DataTable $table)
+    public function __construct(EdaphologiesRepository $controller, DataTable $table, PlotsRepository $plots)
     {
         $this->controller   = $controller;
+        $this->plots        = $plots;
         $this->table        = $table;
         //Sharing in the view
         view()->share([
@@ -43,10 +45,10 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id, PlotsRepository $plotsRepository)
+    public function show($id)
     {
         //Plot data
-        $plot = $plotsRepository->find($id);
+        $plot = $this->plots->find($id);
         //Filter by user throw plot table 
         //because edaphology has no user_id 
         //because is no mandatory to add user to plot...  
@@ -70,7 +72,7 @@ class EdaphologiesController extends DashboardController
      */
     public function create($id)
     {
-        $plot = $plot->find($id);
+        $plot = $this->plots->find($id);
             return view(dashboard_path($this->section . '.create'), compact('plot'));
     }
 
