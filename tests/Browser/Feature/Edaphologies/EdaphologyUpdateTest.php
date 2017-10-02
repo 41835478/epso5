@@ -12,7 +12,8 @@ class EdaphologyUpdateTest extends DuskTestCase
 {
     use EdaphologyHelpers;
     
-    protected $route = 'dashboard.admin.edaphologies.edit';
+    protected $route        = 'dashboard.admin.edaphologies.edit';
+    protected $dashboard    = '/dashboard';
 
     /*
     |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ class EdaphologyUpdateTest extends DuskTestCase
                 ->type('edaphology_lng', $this->makeEdaphology()->edaphology_lng)
                 ->type('edaphology_reference', $this->makeEdaphology()->edaphology_reference)
                 ->type('edaphology_name', $this->makeEdaphology()->edaphology_name)
+                ->type('edaphology_observations', $this->makeEdaphology()->edaphology_observations)
                 ->type('edaphology_ph', $this->makeEdaphology()->edaphology_ph)
                 ->type('edaphology_aggregate_stability', $this->makeEdaphology()->edaphology_aggregate_stability)
                 ->type('edaphology_calcium_carbonate_equivalent', $this->makeEdaphology()->edaphology_calcium_carbonate_equivalent)
@@ -48,6 +50,8 @@ class EdaphologyUpdateTest extends DuskTestCase
 
         $this->assertDatabaseHas('edaphologies', [
             'edaphology_level'                          => $this->makeEdaphology()->edaphology_level,
+            'edaphology_name'                           => $this->makeEdaphology()->edaphology_name,
+            'edaphology_observations'                   => $this->makeEdaphology()->edaphology_observations,
             'edaphology_lat'                            => $this->makeEdaphology()->edaphology_lat,
             'edaphology_lng'                            => $this->makeEdaphology()->edaphology_lng,
             'edaphology_reference'                      => $this->makeEdaphology()->edaphology_reference,
@@ -65,5 +69,34 @@ class EdaphologyUpdateTest extends DuskTestCase
             'edaphology_clay'                           => $this->makeEdaphology()->edaphology_clay,
             'edaphology_silt'                           => $this->makeEdaphology()->edaphology_silt,
         ]);
+    }
+
+    public function test_admin_can_update_edaphology()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($admin = $this->createAdmin())
+                ->visitRoute($this->route, $this->lastEdaphology()->id)
+                ->assertInputValue('edaphology_observations', $this->lastEdaphology()->edaphology_observations);
+        });
+    }
+
+    public function test_editor_cant_update_edaphology()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($editor = $this->createEditor())
+                ->visitRoute($this->route, $this->lastEdaphology()->id)
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
+        });
+    }
+
+    public function test_user_cant_update_edaphology()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = $this->createUser())
+                ->visitRoute($this->route, $this->lastEdaphology()->id)
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
+        });
     }
 }
