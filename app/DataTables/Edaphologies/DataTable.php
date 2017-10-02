@@ -46,7 +46,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox', 'edaphology_description', 'edaphology_name', 'edaphology_texture', 'edaphology_reference'])
+            ->rawColumns(['action', 'checkbox', 'edaphology_observations', 'edaphology_name', 'edaphology_texture', 'edaphology_reference'])
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
@@ -63,8 +63,8 @@ class DataTable extends Repository
             ->editColumn('edaphology_reference', function($data) {
                 return $this->formatString($data->edaphology_reference ?? null);
             })
-            ->editColumn('edaphology_description', function($data) {
-                return $this->formatString($data->edaphology_description ?? null);
+            ->editColumn('edaphology_observations', function($data) {
+                return $this->formatString($data->edaphology_observations ?? null);
             })
             ->editColumn('edaphology_texture', function($data) {
                 return $this->formatString($data->edaphology_texture ?? null);
