@@ -122,7 +122,7 @@ class EdaphologiesController extends DashboardController
         $update = $this->controller->store($id);
             return $update 
                 ? redirect()
-                    ->route('dashboard.user.' . $this->section . '.show', $id)
+                    ->route('dashboard.user.' . $this->section . '.show', request('plot_id'))
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

@@ -35713,6 +35713,7 @@ if ($('.number')) {
         //Default variables
         var number = $(this).val();
         var max = $(this).attr('max');
+        var maxDecimals = $(this).attr('maxDecimals') || window._max_decimals;
         //Decimal notation with dot (not comma)
         number = number.replace(',', '.');
         //Only numerics values are allowed
@@ -35723,7 +35724,7 @@ if ($('.number')) {
         //The current decimals
         var currentDecimals = __WEBPACK_IMPORTED_MODULE_1__helpers_numbers_js__["a" /* default */].total_decimals(number);
         //Verify the decimals
-        if (currentDecimals > window._max_decimals) {
+        if (currentDecimals > maxDecimals) {
             //chop off the last char entered
             number = number.slice(0, -1);
         }

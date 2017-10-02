@@ -14,6 +14,7 @@
     {!! BootForm::text(trans('geolocations.lat'), 'edaphology_lat')
         ->addGroupClass('col-md-2')
         ->addClass('number')
+        ->maxDecimals(6)
         ->required()
     !!}
 
@@ -21,6 +22,7 @@
     {!! BootForm::text(trans('geolocations.lng'), 'edaphology_lng')
         ->addGroupClass('col-md-2')
         ->addClass('number')
+        ->maxDecimals(6)
         ->required()
     !!}
 
@@ -33,16 +35,6 @@
     {!! BootForm::text(sections('edaphologies.sample.name'), 'edaphology_name')
         ->addGroupClass('col-md-4')
     !!}
-    
-    {{-- Only for create... no need for edit --}}
-    @if(isset($plot))
-        {{-- Field: plot id --}}
-        {!! BootForm::hidden('plot_id')->value($plot->id ?? null) !!}
-        {{-- Field: crop id --}}
-        {!! BootForm::hidden('crop_id')->value($plot->crop_id ?? null) !!}
-        {{-- Field: client id --}}
-        {!! BootForm::hidden('client_id')->value($plot->client_id ?? null) !!}
-    @endif
 </div>
 
 <div class="row">
@@ -54,3 +46,10 @@
     !!}
     <div class="ml-3" id="textareaAlert-edaphology_observations"></div>
 </div>
+
+{{-- Field: plot id --}}
+{!! BootForm::hidden('plot_id')->value($plot->id ?? null) !!}
+{{-- Field: crop id --}}
+{!! BootForm::hidden('crop_id')->value($plot->crop_id ?? null) !!}
+{{-- Field: client id --}}
+{!! BootForm::hidden('client_id')->value($plot->client_id ?? null) !!}

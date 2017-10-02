@@ -60,6 +60,7 @@
             //Default variables
             var number = $( this ).val();
             var max = $( this ).attr( 'max' );
+            var maxDecimals = $( this ).attr( 'maxDecimals' ) || window._max_decimals;
             //Decimal notation with dot (not comma)
             number = number.replace( ',', '.' );
             //Only numerics values are allowed
@@ -70,7 +71,7 @@
             //The current decimals
             var currentDecimals = numbers.total_decimals( number );
             //Verify the decimals
-            if ( currentDecimals > window._max_decimals ) {
+            if ( currentDecimals > maxDecimals ) {
                 //chop off the last char entered
                 number = number.slice( 0, -1 );
             }
