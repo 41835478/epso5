@@ -35802,6 +35802,17 @@ if ($('.number')) {
     });
 }
 
+/** 
+* Number in american format
+*/
+if ($('.numeric')) {
+    $('.numeric').keyup(function () {
+        //Default variables
+        var number = $(this).val();
+        return $(this).val(number.replace(',', '.'));
+    });
+}
+
 /**
  * Add required class if the required field is activated
  */
