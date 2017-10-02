@@ -22,11 +22,8 @@
         @endRole
     @endcomponent
 
-    {{-- Search --}}
-    @include(component_path('search'))
-
     {{-- Plot data --}}
-    <div class="card mb-4">
+    <div class="card mb-4 card-inverse card-danger">
         <div class="card-block">
             <h4 class="card-title">{{ trans_title('plots', 'singular') }}</h4>
             <div class="row">
