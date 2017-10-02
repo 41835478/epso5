@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'info'              => 'Información edafológica (suelo)',
+    'info:sample'       => 'Toma de muestras',
     'title'             => 'Edafológica',
     'title:plural'      => 'Edafológicos',
 
