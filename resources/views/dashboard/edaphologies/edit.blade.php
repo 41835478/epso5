@@ -12,8 +12,6 @@
         ])
         {{-- Add the data --}}
         @slot('data', $data)
-        {{-- Add other slot --}}
-        @slot('clients', $clients ?? [])
     @endcomponent
 
 @endsection

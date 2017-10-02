@@ -37,7 +37,7 @@ trait DataTableColumns
                 'defaultContent' => no_result(),
                 'orderable' => false,
             ]),
-            $this->setColumn(trans('base.description:min'), 'edaphology_observations', [
+            $this->setColumn(trans('base.observations:min'), 'edaphology_observations', [
                 'defaultContent' => no_result(),
                 'orderable' => false,
             ]),

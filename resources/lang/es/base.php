@@ -19,6 +19,8 @@ return [
     'legend'          => 'Información y/o leyenda',
     'list'            => 'Listado',
     'module'          => 'Módulo',
+    'observations'    => 'Observaciones',
+    'observations:min'=> 'Observ',
     'reference'       => 'Referencia',
     'reference:min'   => 'Ref',
     'type'            => 'Tipo',

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Dashboard;
 use App\DataTables\Edaphologies\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\EdaphologiesRequest;
-use App\Repositories\Clients\ClientsRepository;
 use App\Repositories\Edaphologies\EdaphologiesRepository;
 use App\Repositories\Plots\PlotsRepository;
 use Credentials;
@@ -71,11 +70,10 @@ class EdaphologiesController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id, ClientsRepository $clients)
+    public function create($id)
     {
         $plot = $this->plots->find($id);
-        $clients = $clients->listOfClientsByRole();
-            return view(dashboard_path($this->section . '.create'), compact('clients', 'plot'));
+            return view(dashboard_path($this->section . '.create'), compact('plot'));
     }
 
     /**

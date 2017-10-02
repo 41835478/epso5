@@ -11,7 +11,7 @@
             [trans('base.create')], 
         ])
         {{-- Add other slot --}}
-        @slot('clients', $clients ?? [])
+        @slot('plot', $plot ?? [])
     @endcomponent
 
 @endsection

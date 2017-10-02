@@ -26,6 +26,14 @@
         ->required() 
     !!}
 
+    {{-- textarea --}}
+    {!! BootForm::textarea(trans('base.observations'), 'edaphology_observations')
+        ->addGroupClass('col-md-12')
+        ->rows(5)
+        ->maxlength(250)
+    !!}
+    <div class="ml-3" id="textareaAlert-edaphology_observations"></div>
+
     {{-- Field: Conditional role --}}
     {{-- @Role('admin')
         //
