@@ -13,16 +13,14 @@
     {{-- Field: Edaphology latitude --}}
     {!! BootForm::text(trans('geolocations.lat'), 'edaphology_lat')
         ->addGroupClass('col-md-2')
-        ->addClass('number')
-        ->maxDecimals(6)
+        ->addClass('numeric')
         ->required()
     !!}
 
     {{-- Field: Edaphology longitude --}}
     {!! BootForm::text(trans('geolocations.lng'), 'edaphology_lng')
         ->addGroupClass('col-md-2')
-        ->addClass('number')
-        ->maxDecimals(6)
+        ->addClass('numeric')
         ->required()
     !!}
 
