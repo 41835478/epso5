@@ -15,13 +15,10 @@
      * 
      * @return  string
      */
-    Form::macro('imputGroup', function($value = null, $fieldName, $icon, $class = null, $required = true)
+    Form::macro('imputGroup', function($value = null, $fieldName, $icon, $class = null, $status = 'required')
     {
-        //Default values 
-        $required = $required ? 'required="required"' : '';
-        $class = $class ? ' ' . $class : '';
         //Html fields
-        $input  = sprintf('<input type="text" name="%s" value="%s" id="%s" class="form-control%s"%s>', $fieldName, $value, $fieldName, $class, $required);
+        $input  = sprintf('<input type="text" name="%s" value="%s" id="%s" class="form-control%s"%s>', $fieldName, $value, $fieldName, formClass($class), formStatus($status));
         $span   = sprintf('<span class="input-group-addon">%s</span>', $icon);
         //Generate the input-group
         return sprintf('<div class="input-group">%s%s</div>', $input, $span);
@@ -36,17 +33,16 @@
      * 
      * @return  string
      */
-    Form::macro('createSelect', function($data, $optionsValues = [], $fieldName, $required = true)
+    Form::macro('createSelect', function($data, $optionsValues = [], $fieldName, $status = 'required')
     {
         //Default values
         $options = '';
-        $required = $required ? 'required="required"' : '';
         //Create all the options
         foreach($optionsValues as $key => $value) {
             $options .= macro_optionSelected($data->{$fieldName} ?? null, $key, $value);
         }
         //Generate the select
-        return sprintf('<select name="%s" id="%s" class="form-control"%s><option></option>%s</select>', $fieldName, $fieldName, $required, $options);
+        return sprintf('<select name="%s" id="%s" class="form-control"%s><option></option>%s</select>', $fieldName, $fieldName, formStatus($status), $options);
     });
 
     /**
@@ -57,14 +53,10 @@
      * 
      * @return  string
      */
-    /**
-     * Helper: checkbox container html5
-     * @return string
-     */
     if (!function_exists('macro_optionSelected')) {
         function macro_optionSelected($databaseValue, $value = null, $title = null)
         {
-            $selected = ($databaseValue == $value) ? ' selected' : '';
+            $selected = ($databaseValue == $value) ? formStatus($status = 'selected') : '';
                 return sprintf('<option data-title="%s" value="%s"%s>%s</option>', $title, $value, $selected, $title);
         }
     }
@@ -91,7 +83,7 @@
         //Validate the data
         if(!is_null($data)) {
             if(in_array($id, $data->{$relationship}->pluck('id')->all())) {
-                $checked = ' checked="checked"';
+                $checked = formStatus($status = 'checked');
             }
         }
             //Return the checkbox
