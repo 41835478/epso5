@@ -15,7 +15,7 @@
                 [Html::deleteLink()], 
                 [Html::newLink([
                     'title' => icon('download', trans('buttons.pdf')),
-                    'route' => route('dashboard.user.' . $section . '.pdf'), 
+                    'route' => route('dashboard.user.' . $section . '.download', $plot->id), 
                     'class' => 'dropdown-item'
                 ])],
             ])

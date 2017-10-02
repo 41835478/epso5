@@ -38,6 +38,7 @@ return [
         'silt:min'              => 'Limo',
         'texture'               => 'Textura',
         'texture:min'           => 'Textura',
+        'title'                 => 'Muestra',
         'type' => [
             1 => 'Primaria',
             2 => 'Secundaria',

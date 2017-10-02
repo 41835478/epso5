@@ -1,6 +1,6 @@
 <html lang="es">
     <head>
-        @include('components.headers')
+        @include(component_path('headers'))
     </head>
 
     <body>
@@ -18,9 +18,6 @@
         
         {{-- Application container --}}
         </div>
-
-        {{-- Footer --}}
-        @include('components.footer')
-
+        
     </body>
 </html>

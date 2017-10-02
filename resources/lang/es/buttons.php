@@ -24,6 +24,7 @@ return [
     'geolocate'     => 'Geolocalizar',
     'hide'          => 'Ocultar',
     'new'           => trans('base.create'),
+    'pdf'           => 'PDF',
     'print'         => 'Imprimir',
     'register'      => 'Registrar',
     'reset'         => 'Resetear',

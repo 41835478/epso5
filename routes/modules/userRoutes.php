@@ -7,6 +7,7 @@ Route::group([
     ], function () {
         //Edaphologies 
         Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['show']]);
+        Route::get('edaphologies/download/{id}', 'Dashboard\EdaphologiesDownloadController')->name('edaphologies.download');
         //Routes for the GOD tools
         Route::get('tools/role/{id}', 'Dashboard\God\ToolsController@role')->name('tools.role');
 

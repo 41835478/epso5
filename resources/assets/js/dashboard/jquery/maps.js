@@ -25,7 +25,6 @@ if( typeof( L ) !== 'undefined' && lat && lng) {
             marker = new L.marker([coordenates[i][1], coordenates[i][2]])
                 .bindPopup("Referencia: " + coordenates[i][0] + "<br>" + "Latitud: " + coordenates[i][1] + "<br>" + "Longitud: " + coordenates[i][2])
                 .addTo(map);
-            console.log(marker);
         }
     } else {
         //Generate the marker
