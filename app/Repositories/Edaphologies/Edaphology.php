@@ -49,6 +49,7 @@ class Edaphology extends Model  {
         'edaphology_calcium_carbonate_equivalent', 
         'edaphology_active_lime', 
         'edaphology_total_organic_matter', 
+        'edaphology_organic_carbon',
         'edaphology_cation_exchange'
     ];
 
