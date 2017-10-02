@@ -12,7 +12,6 @@ use App\Repositories\Edaphologies\Edaphology;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Edaphology::class, function (Faker\Generator $faker) {
     
-    $percent            = rand(1, 100);
     $percentByPart[1]   = rand(10, 38);
     $percentByPart[2]   = rand(1, (100 - $percentByPart[1]));
     $percentByPart[3]   = 100 - $percentByPart[1] - $percentByPart[2];
@@ -28,18 +27,18 @@ $factory->define(Edaphology::class, function (Faker\Generator $faker) {
         'edaphology_name'                           => $faker->words($nb = 3, $asText = true),
         'edaphology_reference'                      => $faker->swiftBicNumber,
         'edaphology_observations'                   => $faker->sentence($nbWords = 10, $variableNbWords = true),
-        'edaphology_aggregate_stability'            => $percent,
-        'edaphology_coarse_elements'                => $percent,
+        'edaphology_aggregate_stability'            => rand(1, 100),
+        'edaphology_coarse_elements'                => rand(1, 100),
         'edaphology_sand'                           => $percentByPart[1],
         'edaphology_silt'                           => $percentByPart[2],
         'edaphology_clay'                           => $percentByPart[3],
         'edaphology_ph'                             => rand(1, 14),
         'edaphology_electric_conductivity'          => rand(100, 2500),
-        'edaphology_calcium_carbonate_equivalent'   => $percent,
-        'edaphology_active_lime'                    => $percent,
-        'edaphology_total_organic_matter'           => $percent,
-        'edaphology_organic_carbon'                 => $percent,
-        'edaphology_cation_exchange'                => $percent,
+        'edaphology_calcium_carbonate_equivalent'   => rand(1, 100),
+        'edaphology_active_lime'                    => rand(1, 100),
+        'edaphology_total_organic_matter'           => rand(1, 100),
+        'edaphology_organic_carbon'                 => rand(1, 100),
+        'edaphology_cation_exchange'                => rand(1, 100),
         'edaphology_texture'                        => random_array($textures),
     ];
 });
