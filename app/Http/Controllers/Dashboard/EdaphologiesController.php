@@ -87,7 +87,7 @@ class EdaphologiesController extends DashboardController
         $create = $this->controller->store();
             return $create 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.user.' . $this->section . '.show', request('plot_id'))
                     ->withStatus(__('The item has been create successfuly'))
                 : redirect()
                     ->back()
@@ -122,7 +122,7 @@ class EdaphologiesController extends DashboardController
         $update = $this->controller->store($id);
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->route('dashboard.user.' . $this->section . '.show', $id)
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()
