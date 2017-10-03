@@ -13,8 +13,8 @@ class Agreement
      */
     protected $allowedRoutes = [
         //Don't change it, because we use its position [0] in the handle method ($redirecTo). 
-        'dashboard.agreement.edit',
-        'dashboard.agreement.update'
+        'dashboard.user.agreements.edit',
+        'dashboard.user.agreements.update'
     ];
 
     /**

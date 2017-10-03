@@ -13,10 +13,18 @@ class AgreementsController extends DashboardController
      * @var protected
      */
     protected $controller;
+    private $section    = 'agreements';
+    private $role       = 'user';
+
 
     public function __construct(UsersRepository $controller)
     {
         $this->controller   = $controller;
+        //Sharing in the view
+        view()->share([
+            'section'   => $this->section,
+            'role'      => $this->role
+        ]);
     }
 
     /**
@@ -24,9 +32,10 @@ class AgreementsController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return 'Accept the conditions';
+        return view(dashboard_path($this->section . '.edit'))
+            ->withData($this->controller->find($id));
     }
 
     /**

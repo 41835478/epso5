@@ -2,6 +2,8 @@
 
 return [
 
+    'title' => 'Condiciones legales',
+
     /*
     |--------------------------------------------------------------------------
     | User conditions
@@ -20,9 +22,9 @@ return [
         2. Sobre este sitio web
 
         En cumplimiento con el deber de información recogido en artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y 
-        del Comercio Electrónico a continuación se declara ' . Application::app('name') .', en adelante PRESTADOR, como un sitio web profesional gestionado por 
-        ' . Application::company('name_ext') . ' con D.N.I./C.I.F. ' . Application::company('cif') . ', con domicilio en ' . Application::company('address_ext') . ' 
-        y con email ' . Application::company('email') . '.
+        del Comercio Electrónico a continuación se declara :ApplicationName, en adelante PRESTADOR, como un sitio web profesional gestionado por 
+        :ApplicationOwnerName con D.N.I./C.I.F. :ApplicationOwnerNif, con domicilio en :ApplicationOwnerAddress 
+        y con email :ApplicationOwnerEmail.
         
         3. Responsabilidad
 
@@ -31,7 +33,7 @@ return [
 
         El PRESTADOR se exime de cualquier tipo de responsabilidad derivada de la información publicada en su sitio web y por la falta de disponibilidad (caídas) 
         del sitio el cual efectuará además paradas periódicas por mantenimientos técnicos, del mismo modo, el visitante explícitamente acepta declinar cualquier responsabilidad, 
-        por parte del prestador del servicio, derivada del acceso o uso de ' . Application::app('name') .'.
+        por parte del prestador del servicio, derivada del acceso o uso de :ApplicationName.
 
         Además, el PRESTADOR se reserva el derecho a modificar cualquier tipo de información que pudiera aparecer en el sitio web, sin que exista obligación de aviso previo, 
         o poner en conocimiento de los usuarios dichas obligaciones, entendiéndose como suficiente con la publicación en el sitio web del PRESTADOR.
@@ -84,7 +86,7 @@ return [
 
             - Las cookies utilizadas en el sitio web tienen, en todo caso, carácter temporal con la única finalidad de hacer más eficaz su transmisión ulterior.
             - En ningún caso se utilizarán las cookies para recoger información de carácter personal o privado de nuestros visitantes.
-            - ' . Application::app('name') .' utiliza cookies de sesión para optimizar el uso de recursos del sistema y mejorar la velocidad de carga del web.
+            - :ApplicationName utiliza cookies de sesión para optimizar el uso de recursos del sistema y mejorar la velocidad de carga del web.
             - Estas cookies, tienen sólo una finalidad técnica necesaria para el seguro funcionamiento del web.
             - Las cookies utilizadas por el sistema son:
 
@@ -94,7 +96,7 @@ return [
 
             4.3. Cookies de terceros
 
-            ' . Application::app('name') .' utiliza servicios de terceros que pueden utilizar cookies, como por ejemplo:
+            :ApplicationName utiliza servicios de terceros que pueden utilizar cookies, como por ejemplo:
 
                 4.3.1 Google Analytics
 
@@ -146,21 +148,21 @@ return [
 
         5. Protección de datos personales
 
-        Los datos personales serán incluidos en un fichero titularidad de ' . Application::company('name_ext'). ', debidamente inscrito en el 
+        Los datos personales serán incluidos en un fichero titularidad de :ApplicationOwnerName, debidamente inscrito en el 
         Registro General de Protección de Datos de conformidad con la normativa reguladora de protección de datos.
 
-        Los datos serán utilizados única y exclusivamente para gestionar la documentación interna de ' . Application::company('name_ext'). ', su gestión administrativa, 
-        la agenda de contactos, y la gestión del sitio web ' . Application::app('name') .'.
+        Los datos serán utilizados única y exclusivamente para gestionar la documentación interna de :ApplicationOwnerName, su gestión administrativa, 
+        la agenda de contactos, y la gestión del sitio web :ApplicationName.
 
-        ' . Application::company('name_ext'). ' no cederá sus datos a terceras personas en ningún caso fuera de los legalmente previstos.
+        :ApplicationOwnerName no cederá sus datos a terceras personas en ningún caso fuera de los legalmente previstos.
         Además le informamos que tiene derecho a ejercitar los derechos de acceso, rectificación, cancelación y oposición en los términos recogidos en la 
         Ley Orgánica de Protección de Datos de Carácter Personal y su normativa de desarrollo.
 
-        Puede hacerlo enviándonos, por cualquier medio que permita acreditar el envío y recepción de la solicitud, a ' . Application::company('name_ext'). ', 
-        ' . Application::company('address_ext') . ', a la atención del área de protección de datos o a la siguiente dirección de e-mail: ' . Application::company('email'). '
+        Puede hacerlo enviándonos, por cualquier medio que permita acreditar el envío y recepción de la solicitud, a :ApplicationOwnerName, 
+        :ApplicationOwnerAddress, a la atención del área de protección de datos o a la siguiente dirección de e-mail: :ApplicationOwnerEmail
 
-        El usuario manifiesta haber leído y aceptado expresamente estos Términos de uso y LOPD al registrarse en ' . Application::app('name') .', otorgando su consentimiento 
-        inequívoco y expreso a ' . Application::company('name_ext'). ' al tratamiento de los datos de acuerdo con las finalidades y servicios aquí reflejados.
+        El usuario manifiesta haber leído y aceptado expresamente estos Términos de uso y LOPD al registrarse en :ApplicationName, otorgando su consentimiento 
+        inequívoco y expreso a :ApplicationOwnerName al tratamiento de los datos de acuerdo con las finalidades y servicios aquí reflejados.
         
         6. Política anti-spam
 
@@ -174,18 +176,18 @@ return [
 
         7. Alojamiento de datos
 
-        Por razones técnicas y de calidad de servicio, el portal ' . Application::app('name') .',se encuentra alojado en los servidores de la empresa ' . Application::hosting('name') . ' (C.I.F. ' . Application::hosting('cif'). ')
-        La empresa tiene su domicilio social en ' . Application::hosting('address'). '. 
-        Y está registrada en: ' . Application::hosting('register'). '.
+        Por razones técnicas y de calidad de servicio, el portal :ApplicationName,se encuentra alojado en los servidores de la empresa :HostinName (C.I.F. :HostingNif)
+        La empresa tiene su domicilio social en :HostingAddress. 
+        Y está registrada en: :HostingRegister.
         
-        Podrá encontrar más información en el siguiente enlace: ' . Application::hosting('site_lopd'). '
+        Podrá encontrar más información en el siguiente enlace: :HostingConditions
 
         8. Propiedad Intelectual y uso de los contenidos
 
-        El sitio web ' . Application::app('name') .', incluyendo a título enunciativo pero no limitativo su programación, edición, compilación y demás elementos necesarios para su 
+        El sitio web :ApplicationName, incluyendo a título enunciativo pero no limitativo su programación, edición, compilación y demás elementos necesarios para su 
         funcionamiento, los diseños, logotipos, texto y/o gráficos son propiedad del prestador o en su caso dispone de licencia o autorización expresa por parte de los autores.
 
-        El portal ' . Application::app('name') .', tiene todos los derechos reservados. Cualquier uso no autorizado previamente por parte del PRESTADOR será considerado un incumplimiento grave de 
+        El portal :ApplicationName, tiene todos los derechos reservados. Cualquier uso no autorizado previamente por parte del PRESTADOR será considerado un incumplimiento grave de 
         los derechos de propiedad intelectual o industrial del autor.
 
         Los diseños, logotipos, texto y/o gráficos ajenos al prestador y que pudieran aparecer en el sitio web, pertenecen a sus respectivos propietarios, 
@@ -197,7 +199,7 @@ return [
         
         9. Ley Aplicable y Jurisdicción
 
-        Para la resolución de todas las controversias o cuestiones relacionadas con el ' . Application::app('name') .', será de aplicación a las presentes Condiciones 
+        Para la resolución de todas las controversias o cuestiones relacionadas con el :ApplicationName, será de aplicación a las presentes Condiciones 
         la legislación española.',
 
 /*
@@ -210,10 +212,10 @@ return [
 */
     'lopd' =>   'De acuerdo con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de carácter Personal, 
                 que regula el derecho de información de la recogida de datos, Ud. consiente la inclusión de sus datos de carácter personal en un fichero, 
-                del que es propietario/a ' . Application::company('name') . ', cuya finalidad es gestionar la documentación interna de ' . Application::company('name') . ', 
-                su gestión administrativa, la agenda de contactos, y la gestión del sitio web: ' . Application::app('site') . ' y la poder contactar con Ud. para informarle 
-                de la información solicitada mediante el envío de comunicaciones profesionales por cualquier medio electrónico o no. ' . Application::company('name') . ' 
+                del que es propietario/a :ApplicationOwnerName, cuya finalidad es gestionar la documentación interna de :ApplicationOwnerName, 
+                su gestión administrativa, la agenda de contactos, y la gestión del sitio web: :ApplicationUrl y la poder contactar con Ud. para informarle 
+                de la información solicitada mediante el envío de comunicaciones profesionales por cualquier medio electrónico o no. :ApplicationOwnerName 
                 le informa del derecho de acceso, cancelación, rectificación y oposición dirigiéndose a: 
-                ' . Application::company('name') . ', ' . Application::company('address') . ' - ' . Application::company('zip') . ', ' . Application::company('city') . ' (' . Application::company('region') . ') - ' . Application::company('country') . ', 
-                o mediante email, contactando a la dirección: ' . Application::company('email') . '.',
+                :ApplicationOwnerName, :ApplicationOwnerAddress - :ApplicationOwnerZip, :ApplicationOwnerCity (ApplicationOwnerRegion) - ApplicationOwnerCountry, 
+                o mediante email, contactando a la dirección: :ApplicationOwnerEmail.',
 ];

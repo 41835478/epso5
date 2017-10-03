@@ -5,6 +5,9 @@ Route::group([
         'as'            => 'user.', 
         'middleware'    => 'role:user'
     ], function () {
+        //Agreement
+        Route::name('agreements.edit')->get('agreements/{agreement}/edit', 'Dashboard\AgreementsController@edit');
+        Route::name('agreements.update')->get('agreements/update', 'Dashboard\AgreementsController@update');
         //Edaphologies 
         Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['show']]);
         Route::get('edaphologies/download/{id}', 'Dashboard\EdaphologiesDownloadController')->name('edaphologies.download');
