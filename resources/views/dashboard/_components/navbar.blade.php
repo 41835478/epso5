@@ -84,8 +84,8 @@
                 'url' => route('dashboard.god.errors'),
             ])
             ->subMenuItem([
-                'title' => icon('alert', 'Tests'),
-                'url' => route('dashboard.admin.test'),
+                'title' => icon('alert', trans('navbar.admin:administration')),
+                'url' => route('dashboard.god.administrations.edit'),
             ])
             ->output()
         )

@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Repositories\Applications;
+namespace App\Repositories\Administrations;
 
 use App\Repositories\Repository;
-use App\Repositories\Applications\Traits\ApplicationsHelpers;
-use App\Repositories\Applications\Application;
+use App\Repositories\Administrations\Administration;
 //use DB;
 
-class ApplicationsRepository extends Repository
+class AdministrationsRepository extends Repository
 {
-    use ApplicationsHelpers;
-
     protected $model;
 
-    public function __construct(Application $model)
+    public function __construct(Administration $model)
     {
         $this->model = $model;
     }

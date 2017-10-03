@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHostingTable extends Migration
+class CreateAdministrationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateHostingTable extends Migration
      */
     public function up()
     {
-        Schema::create('hosting', function (Blueprint $table) {
+        Schema::create('administrations', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('hosting_name');
+            $table->string('administration_app_name');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateHostingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hosting');
+        Schema::dropIfExists('administrations');
     }
 }

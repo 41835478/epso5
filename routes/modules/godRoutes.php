@@ -7,6 +7,6 @@ Route::group([
     ], function () {
         Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('errors');
         //Application 
-        Route::get('hosting/edit', 'Dashboard\God\HostingsController@edit')->name('hosting.edit');
-        Route::get('hosting/update', 'Dashboard\God\HostingsController@update')->name('hosting.update');
+        Route::get('administrations/edit', 'Dashboard\God\AdministrationsController@edit')->name('administrations.edit');
+        Route::get('administrations/update', 'Dashboard\God\AdministrationsController@update')->name('administrations.update');
 });

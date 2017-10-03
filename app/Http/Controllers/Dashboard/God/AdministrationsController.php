@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Dashboard\God;
 
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Applications\ApplicationsRepository;
+use App\Repositories\Administrations\AdministrationsRepository;
 //use Credentials;
 use Illuminate\Http\Request;
 
-class HostingsController extends DashboardController
+class AdministrationsController extends DashboardController
 {
     /**
      * @var protected
@@ -19,9 +19,10 @@ class HostingsController extends DashboardController
     private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'god';
-    private $section    = 'hostings';
+    private $section    = 'administrations';
+    private $item       = 1;
 
-    public function __construct(ApplicationsRepository $controller)
+    public function __construct(AdministrationsRepository $controller)
     {
         $this->controller   = $controller;
         //Sharing in the view
@@ -44,7 +45,7 @@ class HostingsController extends DashboardController
     public function edit($id)
     {
         return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+            ->withData($this->controller->find($this->item));
     }
 
     /**
@@ -56,10 +57,10 @@ class HostingsController extends DashboardController
      */
     public function update(Request $request, $id)
     {
-        $update = $this->controller->store($id);
+        $update = $this->controller->store($this->item);
             return $update 
                 ? redirect()
-                    ->route('dashboard.' . $this->role . '.' . $this->section . '.index')
+                    ->back()
                     ->withStatus(__('The items has been updated successfuly'))
                 : redirect()
                     ->back()

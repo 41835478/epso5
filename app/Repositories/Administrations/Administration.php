@@ -1,18 +1,18 @@
 <?php 
 
-namespace App\Repositories\Applications;
+namespace App\Repositories\Administrations;
 
 //use App\Repositories\_Traits\Date;
-//use App\Repositories\Applications\Traits\ApplicationsEvents;
-//use App\Repositories\Applications\Traits\ApplicationsPresenters;
-//use App\Repositories\Applications\Traits\ApplicationsRelationships;
-//use App\Repositories\Applications\Traits\ApplicationsScopes;
+//use App\Repositories\Administrations\Traits\AdministrationsEvents;
+//use App\Repositories\Administrations\Traits\AdministrationsPresenters;
+//use App\Repositories\Administrations\Traits\AdministrationsRelationships;
+//use App\Repositories\Administrations\Traits\AdministrationsScopes;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Application extends Model  {
+class Administration extends Model  {
 
     use Notifiable;
 
@@ -21,7 +21,7 @@ class Application extends Model  {
      *
      * @var string
      */
-    protected $table = 'applications';
+    protected $table = 'administrations';
     //protected $dates = ['deleted_at'];
 
     /**
