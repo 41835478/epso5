@@ -160,7 +160,7 @@
         //Workers menu
        ->item([
             'title' => icon('workers', trans('navbar.workers')),
-            'url' => '',
+            'url' => route('dashboard.user.workers.index'),
             'active' => true,
             'inClientList' => 'workers',
         ])

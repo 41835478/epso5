@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PestsTableSeeder::class);
         $this->call(TrainingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(WorkersTableSeeder::class);
         
         // Countries 
         $this->call(CitiesTableSeeder::class);
