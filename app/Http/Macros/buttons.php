@@ -7,6 +7,21 @@
 */
 
     /**
+     * Agreement button
+     * 
+     * @return  string
+     */
+    Form::macro('agreementButton', function()
+    {
+        return Form::button($text = icon('success', trans('buttons.accepted')), [
+            'class' => 'btn btn-success btn-lg',
+            'name'  => 'button-agreement-submit',
+            'id'    => 'button-agreement-submit',
+            'type'  => 'submit',
+        ]);
+    });
+
+    /**
      * Create button
      * 
      * @return  string

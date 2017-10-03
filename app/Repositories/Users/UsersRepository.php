@@ -149,4 +149,20 @@ class UsersRepository extends Repository {
         }
             return [];
     }
+
+    /**
+     * List of users by role
+     * Only return the list of user if the role is editor.
+     * Use the Credentials::config() facade, throw the helper getConfig(), to get the client ID
+     * @param  integer $client
+     * @return  array
+     */
+    public function agreement($id)
+    {
+        return $this->model
+            ->find($id)
+            ->update([
+                'agreement' => request('agreement')
+            ]);
+    }
 }

@@ -154,12 +154,5 @@ return [
 | The following language lines contain the all the LOPD.
 |
 */
-    'lopd' =>   'De acuerdo con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de carácter Personal, 
-                que regula el derecho de información de la recogida de datos, Ud. consiente la inclusión de sus datos de carácter personal en un fichero, 
-                del que es propietario/a :ApplicationOwnerName, cuya finalidad es gestionar la documentación interna de :ApplicationOwnerName, 
-                su gestión administrativa, la agenda de contactos, y la gestión del sitio web: :ApplicationUrl y la poder contactar con Ud. para informarle 
-                de la información solicitada mediante el envío de comunicaciones profesionales por cualquier medio electrónico o no. :ApplicationOwnerName 
-                le informa del derecho de acceso, cancelación, rectificación y oposición dirigiéndose a: 
-                :ApplicationOwnerName, :ApplicationOwnerAddress - :ApplicationOwnerZip, :ApplicationOwnerCity (ApplicationOwnerRegion) - ApplicationOwnerCountry, 
-                o mediante email, contactando a la dirección: :ApplicationOwnerEmail.',
+    'lopd' =>   'De acuerdo con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de carácter Personal, que regula el derecho de información de la recogida de datos, Ud. consiente la inclusión de sus datos de carácter personal en un fichero, del que es propietario/a :ApplicationOwnerName, cuya finalidad es gestionar la documentación interna de :ApplicationOwnerName, su gestión administrativa, la agenda de contactos, y la gestión del sitio web: :ApplicationUrl y la poder contactar con Ud. para informarle de la información solicitada mediante el envío de comunicaciones profesionales por cualquier medio electrónico o no. :ApplicationOwnerName le informa del derecho de acceso, cancelación, rectificación y oposición dirigiéndose a: :ApplicationOwnerName, :ApplicationOwnerAddress - :ApplicationOwnerZip, :ApplicationOwnerCity (ApplicationOwnerRegion) - ApplicationOwnerCountry, o mediante email, contactando a la dirección: :ApplicationOwnerEmail.',
 ];

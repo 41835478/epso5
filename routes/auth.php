@@ -14,8 +14,6 @@
 /*
 | Default Dashboard
 */
-// Route::name('dashboard')
-//     ->get('/dashboard', 'Dashboard\HomeController');
 
 Route::name('dashboard')
     ->get('/dashboard', 'Dashboard\HomeController')
@@ -25,8 +23,7 @@ Route::name('dashboard')
 Route::group([
     'as' => 'dashboard.', 
     'prefix' => 'dashboard',
-    //'middleware'    => ['agreement', 'locale', 'https']
-    'middleware'    => ['locale', 'https']
+    'middleware'    => ['agreement', 'locale', 'https']
 ], function () {
         //If running tests... fixing the route problem...
         // App::environment('local') for DUSK

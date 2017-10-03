@@ -7,7 +7,7 @@ Route::group([
     ], function () {
         //Agreement
         Route::name('agreements.edit')->get('agreements/{agreement}/edit', 'Dashboard\AgreementsController@edit');
-        Route::name('agreements.update')->get('agreements/update', 'Dashboard\AgreementsController@update');
+        Route::name('agreements.update')->patch('agreements/update/{agreement}', 'Dashboard\AgreementsController@update');
         //Edaphologies 
         Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['show']]);
         Route::get('edaphologies/download/{id}', 'Dashboard\EdaphologiesDownloadController')->name('edaphologies.download');
