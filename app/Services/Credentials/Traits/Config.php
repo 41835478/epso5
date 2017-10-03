@@ -22,8 +22,16 @@ trait Config
             $crop   = $client->crop->all();
             return collect([
                 'client' => [
-                    'id'    => $client->id,
-                    'name'  => $client->client_name,
+                    'id'        => $client->id ?? null,
+                    'name'      => $client->client_name ?? null,
+                    'address'   => $client->client_address ?? null,
+                    'nif'       => $client->client_nif ?? null,
+                    'email'     => $client->client_email ?? null,
+                    'zip'       => $client->client_zip ?? null,
+                    'city'      => $client->client_city ?? null,
+                    'region'    => $client->client_region ?? null,
+                    'state'     => $client->client_state ?? null,
+                    'country'   => $client->client_country ?? null,
                 ],
                 'menuBar' => [
                     (count($client->config->pluck('id')->all()) > 0) ? $client->config->pluck('config_key', 'id')->all() : null

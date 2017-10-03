@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
          * Customized Middleware
         */
         'https' => \App\Http\Middleware\App\Https::class,
-        'agreement' => \App\Http\Middleware\App\AgreementConditions::class,
+        'agreement' => \App\Http\Middleware\App\Agreement::class,
         'locale' => \App\Http\Middleware\App\Locale::class,
         'noFrames' => \App\Http\Middleware\App\NoFrames::class,
         'role' => \App\Http\Middleware\App\Role::class,

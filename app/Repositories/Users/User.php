@@ -38,6 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'agreement',
         'is_admin',
         'is_editor',
         'is_god',

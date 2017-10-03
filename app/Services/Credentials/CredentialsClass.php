@@ -48,6 +48,7 @@ class CredentialsClass {
         
         //Users
         'address',
+        'agreement',
         'avatar',
         'email',
         'id',

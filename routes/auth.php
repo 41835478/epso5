@@ -17,14 +17,20 @@
 Route::name('dashboard')
     ->get('/dashboard', 'Dashboard\HomeController');
 
+// Route::name('dashboard')
+//     ->get('/dashboard', 'Dashboard\HomeController')
+//     ->middleware('agreement');
+
 /** Dashboard Routes */
 Route::group([
     'as' => 'dashboard.', 
     'prefix' => 'dashboard',
+    //'middleware'    => ['agreement', 'locale', 'https']
     'middleware'    => ['locale', 'https']
 ], function () {
-        //Profiles
-        //Route::resource('profiles', 'Dashboard\ProfilesController', ['only' => ['edit', 'update']]);  
+        //Agreement
+        Route::name('agreement.edit')->get('/dashboard/agreement/{agreement}/edit', 'Dashboard\AgreementsController@edit');
+        Route::name('agreement.update')->get('/dashboard/agreement/update', 'Dashboard\AgreementsController@update');
         //
         //If running tests... fixing the route problem...
         // App::environment('local') for DUSK

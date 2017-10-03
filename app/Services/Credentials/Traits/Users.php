@@ -25,6 +25,11 @@ trait Users
         return $this->user->profile->profile_address ?? null;
     }
 
+    private function agreement()
+    {
+        return $this->user->agreement !== null;
+    }
+
     /**
      * Get the user avatar / profile image
      * @return string

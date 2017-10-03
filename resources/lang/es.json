@@ -1,6 +1,7 @@
 {
       "Access": "Accesos",
             "Your are not authorized to access this section": "No está autorizado a acceder a esta sección",
+            "The user access conditions has been accepted" : "Se han aceptado las condiciones de acceso de usuario",
       "Create": "Crear",
             "An error occurred during the creating process": "Ha ocurrido un error durante el proceso de creación",
             "The item has been create successfuly": "El elemento ha sido creado correctamente",

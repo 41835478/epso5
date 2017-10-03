@@ -22,7 +22,7 @@ class ClimaticsController extends DashboardController
     private $role       = 'user';
     private $section    = 'climatics';
 
-    public function __construct(ClimaticsRepository $controllere)
+    public function __construct(ClimaticsRepository $controller)
     {
         $this->controller   = $controller;
         //Sharing in the view

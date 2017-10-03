@@ -17,6 +17,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Hosting provider
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    */
+
+    'hosting_name'          => 'Agroepso',
+    'hosting_cif'           => '5.4.1',
+    'hosting_address'       => '5.4.1',
+    'hosting_register'      => '5.4.1',
+    'hosting_conditions'    => '5.4.1',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
