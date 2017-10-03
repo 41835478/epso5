@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_editor')->default(false);
             $table->boolean('is_user')->default(true);
+            $table->ipAddress('agreement')->nullable();   
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
