@@ -55,6 +55,13 @@
             }
         }
         
+        tr.trashed {
+            background-color: $brand-danger !important;
+            td {
+                color: $color-white !important;
+            }
+        }
+
         .table-danger,
         .table-success,
         .table-warning,

@@ -32,6 +32,7 @@ class DataTable extends Repository
 
         $query = app(PlotsRepository::class)
             ->dataTable($columns = ['*'], $table = 'plots', $userNull = $no_users)
+            ->withTrashed()
             ->select($this->section . '.*')
             ->with(SELF::relationships());
 
@@ -47,6 +48,9 @@ class DataTable extends Repository
         return $this->datatables
             ->eloquent($this->query())
             ->rawColumns(['action', 'city.city_name', 'checkbox', 'crop_variety.crop_variety_name', 'plot_name', 'user.name'])
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();

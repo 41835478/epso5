@@ -10935,6 +10935,14 @@ table tr.selected td {
   color: #fff !important;
 }
 
+table tr.trashed {
+  background-color: #D9534F !important;
+}
+
+table tr.trashed td {
+  color: #fff !important;
+}
+
 table .table-danger,
 table .table-success,
 table .table-warning,
