@@ -29,7 +29,33 @@ class Administration extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'id',
+        'administration_app_name',
+        'administration_app_version',
+        'administration_app_url',
+        'administration_app_owner_name',
+        'administration_app_owner_address',
+        'administration_app_owner_phone',
+        'administration_app_owner_nif',
+        'administration_app_owner_zip',
+        'administration_app_owner_city',
+        'administration_app_owner_region',
+        'administration_app_owner_state',
+        'administration_app_owner_country',
+        'administration_hosting_name',
+        'administration_hosting_address',
+        'administration_hosting_email',
+        'administration_hosting_url',
+        'administration_hosting_nif',
+        'administration_hosting_zip',
+        'administration_hosting_city',
+        'administration_hosting_region',
+        'administration_hosting_state',
+        'administration_hosting_country',
+        'administration_hosting_conditions_url',
+        'administration_hosting_register',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

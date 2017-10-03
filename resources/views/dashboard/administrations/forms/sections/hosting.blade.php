@@ -4,7 +4,7 @@
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
     {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'name')
+    {!! BootForm::text(trans('persona.name'), 'administration_app_name')
         ->addGroupClass('col-md-4')
         ->autofocus()
         ->required()

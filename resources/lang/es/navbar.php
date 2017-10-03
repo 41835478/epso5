@@ -17,6 +17,7 @@ return [
         'admin:irrigation'          => 'Riegos',
         'admin:training'            => 'Conducciones',
         'admin:errors'              => 'Gestión de errores',
+        'admin:administration'      => 'Administración',
     /*
     |--------------------------------------------------------------------------
     | Navbar Menus: Users

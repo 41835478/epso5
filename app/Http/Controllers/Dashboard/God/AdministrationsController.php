@@ -20,7 +20,6 @@ class AdministrationsController extends DashboardController
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'god';
     private $section    = 'administrations';
-    private $item       = 1;
 
     public function __construct(AdministrationsRepository $controller)
     {
@@ -45,7 +44,7 @@ class AdministrationsController extends DashboardController
     public function edit($id)
     {
         return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($this->item));
+            ->withData($this->controller->find($id));
     }
 
     /**
@@ -57,7 +56,7 @@ class AdministrationsController extends DashboardController
      */
     public function update(Request $request, $id)
     {
-        $update = $this->controller->store($this->item);
+        $update = $this->controller->store($id);
             return $update 
                 ? redirect()
                     ->back()

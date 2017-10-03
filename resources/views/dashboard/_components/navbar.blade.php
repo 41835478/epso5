@@ -85,7 +85,7 @@
             ])
             ->subMenuItem([
                 'title' => icon('alert', trans('navbar.admin:administration')),
-                'url' => route('dashboard.god.administrations.edit'),
+                'url' => route('dashboard.god.administrations.edit', 1),
             ])
             ->output()
         )
