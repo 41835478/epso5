@@ -20,6 +20,7 @@ class CreateAdministrationsTable extends Migration
             $table->string('administration_app_url');
             $table->string('administration_app_owner_name');
             $table->string('administration_app_owner_address');
+            $table->string('administration_app_owner_email');
             $table->string('administration_app_owner_phone');
             $table->string('administration_app_owner_nif');
             $table->string('administration_app_owner_zip');

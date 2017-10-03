@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\DashboardController;
+use App\Repositories\Administrations\AdministrationsRepository;
 use App\Repositories\Users\UsersRepository;
 use Credentials;
 use Illuminate\Http\Request;
@@ -13,13 +14,18 @@ class AgreementsController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $administration;
+    /**
+     * @var private
+     */
     private $section    = 'agreements';
     private $role       = 'user';
 
 
-    public function __construct(UsersRepository $controller)
+    public function __construct(UsersRepository $controller, AdministrationsRepository $administration)
     {
-        $this->controller   = $controller;
+        $this->administration   = $administration;
+        $this->controller       = $controller;
         //Sharing in the view
         view()->share([
             'section'   => $this->section,
@@ -35,7 +41,7 @@ class AgreementsController extends DashboardController
     public function edit($id)
     {
         return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+            ->withData($this->administration->find(1));
     }
 
     /**
