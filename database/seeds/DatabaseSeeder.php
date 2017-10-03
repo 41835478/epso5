@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         // General seeders 
         $this->call(BiocidesTableSeeder::class);
-        $this->call(ClientsListTableSeeder::class);
+        $this->call(ClientsTableSeeder::class);
         $this->call(ConfigsTableSeeder::class);
         $this->call(CropsTableSeeder::class);
         $this->call(CropVarietiesTableSeeder::class);
