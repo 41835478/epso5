@@ -142,6 +142,7 @@ class UsersRepository extends Repository {
     {
         if(Credentials::isEditor()) {
             return $this->model
+                ->withTrashed()
                 ->where('client_id', $client ?? getConfig('client', 'id'))
                 ->pluck('name', 'id')
                 ->toArray();
