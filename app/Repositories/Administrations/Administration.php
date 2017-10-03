@@ -49,6 +49,7 @@ class Administration extends Model  {
         'administration_hosting_url',
         'administration_hosting_nif',
         'administration_hosting_zip',
+        'administration_hosting_phone',
         'administration_hosting_city',
         'administration_hosting_region',
         'administration_hosting_state',

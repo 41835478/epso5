@@ -33,6 +33,7 @@ class CreateAdministrationsTable extends Migration
             $table->string('administration_hosting_url');
             $table->string('administration_hosting_nif');
             $table->string('administration_hosting_zip');
+            $table->string('administration_hosting_phone');
             $table->string('administration_hosting_city');
             $table->string('administration_hosting_region');
             $table->string('administration_hosting_state');

@@ -6,7 +6,6 @@
     {{-- Field: Application name --}}
     {!! BootForm::text(trans('persona.name'), 'administration_app_name')
         ->addGroupClass('col-md-2')
-        ->autofocus()
         ->required()
     !!}
 

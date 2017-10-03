@@ -1,43 +1,71 @@
 <div class="row">
-
-    {{-- Row id --}}
-    {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
-
-    {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'administration_app_name')
+    {{-- Field: Hosting name --}}
+    {!! BootForm::text(trans('persona.name'), 'administration_hosting_name')
         ->addGroupClass('col-md-4')
-        ->autofocus()
         ->required()
     !!}
 
-    {{-- Select --}}
-    {!! BootForm::select(trans('persona.locale'), 'locale')
-        ->addGroupClass('col-md-2')
-        ->options(select('locale') ?? [])
-        ->defaultValue('es')
+    {{-- Field: Hosting address --}}
+    {!! BootForm::text(trans('persona.website'), 'administration_hosting_url')
+        ->addGroupClass('col-md-4')
         ->required()
     !!}
 
-    {{-- Addon --}}
-    {!! BootForm::InputGroup(trans('base.date'), 'agronomic_date')
+    {{-- Field: Hosting nif --}}
+    {!! BootForm::text(trans('persona.id.nif'), 'administration_hosting_nif')
         ->addGroupClass('col-md-2')
-        ->addClass('date')
-        ->afterAddon(icon('calendar'))
-        ->required() 
+        ->required()
     !!}
 
-    {{-- textarea --}}
-    {!! BootForm::textarea(trans('base.observations'), 'edaphology_observations')
-        ->addGroupClass('col-md-12')
-        ->rows(5)
-        ->maxlength(250)
+    {{-- Field: Hosting telephone --}}
+    {!! BootForm::text(trans('persona.telephone'), 'administration_hosting_phone')
+        ->addGroupClass('col-md-2')
+        ->required()
     !!}
-    <div class="ml-3" id="textareaAlert-edaphology_observations"></div>
+</div>
 
-    {{-- Field: Conditional role --}}
-    {{-- @Role('admin')
-        //
-    @else 
-        //
-    @endRoles --}}
+<div class="row">
+    {{-- Field: Hosting address --}}
+    {!! BootForm::text(trans('persona.address'), 'administration_hosting_address')
+        ->addGroupClass('col-md-4')
+        ->required()
+    !!}
+
+    {{-- Field: Hosting city --}}
+    {!! BootForm::text(trans('persona.city'), 'administration_hosting_city')
+        ->addGroupClass('col-md-2')
+        ->required()
+    !!}
+
+    {{-- Field: Hosting region --}}
+    {!! BootForm::text(trans('persona.region'), 'administration_hosting_region')
+        ->addGroupClass('col-md-2')
+        ->required()
+    !!}
+
+    {{-- Field: Hosting state --}}
+    {!! BootForm::text(trans('persona.state'), 'administration_hosting_state')
+        ->addGroupClass('col-md-2')
+        ->required()
+    !!}
+
+    {{-- Field: Hosting country --}}
+    {!! BootForm::text(trans('persona.country'), 'administration_hosting_country')
+        ->addGroupClass('col-md-2')
+        ->required()
+    !!}
+</div>
+
+<div class="row">
+    {{-- Field: Hosting conditions --}}
+    {!! BootForm::text(sections('administrations.conditions'), 'administration_hosting_conditions_url')
+        ->addGroupClass('col-md-4')
+        ->required()
+    !!}  
+
+    {{-- Field: Hosting register --}}
+    {!! BootForm::text(sections('administrations.register'), 'administration_hosting_register')
+        ->addGroupClass('col-md-4')
+        ->required()
+    !!}  
 </div>
