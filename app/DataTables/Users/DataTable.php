@@ -27,6 +27,10 @@ class DataTable extends Repository
     {
         $query = app(UsersRepository::class)
             ->dataTable()
+            //Only God and Admin see trashed material...
+            ->when(Credentials::isAdmin(), function($query) {
+                return $query->withTrashed();
+            })
             ->select($this->section . '.*')
             ->with('profile', 'client');
 
@@ -42,6 +46,9 @@ class DataTable extends Repository
         return $this->datatables
             ->eloquent($this->query())
             ->rawColumns(['action', 'checkbox'])
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();

@@ -32,7 +32,10 @@ class DataTable extends Repository
 
         $query = app(PlotsRepository::class)
             ->dataTable($columns = ['*'], $table = 'plots', $userNull = $no_users)
-            ->withTrashed()
+            //Only God and Admin see trashed material...
+            ->when(Credentials::isAdmin(), function($query) {
+                return $query->withTrashed();
+            })
             ->select($this->section . '.*')
             ->with(SELF::relationships());
 
