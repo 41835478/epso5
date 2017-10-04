@@ -11,6 +11,9 @@ Route::group([
         //Edaphologies 
         Route::resource('edaphologies', 'Dashboard\EdaphologiesController', ['only' => ['show']]);
         Route::get('edaphologies/download/{id}', 'Dashboard\EdaphologiesDownloadController')->name('edaphologies.download');
+        //Machines 
+        Route::resource('machines', 'Dashboard\MachinesController', ['except' => ['destroy', 'show']]); 
+        Route::post('machines/eliminate', 'Dashboard\MachinesController@eliminate')->name('machines.eliminate');
         //Routes for the GOD tools
         Route::get('tools/role/{id}', 'Dashboard\God\ToolsController@role')->name('tools.role');
         //Users. Eliminate is in editor routes.
