@@ -9,15 +9,23 @@ trait WorkersPresenters {
     | Accessors & Mutators
     |--------------------------------------------------------------------------
     */
+    public function setWorkerRopoDateAttribute($value)
+    {
+        $this->attributes['worker_ropo_date'] = $this->setDate($value);
+    }
 
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = $value;
-    // }
+    public function getWorkerRopoDateAttribute($value)
+    {
+        return $this->getDate($value);
+    }
 
-    // public function getNameAttribute($value)
-    // {
-    //     return ucfirst($value);
-    // }
-    // 
+    public function setWorkerStartAttribute($value)
+    {
+        $this->attributes['worker_start'] = $this->setDate($value);
+    }
+
+    public function getWorkerStartAttribute($value)
+    {
+        return $this->getDate($value);
+    }
 }

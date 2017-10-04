@@ -2,10 +2,10 @@
 
 namespace App\Repositories\Workers;
 
-//use App\Repositories\_Traits\Date;
+use App\Repositories\_Traits\Date;
 //use App\Repositories\Workers\Traits\WorkersEvents;
-//use App\Repositories\Workers\Traits\WorkersPresenters;
-//use App\Repositories\Workers\Traits\WorkersRelationships;
+use App\Repositories\Workers\Traits\WorkersPresenters;
+use App\Repositories\Workers\Traits\WorkersRelationships;
 //use App\Repositories\Workers\Traits\WorkersScopes;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Worker extends Model  {
 
-    use Notifiable;
+    use Date, Notifiable, WorkersPresenters, WorkersRelationships;
 
     /**
      * The database table used by the model.

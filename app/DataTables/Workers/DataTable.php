@@ -8,6 +8,7 @@ use App\DataTables\Workers\DataTableSearch;
 use App\Repositories\Workers\WorkersRepository;
 use App\Repositories\Workers\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Credentials;
 
 class DataTable extends Repository
 {
@@ -28,7 +29,11 @@ class DataTable extends Repository
     {
         $query = app(WorkersRepository::class)
             ->dataTable()
-            ->select($this->section . '.*');
+            ->select($this->section . '.*')
+            ->when(Credentials::isAdmin(), function($query) {
+                return $query->withTrashed();
+            })
+            ->with('client', 'user');
 
         return $this->applyScopes($query);
     }
@@ -41,13 +46,28 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'client.client_name', 'user.name', 'worker_observations'])
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
+            })
+            ->editColumn('worker_observations', function($data) {
+                return $this->type('break')->textLength(50)->formatString($data->worker_observations);
+            })
+            ->editColumn('client.client_name', function($data) {
+                return $this->type('break')->textLength(25)->formatString($data->client->client_name);
+            })
+            ->editColumn('user.name', function($data) {
+                return $this->type('break')->textLength(25)->formatString($data->user->name);
+            })
+            ->editColumn('worker_ropo_level', function($data) {
+                return sections('workers.ropo:level')[$data->worker_ropo_level] ?? no_result();
             });
     }
 }

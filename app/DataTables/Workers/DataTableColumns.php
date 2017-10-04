@@ -2,6 +2,8 @@
 
 namespace App\DataTables\Workers;
 
+use Credentials;
+
 trait DataTableColumns
 {
     /**
@@ -15,23 +17,37 @@ trait DataTableColumns
          * @param  string $name
          * @param  array $attributes [Add extra attributes]
          */
-        return [
+        $columns = [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans_title('workers'), 'worker_name'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            //      'defaultContent' => no_result(),
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans('persona.id.nif'), 'worker_nif', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('dates.date:work'), 'worker_start', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('workers.ropo'), 'worker_ropo', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('workers.ropo:date'), 'worker_ropo_date', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('workers.level'), 'worker_ropo_level'),
+            $this->setColumn(trans('base.description'), 'worker_observations'),
         ];
+        if(Credentials::isAdmin()) {
+            return array_merge($columns, [
+                $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
+            ]);
+        }
+        if(Credentials::isEditor()) {
+            return array_merge($columns, [
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
+            ]);
+        }
+        return $columns;
     }
 
     /**
