@@ -10,6 +10,7 @@ trait UserHelpers
      * @var protected
      */
     protected $createUser;
+    protected $createUserAgreement;
     protected $createUserBase;
     protected $createEditor;
     protected $createAdmin;
@@ -55,6 +56,23 @@ trait UserHelpers
             return $this->makeUser;
         }
         return $this->makeUser = factory(User::class)->make($attributes);
+    }
+
+    /**
+     * Making an user
+     *
+     * @param  string $attributes
+     *
+     * @return object
+     */
+    public function createUserAgreement()
+    {
+        if($this->createUserAgreement) {
+            return $this->createUserAgreement;
+        }
+        return $this->createUserAgreement = factory(User::class)->create([
+            'agreement' => null,
+        ]);
     }
 
     /**
