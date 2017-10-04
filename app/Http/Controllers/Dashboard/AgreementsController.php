@@ -69,7 +69,10 @@ class AgreementsController extends DashboardController
     }
 
     /**
-     * Text for agreement
+     * Generate a text for the agreement
+     *
+     * @param  string  $text
+     * @return string
      */
     private function agreement($text) {
         return trans('legals.conditions', [
