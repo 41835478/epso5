@@ -15,7 +15,9 @@ class CreateMachinesTable extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('machine_equipment', 150);
+            $table->integer('user_id')->unsigned()->index();
+            $table->integer('equipment_id')->nullable()->unsigned()->index()->comment('Just in case we want to use a DB for this');
+            $table->string('machine_equipment_name', 150);
             $table->string('machine_brand', 150)->nullable();
             $table->string('machine_model', 150)->nullable();
             $table->date('machine_date')->nullable()->comment('Machine purchase');
