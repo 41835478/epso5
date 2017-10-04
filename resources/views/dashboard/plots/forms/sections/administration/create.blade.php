@@ -4,7 +4,7 @@
     @Role('admin')
 
         {{-- Field: Client and users --}}
-        {!! Form::clientsAndUsers($clients, true)!!}
+        {!! Form::clientsAndUsers($clients, $loadModule = true)!!}
 
         {{-- Field: Crop module --}}
         {!! BootForm::hidden('crop_module')->id('crop_module') !!}

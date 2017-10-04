@@ -22,14 +22,25 @@ class Worker extends Model  {
      * @var string
      */
     protected $table = 'workers';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'id',
+        'client_id',
+        'user_id',
+        'worker_name',
+        'worker_nif',
+        'worker_start',
+        'worker_ropo',
+        'worker_ropo_date',
+        'worker_ropo_level',
+        'worker_observations'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

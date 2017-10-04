@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\DataTables\Workers\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Workers\WorkersRepository;
 use App\Http\Requests\WorkersRequest;
+use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Workers\WorkersRepository;
 //use Credentials;
 //use Illuminate\Http\Request;
 
@@ -59,9 +60,10 @@ class WorkersController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ClientsRepository $client)
     {
-        return view(dashboard_path($this->section . '.create'));
+        $clients = $client->listOfClientsByRole();
+            return view(dashboard_path($this->section . '.create'), compact('clients'));
     }
 
     /**
