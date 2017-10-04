@@ -28,7 +28,7 @@ class DataTable extends Repository
     public function query()
     {
         $query = app(WorkersRepository::class)
-            ->dataTable()
+            ->dataTable($columns = ['*'], $table = 'workers')
             ->select($this->section . '.*')
             ->when(Credentials::isAdmin(), function($query) {
                 return $query->withTrashed();
