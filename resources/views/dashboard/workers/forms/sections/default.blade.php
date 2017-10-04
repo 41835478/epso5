@@ -10,7 +10,7 @@
         {{-- Fields: client --}}
         {!! BootForm::hidden('client_id')->value(getClientId()) !!}
     @else 
-        {{-- Field: Client and users --}}
+        {{-- Field: Client and users. See controller for role assigment. --}}
         {!! Form::clientsAndUsers($clients ?? null, $users ?? null, $loadModule = false)!!}
     @endif
 

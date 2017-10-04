@@ -48,7 +48,7 @@ class PlotsConfigurateController extends DashboardController
         $catastro   = catastro($request);
         $sigpac     = catastroToSigpac($catastro);
         $station    = $stations->closest($request);
-        list($clients, $users) = $this->controller->getAdministration();
+        list($clients, $users) = $this->controller->getClientUser();
         list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->controller->getCrop();
             //Return the data
             return view(dashboard_path($this->section . '.configurate'), 

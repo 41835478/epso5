@@ -8,12 +8,13 @@ use App\Repositories\Plots\Plot;
 use App\Repositories\Plots\Traits\PlotsHelpers;
 use App\Repositories\Repository;
 use App\Repositories\Users\UsersRepository;
+use App\Repositories\_Traits\ClientUser;
 use Credentials;
 //use DB;
 
 class PlotsRepository extends Repository
 {
-    use PlotsHelpers; //There is helper functions!!!!
+    use ClientUser, PlotsHelpers; //There is helper functions!!!!
 
     protected $client;
     protected $model;

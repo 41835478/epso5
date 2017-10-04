@@ -13,10 +13,8 @@
      * 
      * @return  string
      */
-    Form::macro('clientsAndUsers', function($clients = null, $users = null, $loadModule = false)
+    Form::macro('clientsAndUsers', function($clients = null, $users = null, $loadModule = false, $html = '')
     {
-        //Defaults 
-        $html = '';
         //Create clients
         if($clients) {
             $html = BootForm::select(sections('clients.title'), 'client_id')

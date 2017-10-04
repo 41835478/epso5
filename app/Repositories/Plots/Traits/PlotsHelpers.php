@@ -17,19 +17,6 @@ trait PlotsHelpers {
     */
 
     /**
-     * Get all the administration Values
-     * @return  boolean
-     */
-    public function getAdministration()
-    {
-        //Get the list of users and the list of clients. All base on the current user role!!!
-        return [
-            app(ClientsRepository::class)->listOfClientsByRole() ?? [], 
-            app(UsersRepository::class)->listOfUsersByRole() ?? []
-        ]; 
-    }
-
-    /**
      * Get all the values for the crop
      * @param mixed $data
      * 

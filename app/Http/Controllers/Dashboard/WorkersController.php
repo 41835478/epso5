@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\DataTables\Workers\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\WorkersRequest;
-use App\Repositories\Clients\ClientsRepository;
-use App\Repositories\Users\UsersRepository;
 use App\Repositories\Workers\WorkersRepository;
-use Credentials;
 //use Illuminate\Http\Request;
 
 class WorkersController extends DashboardController
@@ -32,13 +29,9 @@ class WorkersController extends DashboardController
         $this->table        = $table;
         //Sharing in the view
         view()->share([
-            //'legend'   => $this->legend,
-            //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -57,16 +50,11 @@ class WorkersController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ClientsRepository $ClientsRepository, UsersRepository $UsersRepository)
+    public function create()
     {
-        if(Credentials::isAdmin()) {
-            $clients    = $ClientsRepository->listOfClientsByRole();
-            $users      = null;
-        } elseif (Credentials::isEditor()) {
-            $clients    = null;
-            $users      = $UsersRepository->listOfUsersByRole();
-        }
-        return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
+        //Get the users and the clients
+        list($clients, $users) = $this->controller->getClientUser();
+            return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
     }
 
     /**

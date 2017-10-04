@@ -5,11 +5,11 @@ namespace App\Repositories\Workers;
 use App\Repositories\Repository;
 use App\Repositories\Workers\Traits\WorkersHelpers;
 use App\Repositories\Workers\Worker;
-//use DB;
+use App\Repositories\_Traits\ClientUser;
 
 class WorkersRepository extends Repository
 {
-    use WorkersHelpers;
+    use WorkersHelpers, ClientUser;
 
     protected $model;
 
@@ -17,19 +17,4 @@ class WorkersRepository extends Repository
     {
         $this->model = $model;
     }
-
-    /**
-     * Create or update a record in storage
-     * @param   int     $id
-     * @return  boolean
-     */
-    // public function store($id = null)
-    // {
-    //     return DB::transaction(function () use ($id) {
-    //         return true;
-    //     });
-    //     //Create an error
-    //     return false;
-    // }
-
 }
