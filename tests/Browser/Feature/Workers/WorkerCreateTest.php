@@ -31,8 +31,8 @@ class WorkerCreateTest extends DuskTestCase
                 ->click('#button-config')
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
-                // ->type('worker_name', $this->makeWorker()->worker_name)
-                // ->type('worker_description', $this->makeWorker()->worker_description)
+                ->type('worker_name', $this->makeWorker()->worker_name)
+                ->type('worker_description', $this->makeWorker()->worker_description)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
@@ -47,23 +47,21 @@ class WorkerCreateTest extends DuskTestCase
         });
     }
 
-    public function test_editor_cant_create_worker()
+    public function test_editor_can_create_worker()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->assertPathIs($this->dashboard);
         });
     }
 
-    public function test_user_cant_create_worker()
+    public function test_user_can_create_worker()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->assertPathIs($this->dashboard);
         });
     }
 }
