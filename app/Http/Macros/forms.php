@@ -8,6 +8,22 @@
 
     /**
      * Generate a input-group
+     * @param array $clients [List of clients]
+     * @param bool $loadModule [Load the crop modules on change]
+     * 
+     * @return  string
+     */
+    Form::macro('clientsAndUsers', function($clients = null, $loadModule = false)
+    {
+        //Create clients
+        $html = BootForm::select(sections('clients.title'), 'client_id')->addGroupClass('col-md-4')->options(setOptions($clients))->select(0)->data('module', $loadModule)->required();
+        //Create users
+        $html .= BootForm::select(sections('users.title'), 'user_id')->addGroupClass('col-md-4')->options([]);
+            return $html;
+    });
+
+    /**
+     * Generate a input-group
      * @param object $data
      * @param array $optionsValues
      * @param string $fieldName
@@ -44,28 +60,6 @@
         //Generate the select
         return sprintf('<select name="%s" id="%s" class="form-control"%s><option></option>%s</select>', $fieldName, $fieldName, formStatus($status), $options);
     });
-
-    /**
-     * Generate a coustom option selected
-     * @param object $databaseValue
-     * @param string $value
-     * @param string $title
-     * 
-     * @return  string
-     */
-    if (!function_exists('macro_optionSelected')) {
-        function macro_optionSelected($databaseValue, $value = null, $title = null)
-        {
-            $selected = ($databaseValue == $value) ? formStatus($status = 'selected') : '';
-                return sprintf('<option data-title="%s" value="%s"%s>%s</option>', $title, $value, $selected, $title);
-        }
-    }
-
-/*
-|--------------------------------------------------------------------------
-| Checkbox
-|--------------------------------------------------------------------------
-*/
     
     /**
      * Generate a coustom checkbox
@@ -92,6 +86,28 @@
                 sprintf(macro_checkboxConstructor($data, $relationship, $id), $id, $checked, $name)
             );
     }); 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Generate a coustom option selected
+     * @param object $databaseValue
+     * @param string $value
+     * @param string $title
+     * 
+     * @return  string
+     */
+    if (!function_exists('macro_optionSelected')) {
+        function macro_optionSelected($databaseValue, $value = null, $title = null)
+        {
+            $selected = ($databaseValue == $value) ? formStatus($status = 'selected') : '';
+                return sprintf('<option data-title="%s" value="%s"%s>%s</option>', $title, $value, $selected, $title);
+        }
+    }
 
     /**
      * Helper: checkbox constructor
