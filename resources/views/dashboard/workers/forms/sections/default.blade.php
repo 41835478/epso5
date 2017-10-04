@@ -16,13 +16,22 @@
         ->required()
     !!}
 
+    {{-- Fields: Worker nif --}}
+    {!! BootForm::text(trans('persona.id.nif'), 'worker_nif')
+        ->addGroupClass('col-md-2')
+    !!}
+
     {{-- Fields: Worker start date --}}
     {!! BootForm::InputGroup(trans('dates.date:work'), 'worker_start')
         ->addGroupClass('col-md-2')
         ->addClass('date')
         ->afterAddon(icon('calendar'))
     !!}
+</div>
 
+<hr>
+
+<div class="row">
     {{-- Fields: Worker ropo number --}}
     {!! BootForm::text(sections('workers.ropo'), 'worker_ropo')
         ->addGroupClass('col-md-2')

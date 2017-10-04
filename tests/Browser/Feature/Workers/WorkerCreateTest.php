@@ -32,7 +32,12 @@ class WorkerCreateTest extends DuskTestCase
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
                 ->type('worker_name', $this->makeWorker()->worker_name)
-                ->type('worker_description', $this->makeWorker()->worker_description)
+                ->type('worker_nif', $this->makeWorker()->worker_nif)
+                ->type('worker_start', str_replace('/', '', $this->makeWorker()->worker_start))
+                ->type('worker_ropo', $this->makeWorker()->worker_ropo)
+                ->type('worker_ropo_date', str_replace('/', '', $this->makeWorker()->worker_ropo_date))
+                ->select('worker_ropo_level', $this->makeWorker()->worker_ropo_level)
+                ->type('worker_observations', $this->makeWorker()->worker_observations)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
@@ -52,7 +57,7 @@ class WorkerCreateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard);
+                ->assertPathIs($this->pathToCreate);
         });
     }
 
@@ -61,7 +66,7 @@ class WorkerCreateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard);
+                ->assertPathIs($this->pathToCreate);
         });
     }
 }

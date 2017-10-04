@@ -18,7 +18,6 @@ trait Filters {
             $('#{$containerID}').on('change', function(){
                 var value = $('#{$containerID}').val();
                 $( table ).DataTable().column( {$columnNumber} ).search( value ? '' + value + '' : '' ).draw();
-                console.log(value);
             });
         ";
     }

@@ -12,13 +12,6 @@
         @slot('dropdownItems', [
             [Html::createLink($section, $role)], 
             [Html::deleteLink()], 
-            {{-- [Html::newLink(
-                [
-                    'title' => icon('form', trans('buttons.tools')),
-                    'route' => route('dashboard.admin.biocides.tools'), 
-                    'class' => 'dropdown-item',
-                ]
-            )], --}}
         ])
     @endcomponent
 

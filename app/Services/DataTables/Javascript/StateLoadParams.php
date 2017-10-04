@@ -24,7 +24,7 @@ trait StateLoadParams {
     private function stateLoadParamsItem(array $attributes = [], $init = "")
     {
        foreach($attributes as $attribute) {
-            $init .= "$('#{$attribute['container']}').val(data.columns[{$attribute['column']}].search.search);";
+            $init .= "$('#{$attribute['container']}').val(data.columns[{$attribute['column']}] ? data.columns[{$attribute['column']}].search.search : '');";
        }
 
        return $init;
