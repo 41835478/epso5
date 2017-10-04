@@ -5,5 +5,3 @@
     ->value($text ?? null)
     ->row(10)
 !!}
-
-{!! BootForm::hidden('agreement')->value(user_ip()) !!}
