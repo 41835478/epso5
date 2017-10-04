@@ -22,7 +22,7 @@ class CreateWorkersTable extends Migration
             $table->string('worker_ropo')->nullable()->comment("Carnet Number / ROPO");
             $table->integer('worker_ropo_level')->nullable()->comment("Carnet ROPO level");
             $table->date('worker_ropo_date')->nullable()->comment("The accreditation date / mostly 10 years vality");
-            $table->date('worker_start')->comment("Start working in the company at...");
+            $table->date('worker_start')->nullable()->comment("Start working in the company at...");
             $table->text('worker_observations')->nullable()->comment("Comments about the worker.");
             $table->softDeletes();
             $table->timestamps();
