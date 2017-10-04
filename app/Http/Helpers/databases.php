@@ -15,6 +15,7 @@ if (!function_exists('factory_user')) {
             'email'             => $faker->unique()->safeEmail,
             'password'          => $password ?: $password = generate_password(),
             'locale'            => 'es',
+            'agreement'         => '127.0.0.1',
         ];
 
         return array_merge($user, $new_array);
