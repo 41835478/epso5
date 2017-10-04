@@ -18,7 +18,9 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans_title('machines'), 'machine_name'),
+            $this->setColumn(trans_title('machines'), 'machine_equipment_name'),
+            $this->setColumn(sections('machines.brand'), 'machine_brand'),
+            $this->setColumn(sections('machines.model'), 'machine_model'),
             // $this->setColumn(trans('persona.role'), 'role', [
             //      'orderable' => false,
             //      'searchable' => false,

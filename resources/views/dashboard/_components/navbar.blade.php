@@ -129,7 +129,7 @@
         //Equipment menu
        ->item([
             'title' => icon('equipment', trans('navbar.equipment')),
-            'url' => '',
+            'url' => route('dashboard.user.machines.index'),
             'active' => true,
             'inClientList' => 'machines',
         ])

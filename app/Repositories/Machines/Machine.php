@@ -7,14 +7,14 @@ namespace App\Repositories\Machines;
 //use App\Repositories\Machines\Traits\MachinesPresenters;
 //use App\Repositories\Machines\Traits\MachinesRelationships;
 //use App\Repositories\Machines\Traits\MachinesScopes;
-//use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Machine extends Model  {
 
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.

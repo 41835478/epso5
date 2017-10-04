@@ -8,6 +8,7 @@ use App\DataTables\Machines\DataTableSearch;
 use App\Repositories\Machines\MachinesRepository;
 use App\Repositories\Machines\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Credentials;
 
 class DataTable extends Repository
 {
@@ -27,11 +28,11 @@ class DataTable extends Repository
     public function query()
     {
         $query = app(MachinesRepository::class)
-            ->dataTable()
-            // //Only God and Admin see trashed material...
-            // ->when(Credentials::isAdmin(), function($query) {
-            //     return $query->withTrashed();
-            // })
+            ->dataTable($columns = ['*'], $table = $this->section)
+            //Only God and Admin see trashed material...
+            ->when(Credentials::isAdmin(), function($query) {
+                return $query->withTrashed();
+            })
             ->select($this->section . '.*');
 
         return $this->applyScopes($query);
@@ -46,9 +47,9 @@ class DataTable extends Repository
         return $this->datatables
             ->eloquent($this->query())
             ->rawColumns(['action', 'checkbox'])
-            // ->setRowClass(function ($data) {
-            //     return ($data->trashed() ? 'trashed' : ' ');
-            // })
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
