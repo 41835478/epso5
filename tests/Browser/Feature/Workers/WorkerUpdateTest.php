@@ -12,7 +12,7 @@ class WorkerUpdateTest extends DuskTestCase
 {
     use WorkerHelpers;
     
-    protected $route = 'dashboard.admin.workers.edit';
+    protected $route = 'dashboard.user.workers.edit';
 
     /*
     |--------------------------------------------------------------------------
@@ -25,14 +25,22 @@ class WorkerUpdateTest extends DuskTestCase
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastWorker()->id)
                 ->type('worker_name', $this->makeWorker()->worker_name)
-                // ->type('worker_description', $this->makeWorker()->worker_description)
+                ->type('worker_nif', $this->makeWorker()->worker_nif)
+                ->type('worker_start', str_replace('/', '', $this->makeWorker()->worker_start))
+                ->type('worker_ropo', $this->makeWorker()->worker_ropo)
+                ->type('worker_ropo_date', str_replace('/', '', $this->makeWorker()->worker_ropo_date))
+                ->select('worker_ropo_level', $this->makeWorker()->worker_ropo_level)
+                ->type('worker_observations', $this->makeWorker()->worker_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('workers', [
             'worker_name'           => $this->makeWorker()->worker_name,
-            // 'worker_description'    => $this->makeWorker()->worker_description,
+            'worker_nif'            => $this->makeWorker()->worker_nif,
+            'worker_ropo'           => $this->makeWorker()->worker_ropo,
+            'worker_ropo_level'     => $this->makeWorker()->worker_ropo_level,
+            'worker_observations'   => $this->makeWorker()->worker_observations,
         ]);
     }
 }

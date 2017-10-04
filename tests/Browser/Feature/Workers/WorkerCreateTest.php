@@ -43,6 +43,16 @@ class WorkerCreateTest extends DuskTestCase
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
+
+        $this->assertDatabaseHas('workers', [
+            'user_id'               => $this->makeWorker()->user_id,
+            'client_id'             => $this->makeWorker()->client_id,
+            'worker_name'           => $this->makeWorker()->worker_name,
+            'worker_nif'            => $this->makeWorker()->worker_nif,
+            'worker_ropo'           => $this->makeWorker()->worker_ropo,
+            'worker_ropo_level'     => $this->makeWorker()->worker_ropo_level,
+            'worker_observations'   => $this->makeWorker()->worker_observations,
+        ]);
     }
 
     public function test_admin_can_create_worker()

@@ -72,6 +72,18 @@ class PlotCreateTest extends DuskTestCase
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
+
+        $this->assertDatabaseHas('plots', [
+            'plot_name'                     => $this->makePlot()->plot_name,
+            'plot_framework'                => $this->makePlot()->plot_framework,
+            'plot_area'                     => number_format($this->makePlot()->plot_area, 2, '.', ''),
+            'plot_real_area'                => $this->area($this->makePlot()),
+            'plot_percent_cultivated_land'  => $this->makePlot()->plot_percent_cultivated_land,
+            'plot_start_date'               => date_to_db($this->makePlot()->plot_start_date),
+            'crop_variety_id'               => 1,
+            'pattern_id'                    => 1,
+            'crop_quantity'                 => $this->makePlot()->crop_quantity,
+        ]);
     }
 
     public function test_admin_can_create_plot()

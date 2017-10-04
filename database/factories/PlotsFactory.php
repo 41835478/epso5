@@ -30,7 +30,7 @@ $factory->define(Plot::class, function (Faker\Generator $faker) {
     $percent                        = rand(1, 100);
     $plot_reference                 = null;
     $user                           = rand(1, 4);
-    $plot_framework                 = $user . $user;
+    $plot_framework                 = $user . 'x' . $user;
 
     return [
         'client_id'                     => $select,

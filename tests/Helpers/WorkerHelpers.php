@@ -10,6 +10,7 @@ trait WorkerHelpers
     protected $firstWorker;
     protected $lastWorker;
     protected $makeWorker;
+    protected $workerNotThisClient;
 
     /**
      * Create an item and storing it
@@ -61,5 +62,18 @@ trait WorkerHelpers
             return $this->firstWorker;
         }
         return $this->firstWorker = Worker::orderBy('id', 'asc')->first();
+    }
+
+    /**
+     * Firt created item
+     *
+     * @return Object
+     */
+    public function workerNotThisClient($client) : Worker
+    {
+        if($this->workerNotThisClient) {
+            return $this->workerNotThisClient;
+        }
+        return $this->workerNotThisClient = Worker::where('client_id', '!=', $client)->orderBy('id', 'asc')->first();
     }
 }
