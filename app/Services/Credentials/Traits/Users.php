@@ -27,7 +27,7 @@ trait Users
 
     private function agreement()
     {
-        return $this->user->agreement !== null;
+        return filter_var($this->user->agreement, FILTER_VALIDATE_IP);
     }
 
     /**
