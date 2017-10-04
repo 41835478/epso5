@@ -9,10 +9,12 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.list')], 
         ])
-        @slot('dropdownItems', [
-            [Html::createLink($section, $role)], 
-            [Html::deleteLink()], 
-        ])
+        @if(Credentials::isOnlyRole())
+            @slot('dropdownItems', [
+                [Html::createLink($section, $role)], 
+                [Html::deleteLink()], 
+            ])
+        @endif
     @endcomponent
 
     {{-- Search --}}
