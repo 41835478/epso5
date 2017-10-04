@@ -10,7 +10,8 @@
             [trans('base.create')], 
         ])
         {{-- Add other slot --}}
-        @slot('clients', $clients ?? null)
+        @slot('clients', $clients ?? [])
+        @slot('users', $users ?? [])
     @endcomponent
 
 @endsection

@@ -6,8 +6,9 @@ use App\DataTables\Workers\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\WorkersRequest;
 use App\Repositories\Clients\ClientsRepository;
+use App\Repositories\Users\UsersRepository;
 use App\Repositories\Workers\WorkersRepository;
-//use Credentials;
+use Credentials;
 //use Illuminate\Http\Request;
 
 class WorkersController extends DashboardController
@@ -48,10 +49,6 @@ class WorkersController extends DashboardController
     public function index()
     {
         return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'workers:action'
-            // ])
             ->render(dashboard_path($this->section . '.index'));
     }
 
@@ -60,10 +57,16 @@ class WorkersController extends DashboardController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ClientsRepository $client)
+    public function create(ClientsRepository $ClientsRepository, UsersRepository $UsersRepository)
     {
-        $clients = $client->listOfClientsByRole();
-            return view(dashboard_path($this->section . '.create'), compact('clients'));
+        if(Credentials::isAdmin()) {
+            $clients    = $ClientsRepository->listOfClientsByRole();
+            $users      = null;
+        } elseif (Credentials::isEditor()) {
+            $clients    = null;
+            $users      = $UsersRepository->listOfUsersByRole();
+        }
+        return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
     }
 
     /**

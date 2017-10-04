@@ -13,13 +13,25 @@
      * 
      * @return  string
      */
-    Form::macro('clientsAndUsers', function($clients = null, $loadModule = false)
+    Form::macro('clientsAndUsers', function($clients = null, $users = null, $loadModule = false)
     {
+        //Defaults 
+        $html = '';
         //Create clients
-        $html = BootForm::select(sections('clients.title'), 'client_id')->addGroupClass('col-md-4')->options(setOptions($clients))->select(0)->data('module', $loadModule)->required();
+        if($clients) {
+            $html = BootForm::select(sections('clients.title'), 'client_id')
+                ->addGroupClass('col-md-4')
+                ->options(setOptions($clients ?? []))
+                ->select(0)
+                ->data('module', $loadModule)
+                ->required();
+        }
         //Create users
-        $html .= BootForm::select(sections('users.title'), 'user_id')->addGroupClass('col-md-4')->options([]);
-            return $html;
+        $html .= BootForm::select(sections('users.title'), 'user_id')
+            ->addGroupClass('col-md-4')
+            ->options(setOptions($users ?? []));
+        //Get the values
+        return $html;
     });
 
     /**

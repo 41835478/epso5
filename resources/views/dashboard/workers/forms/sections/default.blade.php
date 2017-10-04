@@ -11,7 +11,7 @@
         {!! BootForm::hidden('client_id')->value(getClientId()) !!}
     @else 
         {{-- Field: Client and users --}}
-        {!! Form::clientsAndUsers($clients, $loadModule = false)!!}
+        {!! Form::clientsAndUsers($clients ?? null, $users ?? null, $loadModule = false)!!}
     @endif
 
     {{-- Fields: Worker name --}}
