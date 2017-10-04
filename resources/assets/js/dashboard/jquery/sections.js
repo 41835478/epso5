@@ -30,10 +30,11 @@
             e.preventDefault();
             //Load module 
             if( $( this ).data('module') ) {
-                //Add loading class 
+                //Add loading class
                 var $module = $('#load-module');
                 $module.html( loading );
             } else {
+                //Not load the modules
                 var $module = null;
             }
             //Define the variables

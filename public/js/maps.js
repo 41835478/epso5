@@ -35840,10 +35840,11 @@ if ($('#client_id')) {
         e.preventDefault();
         //Load module 
         if ($(this).data('module')) {
-            //Add loading class 
+            //Add loading class
             var $module = $('#load-module');
             $module.html(loading);
         } else {
+            //Not load the modules
             var $module = null;
         }
         //Define the variables
@@ -35852,7 +35853,7 @@ if ($('#client_id')) {
             $route = '/dashboard/ajax/users';
         //Generate the combobox: clients > users
         __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
-        //Add módule value
+        //Add module value if needed
         if ($('#crop_module') && $module) {
             $.get(window.location.origin + '/dashboard/ajax/modules', { search: $value }, function (data) {
                 //Only if there is data
