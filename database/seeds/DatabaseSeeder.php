@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CropVarietiesTableSeeder::class);
         $this->call(CropVarietyTypesTableSeeder::class);
         $this->call(IrrigationsTableSeeder::class);
+        $this->call(MachinesTableSeeder::class);
         $this->call(PatternsTableSeeder::class);
         $this->call(PestsTableSeeder::class);
         $this->call(TrainingsTableSeeder::class);
