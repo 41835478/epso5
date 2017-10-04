@@ -28,14 +28,20 @@
     if($( '#client_id' )) {
         $( '#client_id' ).on( 'change', function( e ) {
             e.preventDefault();
+            //Load module 
+            if( $( this ).data('module') ) {
+                //Add loading class 
+                var $module = $('#load-module');
+                $module.html( loading );
+            } else {
+                var $module = null;
+            }
             //Define the variables
-            var $container = $('#user_id'), $value = $('#client_id').val(), $route = '/dashboard/ajax/users', $module = $('#load-module');
-            //Add loading class 
-            $module.html( loading );
+            var $container = $('#user_id'), $value = $('#client_id').val(), $route = '/dashboard/ajax/users';
             //Generate the combobox: clients > users
             forms.form_comboBox( $container, $value, $route );
-            //Add módule value
-            if($( '#crop_module' )) {
+            //Add module value if needed
+            if( $( '#crop_module' ) && $module ) {
                 $.get( window.location.origin + '/dashboard/ajax/modules', { search: $value }, 
                 function( data ) {
                     //Only if there is data
