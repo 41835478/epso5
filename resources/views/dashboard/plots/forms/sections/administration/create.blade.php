@@ -3,19 +3,8 @@
     {{-- Admin fields --}}
     @Role('admin')
 
-        {{-- Field: Client --}}
-        {!! BootForm::select(sections('clients.title'), 'client_id')
-            ->addGroupClass('col-md-4')
-            ->options(setOptions($clients))
-            ->select(0)
-            ->required()
-        !!}
-
-        {{-- Field: User --}}
-        {!! BootForm::select(sections('users.title'), 'user_id')
-            ->addGroupClass('col-md-4')
-            ->options([])
-        !!}
+        {{-- Field: Client and users --}}
+        {!! Form::clientsAndUsers($clients, true)!!}
 
         {{-- Field: Crop module --}}
         {!! BootForm::hidden('crop_module')->id('crop_module') !!}
