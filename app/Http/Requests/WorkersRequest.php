@@ -27,8 +27,7 @@ class WorkersRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'request',
-            //'field2'          => 'request',
+            'worker_name'          => 'required',
         ];
     }
 
@@ -40,8 +39,7 @@ class WorkersRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans('base.module'),
-            //'field2'            => trans('base.module'),
+            'worker_name'           => trans_title('workers', 'singular'),
         ];
     }
 
