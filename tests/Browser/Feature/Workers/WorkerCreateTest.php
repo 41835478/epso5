@@ -16,7 +16,6 @@ class WorkerCreateTest extends DuskTestCase
     protected $pathToCreate = '/dashboard/workers/create';
     protected $pathToList   = '/dashboard/workers';
 
-
     /*
     |--------------------------------------------------------------------------
     | Add Worker
@@ -31,6 +30,9 @@ class WorkerCreateTest extends DuskTestCase
                 ->click('#button-config')
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
+                ->select('client_id', $this->makeWorker()->client_id)
+                ->pause(500)
+                ->select('user_id', $this->makeWorker()->user_id)
                 ->type('worker_name', $this->makeWorker()->worker_name)
                 ->type('worker_nif', $this->makeWorker()->worker_nif)
                 ->type('worker_start', str_replace('/', '', $this->makeWorker()->worker_start))
