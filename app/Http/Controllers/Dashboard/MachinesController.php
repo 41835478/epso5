@@ -6,8 +6,6 @@ use App\DataTables\Machines\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Repositories\Machines\MachinesRepository;
 use App\Http\Requests\MachinesRequest;
-//use Credentials;
-//use Illuminate\Http\Request;
 
 class MachinesController extends DashboardController
 {
@@ -19,9 +17,7 @@ class MachinesController extends DashboardController
     /**
      * @var private
      */
-    private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
-    private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
-    private $role       = 'admin';
+    private $role       = 'user';
     private $section    = 'machines';
 
     public function __construct(MachinesRepository $controller, DataTable $table)
@@ -30,13 +26,9 @@ class MachinesController extends DashboardController
         $this->table        = $table;
         //Sharing in the view
         view()->share([
-            //'legend'   => $this->legend,
-            //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -47,10 +39,6 @@ class MachinesController extends DashboardController
     public function index()
     {
         return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'machines:action'
-            // ])
             ->render(dashboard_path($this->section . '.index'));
     }
 
