@@ -46,4 +46,13 @@ trait Helpers
     {
         return $this->role('user');
     } 
+
+    /**
+     * Verify is the user has the role: User
+     * @return boolean
+     */
+    private function isOnlyRole($role = 'user')  : bool
+    {
+        return $this->maxRole() === $role;
+    } 
 }

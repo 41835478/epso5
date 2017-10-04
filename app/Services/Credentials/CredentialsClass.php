@@ -45,6 +45,7 @@ class CredentialsClass {
         'isAdmin',
         'isEditor',
         'isUser',
+        'isOnlyRole',
         
         //Users
         'address',
