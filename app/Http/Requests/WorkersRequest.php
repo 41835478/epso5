@@ -27,7 +27,9 @@ class WorkersRequest extends FormRequest
     public function rules()
     {
         return [
-            'worker_name'          => 'required',
+            'client_id'     => 'required|integer',
+            'user_id'       => 'required|integer',
+            'worker_name'   => 'required',
         ];
     }
 
@@ -39,7 +41,9 @@ class WorkersRequest extends FormRequest
     public function attributes()
     {
         return [
-            'worker_name'           => trans_title('workers', 'singular'),
+            'client_id'     => trans_title('clients', 'singular'),
+            'user_id'       => trans('auth.user'),
+            'worker_name'   => trans_title('workers', 'singular'),
         ];
     }
 
