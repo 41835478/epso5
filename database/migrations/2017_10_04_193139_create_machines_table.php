@@ -15,6 +15,13 @@ class CreateMachinesTable extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->string('machine_equipment', 150);
+            $table->string('machine_brand', 150)->nullable();
+            $table->string('machine_model', 150)->nullable();
+            $table->date('machine_date')->nullable()->comment('Machine purchase');
+            $table->date('machine_inspection')->nullable()->comment('Last machine inspection');
+            $table->date('machine_next_inspection')->nullable()->comment('Next machine inspection');
+            $table->text('machine_observations')->nullable()->comment("Comments about the machine.");
             $table->softDeletes();
             $table->timestamps();
         });
