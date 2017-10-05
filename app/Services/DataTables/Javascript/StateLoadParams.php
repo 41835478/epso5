@@ -18,6 +18,21 @@ trait StateLoadParams {
     }
 
     /**
+     * When working with numeric values (for example in select), 
+     * the output will be '^numeric$' istead of 'numeric'
+     * so, we need to clean this value
+     * 
+     * @return string
+     */
+    protected function numericFilter($container, $column) 
+    {
+        //Create the numeric filter
+        $filter = "{$container}.replace('^', '').replace('$', '')";
+            //Return the value and filter it!!!
+            return "var {$container} = data.columns[{$column}].search.search; $('#{$container}').val({$filter});";
+    }
+
+    /**
      * Create and individual item for the stateLoadParams() method
      * @return string
      */
