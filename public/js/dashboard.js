@@ -54339,6 +54339,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
     }
 });
+
 /**
  * Avoid using enter with forms
  */
@@ -54348,6 +54349,14 @@ $(window).keydown(function (event) {
         return false;
     }
 });
+
+/**
+ * Extend date propiety
+ */
+Date.prototype.addDays = function (days) {
+    this.setDate(this.getDate() + parseInt(days));
+    return this;
+};
 
 /***/ }),
 
@@ -54535,6 +54544,29 @@ $('form').not('#login').find('input, select, textarea').each(function () {
         $(this).parent('div').prev('label.control-label').addClass('label-required');
     }
 });
+
+/**
+ * Inspection dates
+ */
+$('#machine_next_inspection').on('change', function () {
+    //Create date 
+    var inspection = $('#machine_inspection').val();
+    if ($(this).val()) {
+        //Add days
+        var futureDate = formatDateToInternational(inspection).addDays($(this).val());
+        // Add date
+        $('#machine_next_inspection_info').val(futureDate.getDate() + '/' + ("0" + (futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear());
+    }
+});
+
+$('#machine_inspection').on('keyup', function () {
+    $('#machine_next_inspection option:first-child').attr("selected", "selected");
+});
+
+var formatDateToInternational = function formatDateToInternational(date) {
+    var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
+    return new Date(formatDate);
+};
 
 /***/ }),
 

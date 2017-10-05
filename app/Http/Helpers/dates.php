@@ -63,7 +63,5 @@ if (!function_exists('next_inspection')) {
                 return $days ?? null;
             }
         }
-        //No results
-        return null;
     }
 }

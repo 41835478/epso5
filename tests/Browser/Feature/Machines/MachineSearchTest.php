@@ -24,20 +24,29 @@ class MachineSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_name', $this->lastMachine()->machine_name)
+                ->type('search_machine', $this->lastMachine()->machine_equipment_name)
                 ->pause(500)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastMachine()->machine_name);
-                    $table->assertDontSee($this->firstMachine()->machine_name);
+                    $table->assertSee($this->lastMachine()->machine_equipment_name);
+                    $table->assertDontSee($this->firstMachine()->machine_equipment_name);
                 });
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_id', $this->lastMachine()->id)
+                ->type('search_brand', $this->lastMachine()->machine_brand)
+                ->pause(1000)
+                ->with('.table', function ($table) {
+                    $table->assertSee($this->lastMachine()->machine_brand);
+                    $table->assertDontSee($this->firstMachine()->machine_brand);
+                });
+
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_model', $this->lastMachine()->machine_model)
                 ->pause(500)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastMachine()->machine_name);
-                    $table->assertDontSee($this->firstMachine()->machine_name);
+                    $table->assertSee($this->lastMachine()->machine_model);
+                    $table->assertDontSee($this->firstMachine()->machine_model);
                 });
         });
     }

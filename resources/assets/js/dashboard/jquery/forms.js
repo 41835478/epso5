@@ -107,3 +107,26 @@
                 .addClass('label-required');
         }
     });
+
+    /**
+     * Inspection dates
+     */
+    $( '#machine_next_inspection' ).on( 'change', function() {
+        //Create date 
+        var inspection = $( '#machine_inspection' ).val();
+        if( $( this ).val() ) {
+            //Add days
+            var futureDate = formatDateToInternational( inspection) .addDays( $( this ).val() );
+            // Add date
+            $( '#machine_next_inspection_info' ).val( futureDate.getDate() + '/' + ("0" + ( futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear() );
+        }
+    })
+
+    $( '#machine_inspection' ).on( 'keyup', function() {
+        $('#machine_next_inspection option:first-child').attr("selected", "selected");
+    })
+
+    var formatDateToInternational = function( date ) {
+        var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
+        return new Date( formatDate );
+    };

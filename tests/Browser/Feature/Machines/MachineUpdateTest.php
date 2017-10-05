@@ -12,7 +12,7 @@ class MachineUpdateTest extends DuskTestCase
 {
     use MachineHelpers;
     
-    protected $route = 'dashboard.admin.machines.edit';
+    protected $route = 'dashboard.user.machines.edit';
 
     /*
     |--------------------------------------------------------------------------
@@ -24,15 +24,25 @@ class MachineUpdateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastMachine()->id)
-                ->type('machine_name', $this->makeMachine()->machine_name)
-                // ->type('machine_description', $this->makeMachine()->machine_description)
+                ->type('machine_equipment_name', $this->makeMachine()->machine_equipment_name)
+                ->type('machine_brand', $this->makeMachine()->machine_brand)
+                ->type('machine_model', $this->makeMachine()->machine_model)
+                ->type('machine_date', $this->makeMachine()->machine_date)
+                ->type('machine_inspection', $this->makeMachine()->machine_inspection)
+                ->select('machine_next_inspection', $this->makeMachine()->machine_next_inspection)
+                ->type('machine_observations', $this->makeMachine()->machine_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('machines', [
-            'machine_name'           => $this->makeMachine()->machine_name,
-            // 'machine_description'    => $this->makeMachine()->machine_description,
+            'machine_equipment_name'        => $this->makeMachine()->machine_equipment_name,
+            'machine_brand'                 => $this->makeMachine()->machine_brand,
+            'machine_model'                 => $this->makeMachine()->machine_model,
+            'machine_date'                  => date_to_db($this->makeMachine()->machine_date),
+            'machine_inspection'            => date_to_db($this->makeMachine()->machine_inspection),
+            'machine_next_inspection'       => $this->makeMachine()->machine_next_inspection,
+            'machine_observations'          => $this->makeMachine()->machine_observations,
         ]);
     }
 }

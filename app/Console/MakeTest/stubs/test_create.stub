@@ -36,6 +36,11 @@ class DummyModelCreateTest extends DuskTestCase
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
+
+        $this->assertDatabaseHas('DummyTable', [
+            'DummySingular_name'           => $this->makeMachine()->DummySingular_name,
+            // 'DummySingular_description'    => $this->makeMachine()->DummySingular_description,
+        ]);
     }
 
     public function test_admin_can_create_DummySingular()

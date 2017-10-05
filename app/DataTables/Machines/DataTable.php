@@ -18,9 +18,8 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $action  = true; //Cusmomize action
-    protected $alert   = 30; //Days before alert date expired
-    protected $section = 'machines';
+    protected $alert    = 30; //Days before alert date expired
+    protected $section  = 'machines'; //Cusmomize action
 
     /**
      * Get the query object to be processed by datatables.

@@ -17,7 +17,6 @@ trait DataTableColumns
          */
         $default = [
             $this->createCheckbox(),
-            $this->setColumn(trans('financials.id'), 'id')
         ];
         /**
          * Columns
@@ -62,7 +61,7 @@ trait DataTableColumns
             ], $columns);
         }
         //Get the values
-        return $columns;
+        return array_merge($default, $columns);
     }
 
     /**

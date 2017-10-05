@@ -49,4 +49,16 @@ return [
         6 => 'Sábado', 
         7 => 'Domingo',
     ],
+
+    'inspection' => [
+        15      => '15 ' . strtolower(trans('dates.day:plural')), 
+        30      => '1 ' . strtolower(trans('dates.month')), 
+        90      => '3 ' . strtolower(trans('dates.month:plural')), 
+        180     => '6 ' . strtolower(trans('dates.month:plural')), 
+        365     => '1 ' . strtolower(trans('dates.year')), 
+        730     => '2 ' . strtolower(trans('dates.year:plural')), 
+        1095    => '3 ' . strtolower(trans('dates.year:plural')), 
+        1460    => '4 ' . strtolower(trans('dates.year:plural')), 
+        1825    => '5 ' . strtolower(trans('dates.year:plural')), 
+    ]
 ];

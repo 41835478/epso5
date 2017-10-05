@@ -2,14 +2,15 @@
 
 namespace App\Repositories\Machines;
 
-use App\Repositories\Repository;
-use App\Repositories\Machines\Traits\MachinesHelpers;
 use App\Repositories\Machines\Machine;
+use App\Repositories\Machines\Traits\MachinesHelpers;
+use App\Repositories\Repository;
+use App\Repositories\_Traits\ClientUser;
 //use DB;
 
 class MachinesRepository extends Repository
 {
-    use MachinesHelpers;
+    use MachinesHelpers, ClientUser;
 
     protected $model;
 

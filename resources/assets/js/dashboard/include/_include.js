@@ -6,6 +6,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
     }
 });
+
 /**
  * Avoid using enter with forms
  */
@@ -15,3 +16,11 @@ $(window).keydown(function(event){
         return false;
     }
 });
+
+/**
+ * Extend date propiety
+ */
+Date.prototype.addDays = function(days) {
+    this.setDate(this.getDate() + parseInt(days));
+    return this;
+};

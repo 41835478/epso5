@@ -28,7 +28,6 @@ class MachinesController extends DashboardController
         view()->share([
             'section'   => $this->section,
             'role'      => $this->role,
-            'legend'    => $this->section,
         ]);
     }
 
@@ -50,7 +49,9 @@ class MachinesController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path($this->section . '.create'));
+        //Get the users and the clients
+        list($clients, $users) = $this->controller->getClientUser();
+            return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
     }
 
     /**

@@ -19,8 +19,10 @@ return [
     'hour'              => 'Hora',
     'minute'            => 'Minuto',
     'month'             => 'Mes',
+    'month:plural'      => 'Meses',
     'select:date'       => 'Seleccione fecha',
     'time'              => 'Tiempo',
     'year'              => 'Año',
+    'year:plural'       => 'Años',
 
 ];
