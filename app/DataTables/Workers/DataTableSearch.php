@@ -2,6 +2,8 @@
 
 namespace App\DataTables\Workers;
 
+use Credentials;
+
 trait DataTableSearch
 {
     /**
@@ -11,17 +13,20 @@ trait DataTableSearch
     public function searchAttributes() : array
     {
         /**
-         * @param  string $type         [Allowed filter: change, input, number, select (same as change but with scapeRegex), date]
-         * @param  string $container    [Input id]
-         * @param  array $column        [Column number to search]
+         * Role filter
+         */
+        $value = Credentials::isAdmin() ? 2 : (Credentials::isEditor() ? 1 : 0);
+        /**
+         * Default values
          */
         return [
-            $this->setColumnSearch('input', 'search_worker', 2),
-            $this->setColumnSearch('input', 'search_nif', 3),
-            $this->setColumnSearch('input', 'search_ropo', 5),
-            $this->setColumnSearch('select', 'search_level', 7),
-            $this->setColumnSearch('input', 'search_client', 9),
-            $this->setColumnSearch('input', 'search_user', 10),
+            $this->setColumnSearch('input', 'search_worker', 2 + $value),
+            $this->setColumnSearch('input', 'search_nif', 3 + $value),
+            $this->setColumnSearch('input', 'search_ropo', 5 + $value),
+            $this->setColumnSearch('select', 'search_level', 7 + $value),
+            //
+            $this->setColumnSearch('input', 'search_client', 2),
+            $this->setColumnSearch('input', 'search_user', 1 + $value),
         ];
     }
 }

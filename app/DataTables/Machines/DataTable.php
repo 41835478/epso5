@@ -19,6 +19,7 @@ class DataTable extends Repository
      * @var string
      */
     protected $action  = false; //Cusmomize action
+    protected $alert   = 30; //Days before alert date expired
     protected $section = 'machines';
 
     /**
@@ -49,7 +50,7 @@ class DataTable extends Repository
             ->eloquent($this->query())
             ->rawColumns(['action', 'checkbox', 'machine_brand', 'machine_equipment_name', 'machine_model', 'machine_observations'])
             ->setRowClass(function ($data) {
-                return ($data->trashed() ? 'trashed' : ' ');
+                return $data->trashed() ? 'trashed' : ' ';
             })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
@@ -74,7 +75,7 @@ class DataTable extends Repository
             ->editColumn('machine_inspection_day', function($data) {
                 $days = next_inspection($data->machine_inspection ?? null, $data->machine_next_inspection ?? null, $format = 'days');
                     return $days 
-                        ? $days . ' ' . trans('dates.day:plural') 
+                        ? $days . ' ' . strtolower(trans('dates.day:plural'))
                         : null;
             })
             ->editColumn('checkbox', function($data) {

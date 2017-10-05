@@ -34,8 +34,9 @@ trait DataTableColumns
             $this->setColumn(sections('machines.inspection:next'), 'machine_next_inspection', [
                 'defaultContent' => no_result(),
             ]),
-            $this->setColumn('Faltan', 'machine_inspection_day', [
-                'defaultContent' => no_result(),
+            $this->setColumn(sections('machines.inspection:countdown'), 'machine_inspection_day', [
+                'defaultContent'    => no_result(),
+                'orderable'         => false,
             ]),
             $this->setColumn(trans('base.observations'), 'machine_observations', [
                 'defaultContent' => no_result(),

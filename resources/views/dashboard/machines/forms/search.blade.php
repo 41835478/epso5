@@ -1,16 +1,15 @@
-{{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{{-- Search by: Machine --}}
+{!! BootForm::text(trans_title('machines', 'singular'), 'search_machine')
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
-    ->addGroupClass('col-md-3')
+{{-- Search by: Brand --}}
+{!! BootForm::text(sections('machines.brand'), 'search_brand')
+    ->addGroupClass('col-md-2')
 !!}
 
-{{-- Search by: ID --}}
-{!! BootForm::text(trans('financials.id'), 'search_id')
+{{-- Search by: Model --}}
+{!! BootForm::text(sections('machines.model'), 'search_model')
     ->addGroupClass('col-md-2')
-    ->addClass('number')
 !!}

@@ -13,13 +13,9 @@ trait DataTableColumns
     protected function setColumns() : array
     {
         /**
-         * @param  string $text
-         * @param  string $name
-         * @param  array $attributes [Add extra attributes]
+         * Columns
          */
         $columns = [
-            $this->createCheckbox(),
-            $this->setColumn(trans('financials.id'), 'id'),
             $this->setColumn(trans_title('workers'), 'worker_name'),
             $this->setColumn(trans('persona.id.nif'), 'worker_nif', [
                 'defaultContent' => no_result(),
@@ -36,16 +32,23 @@ trait DataTableColumns
             $this->setColumn(sections('workers.level'), 'worker_ropo_level'),
             $this->setColumn(trans('base.description'), 'worker_observations'),
         ];
+        /**
+         * Default values
+         */
+        $default = [
+            $this->createCheckbox(),
+            $this->setColumn(trans('financials.id'), 'id')
+        ];
         if(Credentials::isAdmin()) {
-            return array_merge($columns, [
+            return array_merge($default, [
                 $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
                 $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
-            ]);
+            ], $columns);
         }
         if(Credentials::isEditor()) {
-            return array_merge($columns, [
+            return array_merge($default, [
                 $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
-            ]);
+            ], $columns);
         }
         return $columns;
     }

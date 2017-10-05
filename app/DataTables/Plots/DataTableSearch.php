@@ -12,16 +12,10 @@ trait DataTableSearch
      */
     public function searchAttributes() : array
     {
-        //Default values
-        $client = $user = 0;
-        //Filtering by role
-        if(Credentials::isAdmin()) {
-            $client = 1; $user = 2; $crop = 3; $variety = 4; $plot = 5; $city = 8;
-        } elseif(Credentials::isEditor()) {
-            $user = 1; $crop = 2; $variety = 3; $plot = 4; $city = 7;
-        } else {
-            $crop = 1; $variety = 2; $plot = 3; $city = 6;
-        }
+        /**
+         * Role filter
+         */
+        $value = Credentials::isAdmin() ? 2 : (Credentials::isEditor() ? 1 : 0);
 
         /**
          * @param  string $type         [Allowed filter: change, input, number, select (same as change but with scapeRegex), date]
@@ -29,12 +23,15 @@ trait DataTableSearch
          * @param  array $column        [Column number to search]
          */
         return [
-            $this->setColumnSearch('input', 'search_client', $client),
-            $this->setColumnSearch('input', 'search_crop', $crop),
-            $this->setColumnSearch('input', 'search_user', $user),
-            $this->setColumnSearch('input', 'search_plot', $plot),
-            $this->setColumnSearch('input', 'search_variety', $variety),
-            $this->setColumnSearch('input', 'search_city', $city),
+            $this->setColumnSearch('input', 'search_crop', 1 + $value),
+            $this->setColumnSearch('input', 'search_variety', 2 + $value),
+            $this->setColumnSearch('input', 'search_plot', 3 + $value),
+            $this->setColumnSearch('input', 'search_city', 6 + $value),
+            //
+            $this->setColumnSearch('input', 'search_client', 1),
+            $this->setColumnSearch('input', 'search_user', 0 + $value),
+
+
         ];
     }
 }
