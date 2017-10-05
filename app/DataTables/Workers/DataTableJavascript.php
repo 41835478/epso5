@@ -17,16 +17,16 @@ trait DataTableJavascript
     }
 
     /**
-     * Custom initComplete
+     * Custom stateLoadParams
      * @return string
      */    
     public function customStateLoadParams()
     {
-        return "";
+        return $this->numericFilter($container = 'search_level', $column = 7);
     }
 
     /**
-     * Custom initComplete
+     * Custom JqueryCallback
      * @return string
      */    
     public function customJqueryCallback()
