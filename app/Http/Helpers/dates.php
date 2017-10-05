@@ -37,3 +37,33 @@ if (!function_exists('date_to_db')) {
         return Carbon::createFromFormat('d/m/Y', $date)->format('Y-m-d');
     }
 }
+
+/**
+ * Get the different (in days) from to day to the next inspection
+ *
+ * @param  date $lastInspectionDate [The last inspection date]
+ * @param  int $nextInspectionInDays [Inspection each x days]
+ * @param  string $format [date or day]
+ * 
+ * @return string
+ */
+if (!function_exists('next_inspection')) {
+    function next_inspection($lastInspectionDate = null, $nextInspectionInDays = null, $format = 'date')
+    {
+        if($lastInspectionDate && $nextInspectionInDays) {
+            //Calculate the next inspection date from: last date and days to next inspection
+            $nextInspection = Carbon::createFromFormat('d/m/Y', $lastInspectionDate)->addDays($nextInspectionInDays);
+            //Different (in days) from today and the next inspection
+            $days = Carbon::now()->diffInDays($nextInspection, false);
+            //Select format
+            if($days > 0) {
+                if($format === 'date') {
+                    return $nextInspection->format('d/m/Y') ?? null;
+                }
+                return $days ?? null;
+            }
+        }
+        //No results
+        return null;
+    }
+}

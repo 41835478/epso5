@@ -8,6 +8,7 @@ use App\DataTables\Machines\DataTableSearch;
 use App\Repositories\Machines\MachinesRepository;
 use App\Repositories\Machines\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Carbon\Carbon;
 use Credentials;
 
 class DataTable extends Repository
@@ -46,13 +47,35 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'machine_brand', 'machine_equipment_name', 'machine_model', 'machine_observations'])
             ->setRowClass(function ($data) {
                 return ($data->trashed() ? 'trashed' : ' ');
             })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
+            })
+            ->editColumn('machine_equipment_name', function($data) {
+                $field = $data->equipment->equipment_name ?? $data->machine_equipment_name;
+                    return $this->textLength(25)->formatString($field ?? null);
+            })
+            ->editColumn('machine_brand', function($data) {
+                return $this->textLength(25)->formatString($data->machine_brand ?? null);
+            })
+            ->editColumn('machine_model', function($data) {
+                return $this->textLength(25)->formatString($data->machine_model ?? null);
+            })
+            ->editColumn('machine_next_inspection', function($data) {
+                return next_inspection($data->machine_inspection ?? null, $data->machine_next_inspection ?? null, $format = 'date');
+            })
+            ->editColumn('machine_observations', function($data) {
+                return $this->textLength(50)->formatString($data->machine_observations ?? null);
+            })
+            ->editColumn('machine_inspection_day', function($data) {
+                $days = next_inspection($data->machine_inspection ?? null, $data->machine_next_inspection ?? null, $format = 'days');
+                    return $days 
+                        ? $days . ' ' . trans('dates.day:plural') 
+                        : null;
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);

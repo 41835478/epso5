@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\DataTables\Machines\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\Machines\MachinesRepository;
 use App\Http\Requests\MachinesRequest;
+use App\Repositories\Machines\MachinesRepository;
 
 class MachinesController extends DashboardController
 {

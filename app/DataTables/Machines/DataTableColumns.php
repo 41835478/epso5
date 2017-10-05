@@ -18,21 +18,28 @@ trait DataTableColumns
         return [
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
-            $this->setColumn(trans_title('machines'), 'machine_equipment_name'),
-            $this->setColumn(sections('machines.brand'), 'machine_brand'),
-            $this->setColumn(sections('machines.model'), 'machine_model'),
-            // $this->setColumn(trans('persona.role'), 'role', [
-            //      'orderable' => false,
-            //      'searchable' => false,
-            //      'defaultContent' => no_result(),
-            // ]),
-            // $this->setColumnWithRelationship(trans('financials.client'), 'client.client_name'),
-            // $this->setColumnWithRelationship(__('Twitter'), 'profile.profile_social_twitter'),
-            // [
-            //     'title' => __('Facebook'),
-            //     'name' => 'profile.profile_social_facebook',
-            //     'data' => 'profile.profile_social_facebook',
-            // ],
+            $this->setColumn(trans_title('machines', 'singular'), 'machine_equipment_name'),
+            $this->setColumn(sections('machines.brand'), 'machine_brand', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('machines.model'), 'machine_model', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('dates.date:buy'), 'machine_date', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('machines.inspection:last'), 'machine_inspection', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(sections('machines.inspection:next'), 'machine_next_inspection', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn('Faltan', 'machine_inspection_day', [
+                'defaultContent' => no_result(),
+            ]),
+            $this->setColumn(trans('base.observations'), 'machine_observations', [
+                'defaultContent' => no_result(),
+            ]),
         ];
     }
 

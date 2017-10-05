@@ -22,7 +22,7 @@ class CreateMachinesTable extends Migration
             $table->string('machine_model', 150)->nullable();
             $table->date('machine_date')->nullable()->comment('Machine purchase');
             $table->date('machine_inspection')->nullable()->comment('Last machine inspection');
-            $table->date('machine_next_inspection')->nullable()->comment('Next machine inspection');
+            $table->integer('machine_next_inspection')->default(0)->unsigned()->comment('In days. Use $carbon->addDays($days);');
             $table->text('machine_observations')->nullable()->comment("Comments about the machine.");
             $table->softDeletes();
             $table->timestamps();

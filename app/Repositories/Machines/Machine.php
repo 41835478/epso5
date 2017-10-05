@@ -2,9 +2,9 @@
 
 namespace App\Repositories\Machines;
 
-//use App\Repositories\_Traits\Date;
+use App\Repositories\_Traits\Date;
 //use App\Repositories\Machines\Traits\MachinesEvents;
-//use App\Repositories\Machines\Traits\MachinesPresenters;
+use App\Repositories\Machines\Traits\MachinesPresenters;
 //use App\Repositories\Machines\Traits\MachinesRelationships;
 //use App\Repositories\Machines\Traits\MachinesScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Machine extends Model  {
 
-    use Notifiable, SoftDeletes;
+    use Date, MachinesPresenters, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -22,14 +22,24 @@ class Machine extends Model  {
      * @var string
      */
     protected $table = 'machines';
-    //protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['id'];
+    protected $fillable = [
+        'user_id',
+        'equipment_id',
+        'machine_equipment_name',
+        'machine_brand',
+        'machine_model',
+        'machine_date',
+        'machine_inspection',
+        'machine_next_inspection',
+        'machine_observations',
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.

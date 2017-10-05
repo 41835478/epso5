@@ -10,14 +10,23 @@ trait MachinesPresenters {
     |--------------------------------------------------------------------------
     */
 
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = $value;
-    // }
+    public function setMachineDateAttribute($value)
+    {
+        $this->attributes['machine_date'] = $this->setDate($value);
+    }
 
-    // public function getNameAttribute($value)
-    // {
-    //     return ucfirst($value);
-    // }
-    // 
+    public function getMachineDateAttribute($value)
+    {
+        return $this->getDate($value);
+    }
+
+    public function setMachineInspectionAttribute($value)
+    {
+        $this->attributes['machine_inspection'] = $this->setDate($value);
+    }
+
+    public function getMachineInspectionAttribute($value)
+    {
+        return $this->getDate($value);
+    }
 }

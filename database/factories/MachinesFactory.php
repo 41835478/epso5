@@ -17,7 +17,7 @@ $factory->define(Machine::class, function (Faker\Generator $faker) {
         'machine_model'                 => $faker->company,
         'machine_date'                  => $faker->date($format = 'd/m/Y', $max = 'now'),
         'machine_inspection'            => $faker->date($format = 'd/m/Y', $max = 'now'),
-        'machine_next_inspection'       => $faker->date($format = 'd/m/Y', $max = 'now'),
+        'machine_next_inspection'       => rand(15, 3000),
         'machine_observations'          => $faker->sentence($nbWords = 10, $variableNbWords = true),
     ];
 });
