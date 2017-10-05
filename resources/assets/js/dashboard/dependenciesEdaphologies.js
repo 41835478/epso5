@@ -8,8 +8,8 @@ window._ = require('lodash');
  */
     window.$ = window.jQuery = require( 'jquery' );
     window.Tether = require( 'tether' );
-    window.Auto = require('../vendor/autocomplete.js')
     require( 'bootstrap' );
+    window.Auto = require('../vendor/autocomplete.js')
 // /**
 // * The jquery components
 // */

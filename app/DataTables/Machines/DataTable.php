@@ -18,7 +18,7 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $action  = false; //Cusmomize action
+    protected $action  = true; //Cusmomize action
     protected $alert   = 30; //Days before alert date expired
     protected $section = 'machines';
 
@@ -35,7 +35,8 @@ class DataTable extends Repository
             ->when(Credentials::isAdmin(), function($query) {
                 return $query->withTrashed();
             })
-            ->select($this->section . '.*');
+            ->select($this->section . '.*')
+            ->with('client', 'user');
 
         return $this->applyScopes($query);
     }

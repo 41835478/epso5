@@ -27,7 +27,8 @@ class MachinesController extends DashboardController
         //Sharing in the view
         view()->share([
             'section'   => $this->section,
-            'role'      => $this->role
+            'role'      => $this->role,
+            'legend'    => $this->section,
         ]);
     }
 

@@ -13,6 +13,14 @@ trait DataTableColumns
     protected function setColumns() : array
     {
         /**
+         * Default values
+         */
+        $default = [
+            $this->createCheckbox(),
+            $this->setColumn(trans('financials.id'), 'id')
+        ];
+
+        /**
          * Columns
          */
         $columns = [
@@ -33,12 +41,8 @@ trait DataTableColumns
             $this->setColumn(trans('base.description'), 'worker_observations'),
         ];
         /**
-         * Default values
+         * Filter by role
          */
-        $default = [
-            $this->createCheckbox(),
-            $this->setColumn(trans('financials.id'), 'id')
-        ];
         if(Credentials::isAdmin()) {
             return array_merge($default, [
                 $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
@@ -50,6 +54,7 @@ trait DataTableColumns
                 $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
             ], $columns);
         }
+        //Get the values
         return $columns;
     }
 

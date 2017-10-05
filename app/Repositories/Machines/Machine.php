@@ -5,7 +5,7 @@ namespace App\Repositories\Machines;
 use App\Repositories\_Traits\Date;
 //use App\Repositories\Machines\Traits\MachinesEvents;
 use App\Repositories\Machines\Traits\MachinesPresenters;
-//use App\Repositories\Machines\Traits\MachinesRelationships;
+use App\Repositories\Machines\Traits\MachinesRelationships;
 //use App\Repositories\Machines\Traits\MachinesScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Machine extends Model  {
 
-    use Date, MachinesPresenters, Notifiable, SoftDeletes;
+    use Date, MachinesPresenters, MachinesRelationships, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -31,6 +31,7 @@ class Machine extends Model  {
      */
     protected $fillable = [
         'user_id',
+        'client_id',
         'equipment_id',
         'machine_equipment_name',
         'machine_brand',

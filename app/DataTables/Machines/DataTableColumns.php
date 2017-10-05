@@ -2,6 +2,8 @@
 
 namespace App\DataTables\Machines;
 
+use Credentials;
+
 trait DataTableColumns
 {
     /**
@@ -11,13 +13,16 @@ trait DataTableColumns
     protected function setColumns() : array
     {
         /**
-         * @param  string $text
-         * @param  string $name
-         * @param  array $attributes [Add extra attributes]
+         * Default values
          */
-        return [
+        $default = [
             $this->createCheckbox(),
-            $this->setColumn(trans('financials.id'), 'id'),
+            $this->setColumn(trans('financials.id'), 'id')
+        ];
+        /**
+         * Columns
+         */
+        $columns = [
             $this->setColumn(trans_title('machines', 'singular'), 'machine_equipment_name'),
             $this->setColumn(sections('machines.brand'), 'machine_brand', [
                 'defaultContent' => no_result(),
@@ -42,6 +47,22 @@ trait DataTableColumns
                 'defaultContent' => no_result(),
             ]),
         ];
+        /**
+         * Filter by role
+         */
+        if(Credentials::isAdmin()) {
+            return array_merge($default, [
+                $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
+            ], $columns);
+        }
+        if(Credentials::isEditor()) {
+            return array_merge($default, [
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
+            ], $columns);
+        }
+        //Get the values
+        return $columns;
     }
 
     /**

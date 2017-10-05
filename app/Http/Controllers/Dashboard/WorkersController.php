@@ -18,8 +18,6 @@ class WorkersController extends DashboardController
     /**
      * @var private
      */
-    private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
-    private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'user';
     private $section    = 'workers';
 

@@ -15,6 +15,18 @@
     /** 
     * Modals
     */
+   // $( '[data-toggle="modal"]' ).on( 'click', function() {
+   //      console.log( 'hello' );
+   //      //$( $( this ).data( 'target' ) ).modal();
+   // })
+
+   $( '.button-inspection-click' ).on( 'click', function() {
+        var item = $( this ).data( 'item' );
+        $( '#form-inspection-update input[name=item]' ).val( item );
+        $( '#modal-inspection' ).modal();
+   });
+       
+
     $( '.trigger-modal' ).on( 'click', function() {
         var type = $( this ).data( 'type' );
         var form = $('#form-' + type);

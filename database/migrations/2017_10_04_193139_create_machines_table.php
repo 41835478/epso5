@@ -15,6 +15,7 @@ class CreateMachinesTable extends Migration
     {
         Schema::create('machines', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->integer('client_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('equipment_id')->nullable()->unsigned()->index()->comment('Just in case we want to use a DB for this');
             $table->string('machine_equipment_name', 150);

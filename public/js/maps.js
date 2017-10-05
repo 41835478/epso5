@@ -35230,8 +35230,8 @@ window._ = __webpack_require__("./node_modules/lodash/lodash.js");
  */
 window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 window.Tether = __webpack_require__("./node_modules/tether/dist/js/tether.js");
-window.Auto = __webpack_require__("./resources/assets/js/vendor/autocomplete.js");
 __webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
+window.Auto = __webpack_require__("./resources/assets/js/vendor/autocomplete.js");
 
 // /**
 // * The jquery components
@@ -35623,6 +35623,17 @@ $('[data-toggle="tooltip"]').tooltip({ container: 'body' }).css('cursor', 'point
 /** 
 * Modals
 */
+// $( '[data-toggle="modal"]' ).on( 'click', function() {
+//      console.log( 'hello' );
+//      //$( $( this ).data( 'target' ) ).modal();
+// })
+
+$('.button-inspection-click').on('click', function () {
+    var item = $(this).data('item');
+    $('#form-inspection-update input[name=item]').val(item);
+    $('#modal-inspection').modal();
+});
+
 $('.trigger-modal').on('click', function () {
     var type = $(this).data('type');
     var form = $('#form-' + type);
