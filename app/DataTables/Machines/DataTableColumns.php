@@ -17,6 +17,7 @@ trait DataTableColumns
          */
         $default = [
             $this->createCheckbox(),
+            $this->setColumn(trans('financials.id'), 'id')
         ];
         /**
          * Columns

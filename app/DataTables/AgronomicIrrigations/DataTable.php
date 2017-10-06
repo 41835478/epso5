@@ -8,6 +8,7 @@ use App\DataTables\AgronomicIrrigations\DataTableSearch;
 use App\Repositories\AgronomicIrrigations\AgronomicIrrigationsRepository;
 use App\Repositories\AgronomicIrrigations\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+use Credentials;
 
 class DataTable extends Repository
 {
@@ -27,12 +28,13 @@ class DataTable extends Repository
     public function query()
     {
         $query = app(AgronomicIrrigationsRepository::class)
-            ->dataTable()
-            // //Only God and Admin see trashed material...
-            // ->when(Credentials::isAdmin(), function($query) {
-            //     return $query->withTrashed();
-            // })
-            ->select($this->section . '.*');
+            ->dataTable($columns = ['*'], $table = $this->section)
+            //Only God and Admin see trashed material...
+            ->when(Credentials::isAdmin(), function($query) {
+                return $query->withTrashed();
+            })
+            ->select($this->section . '.*')
+            ->with(self::relationships());
 
         return $this->applyScopes($query);
     }
@@ -45,16 +47,35 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
-            // ->setRowClass(function ($data) {
-            //     return ($data->trashed() ? 'trashed' : ' ');
-            // })
+            ->rawColumns(['action', 'checkbox', 'agronomic_observations'])
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
             })
+            ->editColumn('agronomic_quantity', function($data) {
+                return sprintf('%s %s', $data->agronomic_quantity, trans('units.irrigations')[$data->agronomic_quantity_unit]);
+            })
+            ->editColumn('agronomic_observations', function($data) {
+                return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
+            })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
             });
+    }
+
+    private function relationships()
+    {
+        //Filtering the relationships
+        if(Credentials::isAdmin()) {
+            return ['client', 'user', 'crop', 'plot'];
+        } 
+        //Filtering the relationships
+        if(Credentials::isEditor()) {
+            return ['user', 'plot'];
+        } 
+        return ['plot'];
     }
 }

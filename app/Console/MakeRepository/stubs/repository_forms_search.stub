@@ -1,3 +1,5 @@
+{{-- @include(component_path('searchByRole')) --}}
+
 {{-- Search by: Name --}}
 {!! BootForm::text(trans('persona.name'), 'search_name')
     ->addGroupClass('col-md-3')

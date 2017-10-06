@@ -7,7 +7,7 @@ return [
     | Sections: agronomic_irrigations
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del agronomicirrigation',
-    'title'             => 'AgronomicIrrigation',
-    'title:plural'      => 'AgronomicIrrigations',
+    'info'              => 'Información sobre riegos',
+    'title'             => 'Riego',
+    'title:plural'      => 'Riegos',
 ];

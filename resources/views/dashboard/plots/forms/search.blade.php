@@ -1,22 +1,4 @@
-@Role('admin')
-    {{-- Search by: Client --}}
-    {!! BootForm::text(sections('clients.title'), 'search_client')
-        ->addGroupClass('col-md-2')
-        ->autofocus()
-    !!}
-
-    {{-- Search by: Crops --}}
-    {!! BootForm::text(sections('crops.title'), 'search_crop')
-        ->addGroupClass('col-md-2')
-    !!}
-@endRole
-
-@Role('editor')
-    {{-- Search by: User --}}
-    {!! BootForm::text(sections('users.title'), 'search_user')
-        ->addGroupClass('col-md-2')
-    !!}
-@endRole
+@include(component_path('searchByRole'), ['withCrops' => true])
 
 {{-- Search by: Plot --}}
 {!! BootForm::text(sections('plots.title'), 'search_plot')

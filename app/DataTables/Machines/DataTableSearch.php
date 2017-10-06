@@ -13,19 +13,20 @@ trait DataTableSearch
     public function searchAttributes() : array
     {
         /**
-        * Role filter
-        */
+         * Role filter
+         */
         $value = Credentials::isAdmin() ? 2 : (Credentials::isEditor() ? 1 : 0);
+        $user  = Credentials::isAdmin() ? 3 : 2;
         /**
         * Default values
         */
         return [
-            $this->setColumnSearch('input', 'search_machine', 1 + $value),
-            $this->setColumnSearch('input', 'search_brand', 2 + $value),
-            $this->setColumnSearch('input', 'search_model', 3 + $value),
+            $this->setColumnSearch('input', 'search_machine', 2 + $value),
+            $this->setColumnSearch('input', 'search_brand', 3 + $value),
+            $this->setColumnSearch('input', 'search_model', 4 + $value),
             //
-            $this->setColumnSearch('input', 'search_client', 1),
-            $this->setColumnSearch('input', 'search_user', 0 + $value),
+            $this->setColumnSearch('input', 'search_client', 2),
+            $this->setColumnSearch('input', 'search_user', $user),
         ];
     }
 }

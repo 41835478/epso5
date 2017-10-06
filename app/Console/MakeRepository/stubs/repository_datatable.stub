@@ -8,6 +8,7 @@ use App\DataTables\DummyClass\DataTableSearch;
 use App\Repositories\DummyClass\DummyClassRepository;
 use App\Repositories\DummyClass\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
+//use Credentials;
 
 class DataTable extends Repository
 {

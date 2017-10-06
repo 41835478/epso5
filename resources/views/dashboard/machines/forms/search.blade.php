@@ -1,16 +1,4 @@
-@Role('admin')
-    {{-- Search by: User --}}
-    {!! BootForm::text(sections('clients.title'), 'search_client')
-        ->addGroupClass('col-md-2')
-    !!}
-@endRole
-
-@Role('editor')
-    {{-- Search by: User --}}
-    {!! BootForm::text(sections('users.title'), 'search_user')
-        ->addGroupClass('col-md-2')
-    !!}
-@endRole
+@include(component_path('searchByRole'))
 
 {{-- Search by: Machine --}}
 {!! BootForm::text(trans_title('machines', 'singular'), 'search_machine')

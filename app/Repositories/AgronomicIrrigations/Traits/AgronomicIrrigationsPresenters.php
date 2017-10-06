@@ -9,15 +9,13 @@ trait AgronomicIrrigationsPresenters {
     | Accessors & Mutators
     |--------------------------------------------------------------------------
     */
+    public function setAgronomicDateAttribute($value)
+    {
+        $this->attributes['agronomic_date'] = $this->setDate($value);
+    }
 
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = $value;
-    // }
-
-    // public function getNameAttribute($value)
-    // {
-    //     return ucfirst($value);
-    // }
-    // 
+    public function getAgronomicDateAttribute($value)
+    {
+        return $this->getDate($value);
+    }
 }

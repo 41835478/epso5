@@ -55,7 +55,7 @@ trait DataTableColumns
             ], $columns);
         }
         //Get the values
-        return $columns;
+        return array_merge($default, $columns);
     }
 
     /**

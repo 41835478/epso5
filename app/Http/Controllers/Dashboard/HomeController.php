@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\DashboardController;
+use App\Repositories\Plots\Plot;
 
 class HomeController extends DashboardController
 {
