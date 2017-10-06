@@ -3,7 +3,7 @@
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
 
-    {{-- Input --}}
+    {{-- Field:  --}}
     {!! BootForm::text(trans('persona.name'), 'name')
         ->addGroupClass('col-md-4')
         ->autofocus()

@@ -1,18 +1,10 @@
+{{-- Add client and user if needed... --}}
+@include(component_path('formByRole'))
+
 <div class="row">
 
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
-
-    {{-- If the role is user or we are editing... --}}
-    @if(isset($data) || Credentials::isOnlyRole('user'))
-        {{-- Fields: user --}}
-        {!! BootForm::hidden('user_id')->value(Credentials::id() ?? null) !!}
-        {{-- Fields: client --}}
-        {!! BootForm::hidden('client_id')->value(getClientId()) !!}
-    @else 
-        {{-- Field: Client and users. See controller for role assigment. --}}
-        {!! Form::clientsAndUsers($clients ?? null, $users ?? null, $loadModule = false)!!}
-    @endif
 
     {{-- Fields: Worker name --}}
     {!! BootForm::text(trans_title('workers', 'singular'), 'worker_name')
