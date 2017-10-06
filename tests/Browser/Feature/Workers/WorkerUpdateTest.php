@@ -13,6 +13,7 @@ class WorkerUpdateTest extends DuskTestCase
     use WorkerHelpers;
     
     protected $route = 'dashboard.user.workers.edit';
+    protected $dashboard = '/dashboard';
 
     /*
     |--------------------------------------------------------------------------
@@ -42,5 +43,15 @@ class WorkerUpdateTest extends DuskTestCase
             'worker_ropo_level'     => $this->makeWorker()->worker_ropo_level,
             'worker_observations'   => $this->makeWorker()->worker_observations,
         ]);
+    }
+
+    public function test_user_cant_update_a_worker_from_other_user()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = $this->createUserBase())
+                ->visitRoute($this->route, $this->lastWorker()->id)
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
+        });
     }
 }

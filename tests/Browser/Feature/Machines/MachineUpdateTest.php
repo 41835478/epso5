@@ -13,6 +13,7 @@ class MachineUpdateTest extends DuskTestCase
     use MachineHelpers;
     
     protected $route = 'dashboard.user.machines.edit';
+    protected $dashboard = '/dashboard';
 
     /*
     |--------------------------------------------------------------------------
@@ -44,5 +45,15 @@ class MachineUpdateTest extends DuskTestCase
             'machine_next_inspection'       => $this->makeMachine()->machine_next_inspection,
             'machine_observations'          => $this->makeMachine()->machine_observations,
         ]);
+    }
+
+    public function test_user_cant_update_a_machine_from_other_user()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = $this->createUserBase())
+                ->visitRoute($this->route, $this->lastMachine()->id)
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
+        });
     }
 }

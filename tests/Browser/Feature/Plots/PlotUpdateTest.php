@@ -100,7 +100,8 @@ class PlotUpdateTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($plot) {
             $browser->loginAs($user = $this->createUserBase())
                 ->visitRoute($this->route, $plot->id)
-                ->assertPathIs($this->dashboard);
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
         });
     }
 }
