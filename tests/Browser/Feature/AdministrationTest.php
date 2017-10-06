@@ -59,7 +59,7 @@ class AdministrationTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             //The test
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathTo)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));

@@ -43,7 +43,7 @@ class UserCreateTest extends DuskTestCase
     public function test_user_cant_create_user()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathToCreate)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));

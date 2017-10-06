@@ -71,7 +71,7 @@ class UserListTest extends DuskTestCase
     public function test_user_cant_see_users()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathToList)
                 ->assertPathIs($this->dashboard)
                 ->assertSee(__('Your are not authorized to access this section'));

@@ -25,7 +25,7 @@ class MachineSearchTest extends DuskTestCase
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
                 ->type('search_machine', $this->lastMachine()->machine_equipment_name)
-                ->pause(500)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastMachine()->machine_equipment_name);
                     $table->assertDontSee($this->firstMachine()->machine_equipment_name);
@@ -43,7 +43,7 @@ class MachineSearchTest extends DuskTestCase
             $browser->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_model', $this->lastMachine()->machine_model)
-                ->pause(500)
+                ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastMachine()->machine_model);
                     $table->assertDontSee($this->firstMachine()->machine_model);

@@ -76,7 +76,7 @@ class WorkerCreateTest extends DuskTestCase
     public function test_user_can_create_worker()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathToCreate)
                 ->assertPathIs($this->pathToCreate);
         });

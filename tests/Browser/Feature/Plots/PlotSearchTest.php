@@ -65,7 +65,7 @@ class PlotSearchTest extends DuskTestCase
         
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_variety', typeText($this->lastVariety('name')))
+                ->type('search_variety', $this->lastVariety('name'))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastVariety('name'));

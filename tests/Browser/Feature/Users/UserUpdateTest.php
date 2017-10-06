@@ -21,8 +21,8 @@ class UserUpdateTest extends DuskTestCase
     public function test_user_can_update_his_profile()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
-                ->visitRoute($this->editRoute, $this->createUser()->id)
+            $browser->loginAs($user = $this->createUserBase())
+                ->visitRoute($this->editRoute, $this->createUserBase()->id)
                 ->type('name', $this->makeUser()->name)
                 ->type('email', $this->makeUser()->email)
                 ->select('locale', $this->locale)
@@ -40,7 +40,7 @@ class UserUpdateTest extends DuskTestCase
         ]);
     
         $this->assertDatabaseHas('profiles', [
-            'user_id'                   => $this->createUser()->id,
+            'user_id'                   => $this->createUserBase()->id,
             'profile_social_twitter'    => $this->twitter,
         ]);
     }

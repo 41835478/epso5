@@ -14,6 +14,7 @@ class PlotUpdateTest extends DuskTestCase
     
     protected $route        = 'dashboard.user.plots.edit';
     protected $dashboard    = '/dashboard';
+    protected $framework    = '2x3';
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ class PlotUpdateTest extends DuskTestCase
                 ->assertMissing('#client_id')
                 ->select('user_id', $this->makePlot()->user_id)
                 ->type('plot_name', $this->makePlot()->plot_name)
-                ->type('plot_framework', $this->makePlot()->plot_framework)
+                ->type('plot_framework', $this->framework)
                 ->type('plot_area', $this->makePlot()->plot_area)
                 ->type('plot_percent_cultivated_land', $this->makePlot()->plot_percent_cultivated_land)
                 ->type('plot_start_date', $this->makePlot()->plot_start_date)
@@ -42,8 +43,9 @@ class PlotUpdateTest extends DuskTestCase
         });
 
         $this->assertDatabaseHas('plots', [
+            'id'                            => $this->lastPlot()->id,
             'plot_name'                     => $this->makePlot()->plot_name,
-            'plot_framework'                => $this->framework($this->makePlot()->plot_framework),
+            'plot_framework'                => $this->framework,
             'plot_area'                     => $this->makePlot()->plot_area,
             'plot_real_area'                => $this->area($this->makePlot()),
             'plot_percent_cultivated_land'  => $this->makePlot()->plot_percent_cultivated_land,

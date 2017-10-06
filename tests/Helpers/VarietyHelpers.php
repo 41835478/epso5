@@ -22,8 +22,12 @@ trait VarietyHelpers
         if($this->lastVariety) {
             return $this->lastVariety;
         }
-        $id = Plot::select('crop_variety_id')->groupBy('crop_variety_id')->orderBy('id', 'desc')->first()->crop_variety_id;
-        return ($type === 'id') ? $id : CropVariety::find($id)->crop_variety_name;
+        $id = Plot::select('crop_variety_id')
+            ->groupBy('crop_variety_id')
+            ->orderBy('id', 'desc')
+            ->first()
+            ->crop_variety_id;
+                return ($type === 'id') ? $id : CropVariety::find($id)->crop_variety_name;
     }
 
     /**

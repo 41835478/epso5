@@ -41,6 +41,11 @@ class CropVarietyCreateTest extends DuskTestCase
             $browser->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
+
+        $this->assertDatabaseHas('crop_varieties', [
+            'crop_id' => $this->makeCropVariety()->crop_id,
+            'crop_variety_name' => $this->makeCropVariety()->crop_variety_name,
+        ]);
     }
 
     public function test_admin_can_create_cropvariety()
