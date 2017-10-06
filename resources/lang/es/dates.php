@@ -12,6 +12,7 @@ return [
     'date:buy'          => 'Fecha compra',
     'date:end'          => 'Fecha fin',
     'date:start'        => 'Fecha inicio',
+    'date:today'        => 'Fecha actual',
     'date:work'         => 'Fecha alta',
     'day'               => 'Día',
     'day:plural'        => 'Dia(s)',
