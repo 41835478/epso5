@@ -35279,6 +35279,45 @@ window.axios.defaults.headers.common = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/dashboard/helpers/dates.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ *
+ * ////////////////////////////
+ * ////// * Datatables Functions * //////
+ * ////////////////////////////
+ *
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    formatDateToInternational: formatDateToInternational,
+    nextInspection: nextInspection
+});
+
+/** 
+ * Convert date from spanish format to international format
+ */
+function formatDateToInternational(date) {
+    var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
+    return new Date(formatDate);
+};
+
+/** 
+ * Calculate next inspection
+ */
+function nextInspection(value, date) {
+    if (value) {
+        //Add days
+        var futureDate = formatDateToInternational(date).addDays(value);
+        // Add date
+        $('#machine_next_inspection_info').val(futureDate.getDate() + '/' + ("0" + (futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear());
+    }
+};
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard/helpers/forms.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -35675,8 +35714,9 @@ $('#modal-delete').on('hide.bs.modal', function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_numbers_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/numbers.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_dates_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/dates.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helpers_numbers_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/numbers.js");
 /**
  *
  * ////////////////////////////
@@ -35687,25 +35727,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
 /** 
 * Reset a form 
 */
 if ($('#clear-form')) {
-    $('#clear-form').on('click', __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_clear);
+    $('#clear-form').on('click', __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_clear);
 }
 
 /** 
 * Select all checkboxes
 */
 if ($('#select-all')) {
-    $('#select-all').on('change', __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].select_all);
+    $('#select-all').on('change', __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].select_all);
 }
 
 /** 
 * Limit the textareas length
 */
 if ($('textarea')) {
-    $('textarea').on('keyup', __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].text_area);
+    $('textarea').on('keyup', __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].text_area);
 }
 
 /** 
@@ -35742,7 +35783,7 @@ if ($('.number')) {
             number = number.slice(0, -1);
         }
         //The current decimals
-        var currentDecimals = __WEBPACK_IMPORTED_MODULE_1__helpers_numbers_js__["a" /* default */].total_decimals(number);
+        var currentDecimals = __WEBPACK_IMPORTED_MODULE_2__helpers_numbers_js__["a" /* default */].total_decimals(number);
         //Verify the decimals
         if (currentDecimals > maxDecimals) {
             //chop off the last char entered
@@ -35783,23 +35824,32 @@ $('form').not('#login').find('input, select, textarea').each(function () {
  */
 $('#machine_next_inspection').on('change', function () {
     //Create date 
-    var inspection = $('#machine_inspection').val();
-    if ($(this).val()) {
-        //Add days
-        var futureDate = formatDateToInternational(inspection).addDays($(this).val());
-        // Add date
-        $('#machine_next_inspection_info').val(futureDate.getDate() + '/' + ("0" + (futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear());
-    }
+    return __WEBPACK_IMPORTED_MODULE_0__helpers_dates_js__["a" /* default */].nextInspection($(this).val(), $('#machine_inspection').val());
 });
 
 $('#machine_inspection').on('keyup', function () {
     $('#machine_next_inspection option:first-child').attr("selected", "selected");
 });
 
-var formatDateToInternational = function formatDateToInternational(date) {
-    var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
-    return new Date(formatDate);
-};
+$('#addToday').on('click', function () {
+    var date = $(this).data('today');
+    $('#machine_inspection').val(date);
+    return __WEBPACK_IMPORTED_MODULE_0__helpers_dates_js__["a" /* default */].nextInspection($('#machine_next_inspection').val(), date);
+});
+
+// var formatDateToInternational = function( date ) {
+//     var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
+//     return new Date( formatDate );
+// };
+
+// var nextInspection = function( value, date ) {
+//     if( value ) {
+//         //Add days
+//         var futureDate = formatDateToInternational( date ) .addDays( value );
+//         // Add date
+//         $( '#machine_next_inspection_info' ).val( futureDate.getDate() + '/' + ("0" + ( futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear() );
+//     }
+// };
 
 /***/ }),
 
