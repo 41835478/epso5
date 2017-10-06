@@ -64,6 +64,18 @@ class DummyClassController extends DashboardController
         return view(dashboard_path($this->section . '.create'));
     }
 
+    // /**
+    //  * Show the form for creating a new resource.
+    //  *
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function create()
+    // {
+    //     //Get the users and the clients
+    //     list($clients, $users) = $this->controller->getClientUser();
+    //         return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
+    // }
+    
     /**
      * Store a newly created resource in storage.
      *

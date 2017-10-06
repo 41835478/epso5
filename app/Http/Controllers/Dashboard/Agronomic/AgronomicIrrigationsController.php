@@ -47,10 +47,6 @@ class AgronomicIrrigationsController extends DashboardController
     public function index()
     {
         return $this->table
-            //Customize the action for datatables [dashboard/_components/actions]
-            // ->setValue([
-            //     'action' => 'agronomic_irrigations:action'
-            // ])
             ->render(dashboard_path($this->section . '.index'));
     }
 
@@ -61,7 +57,9 @@ class AgronomicIrrigationsController extends DashboardController
      */
     public function create()
     {
-        return view(dashboard_path($this->section . '.create'));
+        //Get the users and the clients
+        list($clients, $users) = $this->controller->getClientUser();
+            return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
     }
 
     /**
@@ -94,27 +92,15 @@ class AgronomicIrrigationsController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+        //Set default data
+        $data = $this->controller->find($id);
+        //Check if the user own the database record
+        //and if the role is authorizate
+        if(!Credentials::authorize($data)) {
+            return Credentials::accessError();
+        }
+        return view(dashboard_path($this->section . '.edit'), compact('data'));
     }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     //Set default data
-    //     $data = $this->controller->find($id);
-    //     //Check if the user own the database record
-    //     //and if the role is authorizate
-    //     if(!Credentials::authorize($data)) {
-    //         return Credentials::accessError();
-    //     }
-    //     return view(dashboard_path($this->section . '.edit'), compact('data'));
-    // }
     
     /**
      * Update the specified resource in storage.

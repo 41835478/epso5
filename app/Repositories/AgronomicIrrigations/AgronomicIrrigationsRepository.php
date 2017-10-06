@@ -2,14 +2,15 @@
 
 namespace App\Repositories\AgronomicIrrigations;
 
-use App\Repositories\Repository;
-use App\Repositories\AgronomicIrrigations\Traits\AgronomicIrrigationsHelpers;
 use App\Repositories\AgronomicIrrigations\AgronomicIrrigation;
+use App\Repositories\AgronomicIrrigations\Traits\AgronomicIrrigationsHelpers;
+use App\Repositories\Repository;
+use App\Repositories\_Traits\ClientUser;
 //use DB;
 
 class AgronomicIrrigationsRepository extends Repository
 {
-    use AgronomicIrrigationsHelpers;
+    use AgronomicIrrigationsHelpers, ClientUser;
 
     protected $model;
 
