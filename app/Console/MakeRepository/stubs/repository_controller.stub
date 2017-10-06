@@ -98,6 +98,24 @@ class DummyClassController extends DashboardController
             ->withData($this->controller->find($id));
     }
 
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function edit($id)
+    // {
+    //     //Set default data
+    //     $data = $this->controller->find($id);
+    //     //Check if the user own the database record
+    //     //and if the role is authorizate
+    //     if(!Credentials::authorize($data)) {
+    //         return Credentials::accessError();
+    //     }
+    //     return view(dashboard_path($this->section . '.edit'), compact('data'));
+    // }
+    
     /**
      * Update the specified resource in storage.
      *

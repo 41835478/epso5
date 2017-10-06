@@ -13,10 +13,11 @@ class DummyModelUpdateTest extends DuskTestCase
     use DummyModelHelpers;
     
     protected $route = 'dashboard.admin.DummyTable.edit';
+    protected $dashboard = '/dashboard';
 
     /*
     |--------------------------------------------------------------------------
-    | Update clients
+    | Update DummyClass
     |--------------------------------------------------------------------------
     */
     public function test_admin_can_update_a_DummySingular()
@@ -34,5 +35,15 @@ class DummyModelUpdateTest extends DuskTestCase
             'DummySingular_name'           => $this->makeDummyModel()->DummySingular_name,
             // 'DummySingular_description'    => $this->makeDummyModel()->DummySingular_description,
         ]);
+    }
+
+    public function test_user_cant_update_a_worker_from_other_user()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = $this->createUserBase())
+                ->visitRoute($this->route, $this->lastDummyModel()->id)
+                ->assertPathIs($this->dashboard)
+                ->assertSee(__('Your are not authorized to access this section'));
+        });
     }
 }
