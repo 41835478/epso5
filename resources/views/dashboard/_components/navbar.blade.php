@@ -122,7 +122,7 @@
                'url' => 'http://',
            ])->subMenuItem([
                'title' => icon('irrigations', trans('navbar.agronomics:irrigations')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.agronomic_irrigations.index'),
            ])->output()
        )
 

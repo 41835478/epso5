@@ -5,6 +5,10 @@ Route::group([
         'as'            => 'user.', 
         'middleware'    => 'role:user'
     ], function () {
+        //Agronomics 
+            //Irrigations
+            Route::resource('agronomic_irrigations', 'Dashboard\Agronomic\AgronomicIrrigationsController', ['except' => ['destroy', 'show']]); 
+            Route::post('agronomic_irrigations/eliminate', 'Dashboard\Agronomic\AgronomicIrrigationsController@eliminate')->name('agronomic_irrigations.eliminate');
         //Agreement
         Route::name('agreements.edit')->get('agreements/{agreement}/edit', 'Dashboard\AgreementsController@edit');
         Route::name('agreements.update')->patch('agreements/update/{agreement}', 'Dashboard\AgreementsController@update');
