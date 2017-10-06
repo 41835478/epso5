@@ -6,6 +6,7 @@ use App\DataTables\Workers\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\WorkersRequest;
 use App\Repositories\Workers\WorkersRepository;
+use Credentials;
 //use Illuminate\Http\Request;
 
 class WorkersController extends DashboardController
@@ -85,8 +86,14 @@ class WorkersController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+        //Set default data
+        $data = $this->controller->find($id);
+        //Check if the user own the database record
+        //and if the role is authorizate
+        if(!Credentials::authorize($data)) {
+            return Credentials::accessError();
+        }
+        return view(dashboard_path($this->section . '.edit'), compact('data'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\DataTables\Machines\DataTable;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\MachinesRequest;
 use App\Repositories\Machines\MachinesRepository;
+use Credentials;
 
 class MachinesController extends DashboardController
 {
@@ -84,8 +85,14 @@ class MachinesController extends DashboardController
      */
     public function edit($id)
     {
-        return view(dashboard_path($this->section . '.edit'))
-            ->withData($this->controller->find($id));
+        //Set default data
+        $data = $this->controller->find($id);
+        //Check if the user own the database record
+        //and if the role is authorizate
+        if(!Credentials::authorize($data)) {
+            return Credentials::accessError();
+        }
+        return view(dashboard_path($this->section . '.edit'), compact('data'));
     }
 
     /**
