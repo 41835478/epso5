@@ -15,3 +15,8 @@
     <hr>
 
 @endif
+
+{{-- Add plots --}}
+@if(!empty($plot))
+    Plots
+@endif

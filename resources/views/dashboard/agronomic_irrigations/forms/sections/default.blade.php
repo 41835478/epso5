@@ -1,5 +1,5 @@
 {{-- Add client and user if needed... --}}
-@include(component_path('formByRole'))
+@include(component_path('formByRole'), ['withPlot' => true])
 
 <div class="row">
 
