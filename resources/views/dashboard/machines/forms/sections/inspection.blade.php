@@ -23,3 +23,10 @@
         ->disabled() 
     !!}
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        {{-- Field: Date today --}}
+        {!! BootForm::button(icon('new', trans('dates.date:today')))->id('addToday')->data('today', date('d/m/Y'))->addClass('btn btn-warning') !!} 
+    </div>
+</div>
