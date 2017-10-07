@@ -1,4 +1,4 @@
-{{-- Add client and user if needed... --}}
+{{-- Add client, user and plot... if needed --}}
 @include(component_path('formByRole'), ['withPlot' => true])
 
 <div class="row">
