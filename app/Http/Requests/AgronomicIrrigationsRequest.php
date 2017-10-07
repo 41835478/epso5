@@ -27,8 +27,13 @@ class AgronomicIrrigationsRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'request',
-            //'field2'          => 'request',
+            'agronomic_date'            => 'required|date_format:d/m/Y|regex:/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/',
+            'agronomic_quantity'        => 'required|integer',
+            'agronomic_quantity_unit'   => 'required|integer',
+            'client_id'                 => 'required|integer',
+            'crop_id'                   => 'required|integer',
+            'plot_id'                   => 'required|integer',
+            'user_id'                   => 'required|integer',
         ];
     }
 
@@ -40,8 +45,13 @@ class AgronomicIrrigationsRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans('base.module'),
-            //'field2'            => trans('base.module'),
+            'agronomic_date'            => trans('dates.date:application'),
+            'agronomic_quantity'        => trans('units.quantity'),
+            'agronomic_quantity_unit'   => trans('units.title:mix'),
+            'client_id'                 => trans_title('clients', 'singular'),
+            'crop_id'                   => trans_title('crops', 'singular'),
+            'plot_id'                   => trans_title('plots', 'singular'),
+            'user_id'                   => trans('auth.user'),
         ];
     }
 

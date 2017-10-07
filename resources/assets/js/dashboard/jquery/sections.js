@@ -12,7 +12,7 @@
     /** 
     * Select: State
     */
-    if($( '#state_id' )) {
+    if( $( '#state_id' ).length ) {
         $( '#state_id' ).on( 'change', function( e ) {
             e.preventDefault();
             //Define the variables
@@ -27,7 +27,7 @@
     /** 
     * Select: users for plots (With module)
     */
-    if($( '#client_id' )) {
+    if( $( '#client_id' ).length ) {
         $( '#client_id' ).on( 'change', function( e ) {
             e.preventDefault();
             //Load module 
@@ -71,7 +71,7 @@
     /** 
     * Select: plot by user
     */
-    if($( '#user_id' )) {
+    if( $( '#user_id' ).length ) {
         $( '#user_id' ).on( 'change', function( e ) {
             e.preventDefault();
             //Define the variables
@@ -80,5 +80,20 @@
             if( $container.length ) {
                 forms.form_comboBox( $container, $value, $route );
             }
+        });
+    }
+
+    /** 
+    * Select: crop using the client id
+    */
+    if( $( '#plot_id' ).length ) {
+        $( '#plot_id' ).on( 'change', function( e ) {
+            e.preventDefault();
+            //Get the data via AJAX
+            var $client = $( '#client_id' ).val();
+            $.get( window.location.origin + '/dashboard/ajax/crops', { search: $client }, 
+            function( data ) {
+                $( '#crop_id' ).val( data );
+            });
         });
     }

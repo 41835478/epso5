@@ -21,7 +21,7 @@ class CreateAgronomicIrrigationsTable extends Migration
             $table->integer('crop_id')->unsigned()->index();
             $table->date('agronomic_date')->comment("Date of application");
             $table->integer('agronomic_quantity')->nullable()->comment("Quantity of product");
-            $table->string('agronomic_quantity_unit')->nullable();
+            $table->integer('agronomic_quantity_unit')->unsigned()->nullable();
             $table->text('agronomic_observations')->nullable();
             $table->softDeletes();
             $table->timestamps();
