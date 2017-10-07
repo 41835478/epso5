@@ -35,4 +35,16 @@ trait BaseHelpers
         }
         return $this->makePassword = generate_password($length);
     }
+
+    /**
+     * Get value from a selector
+     * @param object $browser
+     * @param string $selector
+     * 
+     * @return mixed
+     */
+    public function getValue($browser, $selector)
+    {
+        return $browser->script("$( '" . $selector . "' ).val()")[0];
+    }
 }
