@@ -35907,7 +35907,7 @@ if ($('#state_id')) {
             $value = $('#state_id').val(),
             $route = '/dashboard/ajax/regions';
         //Generate the combobox: states > regions
-        if ($container) {
+        if ($container.length) {
             __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
         }
     });
@@ -35968,7 +35968,7 @@ if ($('#user_id')) {
             $value = $('#user_id').val(),
             $route = '/dashboard/ajax/plots';
         //Generate the combobox: users > plots
-        if ($container) {
+        if ($container.length) {
             __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
         }
     });

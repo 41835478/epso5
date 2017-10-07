@@ -18,7 +18,7 @@
             //Define the variables
             var $container = $( '#region_id' ), $value = $( '#state_id' ).val(), $route = '/dashboard/ajax/regions';
             //Generate the combobox: states > regions
-           if( $container ) {
+           if( $container.length ) {
                forms.form_comboBox( $container, $value, $route );
            }
         });
@@ -77,7 +77,7 @@
             //Define the variables
             var $container = $( '#plot_id' ), $value = $( '#user_id' ).val(), $route = '/dashboard/ajax/plots';
             //Generate the combobox: users > plots
-            if( $container ) {
+            if( $container.length ) {
                 forms.form_comboBox( $container, $value, $route );
             }
         });
