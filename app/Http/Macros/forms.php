@@ -5,10 +5,30 @@
 | Selects
 |--------------------------------------------------------------------------
 */
+    /**
+     * Generate a select for: plots by role
+     * @param array $plots [List of clients]
+     * 
+     * @return  string
+     */
+    Form::macro('plots', function($plots = null)
+    {
+        if(!empty($plots)) {
+            //Field: Plots by role
+            return BootForm::select(trans_title('plots'), 'plot_id')
+                ->addGroupClass('col-md-3')
+                ->options(setOptions($plots));
+        }
+        //Field: Plots disabled
+        return BootForm::select(trans_title('plots'), 'plot_id')
+            ->addGroupClass('col-md-3')
+            ->disabled();
+    });
 
     /**
-     * Generate a input-group
+     * Generate a select for: client and users
      * @param array $clients [List of clients]
+     * @param array $users [List of clients]
      * @param bool $loadModule [Load the crop modules on change]
      * 
      * @return  string

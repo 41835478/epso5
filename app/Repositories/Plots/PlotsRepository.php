@@ -71,15 +71,46 @@ class PlotsRepository extends Repository
     }
 
     /**
-     * Get all the results for a $field contents in the $items array
-     * @param   string      $columns
+     * Get all the results filter by user
+     * @param   string $user
+     * @param   array $select
      * @return  collection
      */
-    public function listsByUser($user)
+    public function listsByUser($user, $select = ['id', 'plot_name'])//Maybe the ['plot_name', 'id'] cause a fail... the original value was pluck('id')
     {
         return $this->model
             ->whereUserId($user)
-            ->pluck('id')
+            ->pluck($select[1], $select[0])
+            // ->pluck('id')
             ->toArray();
+    }
+
+    /**
+     * Get all the results filter by user
+     * @param   string $user
+     * @param   array $select
+     * @return  collection
+     */
+    public function listsByClient($client, $select = ['id', 'plot_name'])//Maybe the ['id'] cause a fail... originaly with 'id'
+    {
+        return $this->model
+            ->whereClientId($client)
+            ->pluck($select[1], $select[0])
+            ->toArray();
+    }
+
+    /**
+     * Get all the results filter by role
+     * @return  collection
+     */
+    public function listsByRole($select = ['id', 'plot_name'])
+    {
+        if(Credentials::isAdmin()) {
+            return $this->lists($select);
+        } elseif(Credentials::isEditor()) {
+            return self::listsByClient(getClientId(), $select);
+        } else {
+            return self::listsByUser(Credentials::id(), $select);
+        }
     }
 }

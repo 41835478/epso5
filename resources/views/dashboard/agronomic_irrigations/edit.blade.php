@@ -9,10 +9,13 @@
             [trans_title($section), route('dashboard.' . $role . '.' . $section . '.index')],
             [trans('base.edit')], 
         ])
+        @slot('dropdownItems', [
+            [Html::createLink($section, $role)], 
+        ])
         {{-- Add the data --}}
         @slot('data', $data)
         {{-- Add other slot --}}
-        {{-- @slot('slotName', $slotValue ?? null) --}}
+        @slot('plots', $plots ?? null)
     @endcomponent
 
 @endsection

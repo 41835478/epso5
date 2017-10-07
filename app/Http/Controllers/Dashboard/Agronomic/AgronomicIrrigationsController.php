@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Dashboard\Agronomic;
 
 use App\DataTables\AgronomicIrrigations\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\AgronomicIrrigations\AgronomicIrrigationsRepository;
 use App\Http\Requests\AgronomicIrrigationsRequest;
-//use Credentials;
+use App\Repositories\AgronomicIrrigations\AgronomicIrrigationsRepository;
+use App\Repositories\Plots\PlotsRepository;
+use Credentials;
 //use Illuminate\Http\Request;
 
 class AgronomicIrrigationsController extends DashboardController
@@ -15,6 +16,7 @@ class AgronomicIrrigationsController extends DashboardController
      * @var protected
      */
     protected $controller;
+    protected $plot;
     protected $table;
     /**
      * @var private
@@ -24,19 +26,16 @@ class AgronomicIrrigationsController extends DashboardController
     private $role       = 'user';
     private $section    = 'agronomic_irrigations';
 
-    public function __construct(AgronomicIrrigationsRepository $controller, DataTable $table)
+    public function __construct(AgronomicIrrigationsRepository $controller, DataTable $table, PlotsRepository $plot)
     {
         $this->controller   = $controller;
+        $this->plot         = $plot;
         $this->table        = $table;
         //Sharing in the view
         view()->share([
-            //'legend'   => $this->legend,
-            //'parent'   => $this->parent,
             'section'   => $this->section,
             'role'      => $this->role
         ]);
-        //Middleware
-        //$this->middleware('role:admin');
     }
 
     /**
@@ -59,7 +58,9 @@ class AgronomicIrrigationsController extends DashboardController
     {
         //Get the users and the clients
         list($clients, $users) = $this->controller->getClientUser();
-            return view(dashboard_path($this->section . '.create'), compact('clients', 'users'));
+        $plots = Credentials::isOnlyRole('user') ? $this->plot->listsByRole() : null;
+            //Get the value
+            return view(dashboard_path($this->section . '.create'), compact('clients', 'plots', 'users'));
     }
 
     /**
@@ -99,7 +100,10 @@ class AgronomicIrrigationsController extends DashboardController
         if(!Credentials::authorize($data)) {
             return Credentials::accessError();
         }
-        return view(dashboard_path($this->section . '.edit'), compact('data'));
+        //List of plots
+        $plots = $this->plot->listsByUser($data->user_id) ?? null;
+            //Return the values
+            return view(dashboard_path($this->section . '.edit'), compact('data', 'plots'));
     }
     
     /**
