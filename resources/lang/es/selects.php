@@ -7,7 +7,6 @@ return [
     | Form selects
     |--------------------------------------------------------------------------
     */
-
     'boolean' => [
         '1' => 'Activado',
         '0' => 'Descativado',
@@ -18,6 +17,18 @@ return [
         'en' => 'Inglés',
     ],
 
+    'roles' => [
+        'god'       => 'Super-Administrador',
+        'admin'     => 'Administrador',
+        'editor'    => 'Editor',
+        'user'      => 'Usuario',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dates
+    |--------------------------------------------------------------------------
+    */
     'months' => [
         1 => 'Enero', 
         2 => 'Febrero', 
@@ -33,13 +44,6 @@ return [
         12 => 'Diciembre',
     ],
 
-    'roles' => [
-        'god'       => 'Super-Administrador',
-        'admin'     => 'Administrador',
-        'editor'    => 'Editor',
-        'user'      => 'Usuario',
-    ],
-
     'week' => [
         1 => 'Lunes', 
         2 => 'Martes', 
@@ -50,6 +54,11 @@ return [
         7 => 'Domingo',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Machines and automoviles (Inspection intervals)
+    |--------------------------------------------------------------------------
+    */
     'inspection' => [
         15      => '15 ' . strtolower(trans('dates.day:plural')), 
         30      => '1 ' . strtolower(trans('dates.month')), 
@@ -60,5 +69,18 @@ return [
         1095    => '3 ' . strtolower(trans('dates.year:plural')), 
         1460    => '4 ' . strtolower(trans('dates.year:plural')), 
         1825    => '5 ' . strtolower(trans('dates.year:plural')), 
-    ]
+    ],
+
+     /*
+     |--------------------------------------------------------------------------
+     | Units
+     |--------------------------------------------------------------------------
+     */
+    'units' => [
+        //For irrigations
+        'irrigations' => [
+             1   => 'm3/ha',
+             2   => 'l/ha',
+        ],
+    ],
 ];

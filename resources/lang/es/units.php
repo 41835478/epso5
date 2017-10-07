@@ -15,14 +15,7 @@ return [
     'percent:alt'       => 'Suelo cultivado', //Percent of cultivated land
     'percent:min'       => '%', //Percent of cultivated land
     'quantity'          => 'Cantidad',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Agronomics
-    |--------------------------------------------------------------------------
-    */
-   'irrigations' => [
-        1   => 'm3/ha',
-        2   => 'l/ha',
-   ],
+    'title'             => 'Unidad',
+    'title:plural'      => 'Unidades',
+    'title:mix'         => 'Unidad(es)',
 ];
