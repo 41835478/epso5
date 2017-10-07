@@ -27,8 +27,9 @@ class MachinesRequest extends FormRequest
     public function rules()
     {
         return [
-            //'field1'          => 'request',
-            //'field2'          => 'request',
+            'client_id'                 => 'required|integer',
+            'user_id'                   => 'required|integer',
+            'machine_equipment_name'    => 'required',
         ];
     }
 
@@ -40,8 +41,9 @@ class MachinesRequest extends FormRequest
     public function attributes()
     {
         return [
-            //'field1'            => trans('base.module'),
-            //'field2'            => trans('base.module'),
+            'client_id'                 => trans_title('clients', 'singular'),
+            'user_id'                   => trans('auth.user'),
+            'machine_equipment_name'    => trans_title('machines', 'singular'),
         ];
     }
 
