@@ -8,8 +8,23 @@ if (!function_exists('select')) {
     function select(string $section, bool $emptyFirstOption = true)
     {
         $select = trans('selects.' . $section);
-        
-        return $emptyFirstOption ? ['' => ''] + $select : $select;
+            return $emptyFirstOption 
+                ? ['' => ''] + $select 
+                : $select;
+    }
+}
+
+/**
+ * Return a select from the localization file
+ * @return string
+ */
+if (!function_exists('select_units')) {
+    function select_units(string $section, bool $emptyFirstOption = true, $prefix = 'agronomic_')
+    {
+        $select = trans('selects.units.' . str_replace($prefix, '', $section));
+            return $emptyFirstOption 
+                ? ['' => ''] + $select 
+                : $select;
     }
 }
 
