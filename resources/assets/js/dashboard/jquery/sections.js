@@ -18,7 +18,9 @@
             //Define the variables
             var $container = $( '#region_id' ), $value = $( '#state_id' ).val(), $route = '/dashboard/ajax/regions';
             //Generate the combobox: states > regions
-            forms.form_comboBox( $container, $value, $route );
+           if( $container ) {
+               forms.form_comboBox( $container, $value, $route );
+           }
         });
     }
 
@@ -62,6 +64,21 @@
                         $module.html( window.errorModule );
                     }
                 });
+            }
+        });
+    }
+
+    /** 
+    * Select: plot by user
+    */
+    if($( '#user_id' )) {
+        $( '#user_id' ).on( 'change', function( e ) {
+            e.preventDefault();
+            //Define the variables
+            var $container = $( '#plot_id' ), $value = $( '#user_id' ).val(), $route = '/dashboard/ajax/plots';
+            //Generate the combobox: users > plots
+            if( $container ) {
+                forms.form_comboBox( $container, $value, $route );
             }
         });
     }

@@ -35902,20 +35902,6 @@ $('#addToday').on('click', function () {
     return __WEBPACK_IMPORTED_MODULE_0__helpers_dates_js__["a" /* default */].nextInspection($('#machine_next_inspection').val(), date);
 });
 
-// var formatDateToInternational = function( date ) {
-//     var formatDate = date.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$2-$1");
-//     return new Date( formatDate );
-// };
-
-// var nextInspection = function( value, date ) {
-//     if( value ) {
-//         //Add days
-//         var futureDate = formatDateToInternational( date ) .addDays( value );
-//         // Add date
-//         $( '#machine_next_inspection_info' ).val( futureDate.getDate() + '/' + ("0" + ( futureDate.getMonth() + 1)).slice(-2) + '/' + futureDate.getFullYear() );
-//     }
-// };
-
 /***/ }),
 
 /***/ "./resources/assets/js/dashboard/jquery/geolocations.js":
