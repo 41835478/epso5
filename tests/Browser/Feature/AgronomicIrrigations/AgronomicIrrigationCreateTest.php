@@ -32,7 +32,7 @@ class AgronomicIrrigationCreateTest extends DuskTestCase
                 ->assertPathIs($this->pathToCreate)
                 ->select('client_id', 1)->pause(1000)
                 ->select('user_id', 1)->pause(1000)
-                ->select('plot_id', $this->getValue($browser, $selector = '#plot_id option:last-child'))
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:last-child'))
                 ->type('agronomic_date', $this->makeAgronomicIrrigation()->agronomic_date)
                 ->type('agronomic_quantity', $this->makeAgronomicIrrigation()->agronomic_quantity)
                 ->type('agronomic_observations', $this->makeAgronomicIrrigation()->agronomic_observations)

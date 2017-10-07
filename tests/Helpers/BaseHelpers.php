@@ -43,7 +43,7 @@ trait BaseHelpers
      * 
      * @return mixed
      */
-    public function getValue($browser, $selector)
+    public function getValueFromSelector($browser, $selector)
     {
         return $browser->script("$( '" . $selector . "' ).val()")[0];
     }
