@@ -47,7 +47,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox'])
+            ->rawColumns(['action', 'checkbox', 'agronomic_observations'])
             ->setRowClass(function ($data) {
                 return ($data->trashed() ? 'trashed' : ' ');
             })

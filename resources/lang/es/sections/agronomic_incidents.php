@@ -7,7 +7,7 @@ return [
     | Sections: agronomic_incidents
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del agronomicincident',
-    'title'             => 'AgronomicIncident',
-    'title:plural'      => 'AgronomicIncidents',
+    'info'              => 'Información sobre incidentes',
+    'title'             => 'Incidente',
+    'title:plural'      => 'Incidentes',
 ];
