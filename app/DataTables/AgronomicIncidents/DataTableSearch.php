@@ -2,6 +2,8 @@
 
 namespace App\DataTables\AgronomicIncidents;
 
+use Credentials;
+
 trait DataTableSearch
 {
     /**
@@ -11,16 +13,24 @@ trait DataTableSearch
     public function searchAttributes() : array
     {
         /**
-         * @param  string $type         [Allowed filter: change, input, number, select (same as change but with scapeRegex), date]
-         * @param  string $container    [Input id]
-         * @param  array $column        [Column number to search]
-         */
+        * Role filter
+        */
+        $value = Credentials::isAdmin() ? 3 : (Credentials::isEditor() ? 1 : 0);
+        $user  = Credentials::isAdmin() ? 3 : 2;
+        /**
+        * Default values
+        */
         return [
-            // $this->setColumnSearch('number', 'search_id', 1),
-            // $this->setColumnSearch('change', 'search_role', 2),
-            // $this->setColumnSearch('input', 'search_client', 3),
-            // $this->setColumnSearch('input', 'search_name', 4),
-            // $this->setColumnSearch('input', 'search_email', 5),
+            $this->setColumnSearch('input', 'search_user', $user),
+            $this->setColumnSearch('input', 'search_client', 2),
+            $this->setColumnSearch('input', 'search_crop', 4),
+            $this->setColumnSearch('input', 'search_plot', 2 + $value),
+            //Add your custom values
+            //     // $this->setColumnSearch('number', 'search_id', 1),
+            //     // $this->setColumnSearch('change', 'search_role', 2),
+            //     // $this->setColumnSearch('input', 'search_client', 3),
+            //     // $this->setColumnSearch('input', 'search_name', 4),
+            //     // $this->setColumnSearch('input', 'search_email', 5),
         ];
     }
 }
