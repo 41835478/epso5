@@ -47,10 +47,10 @@ class PlotSearchTest extends DuskTestCase
         
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', typeText($this->createAdmin()->name))
+                ->type('search_user', typeText($this->lastPlot()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->createAdmin()->name);
+                    $table->assertSee($this->lastPlot()->user->name);
                     $table->assertDontSee($this->createUser()->name);
                 });
         
@@ -90,10 +90,10 @@ class PlotSearchTest extends DuskTestCase
                 ->visit($this->path)
                 ->assertMissing('search_client')
                 ->assertMissing('search_crop')
-                ->type('search_user', typeText($this->createAdmin()->name))
+                ->type('search_user', typeText($this->lastPlot()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->createAdmin()->name);
+                    $table->assertSee($this->lastPlot()->user->name);
                     $table->assertDontSee($this->createUser()->name);
                 });
         });

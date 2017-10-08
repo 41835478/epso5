@@ -24,7 +24,9 @@ trait DataTableColumns
          * Columns
          */
         $columns = [
-            $this->setColumn(trans_title('workers'), 'worker_name'),
+            $this->setColumn(trans_title('workers'), 'worker_name', [
+                'defaultContent' => no_result(),
+            ]),
             $this->setColumn(trans('persona.id.nif'), 'worker_nif', [
                 'defaultContent' => no_result(),
             ]),

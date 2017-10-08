@@ -16,6 +16,8 @@ class PlotUpdateTest extends DuskTestCase
     protected $dashboard    = '/dashboard';
     protected $framework    = '2x3';
 
+    protected $crop;
+
     /*
     |--------------------------------------------------------------------------
     | Update clients
@@ -33,10 +35,10 @@ class PlotUpdateTest extends DuskTestCase
                 ->type('plot_area', $this->makePlot()->plot_area)
                 ->type('plot_percent_cultivated_land', $this->makePlot()->plot_percent_cultivated_land)
                 ->type('plot_start_date', $this->makePlot()->plot_start_date)
-                ->select('crop_variety_id', $this->makePlot()->crop_variety_id)
-                ->select('pattern_id', $this->makePlot()->pattern_id)
+                ->select('crop_variety_id', $this->getValueFromSelector($browser, $selector = '#crop_variety_id option:last-child'))
+                ->select('pattern_id', $this->getValueFromSelector($browser, $selector = '#pattern_id option:last-child'))
                 ->type('crop_quantity', $this->makePlot()->crop_quantity)
-                ->select('crop_training', $this->makePlot()->crop_training)
+                ->select('crop_training', $this->getValueFromSelector($browser, $selector = '#crop_training option:last-child'))
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'))
                 ->assertDontSee(__('Your are not authorized to access this section'));
@@ -50,8 +52,6 @@ class PlotUpdateTest extends DuskTestCase
             'plot_real_area'                => $this->area($this->makePlot()),
             'plot_percent_cultivated_land'  => $this->makePlot()->plot_percent_cultivated_land,
             'plot_start_date'               => date_to_db($this->makePlot()->plot_start_date),
-            'crop_variety_id'               => $this->makePlot()->crop_variety_id,
-            'pattern_id'                    => $this->makePlot()->pattern_id,
             'crop_quantity'                 => $this->makePlot()->crop_quantity,
         ]);
     }

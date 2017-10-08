@@ -15,7 +15,7 @@ trait DataTableSearch
         /**
          * Role filter
          */
-        $value = Credentials::isAdmin() ? 3 : (Credentials::isEditor() ? 1 : 0);
+        $value = Credentials::isAdmin() ? 2 : (Credentials::isEditor() ? 1 : 0);
         $user  = Credentials::isAdmin() ? 3 : 2;
         /**
          * Default values

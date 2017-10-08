@@ -24,10 +24,10 @@ class WorkerSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_worker', $this->lastWorker()->worker_name)
+                ->type('search_worker', typeText($this->lastWorker()->worker_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
-                    $table->assertSee($this->lastWorker()->worker_name);
+                    $table->assertSee(typeText($this->lastWorker()->worker_name));
                     $table->assertDontSee($this->firstWorker()->worker_name);
                 });
 

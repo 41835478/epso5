@@ -58,13 +58,13 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             })
             ->editColumn('worker_observations', function($data) {
-                return $this->type('break')->textLength(50)->formatString($data->worker_observations);
+                return $this->type('break')->textLength(50)->formatString($data->worker_observations ?? null);
             })
             ->editColumn('client.client_name', function($data) {
-                return $this->type('break')->textLength(25)->formatString($data->client->client_name);
+                return $this->type('break')->textLength(25)->formatString($data->client->client_name ?? null);
             })
             ->editColumn('user.name', function($data) {
-                return $this->type('break')->textLength(25)->formatString($data->user->name);
+                return $this->type('break')->textLength(25)->formatString($data->user->name ?? null);
             })
             ->editColumn('worker_ropo_level', function($data) {
                 return sections('workers.ropo:level')[$data->worker_ropo_level] ?? no_result();

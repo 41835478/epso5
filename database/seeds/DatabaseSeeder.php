@@ -20,13 +20,19 @@ class DatabaseSeeder extends Seeder
         $this->call(CropVarietiesTableSeeder::class);
         $this->call(CropVarietyTypesTableSeeder::class);
         $this->call(IrrigationsTableSeeder::class);
-        $this->call(MachinesTableSeeder::class);
         $this->call(PatternsTableSeeder::class);
         $this->call(PestsTableSeeder::class);
         $this->call(TrainingsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(WorkersTableSeeder::class);
         
+        //Configuration relationships!!!!
+        $this->call(ClientConfigTableSeeder::class);
+        $this->call(ClientCropTableSeeder::class);
+        $this->call(ClientIrrigationTableSeeder::class);
+        $this->call(ClientRegionTableSeeder::class);
+        $this->call(ClientTrainingTableSeeder::class);
+
         // Countries 
         $this->call(CitiesTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
@@ -35,16 +41,10 @@ class DatabaseSeeder extends Seeder
 
         //The last one: because need for all the previus seed to populate!!!
         $this->call(PlotsTableSeeder::class);
+        $this->call(MachinesTableSeeder::class);
 
         //Climatic
         $this->call(ClimaticStationsTableSeeder::class);
-
-        //Testing relationships!!!!
-        $this->call(ClientConfigTableSeeder::class);
-        $this->call(ClientCropTableSeeder::class);
-        $this->call(ClientIrrigationTableSeeder::class);
-        $this->call(ClientRegionTableSeeder::class);
-        $this->call(ClientTrainingTableSeeder::class);
 
         // Agronomics
         $this->call(AgronomicIrrigationsTableSeeder::class);

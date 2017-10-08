@@ -1,6 +1,7 @@
 <?php
 
 use App\Repositories\Machines\Machine;
+use App\Repositories\Users\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,10 +11,10 @@ use App\Repositories\Machines\Machine;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Machine::class, function (Faker\Generator $faker) {
-    $client = rand(1, 2);
+    $user = User::inRandomOrder()->first();
     return [
-        'client_id'                     => $client,
-        'user_id'                       => $client,
+        'client_id'                     => $user->client_id,
+        'user_id'                       => $user->id,
         'machine_equipment_name'        => $faker->company,
         'machine_brand'                 => $faker->company,
         'machine_model'                 => $faker->company,
