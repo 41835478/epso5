@@ -12,7 +12,7 @@ class DummyModelUpdateTest extends DuskTestCase
 {
     use DummyModelHelpers;
     
-    protected $route = 'dashboard.admin.DummyTable.edit';
+    protected $route = 'dashboard.user.DummyTable.edit';
     protected $dashboard = '/dashboard';
 
     /*
