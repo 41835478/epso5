@@ -11,6 +11,7 @@ trait AgronomicIrrigationHelpers
     protected $lastAgronomicIrrigation;
     protected $makeAgronomicIrrigation;
     protected $notThisClientAgronomicIrrigation;
+    protected $userAgronomicIrrigation;
 
     /**
      * Create an item and storing it
@@ -75,5 +76,18 @@ trait AgronomicIrrigationHelpers
             return $this->notThisClientAgronomicIrrigation;
         }
         return $this->notThisClientAgronomicIrrigation = AgronomicIrrigation::where('client_id', '!=', $client)->orderBy('id', 'asc')->first();
+    }
+
+    /**
+     * List item by user
+     *
+     * @return Object
+     */
+    public function userAgronomicIrrigation($user) : AgronomicIrrigation
+    {
+        if($this->userAgronomicIrrigation) {
+            return $this->userAgronomicIrrigation;
+        }
+        return $this->userAgronomicIrrigation = AgronomicIrrigation::whereUserId($user)->inRandomOrder()->first();
     }
 }
