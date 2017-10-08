@@ -12,7 +12,7 @@ class AgronomicIrrigationUpdateTest extends DuskTestCase
 {
     use AgronomicIrrigationHelpers;
     
-    protected $route = 'dashboard.admin.agronomic_irrigations.edit';
+    protected $route = 'dashboard.user.agronomic_irrigations.edit';
     protected $dashboard = '/dashboard';
 
     /*
@@ -20,24 +20,31 @@ class AgronomicIrrigationUpdateTest extends DuskTestCase
     | Update AgronomicIrrigations
     |--------------------------------------------------------------------------
     */
-    public function test_admin_can_update_a_agronomicirrigation()
+    public function test_admin_can_update_a_agronomic_irrigation()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastAgronomicIrrigation()->id)
-                ->type('agronomicirrigation_name', $this->makeAgronomicIrrigation()->agronomicirrigation_name)
-                // ->type('agronomicirrigation_description', $this->makeAgronomicIrrigation()->agronomicirrigation_description)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->type('agronomic_date', $this->makeAgronomicIrrigation()->agronomic_date)
+                ->type('agronomic_quantity', $this->makeAgronomicIrrigation()->agronomic_quantity)
+                ->type('agronomic_observations', $this->makeAgronomicIrrigation()->agronomic_observations)
+                ->select('agronomic_quantity_unit', $this->makeAgronomicIrrigation()->agronomic_quantity_unit)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('agronomic_irrigations', [
-            'agronomicirrigation_name'           => $this->makeAgronomicIrrigation()->agronomicirrigation_name,
-            // 'agronomicirrigation_description'    => $this->makeAgronomicIrrigation()->agronomicirrigation_description,
+            'client_id'                 => 1,
+            'user_id'                   => 1,
+            'agronomic_date'            => date_to_db($this->makeAgronomicIrrigation()->agronomic_date),
+            'agronomic_quantity'        => $this->makeAgronomicIrrigation()->agronomic_quantity,
+            'agronomic_observations'    => $this->makeAgronomicIrrigation()->agronomic_observations,
+            'agronomic_quantity_unit'   => $this->makeAgronomicIrrigation()->agronomic_quantity_unit
         ]);
     }
 
-    public function test_user_cant_update_a_worker_from_other_user()
+    public function test_user_cant_update_a_item_from_other_user()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUserBase())
