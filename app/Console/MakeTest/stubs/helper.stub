@@ -11,6 +11,7 @@ trait DummyModelHelpers
     protected $lastDummyModel;
     protected $makeDummyModel;
     protected $notThisClientDummyModel;
+    protected $userDummyModel;
 
     /**
      * Create an item and storing it
@@ -66,7 +67,8 @@ trait DummyModelHelpers
 
     /**
      * Filter by client
-     *
+     * @param int $client
+     * 
      * @return Object
      */
     public function notThisClientDummyModel($client) : DummyModel
@@ -75,5 +77,19 @@ trait DummyModelHelpers
             return $this->notThisClientDummyModel;
         }
         return $this->notThisClientDummyModel = DummyModel::where('client_id', '!=', $client)->orderBy('id', 'asc')->first();
+    }
+
+    /**
+     * List item by user
+     * @param int $user
+     * 
+     * @return Object
+     */
+    public function userDummyModel($user) : DummyModel
+    {
+        if($this->userDummyModel) {
+            return $this->userDummyModel;
+        }
+        return $this->userDummyModel = DummyModel::whereUserId($user)->inRandomOrder()->first();
     }
 }
