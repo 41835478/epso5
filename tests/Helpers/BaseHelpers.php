@@ -47,4 +47,16 @@ trait BaseHelpers
     {
         return $browser->script("$( '" . $selector . "' ).val()")[0];
     }
+
+    /**
+     * Reduce the text length
+     * @param string $text
+     * @param int $length
+     * 
+     * @return mixed
+     */
+    public function reduceText($text, $length = 7)
+    {
+        return substr($text, 0, $length);
+    }
 }
