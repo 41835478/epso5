@@ -59,6 +59,15 @@ class DummyModelSearchTest extends DuskTestCase
                     $table->assertSee($this->lastDummyModel()->user->name);
                     $table->assertDontSee($this->notThisClientDummyModel($clientId)->user->name);
                 });
+
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_plot', parent::reduceText($this->lastDummyModel()->plot->plot_name))
+                ->pause(500)
+                ->with('.table', function ($table) {
+                    $table->assertSee(parent::reduceText($this->lastDummyModel()->plot->plot_name));
+                    $table->assertDontSee(parent::reduceText($this->firstDummyModel()->plot->plot_name));
+                });
         });
     }
 }
