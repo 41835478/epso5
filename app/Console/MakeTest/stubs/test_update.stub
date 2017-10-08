@@ -37,7 +37,7 @@ class DummyModelUpdateTest extends DuskTestCase
         ]);
     }
 
-    public function test_user_cant_update_a_worker_from_other_user()
+    public function test_user_cant_update_a_item_from_other_user()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUserBase())
