@@ -20,9 +20,10 @@ class AgronomicIrrigationSearchTest extends DuskTestCase
     | Search agronomic_irrigations
     |--------------------------------------------------------------------------
     */
-    public function test_agronomicirrigation_search()
+    public function test_AgronomicIrrigations_god_search()
     {
         $this->browse(function (Browser $browser) {
+
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
                 ->type('search_crop', $this->firstCrop()->crop_name)
@@ -58,6 +59,50 @@ class AgronomicIrrigationSearchTest extends DuskTestCase
                 ->pause(500)
                 ->with('.table', function ($table) {
                     $table->assertSee(parent::reduceText($this->lastAgronomicIrrigation()->plot->plot_name));
+                    $table->assertDontSee(parent::reduceText($this->firstAgronomicIrrigation()->plot->plot_name));
+                });
+        });
+    }
+
+    public function test_AgronomicIrrigations_editor_search()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($editor = $this->createEditor())
+                ->visit($this->path);
+            
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_user', parent::reduceText($this->lastAgronomicIrrigation()->user->name))
+                ->pause(1000)
+                ->with('.table', function ($table) {
+                    $clientId = $this->lastAgronomicIrrigation()->client_id;
+                    $table->assertSee(parent::reduceText($this->lastAgronomicIrrigation()->user->name));
+                    $table->assertDontSee(parent::reduceText($this->notThisClientAgronomicIrrigation($clientId)->user->name));
+                });
+
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_plot', parent::reduceText($this->lastAgronomicIrrigation()->plot->plot_name))
+                ->pause(500)
+                ->with('.table', function ($table) {
+                    $table->assertSee(parent::reduceText($this->lastAgronomicIrrigation()->plot->plot_name));
+                    $table->assertDontSee(parent::reduceText($this->firstAgronomicIrrigation()->plot->plot_name));
+                });
+        });
+    }
+
+    public function test_AgronomicIrrigations_user_search()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs($user = $this->createUserBase())
+                ->visit($this->path);
+
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_plot', parent::reduceText($this->userAgronomicIrrigation($this->createUserBase()->id)->plot->plot_name))
+                ->pause(500)
+                ->with('.table', function ($table) {
+                    $table->assertSee(parent::reduceText($this->userAgronomicIrrigation($this->createUserBase()->id)->plot->plot_name));
                     $table->assertDontSee(parent::reduceText($this->firstAgronomicIrrigation()->plot->plot_name));
                 });
         });
