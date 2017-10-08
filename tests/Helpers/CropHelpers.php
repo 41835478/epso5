@@ -38,7 +38,7 @@ trait CropHelpers
         if($this->firstCrop) {
             return $this->firstCrop;
         }
-        return $this->firstCrop = Crop::orderBy('id', 'asc')->first();
+        return $this->firstCrop = Crop::find(1);
     }
 
     /**
