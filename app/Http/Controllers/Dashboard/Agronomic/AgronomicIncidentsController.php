@@ -15,7 +15,7 @@ class AgronomicIncidentsController extends AgronomicController
      */
     protected $section    = 'agronomic_incidents';
 
-    public function __construct(AgronomicIrrigationsRepository $controller, DataTable $table, PlotsRepository $plot)
+    public function __construct(AgronomicIncidentsRepository $controller, DataTable $table, PlotsRepository $plot)
     {
         $this->controller   = $controller;
         $this->plot         = $plot;
