@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataTables\DummyClass;
+namespace App\DataTables\AgronomicIncidents;
 
-use App\DataTables\DummyClass\DataTableColumns;
-use App\DataTables\DummyClass\DataTableJavascript;
-use App\DataTables\DummyClass\DataTableSearch;
-use App\Repositories\DummyClass\DummyClassRepository;
-use App\Repositories\DummyClass\UsersRepository;
+use App\DataTables\AgronomicIncidents\DataTableColumns;
+use App\DataTables\AgronomicIncidents\DataTableJavascript;
+use App\DataTables\AgronomicIncidents\DataTableSearch;
+use App\Repositories\AgronomicIncidents\AgronomicIncidentsRepository;
+use App\Repositories\AgronomicIncidents\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 use Credentials;
 
@@ -18,7 +18,7 @@ class DataTable extends Repository
      * @var string
      */
     protected $action  = false; //Cusmomize action
-    protected $section = 'DummyTable';
+    protected $section = 'agronomic_incidents';
 
     /**
      * Get the query object to be processed by datatables.
@@ -27,7 +27,7 @@ class DataTable extends Repository
      */
     public function query()
     {
-        $query = app(DummyClassRepository::class)
+        $query = app(AgronomicIncidentsRepository::class)
             ->dataTable()
             //Only God and Admin see trashed material...
             ->when(Credentials::isAdmin(), function($query) {

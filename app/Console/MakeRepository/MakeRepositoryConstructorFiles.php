@@ -14,7 +14,7 @@ trait MakeRepositoryConstructorFiles
             switch ($this->create) {
 
                 case 'controller':
-                    $file = 'app/Http/Controllers/Dashboard/DummyClassController';
+                    $file = 'app/Http/Controllers/Dashboard/Agronomic/DummyClassController';
                     break;
 
                 case 'request':

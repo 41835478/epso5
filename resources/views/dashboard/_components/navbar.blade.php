@@ -110,7 +110,7 @@
                'url' => 'http://',
            ])->subMenuItem([
                'title' => icon('incidents', trans('navbar.agronomics:incidents')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.agronomic_incidents.index'),
            ])->subMenuItem([
                'title' => icon('biocides', trans('navbar.agronomics:biocides')),
                'url' => 'http://',

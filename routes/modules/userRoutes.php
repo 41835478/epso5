@@ -6,6 +6,9 @@ Route::group([
         'middleware'    => 'role:user'
     ], function () {
         //Agronomics 
+            //Incidents
+            Route::resource('agronomic_incidents', 'Dashboard\Agronomic\AgronomicIncidentsController', ['except' => ['destroy', 'show']]); 
+            Route::post('agronomic_incidents/eliminate', 'Dashboard\Agronomic\AgronomicIncidentsController@eliminate')->name('agronomic_incidents.eliminate');
             //Irrigations
             Route::resource('agronomic_irrigations', 'Dashboard\Agronomic\AgronomicIrrigationsController', ['except' => ['destroy', 'show']]); 
             Route::post('agronomic_irrigations/eliminate', 'Dashboard\Agronomic\AgronomicIrrigationsController@eliminate')->name('agronomic_irrigations.eliminate');

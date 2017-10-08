@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\DummyClass\Traits;
+namespace App\Repositories\AgronomicIncidents\Traits;
 
-trait DummyClassPresenters {
+trait AgronomicIncidentsPresenters {
 
     /*
     |--------------------------------------------------------------------------

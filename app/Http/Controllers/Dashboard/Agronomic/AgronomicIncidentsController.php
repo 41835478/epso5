@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Agronomic;
 
-use App\DataTables\DummyClass\DataTable;
+use App\DataTables\AgronomicIncidents\DataTable;
 use App\Http\Controllers\DashboardController;
-use App\Repositories\DummyClass\DummyClassRepository;
-use App\Http\Requests\DummyClassRequest;
+use App\Repositories\AgronomicIncidents\AgronomicIncidentsRepository;
+use App\Http\Requests\AgronomicIncidentsRequest;
 //use Credentials;
 //use Illuminate\Http\Request;
 
-class DummyClassController extends DashboardController
+class AgronomicIncidentsController extends DashboardController
 {
     /**
      * @var protected
@@ -22,9 +22,9 @@ class DummyClassController extends DashboardController
     private $legend;    //Just in case we need to customize the lengend. Just use the legend file name.
     private $parent;    //Just in case we need a parent section like: crops > crops_varieties, the parent section will be: crops
     private $role       = 'user';
-    private $section    = 'DummyTable';
+    private $section    = 'agronomic_incidents';
 
-    public function __construct(DummyClassRepository $controller, DataTable $table)
+    public function __construct(AgronomicIncidentsRepository $controller, DataTable $table)
     {
         $this->controller   = $controller;
         $this->table        = $table;
@@ -49,7 +49,7 @@ class DummyClassController extends DashboardController
         return $this->table
             //Customize the action for datatables [dashboard/_components/actions]
             // ->setValue([
-            //     'action' => 'DummyTable:action'
+            //     'action' => 'agronomic_incidents:action'
             // ])
             ->render(dashboard_path($this->section . '.index'));
     }
@@ -82,7 +82,7 @@ class DummyClassController extends DashboardController
      * @param  \App\Http\Requests\UsersRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DummyClassRequest $request)
+    public function store(AgronomicIncidentsRequest $request)
     {
         $create = $this->controller->store();
             return $create 
@@ -135,7 +135,7 @@ class DummyClassController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DummyClassRequest $request, $id)
+    public function update(AgronomicIncidentsRequest $request, $id)
     {
         $update = $this->controller->store($id);
             return $update 

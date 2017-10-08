@@ -1,27 +1,27 @@
 <?php 
 
-namespace App\Repositories\DummyClass;
+namespace App\Repositories\AgronomicIncidents;
 
 use App\Repositories\_Traits\Date;
-//use App\Repositories\DummyClass\Traits\DummyClassEvents;
-use App\Repositories\DummyClass\Traits\DummyClassPresenters;
-use App\Repositories\DummyClass\Traits\DummyClassRelationships;
-//use App\Repositories\DummyClass\Traits\DummyClassScopes;
+//use App\Repositories\AgronomicIncidents\Traits\AgronomicIncidentsEvents;
+use App\Repositories\AgronomicIncidents\Traits\AgronomicIncidentsPresenters;
+use App\Repositories\AgronomicIncidents\Traits\AgronomicIncidentsRelationships;
+//use App\Repositories\AgronomicIncidents\Traits\AgronomicIncidentsScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class DummyModel extends Model  {
+class AgronomicIncident extends Model  {
 
-    use DummyClassPresenters, DummyClassRelationships, Date, Notifiable, SoftDeletes;
+    use AgronomicIncidentsPresenters, AgronomicIncidentsRelationships, Date, Notifiable, SoftDeletes;
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'DummyTable';
+    protected $table = 'agronomic_incidents';
     protected $dates = ['deleted_at'];
 
     /**
