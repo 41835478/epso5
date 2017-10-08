@@ -39,6 +39,26 @@ class DummyModelSearchTest extends DuskTestCase
                     $table->assertSee($this->lastDummyModel()->DummySingular_name);
                     $table->assertDontSee($this->firstDummyModel()->DummySingular_name);
                 });
+
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_client', $this->lastDummyModel()->client->client_name)
+                ->pause(1000)
+                ->with('.table', function ($table) {
+                    $clientId = $this->lastDummyModel()->client_id;
+                    $table->assertSee($this->lastDummyModel()->client->client_name);
+                    $table->assertDontSee($this->notThisClientDummyModel($clientId)->client->client_name);
+                });
+            
+            $browser->click('.buttons-reset')
+                ->pause(500)
+                ->type('search_user', $this->lastDummyModel()->user->name)
+                ->pause(1000)
+                ->with('.table', function ($table) {
+                    $clientId = $this->lastDummyModel()->client_id;
+                    $table->assertSee($this->lastDummyModel()->user->name);
+                    $table->assertDontSee($this->notThisClientDummyModel($clientId)->user->name);
+                });
         });
     }
 }
