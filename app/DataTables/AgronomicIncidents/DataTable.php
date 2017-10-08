@@ -48,12 +48,15 @@ class DataTable extends Repository
         return $this->datatables
             ->eloquent($this->query())
             ->rawColumns(['action', 'checkbox'])
-            // ->setRowClass(function ($data) {
-            //     return ($data->trashed() ? 'trashed' : ' ');
-            // })
+            ->setRowClass(function ($data) {
+                return ($data->trashed() ? 'trashed' : ' ');
+            })
             ->addColumn('action', function ($data) {
                 return view($this->getAction(), compact('data'))
                     ->render();
+            })
+            ->editColumn('agronomic_observations', function($data) {
+                return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);

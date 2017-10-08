@@ -65,17 +65,4 @@ class DataTable extends Repository
                 return $this->setCheckbox($data->id);
             });
     }
-
-    private function relationships()
-    {
-        //Filtering the relationships
-        if(Credentials::isAdmin()) {
-            return ['client', 'user', 'crop', 'plot'];
-        } 
-        //Filtering the relationships
-        if(Credentials::isEditor()) {
-            return ['user', 'plot'];
-        } 
-        return ['plot'];
-    }
 }

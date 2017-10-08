@@ -88,7 +88,11 @@ class DataTable extends Repository
             });
     }
 
-    private function relationships()
+    /**
+     * Set relationships by role
+     * @return object
+     */
+    public function relationships()
     {
         //Filtering the relationships
         if(Credentials::isAdmin()) {

@@ -2,6 +2,8 @@
 
 namespace App\Services\DataTables;
 
+use Credentials;
+
 trait DataTableHelpers
 {
     protected $getValue;
@@ -37,5 +39,22 @@ trait DataTableHelpers
         return $this->action 
             ? action_path($this->section) 
             : action_path();
+    }
+
+    /**
+     * Set relationships by role
+     * @return object
+     */
+    public function relationships()
+    {
+        //Filtering the relationships
+        if(Credentials::isAdmin()) {
+            return ['client', 'user', 'crop', 'plot'];
+        } 
+        //Filtering the relationships
+        if(Credentials::isEditor()) {
+            return ['user', 'plot'];
+        } 
+        return ['plot'];
     }
 }
