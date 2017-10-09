@@ -31,15 +31,22 @@ class AgronomicIncidentCreateTest extends DuskTestCase
                 ->click('#button-config')
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
-                // ->type('agronomicincident_name', $this->makeAgronomicIncident()->agronomicincident_name)
-                // ->type('agronomicincident_description', $this->makeAgronomicIncident()->agronomicincident_description)
+                ->select('client_id', 1)->pause(1000)
+                ->select('user_id', 1)->pause(1000)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:last-child'))
+                ->type('agronomic_date', $this->makeAgronomicIncident()->agronomic_date)
+                ->type('agronomic_observations', $this->makeAgronomicIncident()->agronomic_observations)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
 
         $this->assertDatabaseHas('agronomic_incidents', [
-            'agronomicincident_name'           => $this->makeMachine()->agronomicincident_name,
-            // 'agronomicincident_description'    => $this->makeMachine()->agronomicincident_description,
+            'client_id'                 => 1,
+            'user_id'                   => 1,
+            'agronomic_date'            => date_to_db($this->makeAgronomicIncident()->agronomic_date),
+            'agronomic_quantity'        => $this->makeAgronomicIncident()->agronomic_quantity,
+            'agronomic_observations'    => $this->makeAgronomicIncident()->agronomic_observations,
+            'agronomic_quantity_unit'   => $this->makeAgronomicIncident()->agronomic_quantity_unit
         ]);
     }
 

@@ -23,7 +23,7 @@ class DummyModelCreateTest extends DuskTestCase
     |--------------------------------------------------------------------------
     */
 
-    public function test_god_can_create_a_DummySingular()
+    public function test_god_can_create_a_DummyModel()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
@@ -31,6 +31,13 @@ class DummyModelCreateTest extends DuskTestCase
                 ->click('#button-config')
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
+                ->select('client_id', 1)->pause(1000)
+                ->select('user_id', 1)->pause(1000)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:last-child'))
+                ->type('agronomic_date', $this->makeDummyModel()->agronomic_date)
+                ->type('agronomic_quantity', $this->makeDummyModel()->agronomic_quantity)
+                ->select('agronomic_quantity_unit', $this->makeDummyModel()->agronomic_quantity_unit)
+                ->type('agronomic_observations', $this->makeDummyModel()->agronomic_observations)
                 // ->type('DummySingular_name', $this->makeDummyModel()->DummySingular_name)
                 // ->type('DummySingular_description', $this->makeDummyModel()->DummySingular_description)
                 ->press(trans('buttons.new'))
@@ -38,12 +45,16 @@ class DummyModelCreateTest extends DuskTestCase
         });
 
         $this->assertDatabaseHas('DummyTable', [
-            'DummySingular_name'           => $this->makeMachine()->DummySingular_name,
-            // 'DummySingular_description'    => $this->makeMachine()->DummySingular_description,
+            'client_id'                 => 1,
+            'user_id'                   => 1,
+            'agronomic_date'            => date_to_db($this->makeDummyModel()->agronomic_date),
+            'agronomic_quantity'        => $this->makeDummyModel()->agronomic_quantity,
+            'agronomic_quantity_unit'   => $this->makeDummyModel()->agronomic_quantity_unit,
+            'agronomic_observations'    => $this->makeDummyModel()->agronomic_observations,
         ]);
     }
 
-    public function test_admin_can_create_DummySingular()
+    public function test_admin_can_create_DummyModel()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
@@ -52,7 +63,7 @@ class DummyModelCreateTest extends DuskTestCase
         });
     }
 
-    public function test_editor_cant_create_DummySingular()
+    public function test_editor_cant_create_DummyModel()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
@@ -62,7 +73,7 @@ class DummyModelCreateTest extends DuskTestCase
         });
     }
 
-    public function test_user_cant_create_DummySingular()
+    public function test_user_cant_create_DummyModel()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
