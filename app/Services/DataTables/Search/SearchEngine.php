@@ -55,7 +55,10 @@ trait SearchEngine {
             return self::exactSearch($dataBaseField, $query, $start);
          })->when((!is_null($start) && !is_null($end)), function($query) use($dataBaseField, $start, $end) {
             //Search start and end
-            return $query->whereBetween($dataBaseField, [self::formatDate($start, $type = 'start'), self::formatDate($end, $type = 'end')]);
+            return $query->whereBetween($dataBaseField, [
+                self::formatDate($start, $type = 'start'),
+                self::formatDate($end, $type = 'end')
+             ]);
          })->when((!is_null($start) && is_null($end)), function($query) use($dataBaseField, $start) {
             //Only start >=
             return $query->where($dataBaseField, '>=', self::formatDate($date, $type = 'start'));
@@ -109,8 +112,8 @@ trait SearchEngine {
     private function formatDate($date, $type = 'start')
     {
         return ($type === 'start') 
-            ? self::formatDate($date, $type = 'start')
-            : self::formatDate($date, $type = 'end');
+            ? Carbon::createFromFormat('d/m/Y', $date)->setTime(00, 00, 00)
+            : Carbon::createFromFormat('d/m/Y', $date)->setTime(23, 59, 59);
     }
 
     /**
