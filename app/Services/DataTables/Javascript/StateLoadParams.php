@@ -39,9 +39,14 @@ trait StateLoadParams {
     private function stateLoadParamsItem(array $attributes = [], $init = "")
     {
        foreach($attributes as $attribute) {
-            $init .= "$('#{$attribute['container']}').val(data.columns[{$attribute['column']}] ? data.columns[{$attribute['column']}].search.search : '');";
-       }
-
+            //Search date values
+            if($attribute['container'] == 'search_date') {
+                $init .= "var dateSearch = data.columns[{$attribute['column']}].search.search; var sections = dateSearch.split(','); if(sections[0]){ $('#search_dateStart').val(sections[0]); } if(sections[1]){ $('#search_dateEnd').val(sections[1]); }";
+            //Normal values
+            } else {
+                $init .= "$('#{$attribute['container']}').val(data.columns[{$attribute['column']}] ? data.columns[{$attribute['column']}].search.search : '');";
+            }
+       };
        return $init;
     }
 }

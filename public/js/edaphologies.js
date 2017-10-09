@@ -54835,6 +54835,8 @@ if ($('#plot_id').length) {
  */
 $('.advancedSearch').on('click', function () {
     $('#modal-search-date').modal('show');
+    $('#modal_start_date').val($('#search_dateStart').val());
+    $('#modal_end_date').val($('#search_dateEnd').val());
 });
 
 /***/ }),
