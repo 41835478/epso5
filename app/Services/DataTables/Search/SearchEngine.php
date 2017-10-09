@@ -43,40 +43,26 @@ trait SearchEngine {
      public function filterByDate($query, $keyword, $dataBaseField = 'agronomic_date')
      {
          //Filter value 
-         $search = explode(',', $keyword);
-         $start  = isset($search[0]) ? $this->validateDate($search[0]) : null;
-         $end    = isset($search[1]) ? $this->validateDate($search[1]) : null;
+         $start = self::parseDate($keyword, $type = 'start');
+         $end   = self::parseDate($keyword, $type = 'end');
          //Empty search
          if(is_null($start) && is_null($end)){
-             return $query;
+            return $query;
          }
-         //Exact date 
-         if($end === 'exact_search') {
-             //Filter empty...
-             if(is_null($start)) {
-                 return $query;
-             }
-             return $query
-                ->where($dataBaseField, '=', Carbon::createFromFormat('d/m/Y', $start)
-                ->setTime(00, 00, 00));
-         }
-         //Start and end
-         if(!is_null($start) && !is_null($end)){
-             $query->whereBetween($dataBaseField, [
-                 Carbon::createFromFormat('d/m/Y', $start)->setTime(00, 00, 00),
-                 Carbon::createFromFormat('d/m/Y', $end)->setTime(23, 59, 59)
-             ]);
-         }
-         //Only start
-         if(!is_null($start) && is_null($end)){
-             $query->where($dataBaseField, '>=', Carbon::createFromFormat('d/m/Y', $start)->setTime(00, 00, 00));
-         }
-         //Only end
-         if(is_null($start) && !is_null($end)){
-             $query->where($dataBaseField, '<=', Carbon::createFromFormat('d/m/Y', $end)->setTime(00, 00, 00));
-         }
-         //Return query
-         return $query;
+         //The query 
+         return $query->when($end === 'exact_search', function($query) use($dataBaseField, $start) { 
+            //Exact search (when the end date is null and want only the results for this date)
+            return self::exactSearch($dataBaseField, $query, $start);
+         })->when((!is_null($start) && !is_null($end)), function($query) use($dataBaseField, $start, $end) {
+            //Search start and end
+            return $query->whereBetween($dataBaseField, [self::formatDate($start, $type = 'start'), self::formatDate($end, $type = 'end')]);
+         })->when((!is_null($start) && is_null($end)), function($query) use($dataBaseField, $start) {
+            //Only start >=
+            return $query->where($dataBaseField, '>=', self::formatDate($date, $type = 'start'));
+         })->when((is_null($start) && !is_null($end)), function($query) use($dataBaseField, $end) {
+            //Only end <=
+            return $query->where($dataBaseField, '<=', self::formatDate($end, $type = 'end'));
+         });
      }
 
     /*
@@ -85,8 +71,62 @@ trait SearchEngine {
      |--------------------------------------------------------------------------
      */
     
-     private function validateDate($date)
-     {
-         return strlen($date) ? $date : null;
-     }
+    /**
+    * Validate date
+    * @param string $date   
+    *       
+    * @return string
+    */
+    private function validateDate($date)
+    {
+        return strlen($date) ? $date : null;
+    }
+
+    /**
+    * Parse date
+    * @param string $date   
+    * @param string $type ['start', 'end']   
+    *       
+    * @return string
+    */
+    private function parseDate($date, $type = 'start')
+    {
+        //Date to array
+        $search = explode(',', $date);
+        //The data
+        return ($type === 'start')
+            ? (self::validateDate($search[0] ?? null))
+            : (self::validateDate($search[1] ?? null));
+    }
+
+    /**
+    * Parse date
+    * @param string $date   
+    * @param string $type ['start', 'end']   
+    *       
+    * @return string
+    */
+    private function formatDate($date, $type = 'start')
+    {
+        return ($type === 'start') 
+            ? self::formatDate($date, $type = 'start')
+            : self::formatDate($date, $type = 'end');
+    }
+
+    /**
+    * Exact search (when the end date is null)
+    * @param string $dataBaseField [whatever.agronomic_date] 
+    * @param object $query  
+    * @param date $start [Start date]  
+    *       
+    * @return string
+    */
+    private function exactSearch($dataBaseField, $query, $start)
+    {
+        return (is_null($start)) 
+            //Start is null
+            ? $query 
+            //Search only start with exact_search (=)
+            : $query->where($dataBaseField, self::formatDate($start, $type = 'start'));
+    }
 }

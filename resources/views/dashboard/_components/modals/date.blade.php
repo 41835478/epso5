@@ -20,5 +20,11 @@
             </div>
         </form>
     @endslot
-    @slot('modalButtons', BootForm::button(icon('search', trans('buttons.search')))->id('button-date-search')->type('button')->class('btn btn-success'))
+    @slot('modalButtons')
+        {!! Form::button(icon('search', trans('buttons.search')), [
+            'id'    => 'button-date-search',
+            'type'  => 'button',
+            'class' => 'btn btn-success',
+        ]) !!}
+    @endslot
 @endcomponent
