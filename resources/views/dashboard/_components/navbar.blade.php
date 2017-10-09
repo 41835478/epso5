@@ -119,7 +119,7 @@
                'url' => 'http://',
            ])->subMenuItem([
                'title' => icon('pests', trans('navbar.agronomics:pests')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.agronomic_pests.index'),
            ])->subMenuItem([
                'title' => icon('irrigations', trans('navbar.agronomics:irrigations')),
                'url' => route('dashboard.user.agronomic_irrigations.index'),

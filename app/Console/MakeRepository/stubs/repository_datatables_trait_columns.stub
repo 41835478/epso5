@@ -2,6 +2,8 @@
 
 namespace App\DataTables\DummyClass;
 
+use Credentials;
+
 trait DataTableColumns
 {
     /**

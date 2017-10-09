@@ -5,13 +5,6 @@ Route::group([
         'as'            => 'user.', 
         'middleware'    => 'role:user'
     ], function () {
-        //Agronomics 
-            //Incidents
-            Route::resource('agronomic_incidents', 'Dashboard\Agronomic\AgronomicIncidentsController', ['except' => ['destroy', 'show']]); 
-            Route::post('agronomic_incidents/eliminate', 'Dashboard\Agronomic\AgronomicIncidentsController@eliminate')->name('agronomic_incidents.eliminate');
-            //Irrigations
-            Route::resource('agronomic_irrigations', 'Dashboard\Agronomic\AgronomicIrrigationsController', ['except' => ['destroy', 'show']]); 
-            Route::post('agronomic_irrigations/eliminate', 'Dashboard\Agronomic\AgronomicIrrigationsController@eliminate')->name('agronomic_irrigations.eliminate');
         //Agreement
         Route::name('agreements.edit')->get('agreements/{agreement}/edit', 'Dashboard\AgreementsController@edit');
         Route::name('agreements.update')->patch('agreements/update/{agreement}', 'Dashboard\AgreementsController@update');
@@ -32,7 +25,6 @@ Route::group([
         //Workers
         Route::resource('workers', 'Dashboard\WorkersController', ['except' => ['destroy', 'show']]); 
         Route::post('workers/eliminate', 'Dashboard\WorkersController@eliminate')->name('workers.eliminate');
-
         //Only for testing
         if (isset(explode('.', gethostname())[1]) && explode('.', gethostname())[1] === 'local') {
             Route::get('plots/test', 'Dashboard\PlotsConfigurateController@configurate')->name('plots.test');

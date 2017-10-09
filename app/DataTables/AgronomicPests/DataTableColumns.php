@@ -2,6 +2,8 @@
 
 namespace App\DataTables\AgronomicPests;
 
+use Credentials;
+
 trait DataTableColumns
 {
     /**
