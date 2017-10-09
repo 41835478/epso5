@@ -61,7 +61,7 @@ trait SearchEngine {
              ]);
          })->when((!is_null($start) && is_null($end)), function($query) use($dataBaseField, $start) {
             //Only start >=
-            return $query->where($dataBaseField, '>=', self::formatDate($date, $type = 'start'));
+            return $query->where($dataBaseField, '>=', self::formatDate($start, $type = 'start'));
          })->when((is_null($start) && !is_null($end)), function($query) use($dataBaseField, $end) {
             //Only end <=
             return $query->where($dataBaseField, '<=', self::formatDate($end, $type = 'end'));
