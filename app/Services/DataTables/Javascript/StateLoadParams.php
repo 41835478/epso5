@@ -41,7 +41,7 @@ trait StateLoadParams {
        foreach($attributes as $attribute) {
             //Search date values
             if($attribute['container'] == 'search_date') {
-                $init .= "var dateSearch = data.columns[{$attribute['column']}].search.search; var sections = dateSearch.split(','); if(sections[0]){ $('#search_dateStart').val(sections[0]); } if(sections[1]){ $('#search_dateEnd').val(sections[1]); }";
+                $init .= "if(data.columns[{$attribute['column']}]){var dateSearch = data.columns[{$attribute['column']}].search.search; var sections = dateSearch.split(','); if(sections[0]){ $('#search_dateStart').val(sections[0]); } if(sections[1]){ $('#search_dateEnd').val(sections[1]); }}";
             //Normal values
             } else {
                 $init .= "$('#{$attribute['container']}').val(data.columns[{$attribute['column']}] ? data.columns[{$attribute['column']}].search.search : '');";
