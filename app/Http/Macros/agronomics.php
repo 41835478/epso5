@@ -26,9 +26,9 @@
      * 
      * @return  string
      */
-    Form::macro('agronomicDate', function($required = true, $class = 'col-md-2')
+    Form::macro('agronomicDate', function($title = null, $required = true, $class = 'col-md-2')
     {
-        return BootForm::InputGroup(trans('dates.date:application'), 'agronomic_date')
+        return BootForm::InputGroup(is_null($title) ? trans('dates.date:application') :  $title, 'agronomic_date')
             ->addGroupClass($class)
             ->addClass('date')
             ->afterAddon(icon('calendar'))
