@@ -13,7 +13,7 @@ class AgronomicPestsController extends AgronomicController
     /**
      * @var protected
      */
-    protected $section    = 'agronomic_pests';
+    protected $section = 'agronomic_pests';
 
     public function __construct(AgronomicPestsRepository $controller, DataTable $table, PlotsRepository $plot)
     {

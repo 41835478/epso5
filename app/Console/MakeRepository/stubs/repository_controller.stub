@@ -13,7 +13,7 @@ class DummyClassController extends AgronomicController
     /**
      * @var protected
      */
-    protected $section    = 'DummyTable';
+    protected $section = 'DummyTable';
 
     public function __construct(DummyClassRepository $controller, DataTable $table, PlotsRepository $plot)
     {
