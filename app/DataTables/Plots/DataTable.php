@@ -92,7 +92,7 @@ class DataTable extends Repository
      * Set relationships by role
      * @return object
      */
-    public function relationships()
+    public function relationships($with = null)
     {
         //Filtering the relationships
         if(Credentials::isAdmin()) {

@@ -49,7 +49,7 @@
                 function( data ) {
                     //Only if there is data
                     if( data.module && data.id ) {
-                        //Add values 
+                        //Add values: module and crop
                         $( '#crop_module' ).val( data.module ), $( '#crop_id' ).val( data.id );
                         if(data.module.length > 0) {
                             //Load the module
@@ -92,8 +92,15 @@
             //Get the data via AJAX
             var $client = $( '#client_id' ).val();
             $.get( window.location.origin + '/dashboard/ajax/crops', { search: $client }, 
-            function( data ) {
-                $( '#crop_id' ).val( data );
+            function( crop ) {
+                $( '#crop_id' ).val( crop[0] );
+                //If there is pests 
+                if( $('#pest_id').is(':disabled') ) {
+                    // $.get( window.location.origin + '/dashboard/ajax/pests', { search: crop[0] }, 
+                    //     function( pest ) {
+                    //         console.log( pest );
+                    //     });
+                }
             });
         });
     }
