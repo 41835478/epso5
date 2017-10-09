@@ -4,6 +4,7 @@ namespace App\Repositories\AgronomicPests\Traits;
 
 use App\Repositories\Clients\Client;
 use App\Repositories\Crops\Crop;
+use App\Repositories\Pests\Pest;
 use App\Repositories\Plots\Plot;
 use App\Repositories\Users\User;
 
@@ -22,6 +23,11 @@ trait AgronomicPestsRelationships {
     public function crop()
     {
         return $this->belongsTo(Crop::class);
+    }
+
+    public function pest()
+    {
+        return $this->belongsTo(Pest::class);
     }
 
     public function plot()

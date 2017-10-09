@@ -12,7 +12,8 @@
         {{-- Add the data --}}
         @slot('data', $data)
         {{-- Add other slot --}}
-        {{-- @slot('plots', $plots ?? null) --}}
+        @slot('pests', $pests ?? [])
+        @slot('plots', $plots ?? null)
     @endcomponent
 
 @endsection

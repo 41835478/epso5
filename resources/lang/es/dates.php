@@ -10,6 +10,7 @@ return [
    
     'date'              => 'Fecha',
     'date:application'  => 'Fecha aplicación',
+    'date:detection'    => 'Fecha detección',
     'date:incident'     => 'Fecha del incidente',
     'date:buy'          => 'Fecha compra',
     'date:end'          => 'Fecha fin',

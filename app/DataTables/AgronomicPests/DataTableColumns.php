@@ -20,13 +20,13 @@ trait DataTableColumns
             $this->setColumn(trans('financials.id'), 'id'),
         ];
         $columns = [
+            $this->setColumnWithRelationship(trans_title('pests', 'singular'), 'pest.pest_name', [
+                 'defaultContent' => no_result(),
+            ]),
             $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
             $this->setColumn(trans('dates.date'), 'agronomic_date', [
                  'defaultContent' => no_result(),
             ]),
-            // $this->setColumn(trans('units.quantity'), 'agronomic_quantity', [
-            //      'defaultContent' => no_result(),
-            // ]),
             $this->setColumn(trans('base.observations'), 'agronomic_observations', [
                  'defaultContent' => no_result(),
             ]),            

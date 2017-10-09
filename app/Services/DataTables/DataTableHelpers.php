@@ -45,16 +45,18 @@ trait DataTableHelpers
      * Set relationships by role
      * @return object
      */
-    public function relationships()
+    public function relationships($with = null)
     {
         //Filtering the relationships
         if(Credentials::isAdmin()) {
-            return ['client', 'user', 'crop', 'plot'];
+            $relationships = ['client', 'user', 'crop', 'plot'];
+                return ($with) ? array_merge($relationships, $with) : $relationships;
         } 
         //Filtering the relationships
         if(Credentials::isEditor()) {
-            return ['user', 'plot'];
+            $relationships = ['user', 'plot'];
+                return ($with) ? array_merge($relationships, $with) : $relationships;
         } 
-        return ['plot'];
+        return ($with) ? array_merge(['plot'], $with) : ['plot'];
     }
 }
