@@ -18,3 +18,11 @@
         ->addGroupClass('col-md-2')
     !!}
 @endRole
+
+{{-- Search by: Plots --}}
+@if(!empty($withPlots))
+    {!! BootForm::text(sections('plots.title'), 'search_plot')
+        ->addGroupClass(Credentials::isAdmin() ? 'col-md-2' : 'col-md-3')
+        ->autofocus()
+    !!}
+@endif
