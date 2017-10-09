@@ -104,9 +104,3 @@
      $( '.advancedSearch' ).on( 'click', function() {
         $( '#modal-search-date' ).modal( 'show' )
      })
-
-     $( '#button-date-search' ).on( 'click', function() {
-        $( '#start_date' ).val( $('#modal_start_date').val() );
-        $( '#end_date' ).val( $('#modal_end_date').val() );
-        $( '#modal-search-date' ).modal( 'hide' );
-     })

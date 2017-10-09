@@ -84,14 +84,19 @@ trait Filters {
     public function filterDate($containerID, $columnNumber)
     {
         return "
-            $('#search-button').on( 'click', function() {
-                var start = $('#search_dateStart').val();
-                var end = $('#search_dateEnd').val();
-                if (typeof end === 'undefined') {
+            $( '#button-date-search' ).on( 'click', function() {
+                //Fill the fields
+                var start = $( '#modal_start_date' ).val();
+                var end = $( '#modal_end_date' ).val();
+                //Get the values 
+                $( '#search_dateStart' ).val( start );
+                $( '#search_dateEnd' ).val( end );
+                if ( typeof end === 'undefined' ) {
                     end = 'exact_search';
                 }
                 var value = start + ',' + end;
-                $(table).DataTable().column({$columnNumber}).search( value ).draw();
+                $( table ).DataTable().column( {$columnNumber} ).search( value ).draw();
+                $( '#modal-search-date' ).modal( 'hide' );
             } );
         ";
     }

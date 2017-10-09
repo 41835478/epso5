@@ -63,6 +63,9 @@ class DataTable extends Repository
             })
             ->editColumn('checkbox', function($data) {
                 return $this->setCheckbox($data->id);
+            })
+            ->filterColumn($this->section . '.agronomic_date', function($query, $keyword) {
+                $this->filterByDate($query, $keyword);
             });
     }
 }

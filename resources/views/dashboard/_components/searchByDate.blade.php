@@ -1,5 +1,5 @@
 {{-- Field: Start date --}}
-{!! BootForm::InputGroup(trans('dates.date:start'), 'start_date')
+{!! BootForm::InputGroup(trans('dates.date:start'), 'search_dateStart')
     ->addGroupClass('col-md-2')
     ->addClass('date advancedSearch')
     ->afterAddon(icon('calendar'))
@@ -7,7 +7,7 @@
 !!}
 
 {{-- Field: End date --}}
-{!! BootForm::InputGroup(trans('dates.date:end'), 'end_date')
+{!! BootForm::InputGroup(trans('dates.date:end'), 'search_dateEnd')
     ->addGroupClass('col-md-2')
     ->addClass('date advancedSearch')
     ->afterAddon(icon('calendar'))
