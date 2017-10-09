@@ -33,7 +33,7 @@ class AgronomicController extends DashboardController
     {
         //Get the users and the clients
         list($clients, $users) = $this->controller->getClientUser();
-        $plots = Credentials::isOnlyRole('user') ? $this->plot->listsByRole() : null;
+        $plots = $this->plot->listsIfOnlyUser();
             //Get the value
             return view(dashboard_path($this->section . '.create'), compact('clients', 'plots', 'users'));
     }

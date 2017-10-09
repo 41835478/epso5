@@ -113,4 +113,15 @@ class PlotsRepository extends Repository
             return self::listsByUser(Credentials::id(), $select);
         }
     }
+
+    /**
+     * Get all the results filter by role
+     * @return  collection
+     */
+    public function listsIfOnlyUser()
+    {
+        return Credentials::isOnlyRole('user') 
+            ? self::listsByRole() 
+            : null;
+    }
 }

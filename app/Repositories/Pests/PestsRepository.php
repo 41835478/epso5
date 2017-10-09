@@ -39,10 +39,10 @@ class PestsRepository extends Repository
      * 
      * @return collection
      */
-    public function listByCropAndRole()
+    public function listByCropAndRole($cropId = null)
     {
-        return Credentials::isOnlyRole('user') 
-            ? self::listByCrop(getCropId()) 
-            : null;
+        return $cropId 
+            ? self::listByCrop($cropId)
+            : (Credentials::isOnlyRole('user') ? self::listByCrop(getCropId()) : null);
     }
 }

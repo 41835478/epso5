@@ -8,6 +8,24 @@
 
     /**
      * Generate a agronomic field for: date
+     * @param array $pests
+     * 
+     * @return  string
+     */
+    Form::macro('agronomicPests', function($pests = null, $class = 'col-md-4')
+    {
+        return ($pests) 
+            ? BootForm::select(trans_title('pests'), 'pest_id')
+                ->addGroupClass($class)
+                ->options($pests)
+                ->required()
+            : BootForm::select(trans_title('pests'), 'pest_id')
+                ->addGroupClass($class)
+                ->disabled();
+    });
+
+    /**
+     * Generate a agronomic field for: date
      * @param boolean $required
      * 
      * @return  string

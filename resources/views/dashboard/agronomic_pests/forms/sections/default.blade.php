@@ -1,3 +1,6 @@
+{{-- Add client, user and plot... if needed --}}
+@include(component_path('formByRole'), ['withPlot' => true])
+
 <div class="row">
 
     {{-- Row id --}}
@@ -10,11 +13,7 @@
     {!!  Form::agronomicDate(trans('dates.date:detection')) !!}
 
     {{-- Field: Pest --}}
-    {!! BootForm::select(trans_title('pests'), 'pest_id')
-        ->addGroupClass('col-md-2')
-        ->options($pests)
-        ->required()
-    !!}
+    {!! Form::agronomicPests($pests ?? null) !!}
 
     {{-- Field: observations --}}
     {!! Form::autoTextArea('agronomic_observations') !!}

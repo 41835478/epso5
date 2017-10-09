@@ -40,7 +40,7 @@ class AgronomicPestsController extends AgronomicController
     {
         //Get the users and the clients
         list($clients, $users) = $this->controller->getClientUser();
-        $plots = Credentials::isOnlyRole('user') ? $this->plot->listsByRole() : null;
+        $plots = $this->plot->listsIfOnlyUser();
         $pests = $this->pest->listByCropAndRole();
             //Get the value
             return view(dashboard_path($this->section . '.create'), compact('clients', 'pests', 'plots', 'users'));
@@ -74,7 +74,7 @@ class AgronomicPestsController extends AgronomicController
         }
         //List of plots
         $plots = $this->plot->listsByUser($data->user_id) ?? null;
-        $pests = $this->pest->listByCropAndRole();
+        $pests = $this->pest->listByCropAndRole($data->crop_id);
             //Return the values
             return view(dashboard_path($this->section . '.edit'), compact('data', 'pests', 'plots'));
     }
