@@ -17,3 +17,6 @@
     ->addGroupClass('col-md-2')
     ->addClass('number')
 !!}
+
+{{-- Add dates --}}
+@include(component_path('searchByDate'))

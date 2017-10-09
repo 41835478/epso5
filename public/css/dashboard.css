@@ -10618,6 +10618,14 @@ form .checkBoxCustom {
   margin-right: 8px;
 }
 
+form .advancedSearch {
+  cursor: pointer !important;
+}
+
+form .advancedSearch + span {
+  background-color: #D9534F !important;
+}
+
 /** 
  * Helpers
  */

@@ -1,19 +1,11 @@
 {{-- Add client and user if needed... --}}
-{{-- @include(component_path('searchByRole')) --}}
+@include(component_path('searchByRole'), ['withCrops' => true])
 
 {{-- Search by: Name --}}
-{!! BootForm::text(trans('persona.name'), 'search_name')
+{!! BootForm::text(sections('plots.title'), 'search_plot')
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
 
-{{-- Search by: Email --}}
-{!! BootForm::text(trans('persona.email'), 'search_email')
-    ->addGroupClass('col-md-3')
-!!}
-
-{{-- Search by: ID --}}
-{!! BootForm::text(trans('financials.id'), 'search_id')
-    ->addGroupClass('col-md-2')
-    ->addClass('number')
-!!}
+{{-- Add dates --}}
+@include(component_path('searchByDate'))

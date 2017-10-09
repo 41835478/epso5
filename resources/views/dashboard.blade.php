@@ -29,6 +29,7 @@
         @include(component_path('footer'))
         
         {{-- Modals --}}
+        @include(modal_path('date'))
         @include(modal_path('error'))
         @yield('modals')
     </body>

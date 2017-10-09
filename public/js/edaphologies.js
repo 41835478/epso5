@@ -54830,6 +54830,19 @@ if ($('#plot_id').length) {
     });
 }
 
+/**
+ * Search by date
+ */
+$('.advancedSearch').on('click', function () {
+    $('#modal-search-date').modal('show');
+});
+
+$('#button-date-search').on('click', function () {
+    $('#start_date').val($('#modal_start_date').val());
+    $('#end_date').val($('#modal_end_date').val());
+    $('#modal-search-date').modal('hide');
+});
+
 /***/ }),
 
 /***/ "./resources/assets/js/dashboard/jquery/tables.js":

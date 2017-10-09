@@ -6,3 +6,6 @@
     ->addGroupClass('col-md-3')
     ->autofocus()
 !!}
+
+{{-- Add dates --}}
+@include(component_path('searchByDate'))
