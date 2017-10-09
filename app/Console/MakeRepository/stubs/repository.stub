@@ -5,12 +5,12 @@ namespace App\Repositories\DummyClass;
 use App\Repositories\Repository;
 use App\Repositories\DummyClass\Traits\DummyClassHelpers;
 use App\Repositories\DummyClass\DummyModel;
-//use App\Repositories\_Traits\ClientUser;
+use App\Repositories\_Traits\ClientUser;
 //use DB;
 
 class DummyClassRepository extends Repository
 {
-    use DummyClassHelpers;
+    use DummyClassHelpers, ClientUser;
 
     protected $model;
 

@@ -5,12 +5,12 @@ namespace App\Repositories\AgronomicIncidents;
 use App\Repositories\Repository;
 use App\Repositories\AgronomicIncidents\Traits\AgronomicIncidentsHelpers;
 use App\Repositories\AgronomicIncidents\AgronomicIncident;
-//use App\Repositories\_Traits\ClientUser;
+use App\Repositories\_Traits\ClientUser;
 //use DB;
 
 class AgronomicIncidentsRepository extends Repository
 {
-    use AgronomicIncidentsHelpers;
+    use AgronomicIncidentsHelpers, ClientUser;
 
     protected $model;
 
