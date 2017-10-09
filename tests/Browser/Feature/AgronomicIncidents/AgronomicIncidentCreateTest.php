@@ -23,7 +23,7 @@ class AgronomicIncidentCreateTest extends DuskTestCase
     |--------------------------------------------------------------------------
     */
 
-    public function test_god_can_create_a_agronomicincident()
+    public function test_god_can_create_a_agronomic_incident()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
@@ -44,38 +44,43 @@ class AgronomicIncidentCreateTest extends DuskTestCase
             'client_id'                 => 1,
             'user_id'                   => 1,
             'agronomic_date'            => date_to_db($this->makeAgronomicIncident()->agronomic_date),
-            'agronomic_quantity'        => $this->makeAgronomicIncident()->agronomic_quantity,
             'agronomic_observations'    => $this->makeAgronomicIncident()->agronomic_observations,
-            'agronomic_quantity_unit'   => $this->makeAgronomicIncident()->agronomic_quantity_unit
         ]);
     }
 
-    public function test_admin_can_create_agronomicincident()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs($admin = $this->createAdmin())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
-        });
-    }
+    public function test_admin_can_create_agronomic_incident()
+        {
+            $this->browse(function (Browser $browser) {
+                $browser->loginAs($admin = $this->createAdmin())
+                    ->visit($this->pathToCreate)
+                    ->assertPathIs($this->pathToCreate)
+                    ->assertVisible('#client_id')
+                    ->assertVisible('#user_id')
+                    ->assertVisible('#plot_id');
+            });
+        }
 
-    public function test_editor_cant_create_agronomicincident()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs($editor = $this->createEditor())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
-        });
-    }
+        public function test_editor_can_create_agronomic_incident()
+        {
+            $this->browse(function (Browser $browser) {
+                $browser->loginAs($editor = $this->createEditor())
+                    ->visit($this->pathToCreate)
+                    ->assertPathIs($this->pathToCreate)
+                    ->assertMissing('#client_id')
+                    ->assertVisible('#user_id')
+                    ->assertVisible('#plot_id');
+            });
+        }
 
-    public function test_user_cant_create_agronomicincident()
-    {
-        $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
-                ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
-        });
-    }
+        public function test_user_can_create_agronomic_incident()
+        {
+            $this->browse(function (Browser $browser) {
+                $browser->loginAs($user = $this->createUser())
+                    ->visit($this->pathToCreate)
+                    ->assertPathIs($this->pathToCreate)
+                    ->assertMissing('#client_id')
+                    ->assertMissing('#user_id')
+                    ->assertVisible('#plot_id');
+            });
+        }
 }

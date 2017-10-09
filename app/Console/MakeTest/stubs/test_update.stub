@@ -20,20 +20,27 @@ class DummyModelUpdateTest extends DuskTestCase
     | Update DummyClass
     |--------------------------------------------------------------------------
     */
-    public function test_admin_can_update_a_DummySingular()
+    public function test_admin_can_update_a_DummyClass()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastDummyModel()->id)
-                ->type('DummySingular_name', $this->makeDummyModel()->DummySingular_name)
-                // ->type('DummySingular_description', $this->makeDummyModel()->DummySingular_description)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->type('agronomic_date', $this->makeDummyModel()->agronomic_date)
+                ->type('agronomic_quantity', $this->makeDummyModel()->agronomic_quantity)
+                ->select('agronomic_quantity_unit', $this->makeDummyModel()->agronomic_quantity_unit)
+                ->type('agronomic_observations', $this->makeDummyModel()->agronomic_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('DummyTable', [
-            'DummySingular_name'           => $this->makeDummyModel()->DummySingular_name,
-            // 'DummySingular_description'    => $this->makeDummyModel()->DummySingular_description,
+            'client_id'                 => 1,
+            'user_id'                   => 1,
+            'agronomic_date'            => date_to_db($this->makeDummyModel()->agronomic_date),
+            'agronomic_quantity'        => $this->makeDummyModel()->agronomic_quantity,
+            'agronomic_observations'    => $this->makeDummyModel()->agronomic_observations,
+            'agronomic_quantity_unit'   => $this->makeDummyModel()->agronomic_quantity_unit
         ]);
     }
 

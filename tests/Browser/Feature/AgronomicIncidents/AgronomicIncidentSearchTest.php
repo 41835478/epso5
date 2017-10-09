@@ -23,22 +23,7 @@ class AgronomicIncidentSearchTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
-                ->visit($this->path)
-                ->type('search_name', $this->lastAgronomicIncident()->agronomicincident_name)
-                ->pause(500)
-                ->with('.table', function ($table) {
-                    $table->assertSee($this->lastAgronomicIncident()->agronomicincident_name);
-                    $table->assertDontSee($this->firstAgronomicIncident()->agronomicincident_name);
-                });
-
-            $browser->click('.buttons-reset')
-                ->pause(500)
-                ->type('search_id', $this->lastAgronomicIncident()->id)
-                ->pause(500)
-                ->with('.table', function ($table) {
-                    $table->assertSee($this->lastAgronomicIncident()->agronomicincident_name);
-                    $table->assertDontSee($this->firstAgronomicIncident()->agronomicincident_name);
-                });
+                ->visit($this->path);
 
             $browser->click('.buttons-reset')
                 ->pause(500)

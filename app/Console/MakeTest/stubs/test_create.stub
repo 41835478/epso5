@@ -23,7 +23,7 @@ class DummyModelCreateTest extends DuskTestCase
     |--------------------------------------------------------------------------
     */
 
-    public function test_god_can_create_a_DummyModel()
+    public function test_god_can_create_a_DummyClass()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
@@ -54,32 +54,39 @@ class DummyModelCreateTest extends DuskTestCase
         ]);
     }
 
-    public function test_admin_can_create_DummyModel()
+    public function test_admin_can_create_DummyClass()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->pathToCreate);
+                ->assertPathIs($this->pathToCreate)
+                ->assertVisible('#client_id')
+                ->assertVisible('#user_id')
+                ->assertVisible('#plot_id');
         });
     }
 
-    public function test_editor_cant_create_DummyModel()
+    public function test_editor_can_create_DummyClass()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($editor = $this->createEditor())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->assertPathIs($this->pathToCreate)
+                ->assertMissing('#client_id')
+                ->assertVisible('#user_id')
+                ->assertVisible('#plot_id');
         });
     }
 
-    public function test_user_cant_create_DummyModel()
+    public function test_user_can_create_DummyClass()
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs($user = $this->createUser())
                 ->visit($this->pathToCreate)
-                ->assertPathIs($this->dashboard)
-                ->assertSee(__('Your are not authorized to access this section'));
+                ->assertPathIs($this->pathToCreate)
+                ->assertMissing('#client_id')
+                ->assertMissing('#user_id')
+                ->assertVisible('#plot_id');
         });
     }
 }

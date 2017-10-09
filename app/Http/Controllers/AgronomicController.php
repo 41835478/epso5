@@ -41,10 +41,10 @@ class AgronomicController extends DashboardController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\UsersRequest  $request
+     * @param  object $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgronomicIncidentsRequest $request)
+    public function agronomicStore()
     {
         $create = $this->controller->store();
             return $create 
@@ -88,7 +88,7 @@ class AgronomicController extends DashboardController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AgronomicIncidentsRequest $request, $id)
+    public function agronomicUpdate($id)
     {
         $update = $this->controller->store($id);
             return $update 

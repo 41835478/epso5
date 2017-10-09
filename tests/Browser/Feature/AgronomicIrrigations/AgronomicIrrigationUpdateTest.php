@@ -28,8 +28,8 @@ class AgronomicIrrigationUpdateTest extends DuskTestCase
                 ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
                 ->type('agronomic_date', $this->makeAgronomicIrrigation()->agronomic_date)
                 ->type('agronomic_quantity', $this->makeAgronomicIrrigation()->agronomic_quantity)
-                ->type('agronomic_observations', $this->makeAgronomicIrrigation()->agronomic_observations)
                 ->select('agronomic_quantity_unit', $this->makeAgronomicIrrigation()->agronomic_quantity_unit)
+                ->type('agronomic_observations', $this->makeAgronomicIrrigation()->agronomic_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });

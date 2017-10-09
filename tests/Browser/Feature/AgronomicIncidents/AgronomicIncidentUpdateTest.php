@@ -25,15 +25,18 @@ class AgronomicIncidentUpdateTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastAgronomicIncident()->id)
-                ->type('agronomicincident_name', $this->makeAgronomicIncident()->agronomicincident_name)
-                // ->type('agronomicincident_description', $this->makeAgronomicIncident()->agronomicincident_description)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->type('agronomic_date', $this->makeAgronomicIncident()->agronomic_date)
+                ->type('agronomic_observations', $this->makeAgronomicIncident()->agronomic_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('agronomic_incidents', [
-            'agronomicincident_name'           => $this->makeAgronomicIncident()->agronomicincident_name,
-            // 'agronomicincident_description'    => $this->makeAgronomicIncident()->agronomicincident_description,
+            'client_id'                 => 1,
+            'user_id'                   => 1,
+            'agronomic_date'            => date_to_db($this->makeAgronomicIncident()->agronomic_date),
+            'agronomic_observations'    => $this->makeAgronomicIncident()->agronomic_observations,
         ]);
     }
 
