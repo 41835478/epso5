@@ -28,7 +28,7 @@ class DataTable extends Repository
     public function query()
     {
         $query = app(AgronomicIncidentsRepository::class)
-            ->dataTable()
+            ->dataTable($columns = ['*'], $table = $this->section)
             //Only God and Admin see trashed material...
             ->when(Credentials::isAdmin(), function($query) {
                 return $query->withTrashed();
