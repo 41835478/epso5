@@ -24,7 +24,7 @@ class WorkerSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_worker', typeText($this->lastWorker()->worker_name))
+                ->type('search_worker', parent::reduceText($this->lastWorker()->worker_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee(typeText($this->lastWorker()->worker_name));
@@ -33,7 +33,7 @@ class WorkerSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_nif', $this->lastWorker()->worker_nif)
+                ->type('search_nif', parent::reduceText($this->lastWorker()->worker_nif))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastWorker()->worker_nif);
@@ -42,7 +42,7 @@ class WorkerSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_ropo', $this->lastWorker()->worker_ropo)
+                ->type('search_ropo', parent::reduceText($this->lastWorker()->worker_ropo))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastWorker()->worker_ropo);
@@ -62,21 +62,21 @@ class WorkerSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_client', $this->lastWorker()->client->client_name)
+                ->type('search_client', parent::reduceText($this->firstWorker()->client->client_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
-                    $clientId = $this->lastWorker()->client_id;
-                    $table->assertSee($this->lastWorker()->client->client_name);
+                    $clientId = $this->firstWorker()->client_id;
+                    $table->assertSee($this->firstWorker()->client->client_name);
                     $table->assertDontSee($this->workerNotThisClient($clientId)->client->client_name);
                 });
         
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', $this->lastWorker()->user->name)
+                ->type('search_user', parent::reduceText($this->firstWorker()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
-                    $clientId = $this->lastWorker()->client_id;
-                    $table->assertSee($this->lastWorker()->user->name);
+                    $clientId = $this->firstWorker()->client_id;
+                    $table->assertSee($this->firstWorker()->user->name);
                     $table->assertDontSee($this->workerNotThisClient($clientId)->user->name);
                 });
         });

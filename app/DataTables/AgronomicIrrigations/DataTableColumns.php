@@ -20,30 +20,23 @@ trait DataTableColumns
             $this->setColumn(trans('financials.id'), 'id'),
         ];
         $columns = [
-            $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
-            $this->setColumn(trans('dates.date'), 'agronomic_date', [
-                 'defaultContent' => no_result(),
-            ]),
-            $this->setColumn(trans('units.quantity'), 'agronomic_quantity', [
-                 'defaultContent' => no_result(),
-            ]),
-            $this->setColumn(trans('base.observations'), 'agronomic_observations', [
-                 'defaultContent' => no_result(),
-            ]),            
+            $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name', ['defaultContent' => no_result()]),
+            $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
+            $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
+            $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
         ];
         /**
          * Filter by role
          */
         if(Credentials::isAdmin()) {
             return array_merge($default, [
-                $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name'),
-                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
-                $this->setColumnWithRelationship(trans_title('crops', 'singular'), 'crop.crop_name'),
+                $this->setColumnWithRelationship(trans_title('clients', 'singular'), 'client.client_name', ['defaultContent' => no_result()]),
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name', ['defaultContent' => no_result()]),
             ], $columns);
         }
         if(Credentials::isEditor()) {
             return array_merge($default, [
-                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name'),
+                $this->setColumnWithRelationship(trans_title('users', 'singular'), 'user.name', ['defaultContent' => no_result()]),
             ], $columns);
         }
         //Get the values

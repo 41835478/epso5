@@ -7,10 +7,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\Helpers\DummyModelHelpers;
+use Tests\Helpers\PlotHelpers;
 
 class DummyModelUpdateTest extends DuskTestCase
 {
-    use DummyModelHelpers;
+    use DummyModelHelpers, PlotHelpers;
     
     protected $route = 'dashboard.user.DummyTable.edit';
     protected $dashboard = '/dashboard';
@@ -22,10 +23,13 @@ class DummyModelUpdateTest extends DuskTestCase
     */
     public function test_admin_can_update_a_DummyClass()
     {
-        $this->browse(function (Browser $browser) {
+        //Variables 
+        $plot = $this->whereUserIs($this->lastDummyModel()->user_id)->id;
+        //Tests
+        $this->browse(function (Browser $browser) use ($plot) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastDummyModel()->id)
-                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->select('plot_id', $plot)
                 ->type('agronomic_date', $this->makeDummyModel()->agronomic_date)
                 ->type('agronomic_quantity', $this->makeDummyModel()->agronomic_quantity)
                 ->select('agronomic_quantity_unit', $this->makeDummyModel()->agronomic_quantity_unit)
@@ -35,8 +39,9 @@ class DummyModelUpdateTest extends DuskTestCase
         });
 
         $this->assertDatabaseHas('DummyTable', [
-            'client_id'                 => 1,
-            'user_id'                   => 1,
+            'client_id'                 => $this->lastDummyModel()->client_id,
+            'user_id'                   => $this->lastDummyModel()->user_id,
+            'plot_id'                   => $plot,
             'agronomic_date'            => date_to_db($this->makeDummyModel()->agronomic_date),
             'agronomic_quantity'        => $this->makeDummyModel()->agronomic_quantity,
             'agronomic_observations'    => $this->makeDummyModel()->agronomic_observations,

@@ -22,8 +22,9 @@ class AgronomicIrrigationCreateTest extends DuskTestCase
     | Add AgronomicIrrigation
     |--------------------------------------------------------------------------
     */
-    public function test_god_can_create_a_agronomicirrigation()
+    public function test_god_can_create_a_agronomic_irrigation()
     {
+        //Tests
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->pathToList)
@@ -78,7 +79,7 @@ class AgronomicIrrigationCreateTest extends DuskTestCase
     public function test_user_can_create_agronomic_irrigation()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathToCreate)
                 ->assertPathIs($this->pathToCreate)
                 ->assertMissing('#client_id')

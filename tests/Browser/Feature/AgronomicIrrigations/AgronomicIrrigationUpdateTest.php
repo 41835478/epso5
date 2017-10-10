@@ -7,10 +7,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\Helpers\AgronomicIrrigationHelpers;
+use Tests\Helpers\PlotHelpers;
 
 class AgronomicIrrigationUpdateTest extends DuskTestCase
 {
-    use AgronomicIrrigationHelpers;
+    use AgronomicIrrigationHelpers, PlotHelpers;
     
     protected $route = 'dashboard.user.agronomic_irrigations.edit';
     protected $dashboard = '/dashboard';
@@ -22,10 +23,13 @@ class AgronomicIrrigationUpdateTest extends DuskTestCase
     */
     public function test_admin_can_update_a_agronomic_irrigation()
     {
-        $this->browse(function (Browser $browser) {
+        //Variables 
+        $plot = $this->whereUserIs($this->lastAgronomicIrrigation()->user_id)->id;
+        //Tests
+        $this->browse(function (Browser $browser) use ($plot) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastAgronomicIrrigation()->id)
-                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->select('plot_id', $plot)
                 ->type('agronomic_date', $this->makeAgronomicIrrigation()->agronomic_date)
                 ->type('agronomic_quantity', $this->makeAgronomicIrrigation()->agronomic_quantity)
                 ->select('agronomic_quantity_unit', $this->makeAgronomicIrrigation()->agronomic_quantity_unit)
@@ -35,8 +39,9 @@ class AgronomicIrrigationUpdateTest extends DuskTestCase
         });
 
         $this->assertDatabaseHas('agronomic_irrigations', [
-            'client_id'                 => 1,
-            'user_id'                   => 1,
+            'client_id'                 => $this->lastAgronomicIrrigation()->client_id,
+            'user_id'                   => $this->lastAgronomicIrrigation()->user_id,
+            'plot_id'                   => $plot,
             'agronomic_date'            => date_to_db($this->makeAgronomicIrrigation()->agronomic_date),
             'agronomic_quantity'        => $this->makeAgronomicIrrigation()->agronomic_quantity,
             'agronomic_observations'    => $this->makeAgronomicIrrigation()->agronomic_observations,

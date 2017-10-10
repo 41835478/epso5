@@ -7,10 +7,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\Helpers\AgronomicPestHelpers;
+use Tests\Helpers\PestHelpers;
+use Tests\Helpers\PlotHelpers;
 
 class AgronomicPestUpdateTest extends DuskTestCase
 {
-    use AgronomicPestHelpers;
+    use AgronomicPestHelpers, PlotHelpers, PestHelpers;
     
     protected $route = 'dashboard.user.agronomic_pests.edit';
     protected $dashboard = '/dashboard';
@@ -22,25 +24,28 @@ class AgronomicPestUpdateTest extends DuskTestCase
     */
     public function test_admin_can_update_a_AgronomicPests()
     {
-        $this->browse(function (Browser $browser) {
+        //Variables 
+        $plot = $this->whereUserIs($this->lastAgronomicPest()->user_id)->id;
+        $pest = $this->pestByCrop($this->lastAgronomicPest()->crop_id)->id;
+        //Tests
+        $this->browse(function (Browser $browser) use ($pest, $plot) {
             $browser->loginAs($admin = $this->createAdmin())
                 ->visitRoute($this->route, $this->lastAgronomicPest()->id)
-                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:first-child'))
+                ->select('plot_id', $plot)
+                ->select('pest_id', $pest)
                 ->type('agronomic_date', $this->makeAgronomicPest()->agronomic_date)
-                ->type('agronomic_quantity', $this->makeAgronomicPest()->agronomic_quantity)
-                ->select('agronomic_quantity_unit', $this->makeAgronomicPest()->agronomic_quantity_unit)
                 ->type('agronomic_observations', $this->makeAgronomicPest()->agronomic_observations)
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
 
         $this->assertDatabaseHas('agronomic_pests', [
-            'client_id'                 => 1,
-            'user_id'                   => 1,
+            'client_id'                 => $this->lastAgronomicPest()->client_id,
+            'user_id'                   => $this->lastAgronomicPest()->user_id,
+            'plot_id'                   => $plot,
+            'pest_id'                   => $pest,
             'agronomic_date'            => date_to_db($this->makeAgronomicPest()->agronomic_date),
-            'agronomic_quantity'        => $this->makeAgronomicPest()->agronomic_quantity,
             'agronomic_observations'    => $this->makeAgronomicPest()->agronomic_observations,
-            'agronomic_quantity_unit'   => $this->makeAgronomicPest()->agronomic_quantity_unit
         ]);
     }
 

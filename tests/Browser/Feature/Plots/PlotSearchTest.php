@@ -29,25 +29,16 @@ class PlotSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_client', typeText($this->createClientValencia()->client_name))
+                ->type('search_client', parent::reduceText($this->createClientValencia()->client_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->createClientValencia()->client_name);
                     $table->assertDontSee($this->createClientEpso()->client_name);
                 });
-
-            $browser->click('.buttons-reset')
-                ->pause(500)
-                ->type('search_crop', typeText($this->firstCrop()->crop_name))
-                ->pause(1000)
-                ->with('.table', function ($table) {
-                    $table->assertSee($this->firstCrop()->crop_name);
-                    $table->assertDontSee($this->secondCrop()->crop_name);
-                });
         
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', typeText($this->lastPlot()->user->name))
+                ->type('search_user', parent::reduceText($this->lastPlot()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastPlot()->user->name);
@@ -56,7 +47,7 @@ class PlotSearchTest extends DuskTestCase
         
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_plot', typeText($this->firstPlot()->plot_name))
+                ->type('search_plot', parent::reduceText($this->firstPlot()->plot_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->firstPlot()->plot_name);
@@ -74,7 +65,7 @@ class PlotSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_city', typeText($this->lastCityFromPlot('name')))
+                ->type('search_city', parent::reduceText($this->lastCityFromPlot('name')))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastCityFromPlot('name'));
@@ -90,7 +81,7 @@ class PlotSearchTest extends DuskTestCase
                 ->visit($this->path)
                 ->assertMissing('search_client')
                 ->assertMissing('search_crop')
-                ->type('search_user', typeText($this->lastPlot()->user->name))
+                ->type('search_user', parent::reduceText($this->lastPlot()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastPlot()->user->name);

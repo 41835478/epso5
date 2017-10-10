@@ -27,7 +27,7 @@ class AgronomicIncidentSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_client', $this->lastAgronomicIncident()->client->client_name)
+                ->type('search_client', parent::reduceText($this->lastAgronomicIncident()->client->client_name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $clientId = $this->lastAgronomicIncident()->client_id;
@@ -37,7 +37,7 @@ class AgronomicIncidentSearchTest extends DuskTestCase
             
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', $this->lastAgronomicIncident()->user->name)
+                ->type('search_user', parent::reduceText($this->lastAgronomicIncident()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $clientId = $this->lastAgronomicIncident()->client_id;
@@ -64,7 +64,7 @@ class AgronomicIncidentSearchTest extends DuskTestCase
             
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', $this->lastAgronomicIncident()->user->name)
+                ->type('search_user', parent::reduceText($this->lastAgronomicIncident()->user->name))
                 ->pause(1000)
                 ->with('.table', function ($table) {
                     $clientId = $this->lastAgronomicIncident()->client_id;
@@ -94,8 +94,8 @@ class AgronomicIncidentSearchTest extends DuskTestCase
                 ->type('search_plot', parent::reduceText($this->userAgronomicIncident($this->createUserBase()->id)->plot->plot_name))
                 ->pause(500)
                 ->with('.table', function ($table) {
-                    $table->assertSee(parent::reduceText($this->userAgronomicIncident($this->createUserBase()->id)->plot->plot_name));
-                    $table->assertDontSee(parent::reduceText($this->firstAgronomicIncident()->plot->plot_name));
+                    $table->assertSee($this->userAgronomicIncident($this->createUserBase()->id)->plot->plot_name);
+                    $table->assertDontSee($this->firstAgronomicIncident()->plot->plot_name);
                 });
         });
     }

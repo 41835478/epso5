@@ -7,15 +7,15 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Tests\Helpers\AgronomicPestHelpers;
+use Tests\Helpers\PestHelpers;
 
 class AgronomicPestCreateTest extends DuskTestCase
 {
-    use AgronomicPestHelpers;
+    use AgronomicPestHelpers, PestHelpers;
 
     protected $dashboard    = '/dashboard';
     protected $pathToCreate = '/dashboard/agronomic_pests/create';
     protected $pathToList   = '/dashboard/agronomic_pests';
-
 
     /*
     |--------------------------------------------------------------------------
@@ -25,31 +25,30 @@ class AgronomicPestCreateTest extends DuskTestCase
 
     public function test_god_can_create_a_AgronomicPests()
     {
-        $this->browse(function (Browser $browser) {
+        //Variables 
+        $pest = $this->pestByCrop($this->makeAgronomicPest()->crop_id)->id;
+        //Tests
+        $this->browse(function (Browser $browser) use ($pest) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->pathToList)
                 ->click('#button-config')
                 ->click('#button-create-link')
                 ->assertPathIs($this->pathToCreate)
-                ->select('client_id', 1)->pause(1000)
-                ->select('user_id', 1)->pause(1000)
-                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:last-child'))
+                ->select('client_id', $this->makeAgronomicPest()->client_id)->pause(1000)
+                ->select('user_id', $this->makeAgronomicPest()->user_id)->pause(1000)
+                ->select('plot_id', $this->getValueFromSelector($browser, $selector = '#plot_id option:last-child'))->pause(1000)
+                ->select('pest_id', $pest)
                 ->type('agronomic_date', $this->makeAgronomicPest()->agronomic_date)
-                ->type('agronomic_quantity', $this->makeAgronomicPest()->agronomic_quantity)
-                ->select('agronomic_quantity_unit', $this->makeAgronomicPest()->agronomic_quantity_unit)
                 ->type('agronomic_observations', $this->makeAgronomicPest()->agronomic_observations)
-                // ->type('agronomicpest_name', $this->makeAgronomicPest()->agronomicpest_name)
-                // ->type('agronomicpest_description', $this->makeAgronomicPest()->agronomicpest_description)
                 ->press(trans('buttons.new'))
                 ->assertSee(__('The item has been create successfuly'));
         });
 
         $this->assertDatabaseHas('agronomic_pests', [
-            'client_id'                 => 1,
-            'user_id'                   => 1,
+            'client_id'                 => $this->makeAgronomicPest->client_id,
+            'user_id'                   => $this->makeAgronomicPest->user_id,
+            'pest_id'                   => $pest,
             'agronomic_date'            => date_to_db($this->makeAgronomicPest()->agronomic_date),
-            'agronomic_quantity'        => $this->makeAgronomicPest()->agronomic_quantity,
-            'agronomic_quantity_unit'   => $this->makeAgronomicPest()->agronomic_quantity_unit,
             'agronomic_observations'    => $this->makeAgronomicPest()->agronomic_observations,
         ]);
     }
@@ -62,7 +61,8 @@ class AgronomicPestCreateTest extends DuskTestCase
                 ->assertPathIs($this->pathToCreate)
                 ->assertVisible('#client_id')
                 ->assertVisible('#user_id')
-                ->assertVisible('#plot_id');
+                ->assertVisible('#plot_id')
+                ->assertVisible('#pest_id');
         });
     }
 
@@ -74,19 +74,21 @@ class AgronomicPestCreateTest extends DuskTestCase
                 ->assertPathIs($this->pathToCreate)
                 ->assertMissing('#client_id')
                 ->assertVisible('#user_id')
-                ->assertVisible('#plot_id');
+                ->assertVisible('#plot_id')
+                ->assertVisible('#pest_id');
         });
     }
 
     public function test_user_can_create_AgronomicPests()
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs($user = $this->createUser())
+            $browser->loginAs($user = $this->createUserBase())
                 ->visit($this->pathToCreate)
                 ->assertPathIs($this->pathToCreate)
                 ->assertMissing('#client_id')
                 ->assertMissing('#user_id')
-                ->assertVisible('#plot_id');
+                ->assertVisible('#plot_id')
+                ->assertVisible('#pest_id');
         });
     }
 }

@@ -27,8 +27,7 @@ class UserEliminateTest extends DuskTestCase
                 ->click('#button-config')
                 ->click('#button-eliminate-link')
                 ->whenAvailable('#modal-error', function ($modal) {
-                    $modal->assertSee(__('Selection error'))
-                        ->press('#button-cancel-submit');
+                    $modal->assertSee(__('Selection error'));
                 });
         });
     }
@@ -51,5 +50,7 @@ class UserEliminateTest extends DuskTestCase
                 })
                 ->assertSee(__('The items has been deleted successfuly'));
         });
+        //Reset user deletes
+        $reset = User::withTrashed()->restore();
     }
 }

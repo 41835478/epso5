@@ -15,7 +15,7 @@ trait DataTableSearch
         /**
         * Role filter
         */
-        $value = Credentials::isAdmin() ? 3 : (Credentials::isEditor() ? 1 : 0);
+        $value = Credentials::isAdmin() ? 2 : (Credentials::isEditor() ? 1 : 0);
         $user  = Credentials::isAdmin() ? 3 : 2;
         /**
         * Default values
@@ -23,7 +23,6 @@ trait DataTableSearch
         return [
             $this->setColumnSearch('input', 'search_user', $user),
             $this->setColumnSearch('input', 'search_client', 2),
-            $this->setColumnSearch('input', 'search_crop', 4),
             $this->setColumnSearch('input', 'search_plot', 2 + $value),
             $this->setColumnSearch('date', 'search_date', 3 + $value),
             //Add your custom values

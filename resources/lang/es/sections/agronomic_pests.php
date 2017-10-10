@@ -7,7 +7,7 @@ return [
     | Sections: agronomic_pests
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del agronomicpest',
-    'title'             => 'AgronomicPest',
-    'title:plural'      => 'AgronomicPests',
+    'info'              => 'Información sobre plagas',
+    'title'             => 'Plaga',
+    'title:plural'      => 'Plagas',
 ];

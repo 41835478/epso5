@@ -14,6 +14,7 @@ trait PlotHelpers
     protected $whereClientIsNot;
     protected $whereUserIs;
     protected $whereUserIsNot;
+    protected $agronomicPlot;
 
     /**
      * Create an item and storing it
@@ -103,7 +104,7 @@ trait PlotHelpers
         if($this->whereUserIs) {
             return $this->whereUserIs;
         }
-        return $this->whereUserIs = Plot::where('user_id', $user->id)->inRandomOrder()->first();
+        return $this->whereUserIs = Plot::where('user_id', is_object($user) ? $user->id : $user)->inRandomOrder()->first();
     }
 
     /**

@@ -45,7 +45,7 @@ trait BaseHelpers
      */
     public function getValueFromSelector($browser, $selector)
     {
-        return $browser->script("$( '" . $selector . "' ).val()")[0];
+        return $browser->script("document.querySelector('{$selector}').value;")[0];
     }
 
     /**

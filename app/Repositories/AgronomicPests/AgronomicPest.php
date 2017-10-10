@@ -30,7 +30,13 @@ class AgronomicPest extends Model  {
      * @var array
      */
     protected $fillable = [
-        'id'
+        'user_id',
+        'client_id',
+        'plot_id',
+        'crop_id',
+        'pest_id',
+        'agronomic_date',
+        'agronomic_observations',
     ];
 
     /**
