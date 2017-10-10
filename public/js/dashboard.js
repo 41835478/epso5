@@ -54702,7 +54702,7 @@ if ($('#user_id').length) {
 }
 
 /** 
-* Select: crop using the client id
+* Select: crop and pests using the client id
 */
 if ($('#plot_id').length) {
     $('#plot_id').on('change', function (e) {
@@ -54712,11 +54712,14 @@ if ($('#plot_id').length) {
         $.get(window.location.origin + '/dashboard/ajax/crops', { search: $client }, function (crop) {
             $('#crop_id').val(crop[0]);
             //If there is pests 
-            if ($('#pest_id').is(':disabled')) {
-                // $.get( window.location.origin + '/dashboard/ajax/pests', { search: crop[0] }, 
-                //     function( pest ) {
-                //         console.log( pest );
-                //     });
+            if ($('#pest_id').data('combobox') == true) {
+                $.get(window.location.origin + '/dashboard/ajax/pests', { search: crop[0] }, function (pest) {
+                    var container = $('#pest_id');
+                    //Reset values 
+                    container.empty();
+                    //Generate the form select
+                    __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_select_create(pest, container);
+                });
             }
         });
     });
