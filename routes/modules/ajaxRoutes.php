@@ -8,6 +8,7 @@ Route::group([
         Route::get('ajax/modules/load', 'Dashboard\Ajax\ModulesLoadController')->name('modules.load');  
         Route::get('ajax/cities', 'Dashboard\Ajax\CitiesController')->name('cities');  
         Route::get('ajax/crops', 'Dashboard\Ajax\CropsController')->name('crops');  
+        Route::get('ajax/pests', 'Dashboard\Ajax\PestsController')->name('pests');  
         Route::get('ajax/plots', 'Dashboard\Ajax\PlotsController')->name('plots');  
         Route::get('ajax/regions', 'Dashboard\Ajax\RegionsController')->name('regions');  
         Route::get('ajax/users', 'Dashboard\Ajax\UsersController')->name('users'); 
