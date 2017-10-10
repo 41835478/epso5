@@ -17,10 +17,12 @@
         return ($pests) 
             ? BootForm::select(trans_title('pests'), 'pest_id')
                 ->addGroupClass($class)
+                ->data('combobox', true)
                 ->options($pests)
                 ->required()
             : BootForm::select(trans_title('pests'), 'pest_id')
                 ->addGroupClass($class)
+                ->data('combobox', true)
                 ->disabled();
     });
 
