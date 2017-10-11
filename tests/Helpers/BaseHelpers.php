@@ -57,6 +57,6 @@ trait BaseHelpers
      */
     public function reduceText($text, $length = 7)
     {
-        return substr($text, 0, $length);
+        return substr(str_replace('<br>', '', $text), 0, $length);
     }
 }
