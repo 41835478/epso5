@@ -107,7 +107,7 @@
            Menu::new()
            ->subMenuItem([
                'title' => icon('harvests', trans('navbar.agronomics:harvests')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.agronomic_harvests.index'),
            ])->subMenuItem([
                'title' => icon('incidents', trans('navbar.agronomics:incidents')),
                'url' => route('dashboard.user.agronomic_incidents.index'),

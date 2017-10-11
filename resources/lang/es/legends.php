@@ -8,6 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
    
+    'download'      => 'Descargar archivo/informe',
     'edit'          => 'Editar campo',
     'catastro'      => 'Enlace a la web del catastro',
     'crop:variety'  => 'Variedades de cultivo',

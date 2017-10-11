@@ -21,7 +21,7 @@ if (!function_exists('select')) {
 if (!function_exists('select_units')) {
     function select_units(string $section, bool $emptyFirstOption = true, $prefix = 'agronomic_')
     {
-        $select = trans('selects.units.' . str_replace($prefix, '', $section));
+        $select = trans('units.selects.' . str_replace($prefix, '', $section));
             return $emptyFirstOption 
                 ? ['' => ''] + $select 
                 : $select;

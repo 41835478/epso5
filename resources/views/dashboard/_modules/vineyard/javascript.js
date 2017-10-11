@@ -2,6 +2,7 @@
  *
  * ////////////////////////////
  * ////// * Application modules  * //////
+ * Customized javascript for this module. It's auto-minify.
  * ////////////////////////////
  *
  */
