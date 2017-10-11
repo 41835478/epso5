@@ -15,7 +15,7 @@ $factory->define(CropVariety::class, function (Faker\Generator $faker) {
 
     return [
         'crop_id'               => $crop,
-        'crop_variety_name'     => $faker->word(),
+        'crop_variety_name'     => $faker->words($nb = 3, $asText = true),
         'crop_variety_type'     => ($crop == 1) ? $type : null,
     ];
 });
