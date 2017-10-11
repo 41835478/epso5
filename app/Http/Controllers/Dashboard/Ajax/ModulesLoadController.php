@@ -29,14 +29,13 @@ class ModulesLoadController extends Controller
             'crop_id'   => $cropId,
             'type'      => $type,
         ];
-
         if ($clientId && $cropId && $cropName && $module) {
             list($cropTypes, $cropPatterns, $cropVarieties, $cropTrainig) = $this->plot->getCrop($data);
             return view(module_path($module), compact('cropId', 'cropName', 'cropPatterns', 'cropTrainig', 'cropTypes', 'cropVarieties', 'module'));
         }
         return view(module_path('error'));
     }
-
+    
     /**
      * Set the request varialbes
      * @return array

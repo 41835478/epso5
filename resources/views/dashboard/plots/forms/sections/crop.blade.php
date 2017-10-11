@@ -1,16 +1,4 @@
 <legend class="title">@lang('sections/plots.crop')</legend>
 
-{{-- Crop module --}}
-{{-- Edit case --}}
-@if(isset($data))
-    @include(module_path($data->crop_module))
-{{-- Create case --}}
-@else
-    {{-- Admin and Gods --}}
-    @Role('admin')
-        <div id="load-module">@include(module_path('error'))</div>
-    {{-- Editors and users --}}
-    @else 
-        @include(module_path(getModule()))
-    @endRole        
-@endif
+{{-- Crop module - load module --}}
+@include(dashboard_path('_modules.module'))

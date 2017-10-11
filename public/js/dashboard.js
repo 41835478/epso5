@@ -54646,8 +54646,10 @@ if ($('#state_id').length) {
 if ($('#client_id').length) {
     $('#client_id').on('change', function (e) {
         e.preventDefault();
+        //get module 
+        var $thisModule = $(this).data('module');
         //Load module 
-        if ($(this).data('module')) {
+        if ($thisModule) {
             //Add loading class
             var $module = $('#load-module');
             $module.html(loading);
@@ -54669,12 +54671,22 @@ if ($('#client_id').length) {
                     //Add values: module and crop
                     $('#crop_module').val(data.module), $('#crop_id').val(data.id);
                     if (data.module.length > 0) {
-                        //Load the module
-                        $.get(window.location.origin + '/dashboard/ajax/modules/load', {
-                            module: data.module, cropName: data.name, cropId: data.id, client: $value, type: data.type
-                        }, function (output) {
-                            $module.html(output);
-                        });
+                        //Load harvests 
+                        if ($thisModule == 'harvests') {
+                            //Load the module
+                            $.get(window.location.origin + '/dashboard/ajax/harvests', {
+                                module: data.module
+                            }, function (harvest) {
+                                $module.html(harvest);
+                            });
+                        } else {
+                            //Load the module
+                            $.get(window.location.origin + '/dashboard/ajax/modules/load', {
+                                module: data.module, cropName: data.name, cropId: data.id, client: $value, type: data.type
+                            }, function (output) {
+                                $module.html(output);
+                            });
+                        }
                     }
                 } else {
                     $module.html(window.errorModule);

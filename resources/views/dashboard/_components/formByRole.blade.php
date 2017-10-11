@@ -13,7 +13,7 @@
     {{-- Creating a new user or the role is superior to user --}}
     <div class="row">
         {{-- Field: Client and users. See controller for role assigment. --}}
-        {!! Form::clientsAndUsers($clients ?? null, $users ?? null, $loadModule = false) !!}   
+        {!! Form::clientsAndUsers($clients ?? null, $users ?? null, $loadModule = $withModule ?? false) !!}   
         {{-- Add plots --}}
         @if(!empty($withPlot))
             {!! Form::plots($plots ?? null) !!}   
