@@ -10,16 +10,21 @@
     {!! BootForm::hidden('crop_id')->id('crop_id')->value(Credentials::isOnlyRole('user') ? getCropId() : null) !!}
 
     {{-- Field: Application date --}}
-    {!!  Form::agronomicDate() !!}
+    {!!  Form::agronomicDate($data ?? null) !!}
 
     {{-- Field: Quantity  --}}
-    {!! Form::agronomicQuantity() !!}
+    {!! Form::agronomicQuantity($data ?? null) !!}
 
     {{-- Field: Quantity units --}}
-    {!! Form::agronomicUnits($section) !!}
+    {!! Form::agronomicUnits($data ?? null, $section ?? null) !!}
+
+    {{-- Kg/ha of production --}}
+    {!! Form::agronomicProduction($data ?? null) !!}
 
     {{-- Field: observations --}}
     {!! Form::autoTextArea('agronomic_observations') !!}
+
+    <div class="col-md-12"></div>
 
     {{-- Load module --}}
     @if(isset($data))

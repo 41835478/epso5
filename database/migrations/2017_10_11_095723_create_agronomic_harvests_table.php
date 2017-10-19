@@ -22,7 +22,6 @@ class CreateAgronomicHarvestsTable extends Migration
             $table->date('agronomic_date')->comment("Date of application");
             $table->integer('agronomic_quantity')->nullable()->comment("Quantity of product");
             $table->integer('agronomic_quantity_unit')->unsigned()->nullable()->comment("Total Kg");
-            $table->integer('agronomic_quantity_ha')->nullable()->comment("Kg/ha, this value is autocalculate from agronomic_quantity_unit / plot_area");
             $table->decimal('agronomic_baume', 8, 2)->nullable();
             $table->decimal('agronomic_baume_kg', 8, 2)->nullable()->comment("total kg * baume º");;
             $table->decimal('agronomic_ph', 4, 2)->nullable();

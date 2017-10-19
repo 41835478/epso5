@@ -19,9 +19,9 @@ trait AgronomicHarvestsPresenters {
         return $this->getDate($value);
     }
 
-    public function setAgronomicQuantityHaAttribute($value)
+    public function getAgronomicQuantityHaAttribute($value)
     {
         $value = $this->attributes['agronomic_quantity'] / $this->plot->plot_area;
-            $this->attributes['agronomic_quantity_ha'] = number_format($value, 2, '.', '');
+            return number_format($value, 2, '.', '');
     }
 }

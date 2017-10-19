@@ -32,12 +32,14 @@
      * 
      * @return  string
      */
-    Form::macro('agronomicQuantity', function($required = true, $class = 'col-md-2')
+    Form::macro('agronomicQuantity', function($data = null, $required = true, $class = 'col-md-2')
     {
-        return BootForm::text(trans('units.quantity'), 'agronomic_quantity')
-            ->addGroupClass($class)
-            ->addClass('number')
-            ->required($required);
+        $status = formStatus($required ? 'required' : null);
+        $html = '<div class="form-group %s">' . 
+                    '<label class="control-label" for="agronomic_quantity">%s</label>' . 
+                    '<input type="text" name="agronomic_quantity" id="agronomic_quantity" class="form-control number" value="%s" %s>' . 
+                '</div>';
+        return sprintf($html, $class, trans('units.quantity'), $data->agronomic_quantity ?? null, $status);
     });
 
     /**
@@ -46,13 +48,18 @@
      * 
      * @return  string
      */
-    Form::macro('agronomicDate', function($title = null, $required = true, $class = 'col-md-2')
+    Form::macro('agronomicDate', function($data = null, $title = null, $required = true, $class = 'col-md-2')
     {
-        return BootForm::InputGroup(is_null($title) ? trans('dates.date:application') :  $title, 'agronomic_date')
-            ->addGroupClass($class)
-            ->addClass('date')
-            ->afterAddon(icon('calendar'))
-            ->required($required);
+        $status = formStatus($required ? 'required' : null);
+        $title = is_null($title) ? trans('dates.date:application') :  $title;
+        $html = '<div class="form-group %s">' . 
+                    '<label class="control-label" for="agronomic_date">%s</label>' . 
+                    '<div class="input-group">' . 
+                        '<input type="text" name="agronomic_date" id="agronomic_date" class="form-control date" value="%s" %s>' . 
+                        '<span class="input-group-addon">%s</span>' . 
+                    '</div>' . 
+                '</div>';
+        return sprintf($html, $class, $title, $data->agronomic_date ?? null, $status, icon('calendar'));
     });
 
     /**
@@ -61,14 +68,24 @@
      * 
      * @return  string
      */
-    Form::macro('agronomicUnits', function($section)
+    Form::macro('agronomicUnits', function($data = null, $section = null, $required = true, $class = 'col-md-2', $options = '')
     {
         if(!empty($section)) {
-            //Field: Plots by role
-            return BootForm::select(trans('units.title:mix'), 'agronomic_quantity_unit')
-                ->addGroupClass('col-md-2')
-                ->options(select_units($section))
-                ->required();
+            foreach(select_units($section) as $key => $value) {
+                if(isset($data) && $key === $data->agronomic_quantity_unit) {
+                    $options .= '<option value="' . $key . '" selected>' . $value . '</option>';
+                } else {
+                    $options .= '<option value="' . $key . '">' . $value . '</option>';
+                }
+            }
+            $status = formStatus($required ? 'required' : null);
+            $html = '<div class="form-group %s">' .
+                        '<label class="control-label" for="agronomic_quantity_unit">%s</label>' . 
+                        '<select name="agronomic_quantity_unit" id="agronomic_quantity_unit" class="form-control" %s>' . 
+                            '%s' . 
+                        '</select>' . 
+                    '</div>';
+            return sprintf($html, $class, trans('units.title:mix'), $status, $options);
         }
     });
 
@@ -78,13 +95,17 @@
      * 
      * @return  string
      */
-    Form::macro('agronomicProduction', function($data = null)
+    Form::macro('agronomicProduction', function($data = null, $title = null, $disabled = true, $class = 'col-md-2')
     {
-        if(isset($data)) {
-            return BootForm::InputGroup(trans('sections.agronomics.production_ha'), 'agronomic_quantity_ha')
-                ->addGroupClass('col-md-2')
-                ->addClass('number')
-                ->afterAddon(trans('units.kg:ha'))
-                ->disabled();
+        if(isset($data->agronomic_quantity_ha)) {
+            $status = formStatus($disabled ? 'disabled' : null);
+            $html = '<div class="form-group %s">' . 
+                        '<label class="control-label mt-4" for="agronomic_quantity_ha"></label>' . 
+                        '<div class="input-group">' . 
+                            '<input type="text" name="agronomic_quantity_ha" id="agronomic_quantity_ha" class="form-control number" value="%s" %s>' . 
+                            '<span class="input-group-addon">%s</span>' . 
+                        '</div>' . 
+                    '</div>';
+            return sprintf($html, $class, $data->agronomic_quantity_ha ?? null, $status, trans('units.kg:ha'));
         }
     });
