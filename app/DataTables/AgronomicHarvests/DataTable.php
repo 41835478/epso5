@@ -17,7 +17,6 @@ class DataTable extends Repository
     /**
      * @var string
      */
-    protected $action  = true; //Cusmomize action
     protected $section = 'agronomic_harvests';
 
     /**

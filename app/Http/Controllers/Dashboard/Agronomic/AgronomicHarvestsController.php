@@ -15,10 +15,6 @@ class AgronomicHarvestsController extends AgronomicController
      * @var protected
      */
     protected $section = 'agronomic_harvests';
-    /**
-     * @var private
-     */
-    private $legend = 'agronomic_harvests';
 
     public function __construct(AgronomicHarvestsRepository $controller, DataTable $table, PlotsRepository $plot)
     {
@@ -27,7 +23,6 @@ class AgronomicHarvestsController extends AgronomicController
         $this->table        = $table;
         //Sharing in the view
         view()->share([
-            'legend'    => $this->legend,
             'role'      => $this->role,
             'section'   => $this->section,
         ]);
