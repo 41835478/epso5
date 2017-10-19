@@ -7,14 +7,18 @@ return [
     | Agronomics
     |--------------------------------------------------------------------------
     */
-    'type' => [    
-        1                   => 'Cosecha/Vendimia',
-        2                   => 'Fitosanitarios', 
-        3                   => 'Incidentes',
-        4                   => 'Labores Culturales',
-        5                   => 'Riegos',
-        6                   => 'Plagas',  
-    ],
+    'acidity'                   => 'Ac T',
+    'acidity_extended'          => 'Acidez Total',
+    'anthocyanin'               => 'Ant T',
+    'anthocyanin_extended'      => 'Antocianos Totales',
+    'anthocyanin_e'             => 'Ant Ext',
+    'anthocyanin_e_extended'    => 'Antocianos Extraibles',
+    'baume'                     => 'ºB',
+    'baume_extended'            => 'Grados Baume',
+    'baume_kg'                  => 'Kilogrado',
+    'ph'                        => 'pH',
+    'poliphenol'                => 'Polif T',
+    'poliphenol_extended'       => 'Polifenoles Totales',
 
     /*
     |--------------------------------------------------------------------------

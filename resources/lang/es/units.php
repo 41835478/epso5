@@ -7,6 +7,7 @@ return [
     | General lines
     |--------------------------------------------------------------------------
     */
+    'acidity'           => 'g/l tart',
     'area'              => 'Superficie',
     'area:alt'          => 'Sup. cultivada',
     'kg'                => 'Kg',

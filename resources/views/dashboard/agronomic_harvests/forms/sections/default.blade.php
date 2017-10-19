@@ -21,19 +21,21 @@
     {{-- Kg/ha of production --}}
     {!! Form::agronomicProduction($data ?? null) !!}
 
-    {{-- Field: observations --}}
-    {!! Form::autoTextArea('agronomic_observations') !!}
-
     <div class="col-md-12"></div>
 
     {{-- Load module --}}
-    @if(isset($data))
-        @include(dashboard_path('_modules.' . $data->module . '.harvest'))
-    @else 
-        @if(Credentials::isAdmin())
-            @include(dashboard_path('_modules.module'))
+    <div class="p-3">
+        @if(isset($data))
+            @include(dashboard_path('_modules.' . $data->module . '.harvest'))
         @else 
-            @include(dashboard_path('_modules.' . getModule() . '.harvest'))
+            @if(Credentials::isAdmin())
+                @include(dashboard_path('_modules.module'))
+            @else 
+                @include(dashboard_path('_modules.' . getModule() . '.harvest'))
+            @endif
         @endif
-    @endif
+    </div>
+
+    {{-- Field: observations --}}
+    {!! Form::autoTextArea('agronomic_observations') !!}
 </div>
