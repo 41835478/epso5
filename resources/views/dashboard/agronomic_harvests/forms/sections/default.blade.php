@@ -22,5 +22,9 @@
     {!! Form::autoTextArea('agronomic_observations') !!}
 
     {{-- Load module --}}
-    @include(dashboard_path('_modules.module'))
+    @if(isset($data))
+        @include(dashboard_path('_modules.' . $data->module . '.harvest'))
+    @else 
+        @include(dashboard_path('_modules.module'))
+    @endif
 </div>

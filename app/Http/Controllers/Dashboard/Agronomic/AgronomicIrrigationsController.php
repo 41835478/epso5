@@ -29,6 +29,7 @@ class AgronomicIrrigationsController extends AgronomicController
 
     /**
      * Store a newly created resource in storage.
+     * Use this for a custom $request -> App\Http\Requests\AgronomicHarvestsRequest  as AgronomicRequest
      *
      * @param  object $request
      * @return \Illuminate\Http\Response
@@ -40,6 +41,7 @@ class AgronomicIrrigationsController extends AgronomicController
 
     /**
      * Store a newly created resource in storage.
+     * Use this for a custom $request -> App\Http\Requests\AgronomicHarvestsRequest  as AgronomicRequest
      *
      * @param  object $request
      * @return \Illuminate\Http\Response
