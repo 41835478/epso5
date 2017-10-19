@@ -24,4 +24,9 @@ trait AgronomicHarvestsPresenters {
         $value = $this->attributes['agronomic_quantity'] / $this->plot->plot_area;
             return number_format($value, 2, '.', '');
     }
+
+    public function getAgronomicBaumeKgAttribute($value)
+    {
+        return $this->attributes['agronomic_baume'] * $this->attributes['agronomic_quantity'];
+    }
 }

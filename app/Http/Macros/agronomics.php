@@ -109,3 +109,24 @@
             return sprintf($html, $class, $data->agronomic_quantity_ha ?? null, $status, trans('units.kg:ha'));
         }
     });
+
+    /**
+     * Generate a agronomic field for: Kg/ha of production
+     * @param string $data [Only work if we are edit]
+     * 
+     * @return  string
+     */
+    Form::macro('agronomicBaumeKg', function($data = null, $title = null, $disabled = true, $class = 'col-md-2')
+    {
+        if(isset($data->agronomic_baume)) {
+            $status = formStatus($disabled ? 'disabled' : null);
+            $html = '<div class="form-group %s">' . 
+                        '<label class="control-label mt-4" for="agronomic_baume_kg"></label>' . 
+                        '<div class="input-group">' . 
+                            '<input type="text" name="agronomic_baume_kg" id="agronomic_baume_kg" class="form-control number" value="%s" %s>' . 
+                            '<span class="input-group-addon">%s</span>' . 
+                        '</div>' . 
+                    '</div>';
+            return sprintf($html, $class, $data->agronomic_baume_kg ?? null, $status, trans('agronomics.baume:kg'));
+        }
+    });

@@ -8,17 +8,17 @@ return [
     |--------------------------------------------------------------------------
     */
     'acidity'                   => 'Ac T',
-    'acidity_extended'          => 'Acidez Total',
+    'acidity:extended'          => 'Acidez Total',
     'anthocyanin'               => 'Ant T',
-    'anthocyanin_extended'      => 'Antocianos Totales',
-    'anthocyanin_e'             => 'Ant Ext',
-    'anthocyanin_e_extended'    => 'Antocianos Extraibles',
+    'anthocyanin:extended'      => 'Antocianos Totales',
+    'anthocyanin:e'             => 'Ant Ext',
+    'anthocyanin:e:extended'    => 'Antocianos Extraibles',
     'baume'                     => 'ºB',
-    'baume_extended'            => 'Grados Baume',
-    'baume_kg'                  => 'Kilogrado',
+    'baume:extended'            => 'Grados Baume',
+    'baume:kg'                  => 'Kilogrado',
     'ph'                        => 'pH',
     'poliphenol'                => 'Polif T',
-    'poliphenol_extended'       => 'Polifenoles Totales',
+    'poliphenol:extended'       => 'Polifenoles Totales',
 
     /*
     |--------------------------------------------------------------------------

@@ -38,6 +38,13 @@ class AgronomicHarvest extends Model  {
         'agronomic_quantity',
         'agronomic_quantity_unit',
         'agronomic_observations',
+        //Custom
+        'agronomic_baume',
+        'agronomic_acidity',
+        'agronomic_ph',
+        'agronomic_poliphenol',
+        'agronomic_anthocyanin_total',
+        'agronomic_anthocyanin_removable',
     ];
 
     /**

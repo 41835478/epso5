@@ -21,6 +21,9 @@
     {{-- Kg/ha of production --}}
     {!! Form::agronomicProduction($data ?? null) !!}
 
+    {{-- º Baume * Kg --}}
+    {!! Form::agronomicBaumeKg($data ?? null) !!}
+
     <div class="col-md-12"></div>
 
     {{-- Load module --}}
