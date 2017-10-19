@@ -113,7 +113,7 @@
                'url' => route('dashboard.user.agronomic_incidents.index'),
            ])->subMenuItem([
                'title' => icon('biocides', trans('navbar.agronomics:biocides')),
-               'url' => 'http://',
+               'url' => route('dashboard.user.agronomic_biocides.index'),
            ])->subMenuItem([
                'title' => icon('culturals', trans('navbar.agronomics:culturals')),
                'url' => 'http://',

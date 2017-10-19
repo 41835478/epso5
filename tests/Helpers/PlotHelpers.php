@@ -73,12 +73,13 @@ trait PlotHelpers
      *
      * @return Object
      */
-    public function whereClientIs($plot) : Plot
+    public function whereClientIs($client) : Plot
     {
         if($this->whereClientIs) {
             return $this->whereClientIs;
         }
-        return $this->whereClientIs = Plot::where('client_id', $plot->client_id)->inRandomOrder()->first();
+        $clientId = is_object($client) ? $client->client_id : $client;
+            return $this->whereClientIs = Plot::where('client_id', $clientId)->inRandomOrder()->first();
     }
 
     /**
@@ -86,12 +87,13 @@ trait PlotHelpers
      *
      * @return Object
      */
-    public function whereClientIsNot($plot) : Plot
+    public function whereClientIsNot($client) : Plot
     {
         if($this->whereClientIsNot) {
             return $this->whereClientIsNot;
         }
-        return $this->whereClientIsNot = Plot::where('client_id', '!=', $plot->client_id)->inRandomOrder()->first();
+        $clientId = is_object($client) ? $client->client_id : $client;
+            return $this->whereClientIsNot = Plot::where('client_id', '!=', $clientId)->inRandomOrder()->first();
     }
 
     /**
@@ -104,7 +106,8 @@ trait PlotHelpers
         if($this->whereUserIs) {
             return $this->whereUserIs;
         }
-        return $this->whereUserIs = Plot::where('user_id', is_object($user) ? $user->id : $user)->inRandomOrder()->first();
+        $userId = is_object($user) ? $user->id : $user;
+            return $this->whereUserIs = Plot::where('user_id', $userId)->inRandomOrder()->first();
     }
 
     /**

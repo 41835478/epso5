@@ -24,23 +24,7 @@ class AgronomicHarvestSearchTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs($god = $this->createGod())
                 ->visit($this->path)
-                ->type('search_name', parent::reduceText($this->lastAgronomicHarvest()->agronomicharvest_name))
-                ->pause(500)
-                ->with('.table', function ($table) {
-                    $table->assertSee($this->lastAgronomicHarvest()->agronomicharvest_name);
-                    $table->assertDontSee($this->firstAgronomicHarvest()->agronomicharvest_name);
-                });
-
-            $browser->click('.buttons-reset')
-                ->pause(500)
-                ->type('search_id', $this->lastAgronomicHarvest()->id)
-                ->pause(500)
-                ->with('.table', function ($table) {
-                    $table->assertSee($this->lastAgronomicHarvest()->agronomicharvest_name);
-                    $table->assertDontSee($this->firstAgronomicHarvest()->agronomicharvest_name);
-                });
-
-            $browser->click('.buttons-reset')
+                ->click('.buttons-reset')
                 ->pause(500)
                 ->type('search_client', parent::reduceText($this->lastAgronomicHarvest()->client->client_name))
                 ->pause(1000)
@@ -79,8 +63,7 @@ class AgronomicHarvestSearchTest extends DuskTestCase
             
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_user', parent::reduceText($this->lastAgronomicHarvest()->user->name))
-                ->pause(1000)
+                ->type('search_user', parent::reduceText($this->lastAgronomicHarvest()->user->name))->pause(1000)
                 ->with('.table', function ($table) {
                     $clientId = $this->lastAgronomicHarvest()->client_id;
                     $table->assertSee($this->lastAgronomicHarvest()->user->name);
@@ -89,8 +72,7 @@ class AgronomicHarvestSearchTest extends DuskTestCase
 
             $browser->click('.buttons-reset')
                 ->pause(500)
-                ->type('search_plot', parent::reduceText($this->lastAgronomicHarvest()->plot->plot_name))
-                ->pause(500)
+                ->type('search_plot', parent::reduceText($this->lastAgronomicHarvest()->plot->plot_name))->pause(1000)
                 ->with('.table', function ($table) {
                     $table->assertSee($this->lastAgronomicHarvest()->plot->plot_name);
                     $table->assertDontSee($this->firstAgronomicHarvest()->plot->plot_name);

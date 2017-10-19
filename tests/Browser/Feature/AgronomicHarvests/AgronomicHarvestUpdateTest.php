@@ -21,6 +21,46 @@ class AgronomicHarvestUpdateTest extends DuskTestCase
     | Update AgronomicHarvests
     |--------------------------------------------------------------------------
     */
+   public function test_god_can_update_a_AgronomicHarvests()
+   {
+       //Variables 
+       $plot = $this->whereClientIs(2)->id;
+       //Tests
+       $this->browse(function (Browser $browser) use ($plot) {
+           $browser->loginAs($god = $this->createGod())
+               ->visitRoute($this->route, $this->lastAgronomicHarvest()->id)
+               ->select('plot_id', $plot)
+               ->type('agronomic_date', $this->makeAgronomicHarvest()->agronomic_date)
+               ->type('agronomic_quantity', $this->makeAgronomicHarvest()->agronomic_quantity)
+               ->select('agronomic_quantity_unit', $this->makeAgronomicHarvest()->agronomic_quantity_unit)
+               ->type('agronomic_observations', $this->makeAgronomicHarvest()->agronomic_observations)
+               ->type('agronomic_ph', 1)
+               ->type('agronomic_baume', 10)
+               ->type('agronomic_acidity', 20)
+               ->type('agronomic_poliphenol', 30)
+               ->type('agronomic_anthocyanin_total', 40)
+               ->type('agronomic_anthocyanin_removable', 50)
+               ->press(trans('buttons.edit'))
+               ->assertSee(__('The items has been updated successfuly'));
+       });
+
+       $this->assertDatabaseHas('agronomic_harvests', [
+           'client_id'                 => $this->lastAgronomicHarvest()->client_id,
+           'user_id'                   => $this->lastAgronomicHarvest()->user_id,
+           'plot_id'                   => $plot,
+           'agronomic_date'            => date_to_db($this->makeAgronomicHarvest()->agronomic_date),
+           'agronomic_quantity'        => $this->makeAgronomicHarvest()->agronomic_quantity,
+           'agronomic_observations'    => $this->makeAgronomicHarvest()->agronomic_observations,
+           'agronomic_quantity_unit'   => $this->makeAgronomicHarvest()->agronomic_quantity_unit,
+           'agronomic_ph'                      => 1,
+           'agronomic_baume'                   => 10,
+           'agronomic_acidity'                 => 20,
+           'agronomic_poliphenol'              => 30,
+           'agronomic_anthocyanin_total'       => 40,
+           'agronomic_anthocyanin_removable'   => 50,
+       ]);
+   }
+
     public function test_admin_can_update_a_AgronomicHarvests()
     {
         //Variables 
