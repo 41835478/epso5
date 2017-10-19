@@ -2,6 +2,7 @@
 
 namespace App\Repositories\AgronomicBiocides\Traits;
 
+use App\Repositories\Biocides\Biocide;
 use App\Repositories\Clients\Client;
 use App\Repositories\Crops\Crop;
 use App\Repositories\Plots\Plot;
@@ -14,6 +15,11 @@ trait AgronomicBiocidesRelationships {
     | Relationships
     |--------------------------------------------------------------------------
     */
+   public function biocide()
+   {
+       return $this->belongsTo(Biocide::class);
+   }
+
     public function client()
     {
         return $this->belongsTo(Client::class);

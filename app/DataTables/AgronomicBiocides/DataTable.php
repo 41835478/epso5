@@ -34,7 +34,7 @@ class DataTable extends Repository
                 return $query->withTrashed();
             })
             ->select($this->section . '.*')
-            ->with(self::relationships());
+            ->with(self::relationships(['biocide']));
 
         return $this->applyScopes($query);
     }
