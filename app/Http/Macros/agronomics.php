@@ -71,3 +71,20 @@
                 ->required();
         }
     });
+
+    /**
+     * Generate a agronomic field for: Kg/ha of production
+     * @param string $data [Only work if we are edit]
+     * 
+     * @return  string
+     */
+    Form::macro('agronomicProduction', function($data = null)
+    {
+        if(isset($data)) {
+            return BootForm::InputGroup(trans('sections.agronomics.production_ha'), 'agronomic_quantity_ha')
+                ->addGroupClass('col-md-2')
+                ->addClass('number')
+                ->afterAddon(trans('units.kg:ha'))
+                ->disabled();
+        }
+    });

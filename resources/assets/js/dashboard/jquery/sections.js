@@ -56,13 +56,14 @@
                         if(data.module.length > 0) {
                             //Load harvests 
                             if( $thisModule == 'harvests' ) {
-                                //Load the module
+                                //Load the harvests module
                                 $.get( window.location.origin + '/dashboard/ajax/harvests', { 
                                     module: data.module
                                 }, 
                                 function( harvest ) {
                                     $module.html( harvest );
                                 });  
+                            //Load the crop module
                             } else {
                                 //Load the module
                                 $.get( window.location.origin + '/dashboard/ajax/modules/load', { 

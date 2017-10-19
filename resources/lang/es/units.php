@@ -9,6 +9,9 @@ return [
     */
     'area'              => 'Superficie',
     'area:alt'          => 'Sup. cultivada',
+    'kg'                => 'Kg',
+    'kg:ext'            => 'Kilogramos',
+    'kg:ha'             => 'Kg/ha',
     'm2'                => 'Superficie en m<sup>2</sup>',
     'm2:min'            => 'm<sup>2</sup>',
     'percent'           => 'Porcentaje de suelo cultivado', //Percent of cultivated land
@@ -26,9 +29,9 @@ return [
      */
     'selects' => [
         'harvests' => [
-             1   => 'kg/ha',
-             2   => 'l/ha',
-             3   => 'm3/ha',
+             1   => 'kg',
+             2   => 'l',
+             3   => 'm3',
         ],
         'irrigations' => [
              1   => 'l/ha',

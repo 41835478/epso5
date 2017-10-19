@@ -23,6 +23,7 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
             $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
             $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
+            $this->setColumn(trans('units.kg:ha'), 'agronomic_quantity_ha', ['defaultContent' => no_result()]),
             $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
         ];
         /**

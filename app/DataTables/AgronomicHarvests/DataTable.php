@@ -61,6 +61,9 @@ class DataTable extends Repository
             ->editColumn('agronomic_quantity', function($data) {
                 return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
             })
+            ->editColumn('agronomic_quantity_ha', function($data) {
+                return sprintf('%s %s', $data->agronomic_quantity_ha, select_units($this->section)[$data->agronomic_quantity_unit] . '/ha');
+            })
             ->editColumn('agronomic_observations', function($data) {
                 return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
             })

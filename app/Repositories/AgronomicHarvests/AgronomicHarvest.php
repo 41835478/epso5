@@ -35,8 +35,9 @@ class AgronomicHarvest extends Model  {
         'plot_id',
         'crop_id',
         'agronomic_date',
-        // 'agronomic_quantity',
-        // 'agronomic_quantity_unit',
+        'agronomic_quantity',
+        'agronomic_quantity_unit',
+        'agronomic_quantity_ha',
         'agronomic_observations',
     ];
 
