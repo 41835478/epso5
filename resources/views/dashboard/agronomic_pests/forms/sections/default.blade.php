@@ -10,7 +10,7 @@
     {!! BootForm::hidden('crop_id')->id('crop_id')->value(Credentials::isOnlyRole('user') ? getCropId() : null) !!}
 
     {{-- Field: Application date --}}
-    {!!  Form::agronomicDate(trans('dates.date:detection')) !!}
+    {!!  Form::agronomicDate($data ?? null, trans('dates.date:detection')) !!}
 
     {{-- Field: Pest --}}
     {!! Form::agronomicPests($pests ?? null) !!}
