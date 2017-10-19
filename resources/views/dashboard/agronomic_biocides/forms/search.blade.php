@@ -2,7 +2,7 @@
 @include(component_path('searchByRole'), ['withCrops' => true, 'withPlots' => true])
 
 {{-- Search by: Biocide --}}
-{!! BootForm::text(trans_title('agronomic_biocides', 'singular'), 'search_biocides')
+{!! BootForm::text(trans_title('agronomic_biocides', 'singular'), 'search_biocide')
     ->addGroupClass('col-md-2')
     ->autofocus()
 !!}
