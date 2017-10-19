@@ -34,9 +34,11 @@ class AgronomicBiocide extends Model  {
         'client_id',
         'plot_id',
         'crop_id',
+        'biocide_id',
         'agronomic_date',
-        // 'agronomic_quantity',
-        // 'agronomic_quantity_unit',
+        'agronomic_quantity',
+        'agronomic_quantity_unit',
+        'agronomic_biocide_secure',
         'agronomic_observations',
     ];
 
