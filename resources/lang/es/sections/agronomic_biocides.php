@@ -7,7 +7,8 @@ return [
     | Sections: agronomic_biocides
     |--------------------------------------------------------------------------
     */
-    'info'              => 'Información del agronomicbiocide',
-    'title'             => 'AgronomicBiocide',
-    'title:plural'      => 'AgronomicBiocides',
+    'info'              => 'Información sobre fitosanitarios',
+    'secure'            => 'Plazo seguridad',
+    'title'             => 'Fitosanitario',
+    'title:plural'      => 'Fitosanitarios',
 ];

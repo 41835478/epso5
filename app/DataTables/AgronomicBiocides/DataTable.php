@@ -58,6 +58,12 @@ class DataTable extends Repository
             ->editColumn('client.client_name', function($data) {
                 return sprintf('%s (%s)', $data->client->client_name ?? no_results(), $data->crop->crop_name ?? no_results());
             })
+            ->editColumn('agronomic_quantity', function($data) {
+                return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
+            })
+            ->editColumn('agronomic_biocide_secure', function($data) {
+                return sprintf('%s %s', $data->agronomic_biocide_secure, strtolower(trans('dates.day:plural')));
+            })
             ->editColumn('agronomic_observations', function($data) {
                 return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
             })

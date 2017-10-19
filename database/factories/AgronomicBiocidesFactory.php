@@ -18,7 +18,7 @@ $factory->define(AgronomicBiocide::class, function (Faker\Generator $faker) {
         'plot_id'                   => $plot->id,
         'crop_id'                   => $plot->crop_id,
         'biocide_id'                => rand(1, 1000),
-        'agronomic_date'            => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'agronomic_date'            => $faker->date($format = 'd/m/Y', $max = 'now'),
         'agronomic_quantity'        => rand(100, 100000),
         'agronomic_quantity_unit'   => rand(1, 5),
         'agronomic_biocide_secure'  => rand(10, 120),
