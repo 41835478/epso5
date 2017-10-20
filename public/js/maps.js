@@ -36084,10 +36084,11 @@ $('#biocide').autoComplete({
         });
     },
     renderItem: function renderItem(item, search) {
-        return '<div class="autocomplete-suggestion" data-num="' + item['num'] + '" data-name="' + item['name'] + '" data-company="' + item['company'] + '" data-formula="' + item['formula'] + '">' + item['name'] + '</div>';
+        return '<div class="autocomplete-suggestion" data-num="' + item['num'] + '" data-id="' + item['id'] + '" data-name="' + item['name'] + '" data-company="' + item['company'] + '" data-formula="' + item['formula'] + '">' + item['name'] + '</div>';
     },
     onSelect: function onSelect(e, term, item) {
         $('#biocide').val(item.data('name'));
+        $('#biocide_id').val(item.data('id'));
         $('#biocide_num').val(item.data('num'));
         $('#biocide_company').val(item.data('company'));
         $('#biocide_formula').val(item.data('formula'));

@@ -34,7 +34,7 @@ class BiocidesRepository extends Repository
 
         $query = $this->model
             ->where($row, 'LIKE', '%' . $term . '%')
-            ->select('biocide_num AS num', 'biocide_name AS name', 'biocide_company AS company', 'biocide_formula AS formula');
+            ->select('id', 'biocide_num AS num', 'biocide_name AS name', 'biocide_company AS company', 'biocide_formula AS formula');
 
         return response()->json($query->get());
     }

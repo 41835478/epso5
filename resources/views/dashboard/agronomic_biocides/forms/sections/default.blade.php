@@ -8,7 +8,7 @@
         ->addGroupClass('col-md-4')
         ->required()
     !!}
-    {!! BootForm::hidden('biocide_id')->required() !!}
+    {!! BootForm::hidden('biocide_id')->id('biocide_id')->required() !!}
 
     {{-- Field: Biocide company --}}
     {!! BootForm::text(trans('financials.company'), 'biocide.biocide_company')
