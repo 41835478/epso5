@@ -1,9 +1,9 @@
 {{-- If the role is user or we are editing... --}}
 @if(isset($data) || Credentials::isOnlyRole('user'))
     {{-- Fields: user --}}
-    {!! BootForm::hidden('user_id')->value(isset($data) ? $data->user_id : (Credentials::id() ?? null)) !!}
+    {!! BootForm::hidden('user_id')->id('user_id')->value(isset($data) ? $data->user_id : (Credentials::id() ?? null)) !!}
     {{-- Fields: client --}}
-    {!! BootForm::hidden('client_id')->value(isset($data) ? $data->client_id : getClientId()) !!}
+    {!! BootForm::hidden('client_id')->id('client_id')->value(isset($data) ? $data->client_id : getClientId()) !!}
     {{-- Add plots --}}
     @if(!empty($withPlot))
         {!! Form::plots($plots ?? null) !!} 
