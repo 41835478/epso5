@@ -13,7 +13,6 @@ Route::group([
         Route::post('agronomic_culturals/eliminate', 'Dashboard\Agronomic\AgronomicCulturalsController@eliminate')->name('agronomic_culturals.eliminate');
         //Harvests
         Route::resource('agronomic_harvests', 'Dashboard\Agronomic\AgronomicHarvestsController', ['except' => ['destroy', 'show']]); 
-        Route::get('agronomic_harvests/{id}/download', 'Dashboard\Agronomic\AgronomicHarvestsDownloadController')->name('agronomic_harvests.download');
         Route::post('agronomic_harvests/eliminate', 'Dashboard\Agronomic\AgronomicHarvestsController@eliminate')->name('agronomic_harvests.eliminate');
         //Incidents
         Route::resource('agronomic_incidents', 'Dashboard\Agronomic\AgronomicIncidentsController', ['except' => ['destroy', 'show']]); 
