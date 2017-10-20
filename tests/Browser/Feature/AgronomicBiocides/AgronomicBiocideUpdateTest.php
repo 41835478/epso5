@@ -15,6 +15,9 @@ class AgronomicBiocideUpdateTest extends DuskTestCase
     
     protected $route = 'dashboard.user.agronomic_biocides.edit';
     protected $dashboard = '/dashboard';
+    protected $biocide      = 'MASTER D';
+    protected $biocide_id   = 488;
+    protected $secure       = 155;
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +37,12 @@ class AgronomicBiocideUpdateTest extends DuskTestCase
                 ->type('agronomic_quantity', $this->makeAgronomicBiocide()->agronomic_quantity)
                 ->select('agronomic_quantity_unit', $this->makeAgronomicBiocide()->agronomic_quantity_unit)
                 ->type('agronomic_observations', $this->makeAgronomicBiocide()->agronomic_observations)
+                ->type('agronomic_biocide_secure', $this->secure)
+                ->type('#biocide', $this->reduceText($this->biocide, 5))->pause(1000)
+                ->with('.autocomplete-suggestion', function ($field) {
+                    $field->assertSee($this->biocide);
+                })
+                ->click("[data-name='{$this->biocide}']")
                 ->press(trans('buttons.edit'))
                 ->assertSee(__('The items has been updated successfuly'));
         });
@@ -42,6 +51,8 @@ class AgronomicBiocideUpdateTest extends DuskTestCase
             'client_id'                 => $this->lastAgronomicBiocide()->client_id,
             'user_id'                   => $this->lastAgronomicBiocide()->user_id,
             'plot_id'                   => $plot,
+            'biocide_id'                => $this->biocide_id,
+            'agronomic_biocide_secure'  => $this->secure,
             'agronomic_date'            => date_to_db($this->makeAgronomicBiocide()->agronomic_date),
             'agronomic_quantity'        => $this->makeAgronomicBiocide()->agronomic_quantity,
             'agronomic_observations'    => $this->makeAgronomicBiocide()->agronomic_observations,
