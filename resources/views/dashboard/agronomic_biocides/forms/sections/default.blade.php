@@ -2,7 +2,36 @@
 @include(component_path('formByRole'), ['withPlot' => true])
 
 <div class="row">
+    {{-- Field: Biocide name --}}
+    {!! BootForm::text(sections('biocides.title'), 'biocide.biocide_name')
+        ->addGroupClass('col-md-4')
+        ->required()
+    !!}
 
+    {{-- Field: Biocide company --}}
+    {!! BootForm::text(trans('financials.company'), 'biocide.biocide_company')
+        ->addGroupClass('col-md-3')
+        ->disabled()
+    !!}
+
+    {{-- Field: Biocide register --}}
+    {!! BootForm::text(trans('base.reference'), 'biocide.biocide_num')
+        ->addGroupClass('col-md-2')
+        ->addClass('right')
+        ->disabled()
+    !!}
+
+    {{-- Field: Biocide formula --}}
+    {!! BootForm::text(sections('agronomic_biocides.formula'), 'biocide.biocide_num')
+        ->addGroupClass('col-md-3')
+        ->addClass('right')
+        ->disabled()
+    !!}
+</div>
+
+<hr>
+
+<div class="row">
     {{-- Row id --}}
     {!! BootForm::hidden('row_id')->value($data->id ?? null) !!}
     
@@ -12,22 +41,21 @@
     {{-- Field: Application date --}}
     {!!  Form::agronomicDate($data ?? null) !!}
 
+    {{-- Field: Secure days --}}
+    {!! BootForm::InputGroup(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure')
+        ->addGroupClass('col-md-2')
+        ->addClass('right')
+        ->afterAddon(trans('dates.day:plural'))
+    !!}
+
     {{-- Field: Quantity  --}}
     {!! Form::agronomicQuantity($data ?? null) !!}
 
     {{-- Field: Quantity units --}}
     {!! Form::agronomicUnits($data ?? null, $section ?? null) !!}
+</div>
 
-    {{-- Field: Biocide name --}}
-
-    {{-- Field: Biocide company --}}
-
-    {{-- Field: Biocide formula --}}
-
-    {{-- Field: Biocide register --}}
-
-    {{-- Field: Biocide secure --}}
-
+<div class="row">
     {{-- Field: observations --}}
     {!! Form::autoTextArea('agronomic_observations') !!}
 </div>
