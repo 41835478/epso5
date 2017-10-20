@@ -54695,6 +54695,8 @@ if ($('#state_id').length) {
 if ($('#client_id').length) {
     $('#client_id').on('change', function (e) {
         e.preventDefault();
+        //Reset variables 
+        $('#user_id,#plot_id,#pest_id,#worker_id').empty().attr('disabled', true);
         //get module 
         var $thisModule = $(this).data('module');
         //Load module 
@@ -54752,6 +54754,8 @@ if ($('#client_id').length) {
 if ($('#user_id').length) {
     $('#user_id').on('change', function (e) {
         e.preventDefault();
+        //Reset variables 
+        $('#plot_id,#pest_id,#worker_id').empty().attr('disabled', true);
         //Define the variables
         var $containerPlot = $('#plot_id'),
             $valueUser = $('#user_id').val(),
@@ -54759,12 +54763,6 @@ if ($('#user_id').length) {
         //Generate the combobox: users > plots
         if ($containerPlot.length) {
             __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($containerPlot, $valueUser, $routePlot);
-            //In case of worker...
-            var $containerWorker = $('#worker_id'),
-                $routeWorker = '/dashboard/ajax/workers';
-            if ($containerWorker.length) {
-                __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($containerWorker, $valueUser, $routeWorker, false);
-            }
         }
     });
 }
@@ -54775,6 +54773,13 @@ if ($('#user_id').length) {
 if ($('#plot_id').length) {
     $('#plot_id').on('change', function (e) {
         e.preventDefault();
+        //In case of worker...
+        var $containerWorker = $('#worker_id'),
+            $valueUser = $('#user_id').val(),
+            $routeWorker = '/dashboard/ajax/workers';
+        if ($containerWorker.length) {
+            __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($containerWorker, $valueUser, $routeWorker, false);
+        }
         //Get the data via AJAX
         var $client = $('#client_id').val();
         $.get(window.location.origin + '/dashboard/ajax/crops', { search: $client }, function (crop) {
