@@ -1,26 +1,19 @@
 <?php
 
-namespace App\Repositories\AgronomicBiocides\Traits;
+namespace App\Repositories\AgronomicCulturals\Traits;
 
-use App\Repositories\Biocides\Biocide;
 use App\Repositories\Clients\Client;
 use App\Repositories\Crops\Crop;
 use App\Repositories\Plots\Plot;
 use App\Repositories\Users\User;
-use App\Repositories\Workers\Worker;
 
-trait AgronomicBiocidesRelationships {
+trait AgronomicCulturalsRelationships {
 
     /*
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
     */
-   public function biocide()
-   {
-       return $this->belongsTo(Biocide::class);
-   }
-
     public function client()
     {
         return $this->belongsTo(Client::class);
@@ -39,10 +32,5 @@ trait AgronomicBiocidesRelationships {
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function worker()
-    {
-        return $this->belongsTo(Worker::class);
     }
 }

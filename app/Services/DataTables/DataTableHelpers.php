@@ -47,16 +47,7 @@ trait DataTableHelpers
      */
     public function relationships($with = null)
     {
-        //Filtering the relationships
-        if(Credentials::isAdmin()) {
-            $relationships = ['client', 'user', 'crop', 'plot'];
-                return ($with) ? array_merge($relationships, $with) : $relationships;
-        } 
-        //Filtering the relationships
-        if(Credentials::isEditor()) {
-            $relationships = ['user', 'plot'];
-                return ($with) ? array_merge($relationships, $with) : $relationships;
-        } 
-        return ($with) ? array_merge(['plot'], $with) : ['plot'];
+        $relationships = ['client', 'user', 'crop', 'plot'];
+            return ($with) ? array_merge($relationships, $with) : $relationships;
     }
 }

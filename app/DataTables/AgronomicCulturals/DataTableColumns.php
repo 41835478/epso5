@@ -1,6 +1,6 @@
 <?php
 
-namespace App\DataTables\AgronomicBiocides;
+namespace App\DataTables\AgronomicCulturals;
 
 use Credentials;
 
@@ -22,10 +22,7 @@ trait DataTableColumns
         $columns = [
             $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
             $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans_title('biocides', 'singular'), 'biocide.biocide_name'),
-            $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans_title('workers', 'singular'), 'worker.worker_name', ['defaultContent' => no_result()]),
-            $this->setColumn(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure', ['defaultContent' => no_result()]),
+            // $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
             $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
         ];
         /**
@@ -60,7 +57,7 @@ trait DataTableColumns
     //     return [
     //         $this->createCheckbox(),
     //         $this->setColumn(trans('financials.id'), 'id'),
-    //         $this->setColumn(trans_title('agronomic_biocides'), 'agronomicbiocide_name'),
+    //         $this->setColumn(trans_title('agronomic_culturals'), 'agronomiccultural_name'),
     //         // $this->setColumn(trans('persona.role'), 'role', [
     //         //      'orderable' => false,
     //         //      'searchable' => false,

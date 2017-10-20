@@ -1,12 +1,12 @@
 <?php
 
-namespace App\DataTables\AgronomicBiocides;
+namespace App\DataTables\AgronomicCulturals;
 
-use App\DataTables\AgronomicBiocides\DataTableColumns;
-use App\DataTables\AgronomicBiocides\DataTableJavascript;
-use App\DataTables\AgronomicBiocides\DataTableSearch;
-use App\Repositories\AgronomicBiocides\AgronomicBiocidesRepository;
-use App\Repositories\AgronomicBiocides\UsersRepository;
+use App\DataTables\AgronomicCulturals\DataTableColumns;
+use App\DataTables\AgronomicCulturals\DataTableJavascript;
+use App\DataTables\AgronomicCulturals\DataTableSearch;
+use App\Repositories\AgronomicCulturals\AgronomicCulturalsRepository;
+use App\Repositories\AgronomicCulturals\UsersRepository;
 use App\Services\DataTables\DataTablesRepository as Repository;
 use Credentials;
 
@@ -18,7 +18,7 @@ class DataTable extends Repository
      * @var string
      */
     protected $action  = false; //Cusmomize action
-    protected $section = 'agronomic_biocides';
+    protected $section = 'agronomic_culturals';
 
     /**
      * Get the query object to be processed by datatables.
@@ -27,14 +27,14 @@ class DataTable extends Repository
      */
     public function query()
     {
-        $query = app(AgronomicBiocidesRepository::class)
+        $query = app(AgronomicCulturalsRepository::class)
             ->dataTable($columns = ['*'], $table = $this->section)
             //Only God and Admin see trashed material...
             ->when(Credentials::isAdmin(), function($query) {
                 return $query->withTrashed();
             })
             ->select($this->section . '.*')
-            ->with(self::relationships(['biocide', 'worker']));
+            ->with(self::relationships());
 
         return $this->applyScopes($query);
     }
@@ -58,12 +58,9 @@ class DataTable extends Repository
             ->editColumn('client.client_name', function($data) {
                 return sprintf('%s (%s)', $data->client->client_name ?? no_results(), $data->crop->crop_name ?? no_results());
             })
-            ->editColumn('agronomic_quantity', function($data) {
-                return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
-            })
-            ->editColumn('agronomic_biocide_secure', function($data) {
-                return sprintf('%s %s', $data->agronomic_biocide_secure, strtolower(trans('dates.day:plural')));
-            })
+            // ->editColumn('agronomic_quantity', function($data) {
+            //     return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
+            // })
             ->editColumn('agronomic_observations', function($data) {
                 return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
             })

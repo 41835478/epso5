@@ -8,6 +8,9 @@ Route::group([
         //Biocides
         Route::resource('agronomic_biocides', 'Dashboard\Agronomic\AgronomicBiocidesController', ['except' => ['destroy', 'show']]); 
         Route::post('agronomic_biocides/eliminate', 'Dashboard\Agronomic\AgronomicBiocidesController@eliminate')->name('agronomic_biocides.eliminate');
+        //Culturals
+        Route::resource('agronomic_culturals', 'Dashboard\Agronomic\AgronomicCulturalsController', ['except' => ['destroy', 'show']]); 
+        Route::post('agronomic_culturals/eliminate', 'Dashboard\Agronomic\AgronomicCulturalsController@eliminate')->name('agronomic_culturals.eliminate');
         //Harvests
         Route::resource('agronomic_harvests', 'Dashboard\Agronomic\AgronomicHarvestsController', ['except' => ['destroy', 'show']]); 
         Route::get('agronomic_harvests/{id}/download', 'Dashboard\Agronomic\AgronomicHarvestsDownloadController')->name('agronomic_harvests.download');
