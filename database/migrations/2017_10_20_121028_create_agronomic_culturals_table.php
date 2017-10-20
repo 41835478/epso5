@@ -22,8 +22,7 @@ class CreateAgronomicCulturalsTable extends Migration
             $table->integer('agronomic_type')->comment("The cultural type");
             $table->date('agronomic_date')->comment("Date of application");
             $table->integer('agronomic_fertilizer_type')->comment("0 for inorganic y 1 for organic");
-            $table->integer('agronomic_fertilizer_organic_id')->comment("The organic id");
-            $table->string('agronomic_fertilizer_name')->nullable()->comment("Fertilizer name");
+            $table->string('agronomic_fertilizer_name')->nullable()->comment("Fertilizer name or id (for organics)");
             $table->integer('agronomic_quantity')->nullable()->comment("Quantity of product");
             $table->integer('agronomic_quantity_unit')->unsigned()->nullable();
             $table->text('agronomic_observations')->nullable();
