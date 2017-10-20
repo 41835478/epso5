@@ -4,25 +4,30 @@
 <div class="row">
     {{-- Field: Biocide name --}}
     {!! BootForm::text(sections('biocides.title'), 'biocide.biocide_name')
+        ->id('biocide')
         ->addGroupClass('col-md-4')
         ->required()
     !!}
+    {!! BootForm::hidden('biocide_id')->required() !!}
 
     {{-- Field: Biocide company --}}
     {!! BootForm::text(trans('financials.company'), 'biocide.biocide_company')
+        ->id('biocide_company')
         ->addGroupClass('col-md-3')
         ->disabled()
     !!}
 
     {{-- Field: Biocide register --}}
     {!! BootForm::text(trans('base.reference'), 'biocide.biocide_num')
+        ->id('biocide_num')
         ->addGroupClass('col-md-2')
         ->addClass('right')
         ->disabled()
     !!}
 
     {{-- Field: Biocide formula --}}
-    {!! BootForm::text(sections('agronomic_biocides.formula'), 'biocide.biocide_num')
+    {!! BootForm::text(sections('agronomic_biocides.formula'), 'biocide.biocide_formula')
+        ->id('biocide_formula')
         ->addGroupClass('col-md-3')
         ->addClass('right')
         ->disabled()

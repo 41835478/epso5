@@ -54150,6 +54150,49 @@ window.axios.defaults.headers.common = {
 
 /***/ }),
 
+/***/ "./resources/assets/js/dashboard/helpers/autocomplete.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ *
+ * ////////////////////////////
+ * ////// * Autocomplete Functions  * //////
+ * ////////////////////////////
+ *
+ */
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    container: container,
+    onSelect: onSelect,
+    renderItem: renderItem
+});
+
+function renderItem(item) {
+    // var search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&' );
+    // var replace = new RegExp( "(" + search.split( ' ' ).join( '|' ) + ")", "gi" );
+    return '<div class="autocomplete-suggestion" data-id="' + item['id'] + '" data-title="' + item['name'] + '">'
+    //+ '<span class="item-number">' + item[ 'id' ] + '</span> - ' + item[itemName].replace(replace, "<b>$1</b>") 
+    + '<span class="item-number">' + item['id'] + '</span> - ' + item['name'] + '</div>';
+};
+
+function onSelect(containerRoot, item) {
+    $(container(containerRoot)).val(item.data('title'));
+    $(container(containerRoot, 'id')).val(item.data('id'));
+}
+
+function container(name, type) {
+    if (type === undefined) {
+        type = 'name';
+    }
+    if (type == 'id') {
+        return '#' + name + '_id';
+    }
+    return '#' + name + '_name';
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/dashboard/helpers/dates.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -54611,7 +54654,8 @@ $('#addToday').on('click', function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_autocomplete_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/autocomplete.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__ = __webpack_require__("./resources/assets/js/dashboard/helpers/forms.js");
 /**
  *
  * ////////////////////////////
@@ -54619,6 +54663,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * ////////////////////////////
  *
  */
+
 
 
 var loading = '<div class="col-md-12 text-center"><img src="../../../images/loading.gif"></div>';
@@ -54635,7 +54680,7 @@ if ($('#state_id').length) {
             $route = '/dashboard/ajax/regions';
         //Generate the combobox: states > regions
         if ($container.length) {
-            __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
+            __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
         }
     });
 }
@@ -54662,7 +54707,7 @@ if ($('#client_id').length) {
             $value = $('#client_id').val(),
             $route = '/dashboard/ajax/users';
         //Generate the combobox: clients > users
-        __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
+        __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
         //Add module value if needed
         if ($('#crop_module') && $module) {
             $.get(window.location.origin + '/dashboard/ajax/modules', { search: $value }, function (data) {
@@ -54673,12 +54718,13 @@ if ($('#client_id').length) {
                     if (data.module.length > 0) {
                         //Load harvests 
                         if ($thisModule == 'harvests') {
-                            //Load the module
+                            //Load the harvests module
                             $.get(window.location.origin + '/dashboard/ajax/harvests', {
                                 module: data.module
                             }, function (harvest) {
                                 $module.html(harvest);
                             });
+                            //Load the crop module
                         } else {
                             //Load the module
                             $.get(window.location.origin + '/dashboard/ajax/modules/load', {
@@ -54708,7 +54754,7 @@ if ($('#user_id').length) {
             $route = '/dashboard/ajax/plots';
         //Generate the combobox: users > plots
         if ($container.length) {
-            __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
+            __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
         }
     });
 }
@@ -54730,7 +54776,7 @@ if ($('#plot_id').length) {
                     //Reset values 
                     container.empty();
                     //Generate the form select
-                    __WEBPACK_IMPORTED_MODULE_0__helpers_forms_js__["a" /* default */].form_select_create(pest, container);
+                    __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_select_create(pest, container);
                 });
             }
         });
@@ -54747,6 +54793,33 @@ if ($('.advancedSearch').length) {
         $('#modal_end_date').val($('#search_dateEnd').val());
     });
 }
+
+/**
+ * Biocides
+ */
+$('#biocide').autoComplete({
+    minChars: 3,
+    source: function source(query, response) {
+        //Reset the fields 
+        $('#biocide_id,#biocide_company,#biocide_num,#biocide_formula').val('');
+        //Get ajax response with cache
+        try {
+            xhr.abort();
+        } catch (e) {}
+        xhr = $.getJSON(window.location.origin + '/dashboard/ajax/biocides', { biocide: $('#biocide').val() }, function (data) {
+            response(data);
+        });
+    },
+    renderItem: function renderItem(item, search) {
+        return '<div class="autocomplete-suggestion" data-num="' + item['num'] + '" data-name="' + item['name'] + '" data-company="' + item['company'] + '" data-formula="' + item['formula'] + '">' + item['name'] + '</div>';
+    },
+    onSelect: function onSelect(e, term, item) {
+        $('#biocide').val(item.data('name'));
+        $('#biocide_num').val(item.data('num'));
+        $('#biocide_company').val(item.data('company'));
+        $('#biocide_formula').val(item.data('formula'));
+    }
+});
 
 /***/ }),
 

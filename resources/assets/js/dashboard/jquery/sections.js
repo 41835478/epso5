@@ -5,6 +5,7 @@
  * ////////////////////////////
  *
  */
+    import autocomplete from '../helpers/autocomplete.js';
     import forms from '../helpers/forms.js';
 
     var loading = '<div class="col-md-12 text-center"><img src="../../../images/loading.gif"></div>';
@@ -133,3 +134,30 @@
             $( '#modal_end_date' ).val( $( '#search_dateEnd' ).val() );
          })
     }
+
+    /**
+     * Biocides
+     */
+    $( '#biocide' ).autoComplete({
+        minChars: 3,
+        source: function( query, response ) {
+            //Reset the fields 
+            $( '#biocide_id,#biocide_company,#biocide_num,#biocide_formula' ).val( '' );
+            //Get ajax response with cache
+            try { xhr.abort(); } catch( e ){}
+            xhr = $.getJSON( window.location.origin + '/dashboard/ajax/biocides', { biocide: $( '#biocide' ).val() }, function( data ) { 
+                response( data ); 
+            });
+        },
+        renderItem: function ( item, search ){
+            return '<div class="autocomplete-suggestion" data-num="' + item[ 'num' ] + '" data-name="' + item[ 'name' ] + '" data-company="' + item[ 'company' ] + '" data-formula="' + item[ 'formula' ] +'">'
+                        + item[ 'name' ] + 
+                    '</div>';
+        },
+        onSelect: function( e, term, item ) {
+            $( '#biocide' ).val( item.data( 'name' ) );
+            $( '#biocide_num' ).val( item.data( 'num' ) );
+            $( '#biocide_company' ).val( item.data( 'company' ) );
+            $( '#biocide_formula' ).val( item.data( 'formula' ) );
+        }
+    });
