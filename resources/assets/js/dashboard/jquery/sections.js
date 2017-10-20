@@ -90,10 +90,15 @@
         $( '#user_id' ).on( 'change', function( e ) {
             e.preventDefault();
             //Define the variables
-            var $container = $( '#plot_id' ), $value = $( '#user_id' ).val(), $route = '/dashboard/ajax/plots';
+            var $containerPlot = $( '#plot_id' ), $valueUser = $( '#user_id' ).val(), $routePlot = '/dashboard/ajax/plots';
             //Generate the combobox: users > plots
-            if( $container.length ) {
-                forms.form_comboBox( $container, $value, $route );
+            if( $containerPlot.length ) {
+                forms.form_comboBox( $containerPlot, $valueUser, $routePlot );
+                //In case of worker...
+                var $containerWorker = $( '#worker_id' ), $routeWorker = '/dashboard/ajax/workers';
+                if( $containerWorker.length ) {
+                    forms.form_comboBox( $containerWorker, $valueUser, $routeWorker, false );
+                }
             }
         });
     }

@@ -35410,12 +35410,14 @@ function form_clear(formID) {
 * Creating a select combo box
 */
 function form_comboBox(container, selected, routePath) {
+    var required = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
     //Add loading class 
     container.empty().addClass('loading');
     //Get the data via AJAX
     $.get(window.location.origin + routePath, { search: selected }, function (data) {
         //Generate the form select
-        form_select_create(data, container);
+        form_select_create(data, container, required);
     });
 }
 
@@ -35423,6 +35425,8 @@ function form_comboBox(container, selected, routePath) {
 * Creating a new form
 */
 function form_select_create(data, container) {
+    var required = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
     if (data.length > 0) {
         //First empty option field
         container.append($('<option>', { value: '', text: '' }));
@@ -35434,7 +35438,7 @@ function form_select_create(data, container) {
             }));
         });
         //Remove loading class, and enable the container
-        container.prop('disabled', false).prop('required', true).removeClass('loading');
+        container.prop('disabled', false).prop('required', required).removeClass('loading');
     } else {
         //Remove loading class, and disable the container
         container.prop('disabled', true).prop('required', false).removeClass('loading');
@@ -36022,12 +36026,18 @@ if ($('#user_id').length) {
     $('#user_id').on('change', function (e) {
         e.preventDefault();
         //Define the variables
-        var $container = $('#plot_id'),
-            $value = $('#user_id').val(),
-            $route = '/dashboard/ajax/plots';
+        var $containerPlot = $('#plot_id'),
+            $valueUser = $('#user_id').val(),
+            $routePlot = '/dashboard/ajax/plots';
         //Generate the combobox: users > plots
-        if ($container.length) {
-            __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($container, $value, $route);
+        if ($containerPlot.length) {
+            __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($containerPlot, $valueUser, $routePlot);
+            //In case of worker...
+            var $containerWorker = $('#worker_id'),
+                $routeWorker = '/dashboard/ajax/workers';
+            if ($containerWorker.length) {
+                __WEBPACK_IMPORTED_MODULE_1__helpers_forms_js__["a" /* default */].form_comboBox($containerWorker, $valueUser, $routeWorker, false);
+            }
         }
     });
 }

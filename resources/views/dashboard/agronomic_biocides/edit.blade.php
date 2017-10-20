@@ -13,6 +13,7 @@
         @slot('data', $data)
         {{-- Add other slot --}}
         @slot('plots', $plots ?? null)
+        @slot('workers', $workers ?? null)
     @endcomponent
 
 @endsection

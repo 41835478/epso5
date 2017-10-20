@@ -13,6 +13,7 @@
         @slot('clients', $clients ?? null)
         @slot('plots', $plots ?? null)
         @slot('users', $users ?? null)
+        @slot('workers', $workers ?? [])
     @endcomponent
 
 @endsection

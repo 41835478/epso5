@@ -35,6 +35,7 @@ class AgronomicBiocide extends Model  {
         'plot_id',
         'crop_id',
         'biocide_id',
+        'worker_id',
         'agronomic_date',
         'agronomic_quantity',
         'agronomic_quantity_unit',

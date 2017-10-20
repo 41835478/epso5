@@ -35433,12 +35433,14 @@ function form_clear(formID) {
 * Creating a select combo box
 */
 function form_comboBox(container, selected, routePath) {
+    var required = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
     //Add loading class 
     container.empty().addClass('loading');
     //Get the data via AJAX
     $.get(window.location.origin + routePath, { search: selected }, function (data) {
         //Generate the form select
-        form_select_create(data, container);
+        form_select_create(data, container, required);
     });
 }
 
@@ -35446,6 +35448,8 @@ function form_comboBox(container, selected, routePath) {
 * Creating a new form
 */
 function form_select_create(data, container) {
+    var required = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
     if (data.length > 0) {
         //First empty option field
         container.append($('<option>', { value: '', text: '' }));
@@ -35457,7 +35461,7 @@ function form_select_create(data, container) {
             }));
         });
         //Remove loading class, and enable the container
-        container.prop('disabled', false).prop('required', true).removeClass('loading');
+        container.prop('disabled', false).prop('required', required).removeClass('loading');
     } else {
         //Remove loading class, and disable the container
         container.prop('disabled', true).prop('required', false).removeClass('loading');

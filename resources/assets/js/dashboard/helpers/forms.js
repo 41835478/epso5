@@ -47,21 +47,21 @@
     /** 
     * Creating a select combo box
     */
-    function form_comboBox( container, selected, routePath ) {
+    function form_comboBox( container, selected, routePath, required = true ) {
         //Add loading class 
         container.empty().addClass( 'loading' );
         //Get the data via AJAX
         $.get( window.location.origin + routePath, { search: selected }, 
         function( data ) {
             //Generate the form select
-            form_select_create( data, container );
+            form_select_create( data, container, required );
         });
     }
 
     /** 
     * Creating a new form
     */
-    function form_select_create( data, container ) {
+    function form_select_create( data, container, required = true ) {
         if( data.length > 0 ) {
             //First empty option field
             container.append( $( '<option>', { value: '', text : '' } ) );
@@ -75,7 +75,7 @@
             //Remove loading class, and enable the container
             container
                 .prop( 'disabled', false )
-                .prop( 'required', true )
+                .prop( 'required', required )
                 .removeClass( 'loading' );
         } else {
             //Remove loading class, and disable the container

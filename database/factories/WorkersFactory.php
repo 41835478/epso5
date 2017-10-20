@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\Users\User;
 use App\Repositories\Workers\Worker;
 
 /*
@@ -10,9 +11,10 @@ use App\Repositories\Workers\Worker;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(Worker::class, function (Faker\Generator $faker) {
+    $user = User::inRandomOrder()->first();
     return [
-        'user_id'                   => 1,
-        'client_id'                 => 1,
+        'user_id'                   => $user->id,
+        'client_id'                 => $user->client_id,
         'worker_name'               => $faker->name,
         'worker_nif'                => $faker->swiftBicNumber,
         'worker_ropo'               => $faker->swiftBicNumber,
