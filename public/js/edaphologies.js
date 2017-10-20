@@ -54926,7 +54926,7 @@ $('#biocide').autoComplete({
         });
     },
     renderItem: function renderItem(item, search) {
-        return '<div class="autocomplete-suggestion" data-num="' + item['num'] + '" data-id="' + item['id'] + '" data-name="' + item['name'] + '" data-company="' + item['company'] + '" data-formula="' + item['formula'] + '">' + item['name'] + '</div>';
+        return '<div class="autocomplete-suggestion" id="biocide-' + item['id'] + '" data-num="' + item['num'] + '" data-id="' + item['id'] + '" data-name="' + item['name'] + '" data-company="' + item['company'] + '" data-formula="' + item['formula'] + '">' + item['name'] + '</div>';
     },
     onSelect: function onSelect(e, term, item) {
         $('#biocide').val(item.data('name'));

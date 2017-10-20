@@ -150,7 +150,7 @@
             });
         },
         renderItem: function ( item, search ){
-            return '<div class="autocomplete-suggestion" data-num="' + item[ 'num' ] + '" data-id="' + item[ 'id' ] + '" data-name="' + item[ 'name' ] + '" data-company="' + item[ 'company' ] + '" data-formula="' + item[ 'formula' ] +'">'
+            return '<div class="autocomplete-suggestion" id="biocide-' + item[ 'id' ] + '" data-num="' + item[ 'num' ] + '" data-id="' + item[ 'id' ] + '" data-name="' + item[ 'name' ] + '" data-company="' + item[ 'company' ] + '" data-formula="' + item[ 'formula' ] +'">'
                         + item[ 'name' ] + 
                     '</div>';
         },
