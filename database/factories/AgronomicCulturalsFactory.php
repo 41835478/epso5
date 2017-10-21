@@ -1,6 +1,7 @@
 <?php
 
 use App\Repositories\AgronomicCulturals\AgronomicCultural;
+use App\Repositories\Plots\Plot;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,24 +11,28 @@ use App\Repositories\AgronomicCulturals\AgronomicCultural;
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(AgronomicCultural::class, function (Faker\Generator $faker) {
+    $plot = Plot::inRandomOrder()->first();
+    $type = rand(1, 10);
+    $fertilizer_type = null;
+    $fertilizer = null;
+    if($type == 1 || $type == 2) {
+        $fertilizer_type = rand(1, 2);
+        $fertilizer = $faker->words($nb = 3, $asText = true);
+        if($fertilizer_type == 1) {
+            $fertilizer = select('organics')[rand(1, 10)];
+        }
+    }
     return [
-        'agronomiccultural_name'            => $faker->company,
-        // 'agronomiccultural_word'            => $faker->word,
-        // 'agronomiccultural_words'           => $faker->words($nb = 3, $asText = true),
-        // 'agronomiccultural_email'           => $faker->unique()->safeEmail,
-        // 'agronomiccultural_description'     => $faker->sentence($nbWords = 10, $variableNbWords = true),
-        // 'agronomiccultural_phone'           => $faker->tollFreePhoneNumber,
-        // 'agronomiccultural_reference'       => $faker->shuffle('ABCDEF0123456789'),
-        // 'agronomiccultural_lat'             => $faker->latitude($min = -90, $max = 90),
-        // 'agronomiccultural_lng'             => $faker->longitude($min = -180, $max = 180),
-        // 'agronomiccultural_web'             => $faker->url,
-        // 'agronomiccultural_number'          => $faker->swiftBicNumber,
-        // 'agronomiccultural_randon_num'      => $faker->randomNumber($nbDigits = 4, $strict = false),
-        // 'agronomiccultural_zip'             => $faker->postcode,
-        // 'agronomiccultural_google'          => $faker->unique()->userName . '@gmail.com',
-        // 'agronomiccultural_linkedin'        => 'http://linkedin.com/' . $faker->slug,
-        // 'agronomiccultural_twitter'         => '@' . $faker->unique()->userName,
-        // 'agronomiccultural_facebook'        => 'http://www.facebook.com/user/' . $faker->slug,
-        // 'agronomiccultural_date'            => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'user_id'                   => $plot->user_id,
+        'client_id'                 => $plot->client_id,
+        'plot_id'                   => $plot->id,
+        'crop_id'                   => $plot->crop_id,
+        'agronomic_date'            => $faker->date($format = 'd/m/Y', $max = 'now'),
+        'agronomic_quantity'        => rand(100, 100000),
+        'agronomic_quantity_unit'   => rand(1, 6),
+        'agronomic_observations'    => $faker->sentence($nbWords = 10, $variableNbWords = true),
+        'agronomic_type'            => $type,
+        'agronomic_fertilizer_type' => $fertilizer_type,
+        'agronomic_fertilizer_name' => $fertilizer,
     ];
 });

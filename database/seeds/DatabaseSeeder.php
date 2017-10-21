@@ -52,5 +52,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AgronomicPestsTableSeeder::class);
         $this->call(AgronomicIncidentsTableSeeder::class);
         $this->call(AgronomicHarvestsTableSeeder::class);
+        $this->call(AgronomicCulturalsTableSeeder::class);
     }
 }

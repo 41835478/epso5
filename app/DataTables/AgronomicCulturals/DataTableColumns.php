@@ -22,7 +22,9 @@ trait DataTableColumns
         $columns = [
             $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
             $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
-            // $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
+            $this->setColumn(sections('agronomic_culturals.title'), 'agronomic_type', ['defaultContent' => no_result()]),
+            $this->setColumn(sections('agronomic_culturals.fertilizer'), 'agronomic_fertilizer_name', ['defaultContent' => no_result()]),
+            $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
             $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
         ];
         /**

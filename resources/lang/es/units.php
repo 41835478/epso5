@@ -36,6 +36,14 @@ return [
              4   => 'g/l',
              5   => 'mg/l',
         ],
+        'culturals' => [
+             1   => 'Kg',
+             2   => 'kg/ha',
+             3   => 'm3/ha',
+             4   => 'l/ha',
+             5   => 'g/l',
+             6   => 'mg/l',
+        ],
         'harvests' => [
              1   => 'kg',
              2   => 'l',

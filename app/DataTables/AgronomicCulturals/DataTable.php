@@ -47,7 +47,7 @@ class DataTable extends Repository
     {
         return $this->datatables
             ->eloquent($this->query())
-            ->rawColumns(['action', 'checkbox', 'agronomic_observations'])
+            ->rawColumns(['action', 'checkbox', 'agronomic_fertilizer_name', 'agronomic_observations', 'agronomic_type', 'plot.plot_name'])
             ->setRowClass(function ($data) {
                 return ($data->trashed() ? 'trashed' : ' ');
             })
@@ -58,9 +58,20 @@ class DataTable extends Repository
             ->editColumn('client.client_name', function($data) {
                 return sprintf('%s (%s)', $data->client->client_name ?? no_results(), $data->crop->crop_name ?? no_results());
             })
-            // ->editColumn('agronomic_quantity', function($data) {
-            //     return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
-            // })
+            ->editColumn('plot.plot_name', function($data) {
+                return $this->formatString($data->plot->plot_name ?? null);
+            })
+            ->editColumn('agronomic_type', function($data) {
+                return $this->formatString(select('culturals')[$data->agronomic_type]);
+            })
+            ->editColumn('agronomic_fertilizer_name', function($data) {
+                return $data->agronomic_fertilizer_name 
+                    ? $this->formatString(sprintf('%s (%s)', $data->agronomic_fertilizer_name, select('fertilizer')[$data->agronomic_fertilizer_type]))
+                    : no_result();
+            })
+            ->editColumn('agronomic_quantity', function($data) {
+                return sprintf('%s %s', $data->agronomic_quantity, select_units($this->section)[$data->agronomic_quantity_unit]);
+            })
             ->editColumn('agronomic_observations', function($data) {
                 return $this->textLength(50)->formatString($data->agronomic_observations ?? null);
             })

@@ -23,9 +23,9 @@ trait DataTableSearch
         return [
             $this->setColumnSearch('input', 'search_user', $user),
             $this->setColumnSearch('input', 'search_client', 2),
-            $this->setColumnSearch('input', 'search_crop', 4),
             $this->setColumnSearch('input', 'search_plot', 2 + $value),
             $this->setColumnSearch('date', 'search_date', 3 + $value),
+            $this->setColumnSearch('select', 'search_cultural', 4 + $value),
             //Add your custom values
             //     // $this->setColumnSearch('number', 'search_id', 1),
             //     // $this->setColumnSearch('change', 'search_role', 2),

@@ -35,9 +35,12 @@ class AgronomicCultural extends Model  {
         'plot_id',
         'crop_id',
         'agronomic_date',
-        // 'agronomic_quantity',
-        // 'agronomic_quantity_unit',
+        'agronomic_quantity',
+        'agronomic_quantity_unit',
         'agronomic_observations',
+        'agronomic_type',
+        'agronomic_fertilizer_type',
+        'agronomic_fertilizer_name',
     ];
 
     /**
