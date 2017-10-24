@@ -9,6 +9,42 @@
     //Left menu container
     ->openContainer()
 
+          //Tools submenu
+          ->dropdown([
+              'title' => icon('tools', trans('navbar.tools')),
+              'active' => true,
+              'tools' => true,
+          ], 
+              Menu::new()
+              ->subMenuItem([
+                  'title' => trans('navbar.tools:roles:title'),
+              ])->line()
+              ->subMenuItem([
+                  'title' => icon('assign', trans('selects.roles.god')),
+                  'url' => route('dashboard.user.tools.role', 0),
+              ])->subMenuItem([
+                  'title' => icon('assign', trans('selects.roles.admin')),
+                  'url' => route('dashboard.user.tools.role', 1),
+              ])->subMenuItem([
+                  'title' => icon('assign', trans('selects.roles.editor')),
+                  'url' => route('dashboard.user.tools.role', 2),
+              ])->subMenuItem([
+                  'title' => icon('assign', trans('selects.roles.user')),
+                  'url' => route('dashboard.user.tools.role', 3),
+              ])
+              ->line()
+              ->subMenuItem([
+                  'title' => icon('alert', trans('navbar.admin:errors')),
+                  'url' => route('dashboard.god.errors'),
+              ])
+              ->subMenuItem([
+                  'title' => icon('alert', trans('navbar.admin:administration')),
+                  'url' => route('dashboard.god.administrations.edit', 1),
+              ])
+              ->output()
+          )
+          ->separator()
+
         //Admin submenu
         ->dropdown([
             'title' => icon('admin', trans('navbar.admin')),
@@ -55,49 +91,13 @@
             ->output()
         )
 
-        //Tools submenu
-        ->dropdown([
-            'title' => icon('tools', trans('navbar.tools')),
-            'active' => true,
-            'tools' => true,
-        ], 
-            Menu::new()
-            ->subMenuItem([
-                'title' => trans('navbar.tools:roles:title'),
-            ])->line()
-            ->subMenuItem([
-                'title' => icon('assign', trans('selects.roles.god')),
-                'url' => route('dashboard.user.tools.role', 0),
-            ])->subMenuItem([
-                'title' => icon('assign', trans('selects.roles.admin')),
-                'url' => route('dashboard.user.tools.role', 1),
-            ])->subMenuItem([
-                'title' => icon('assign', trans('selects.roles.editor')),
-                'url' => route('dashboard.user.tools.role', 2),
-            ])->subMenuItem([
-                'title' => icon('assign', trans('selects.roles.user')),
-                'url' => route('dashboard.user.tools.role', 3),
-            ])
-            ->line()
-            ->subMenuItem([
-                'title' => icon('alert', trans('navbar.admin:errors')),
-                'url' => route('dashboard.god.errors'),
-            ])
-            ->subMenuItem([
-                'title' => icon('alert', trans('navbar.admin:administration')),
-                'url' => route('dashboard.god.administrations.edit', 1),
-            ])
-            ->output()
-        )
-        ->separator()
-
         //Users menu
        ->item([
             'title' => icon('user', trans('navbar.users')),
             'url' => route('dashboard.user.users.index'),
             'active' => true,
             'role' => 'editor',
-        ])->separator()
+        ])
 
        //Agronomics submenu
        ->dropdown([
