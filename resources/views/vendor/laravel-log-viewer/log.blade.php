@@ -39,7 +39,7 @@
               <td class="text-{{{$log['level_class']}}}"><span class="glyphicon glyphicon-{{{$log['level_img']}}}-sign" aria-hidden="true"></span> &nbsp;{{$log['level']}}</td>
               <td class="text">{{$log['context']}}</td>
               <td class="date">{{ Carbon\Carbon::parse($log['date'])->format('d/m/Y') }}</td>
-              <td class="time">{{ Carbon\Carbon::parse($log['date'])->format('h:m') }}</td>
+              <td class="time">{{ Carbon\Carbon::parse($log['date'])->toTimeString() }}</td>
               <td class="text">
                 @if ($log['stack']) <a class="pull-right expand btn btn-default btn-xs" data-display="stack{{{$key}}}">{!! icon('search') !!}</a>@endif
                 {{{$log['text']}}}
