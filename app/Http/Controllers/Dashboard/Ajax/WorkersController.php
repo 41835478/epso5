@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Ajax;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Users\User;
 use App\Repositories\Workers\WorkersRepository;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,12 @@ class WorkersController extends Controller
      */
     public function __invoke(WorkersRepository $workers)
     {
+        //Only show if the client has this feature active
+        $configure = User::find(request('search'))->client->config->pluck('config_key', 'id')->all();
+        if(!in_array('workers', $configure)) {
+            return response()->json(null);
+        }
+        //Return workers
         return $workers->ajax(
             $id         = request('search'), 
             $row        = 'user_id', 

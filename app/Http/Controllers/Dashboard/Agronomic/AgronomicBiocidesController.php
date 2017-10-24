@@ -59,7 +59,10 @@ class AgronomicBiocidesController extends AgronomicController
         }
         //List of plots
         $plots = $this->plot->listsByUser($data->user_id) ?? null;
-        $workers = $this->worker->listsByUser($data->user_id);
+        //Check for client configuration for workers
+        $configure = $data->client->config->pluck('config_key', 'id')->all();
+        //Only show if the client has this feature active
+        $workers = in_array('workers', $configure) ? $this->worker->listsByUser($data->user_id) : null;
             //Return the values
             return view(dashboard_path($this->section . '.edit'), compact('data', 'plots', 'workers'));
     }

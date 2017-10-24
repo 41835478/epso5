@@ -47,10 +47,12 @@
     {!!  Form::agronomicDate($data ?? null) !!}
 
     {{-- Field: worker --}}
-    {!! BootForm::select(sections('workers.title'), 'worker_id')
-        ->addGroupClass('col-md-2')
-        ->options(setOptions($workers) ?? [])
-    !!}
+    @if(!is_null($workers))
+        {!! BootForm::select(sections('workers.title'), 'worker_id')
+            ->addGroupClass('col-md-2')
+            ->options(setOptions($workers) ?? [])
+        !!}
+    @endif
 
     {{-- Field: Secure days --}}
     {!! BootForm::InputGroup(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure')
