@@ -164,4 +164,20 @@ class UsersRepository extends Repository {
                 'agreement' => user_ip(),
             ]);
     }
+
+    /**
+     * Get if the client can use the worker module using the user_id
+     * @param  integer $id
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function loadWorkers($id = null)
+    {
+        return $this->model
+            ->find($id)
+            ->client
+            ->config
+            ->pluck('config_key', 'id')
+            ->all();
+    }
 }

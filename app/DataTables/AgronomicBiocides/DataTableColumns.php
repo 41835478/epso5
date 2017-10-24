@@ -19,15 +19,26 @@ trait DataTableColumns
             $this->createCheckbox(),
             $this->setColumn(trans('financials.id'), 'id'),
         ];
-        $columns = [
-            $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
-            $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans_title('biocides', 'singular'), 'biocide.biocide_name'),
-            $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans_title('workers', 'singular'), 'worker.worker_name', ['defaultContent' => no_result()]),
-            $this->setColumn(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure', ['defaultContent' => no_result()]),
-            $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
-        ];
+        if(in_array('workers', getMenuBar())) {
+            $columns = [
+                        $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
+                        $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
+                        $this->setColumnWithRelationship(trans_title('biocides', 'singular'), 'biocide.biocide_name'),
+                        $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
+                        $this->setColumnWithRelationship(trans_title('workers', 'singular'), 'worker.worker_name', ['defaultContent' => no_result()]),
+                        $this->setColumn(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure', ['defaultContent' => no_result()]),
+                        $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
+                    ];
+        } else {
+            $columns = [
+                $this->setColumnWithRelationship(trans_title('plots', 'singular'), 'plot.plot_name'),
+                $this->setColumn(trans('dates.date'), 'agronomic_date', ['defaultContent' => no_result()]),
+                $this->setColumnWithRelationship(trans_title('biocides', 'singular'), 'biocide.biocide_name'),
+                $this->setColumn(trans('units.quantity'), 'agronomic_quantity', ['defaultContent' => no_result()]),
+                $this->setColumn(sections('agronomic_biocides.secure'), 'agronomic_biocide_secure', ['defaultContent' => no_result()]),
+                $this->setColumn(trans('base.observations'), 'agronomic_observations', ['defaultContent' => no_result()]),            
+            ];
+        }
         /**
          * Filter by role
          */
