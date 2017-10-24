@@ -41,7 +41,7 @@ return [
      | Navbar Menus: Agronomics
      |--------------------------------------------------------------------------
      */
-    'plots' => 'Parecelas',
+    'plots' => trans_title('plots'),
         'plots:assign'    => 'Asignar',
         'plots:list'      => 'Listado',
         'plots:new'       => 'Nueva',
