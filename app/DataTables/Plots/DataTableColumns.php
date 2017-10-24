@@ -28,10 +28,10 @@ trait DataTableColumns
             $this->setColumnWithRelationship(trans('persona.city'), 'city.city_name'),
             $this->setColumn(trans('units.m2:min'), 'plot_real_area'),
             $this->setColumn(trans('units.percent:min'), 'plot_percent_cultivated_land'),
-            $this->setColumn(sections('plots.framework:min'), 'plot_framework'),
-            $this->setColumnWithRelationship(trans('base.catastro'), 'geolocation.geo_catastro', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans('base.latitude'), 'geolocation.geo_lat', ['defaultContent' => no_result()]),
-            $this->setColumnWithRelationship(trans('base.longitude'), 'geolocation.geo_lng', ['defaultContent' => no_result()]),
+            $this->setColumn(sections('plots.framework:min'), 'plot_framework', ['orderable' => false]),
+            $this->setColumnWithRelationship(trans('base.catastro'), 'geolocation.geo_catastro', ['defaultContent' => no_result(), 'orderable' => false]),
+            // $this->setColumnWithRelationship(trans('base.latitude'), 'geolocation.geo_lat', ['defaultContent' => no_result(), 'orderable' => false]),
+            // $this->setColumnWithRelationship(trans('base.longitude'), 'geolocation.geo_lng', ['defaultContent' => no_result(), 'orderable' => false]),
             $this->setColumnWithRelationship(trans('base.height:min'), 'geolocation.geo_height', ['defaultContent' => no_result()]),
         ];
         //Filtering the relationships
