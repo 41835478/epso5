@@ -41,20 +41,18 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Cultural Labors
-    | NOTA: Solo cambiar el texto de la etiqueta 'title', el de la etiqueta 'form'
-    | no se tiene que cambiar!!!!! Muy importante!!!!!!
     |--------------------------------------------------------------------------
     */
     'culturals' => [
-        1                   => ['title' => 'Abonado de cobertera',                 'form' => 'fertilizer'],
-        2                   => ['title' => 'Abonado de fondo',                     'form' => 'fertilizer'],
-        3                   => ['title' => 'Aclarado de racimos',                  'form' => ''],
-        4                   => ['title' => 'Desbroce',                             'form' => ''],
-        5                   => ['title' => 'Incorporación de restos de poda',      'form' => 'quantity'],
-        6                   => ['title' => 'Laboreo',                              'form' => ''],
-        7                   => ['title' => 'Poda',                                 'form' => 'quantity'],
-        8                   => ['title' => 'Poda en verde',                        'form' => 'quantity'],
-        9                   => ['title' => 'Quema de poda autorizada',             'form' => ''],
-        10                  => ['title' => 'Otros',                                'form' => ''],
+        1   => 'Abonado de cobertera',
+        2   => 'Abonado de fondo',
+        3   => 'Aclarado de racimos',
+        4   => 'Desbroce',
+        5   => 'Incorporación de restos de poda',
+        6   => 'Laboreo',
+        7   => 'Poda',
+        8   => 'Poda en verde',
+        9   => 'Quema de poda autorizada',
+        10  => 'Otros',
     ],
 ];

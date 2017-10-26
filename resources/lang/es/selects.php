@@ -28,19 +28,21 @@ return [
     /*
     |--------------------------------------------------------------------------
     | Cultural Labors
+    | NOTA: Solo cambiar el texto de la etiqueta 'title', el de la etiqueta 'form'
+    | no se tiene que cambiar!!!!! Muy importante!!!!!!
     |--------------------------------------------------------------------------
     */
     'culturals' => [
-        1   => 'Abonado de cobertera',
-        2   => 'Abonado de fondo',
-        3   => 'Aclarado de racimos',
-        4   => 'Desbroce',
-        5   => 'Incorporación de restos de poda',
-        6   => 'Laboreo',
-        7   => 'Poda',
-        8   => 'Poda en verde',
-        9   => 'Quema de poda autorizada',
-        10  => 'Otros',
+        1  => ['title' => trans('agronomics.culturals.1'),    'form' => 'fertilizer'],
+        2  => ['title' => trans('agronomics.culturals.2'),    'form' => 'fertilizer'],
+        3  => ['title' => trans('agronomics.culturals.3'),    'form' => 'default'],
+        4  => ['title' => trans('agronomics.culturals.4'),    'form' => 'default'],
+        5  => ['title' => trans('agronomics.culturals.5'),    'form' => 'quantity'],
+        6  => ['title' => trans('agronomics.culturals.6'),    'form' => 'default'],
+        7  => ['title' => trans('agronomics.culturals.7'),    'form' => 'quantity'],
+        8  => ['title' => trans('agronomics.culturals.8'),    'form' => 'quantity'],
+        9  => ['title' => trans('agronomics.culturals.9'),    'form' => 'default'],
+        10 => ['title' => trans('agronomics.culturals.10'),   'form' => 'default'],
     ],
 
     /*

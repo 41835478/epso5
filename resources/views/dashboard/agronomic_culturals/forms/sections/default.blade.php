@@ -9,53 +9,14 @@
     {{-- Field: crop --}}
     {!! BootForm::hidden('crop_id')->id('crop_id')->value(Credentials::isOnlyRole('user') ? getCropId() : null) !!}
 
-    {{-- Field: Application date --}}
-    {!!  Form::agronomicDate() !!}
-
-    {{-- Field: Quantity  --}}
-    {!! Form::agronomicQuantity() !!}
-
-    {{-- Field: Quantity units --}}
-    {!! Form::agronomicUnits($section) !!}
-
-    {{-- Field: observations --}}
-    {!! Form::autoTextArea('agronomic_observations') !!}
-    
-    {{-- Input --}}
-    {!! BootForm::text(trans('persona.name'), 'name')
-        ->addGroupClass('col-md-4')
-        ->autofocus()
-        ->required()
-    !!}
-
-    {{-- Select --}}
-    {!! BootForm::select(trans('persona.locale'), 'locale')
-        ->addGroupClass('col-md-2')
-        ->options(select('locale') ?? [])
-        ->defaultValue('es')
-        ->required()
-    !!}
-
-    {{-- Addon --}}
-    {!! BootForm::InputGroup(trans('base.date'), 'agronomic_date')
-        ->addGroupClass('col-md-2')
-        ->addClass('date')
-        ->afterAddon(icon('calendar'))
-        ->required() 
-    !!}
-
-    {{-- textarea --}}
-    {!! BootForm::textarea(trans('base.observations'), 'edaphology_observations')
-        ->addGroupClass('col-md-12')
-        ->rows(5)
-        ->maxlength(250)
-    !!}
-    <div class="ml-3" id="textareaAlert-edaphology_observations"></div>
-
-    {{-- Field: Conditional role --}}
-    {{-- @Role('admin')
-        //
-    @else 
-        //
-    @endRoles --}}
+    {{-- Field: Cultural field --}}
+    <div class="form-group col-md-4">
+        <label class="control-label" for="cultural_id">Labor cultural</label>
+        <select name="cultural_id" id="cultural_id" class="form-control" data-module="" required="required">
+            <option></option>
+            @foreach(select('culturals', $firstOptionValue = false) as $key => $value)
+                <option value="{{ $key }}" data-type="{{ $value['form'] }}">{{ $value['title'] }}</option>
+            @endforeach
+        </select>
+    </div>
 </div>
