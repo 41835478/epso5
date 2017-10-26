@@ -33,12 +33,12 @@
     <script>
         $( function() {
             $( '#cultural_id' ).on( 'change', function() {
-                $.get( window.location.origin + '/dashboard/ajax/culturals', { cultural: $( this ).val(), type: $( this ).find( ':selected' ).data( 'type' ) }, 
+                var $type = $( this ).find( ':selected' ).data( 'type' );
+                var $cultural = $( this ).val();
+                $.get( window.location.origin + '/dashboard/ajax/culturals', { cultural: $type, type: $cultural }, 
                     function( data ) {
-                        if( data.length ) {
-                            //If there is pests 
-                            $( '#cultural' ).html( data );
-                        }
+                        //Add the form
+                        $( '#cultural' ).html( data );
                     });
             })
         });

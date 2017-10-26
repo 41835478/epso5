@@ -16,7 +16,8 @@ class CulturalsController extends Controller
     public function __invoke()
     {
         if(request('cultural') && request('type')) {
-            return response()->json('hellow: ' . request('cultural'));
+            return response()->json(request('type') . ' - ' . request('cultural'));
         }
+        return response()->json(null);
     }
 }
