@@ -28,11 +28,3 @@
     {{-- Field: observations --}}
     {!! Form::autoTextArea('agronomic_observations') !!}
 </div>
-
-{{-- @section('javascript')
-    <script>
-        $( function() {
-            
-        });
-    </script>
-@endsection --}}
