@@ -29,21 +29,10 @@
     {!! Form::autoTextArea('agronomic_observations') !!}
 </div>
 
-@section('javascript')
+{{-- @section('javascript')
     <script>
         $( function() {
-            //Select cultural form
-            if( $( '#cultural_id' ) ) {
-                $( '#cultural_id' ).on( 'change', function() {
-                    var $type = $( this ).find( ':selected' ).data( 'type' );
-                    var $cultural = $( this ).val();
-                    $.get( window.location.origin + '/dashboard/ajax/culturals', { cultural: $type, type: $cultural }, 
-                        function( data ) {
-                            //Add the form
-                            $( '#cultural' ).html( data );
-                        });
-                })
-            }
+            
         });
     </script>
-@endsection
+@endsection --}}

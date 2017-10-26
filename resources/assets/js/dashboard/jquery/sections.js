@@ -171,3 +171,18 @@
             $( '#biocide_formula' ).val( item.data( 'formula' ) );
         }
     });
+
+    /**
+     * Culturals
+     */
+    if( $( '#cultural_id' ) ) {
+        $( '#cultural_id' ).on( 'change', function() {
+            var $type = $( this ).find( ':selected' ).data( 'type' );
+            var $cultural = $( this ).val();
+            $.get( window.location.origin + '/dashboard/ajax/culturals', { cultural: $type, type: $cultural }, 
+                function( data ) {
+                    //Add the form
+                    $( '#cultural' ).html( data );
+                });
+        })
+    }
