@@ -2,6 +2,8 @@
 
 namespace App\DataTables\Workers;
 
+use Credentials;
+
 trait DataTableJavascript
 {
     /**
@@ -22,7 +24,15 @@ trait DataTableJavascript
      */    
     public function customStateLoadParams()
     {
-        return $this->numericFilter($container = 'search_level', $column = 7);
+        //Default value for user
+        $column = 7;
+        //Values by role
+        if(Credentials::isAdmin()) {
+            $column = $column + 2;
+        } elseif (Credentials::isEditor()) {
+            $column = $column + 1;
+        }
+            return $this->numericFilter($container = 'search_level', $column);
     }
 
     /**

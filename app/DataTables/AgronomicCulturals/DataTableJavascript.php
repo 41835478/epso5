@@ -2,6 +2,8 @@
 
 namespace App\DataTables\AgronomicCulturals;
 
+use Credentials;
+
 trait DataTableJavascript
 {
     /**
@@ -17,12 +19,20 @@ trait DataTableJavascript
     }
 
     /**
-     * Custom state load params
+     * Custom stateLoadParams
      * @return string
      */    
     public function customStateLoadParams()
     {
-        return "";
+        //Default value for user
+        $column = 4;
+        //Values by role
+        if(Credentials::isAdmin()) {
+            $column = $column + 2;
+        } elseif (Credentials::isEditor()) {
+            $column = $column + 1;
+        }
+            return $this->numericFilter($container = 'search_cultural', $column);
     }
 
     /**
