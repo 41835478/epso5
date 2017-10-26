@@ -9,6 +9,9 @@
     {{-- Field: crop --}}
     {!! BootForm::hidden('crop_id')->id('crop_id')->value(Credentials::isOnlyRole('user') ? getCropId() : null) !!}
 
+    {{-- Field: Application date --}}
+    {!!  Form::agronomicDate($data ?? null, trans('dates.date:application')) !!}
+
     {{-- Field: Cultural field --}}
     <div class="form-group col-md-4">
         <label class="control-label" for="cultural_id">Labor cultural</label>
@@ -19,4 +22,25 @@
             @endforeach
         </select>
     </div>
+
+    <div class="col-md-12" id="cultural">@include(dashboard_path('agronomic_culturals.error'))</div>
+
+    {{-- Field: observations --}}
+    {!! Form::autoTextArea('agronomic_observations') !!}
 </div>
+
+@section('javascript')
+    <script>
+        $( function() {
+            $( '#cultural_id' ).on( 'change', function() {
+                $.get( window.location.origin + '/dashboard/ajax/culturals', { cultural: $( this ).val(), type: $( this ).find( ':selected' ).data( 'type' ) }, 
+                    function( data ) {
+                        if( data.length ) {
+                            //If there is pests 
+                            $( '#cultural' ).html( data );
+                        }
+                    });
+            })
+        });
+    </script>
+@endsection

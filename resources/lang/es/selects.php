@@ -35,14 +35,14 @@ return [
     'culturals' => [
         1  => ['title' => trans('agronomics.culturals.1'),    'form' => 'fertilizer'],
         2  => ['title' => trans('agronomics.culturals.2'),    'form' => 'fertilizer'],
-        3  => ['title' => trans('agronomics.culturals.3'),    'form' => 'default'],
-        4  => ['title' => trans('agronomics.culturals.4'),    'form' => 'default'],
+        3  => ['title' => trans('agronomics.culturals.3'),    'form' => null],
+        4  => ['title' => trans('agronomics.culturals.4'),    'form' => null],
         5  => ['title' => trans('agronomics.culturals.5'),    'form' => 'quantity'],
-        6  => ['title' => trans('agronomics.culturals.6'),    'form' => 'default'],
+        6  => ['title' => trans('agronomics.culturals.6'),    'form' => null],
         7  => ['title' => trans('agronomics.culturals.7'),    'form' => 'quantity'],
         8  => ['title' => trans('agronomics.culturals.8'),    'form' => 'quantity'],
-        9  => ['title' => trans('agronomics.culturals.9'),    'form' => 'default'],
-        10 => ['title' => trans('agronomics.culturals.10'),   'form' => 'default'],
+        9  => ['title' => trans('agronomics.culturals.9'),    'form' => null],
+        10 => ['title' => trans('agronomics.culturals.10'),   'form' => null],
     ],
 
     /*
